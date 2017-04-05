@@ -14,7 +14,7 @@
 		<result property="isLending" column="is_lending" />
 		<result property="isDel" column="is_del" />
 		<association property="coden"
-			resultMap="kr.or.dgit.book_project.dao.CodenMapper.CodenResult" />
+			resultMap="kr.or.dgit.book_project.dao.CodenMapper.CodenResult"/>
 		<association property="publisherInfo"
 			resultMap="kr.or.dgit.book_project.dao.PublisherInfoMapper.PublisherInfoResult" />
 	</resultMap>
@@ -42,24 +42,10 @@
 		</choose>
 	</sql>
 	<sql id="selectSql">
-	</sql>
-
-
-	<sql id="selectLeftSql">
-		select b.b_code, b.b_sub_code, b.c_name, c.c_code, b_name, author,
-		b.p_code, publisher, p_name, p_tel, p_zip_code, p_address, price,
-		insert_date, b_lend_count, is_lending, is_del from bookInfo b
-		right outer join publisherInfo p on b.p_code = p.p_code
-		left outer join
-		coden c on b.c_name = c.c_name
-	</sql>
-	<sql id="selectRightSql">
-		select b.b_code, b.b_sub_code, b.c_name, c.c_code, b_name, author, b.p_code,
-		publisher, p_name, p_tel, p_zip_code, p_address, price, insert_date,
-		b_lend_count, is_lending, is_del from bookInfo b
-		right outer join publisherInfo p on b.p_code = p.p_code
-		right outer join
-		coden c on b.c_name = c.c_name
+		select b.*, p.*, 
+		from bookInfo b 
+		full outer join publisherInfo p on b.p_code = p.p_code
+		full outer join bookLend bl on b.b_code = bl.b_code and b.b_sub_code = bl.b_sub_code
 	</sql>
 	<sql id="updateSql">
 		UPDATE bookinfo
@@ -75,16 +61,10 @@
 	<sql id="whereSql">
 		<where>
 			<if test="bCode != null">
-				b.b_code= #{bCode}
+				b_code= #{bCode}
 			</if>
 			<if test="bSubCode != null">
-				and b.b_sub_code =#{bSubCode}
-			</if>
-			<if test="cName != null">
-				and b.c_name =#{cName}
-			</if>
-			<if test="pCode != null">
-				and p.p_code =#{pCode}
+				and b_sub_code =#{bSubCode}
 			</if>
 
 		</where>
@@ -98,7 +78,7 @@
 	</insert>
 	<select id="selectBookInfoCountBy" parameterType="hashmap"
 		resultType="int">
-		<include refid="selectCountSql" />
+		<!-- <include refid="selectCountSql" /> -->
 		select count(*) from bookInfo
 		<choose>
 			<when test="searchBy=='Coden'">
@@ -153,15 +133,6 @@
 		<include refid="whereSql" />
 	</update>
 	
-
-	<select id="selectAllBookInfo" parameterType="hashmap"  resultMap="BookInfoResult">
-		<include refid="selectLeftSql"/>
-		<include refid="whereSql"/>
-		 union 
-		<include refid="selectRightSql"/>
-		<include refid="whereSql"/>
-	</select>
-
 	
-
+	
 </mapper>
