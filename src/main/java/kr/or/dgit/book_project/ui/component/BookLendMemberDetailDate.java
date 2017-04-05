@@ -11,33 +11,40 @@ import java.awt.GridLayout;
 
 public class BookLendMemberDetailDate extends JPanel {
 
+	private InputComp pMCode;
+	private InputComp pMName;
+	private InputComp pMTel;
+	private InputComp pLendDate;
+	private InputComp pReturnDate;
+
 	/**
 	 * Create the panel.
 	 */
 	public BookLendMemberDetailDate() {
 		setLayout(new GridLayout(0, 1, 0, 10));
 		
-		InputComp pMCode = new InputComp();
+		pMCode = new InputComp();
 		add(pMCode);
 		pMCode.setTitle("회원코드");
 		
-		InputComp pMName = new InputComp();
+		pMName = new InputComp();
 		add(pMName);
 		pMName.setTitle("성명");
 		
-		InputComp pMTel = new InputComp();
+		pMTel = new InputComp();
 		add(pMTel);
 		pMTel.setTitle("전화번호");
 		
-		
-		InputComp pLendDate = new InputComp();
+		pLendDate = new InputComp();
 		pLendDate.setTitle("대 여 일");
 		add(pLendDate);
 		
-		InputComp pReturnDate = new InputComp();
+		pReturnDate = new InputComp();
 		pReturnDate.setTitle("반 납 일");
 		add(pReturnDate);
 
 	}
-
+	public BookLendMemberDetailDate getObject(){
+		return null;
+	}
 }

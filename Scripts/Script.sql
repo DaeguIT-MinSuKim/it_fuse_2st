@@ -272,8 +272,7 @@ INSERT INTO book_project.paymentIO (no, b_code, b_sub_code, m_code, lend_date, r
 (37,'T002',00,'C001','2017-03-23' , null),
 (38,'D001',00,'C004','2017-03-23' , null),
 (39,'H003',00,'C009','2017-03-23' , null);
-<<<<<<< HEAD
-=======
+
 
 select*from bookinfo;
 	select b.b_code, b.b_sub_code, b.c_name, c.c_code, b_name, author,
@@ -308,4 +307,4 @@ select*from bookinfo;
 		left outer join
 		coden c on b.c_name = c.c_name
 		where b.b_code= "T001" and b.b_sub_code = "2";
->>>>>>> refs/remotes/origin/대여xml2
+
