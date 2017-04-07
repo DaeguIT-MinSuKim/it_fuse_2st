@@ -70,7 +70,13 @@ public class PublisherInfo {
 
 	@Override
 	public String toString() {
-		return String.format("%s(%s)", publisher, pCode);
+		return String.format("%s, %s",
+				pCode, publisher);
+	}
+
+	public Object[] toArrayForPublisherList() {
+		//"출판사코드","출판사명","담당자명","연락처","우편번호","주소"
+		return new Object[]{pCode, publisher, pName, pTel, pZipCode, pAddress};
 	}
 
 	@Override

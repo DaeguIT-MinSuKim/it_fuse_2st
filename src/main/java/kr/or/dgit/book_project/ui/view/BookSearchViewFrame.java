@@ -56,7 +56,7 @@ public class BookSearchViewFrame extends JFrame {
 
 	}
 
-	public void setMyMouseListener() {
+	public void setMyMouseListener(JPanel myPanel) {
 		bookSearchView.getpTable().getTable().addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -74,6 +74,9 @@ public class BookSearchViewFrame extends JFrame {
 					bookInsertView.getpContent().getpPrice().setValue(bi.getPrice());
 					bookInsertView.getpContent().getpPublisher().setSelectedTT(bi.getPublisherInfo());
 					setVisible(false);
+					
+					
+					
 				}
 			}
 

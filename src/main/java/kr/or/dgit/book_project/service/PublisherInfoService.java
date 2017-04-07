@@ -14,13 +14,14 @@ import kr.or.dgit.book_project.dto.PublisherInfo;
 import kr.or.dgit.book_project.util.MybatisSqlSessionFactory;
 
 public class PublisherInfoService {
-/*private static final BookInfoService instance = new BookInfoService();
+
+	private static final PublisherInfoService instance = new PublisherInfoService();
+
+	public PublisherInfoService() {}
 	
-	private BookInfoService() {}
-	
-	public static BookInfoService getInstance() {
+	public static PublisherInfoService getInstance() {
 		return instance;
-	}*/
+	}
 	
 	public int insertPubliherShort(PublisherInfo publisherInfo) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {

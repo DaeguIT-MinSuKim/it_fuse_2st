@@ -1,9 +1,13 @@
 package kr.or.dgit.book_project.ui.table;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
@@ -13,9 +17,17 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
+import kr.or.dgit.book_project.dto.MemberInfo;
+import kr.or.dgit.book_project.ui.view.MemberSearchMemberDetailViewFrame;
+import kr.or.dgit.book_project.ui.view.MemberSearchMemberPaymentViewFrame;
+
 public abstract class AbsTable<T> extends JPanel {
 	protected JTable table;
+	
+	private MemberInfoTable pTable;
 	private JPopupMenu popupMenu;
+	
+	
 
 	public AbsTable() {
 		setLayout(new BorderLayout(0, 0));
@@ -30,17 +42,13 @@ public abstract class AbsTable<T> extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getButton() == MouseEvent.BUTTON3) {
-					popupMenu.show(table, e.getX(), e.getY());
+					popupMenu.show(pTable, e.getX(), e.getY());
 				}
 			}
 
 		});
 		createPopupMenu();
 	}
-
-	
-	
-
 	public boolean loadData() {
 		Object[][] rowData= getRowData();
 		
@@ -85,54 +93,43 @@ public abstract class AbsTable<T> extends JPanel {
 		return table;
 	}
 	
-	protected abstract void createPopupMenu();
-	
-	/*private JPopupMenu createPopupMenu() {
-		popupMenu = new JPopupMenu();
-
-		JMenuItem updateItem = new JMenuItem("수정");
-		updateItem.addActionListener(new ActionListener() {
+	protected void createPopupMenu() {
+/*		popupMenu = new JPopupMenu();
 		
-
+		JMenuItem updateItem = new JMenuItem("수정/탈퇴");
+		updateItem.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				T t = getSelectedObject();
-				if (t == null) {
-					JOptionPane.showMessageDialog(null, "데이터를 선택하세요");
-					return;
-				}
-				updateData(t);
+				if(e.getActionCommand().equals("수정/탈퇴")){
+					MemberInfo memberinfo = pTable.getSelectedObject(); // 회원 선택해서 그 해당 회원의 정보를 가진 새창 띄우기
+					if (memberinfo == null){
+						JOptionPane.showMessageDialog(null, "데이터를 선택하세요");
+					}
+					MemberSearchMemberDetailViewFrame memberDetail = new MemberSearchMemberDetailViewFrame();
+					memberDetail.setVisible(true);
+				}				
 			}
 		});
-		popupMenu.add(updateItem);
-
-		JMenuItem deleteItem = new JMenuItem("삭제");
-		deleteItem.addActionListener(new ActionListener() {
-
+		popupMenu.add(updateItem);// 우클릭 메뉴에 수정/버튼 기능 버튼 붙이기
+		
+		
+		
+		JMenuItem infoSearchItem = new JMenuItem("대여정보조회");
+		infoSearchItem.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				T t = getSelectedObject();
-				if (t == null) {
-					JOptionPane.showMessageDialog(null, "데이터를 선택하세요");
-					return;
-				}
-				int res = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까", "", JOptionPane.YES_NO_OPTION);
-				if (res != 0) {
-					JOptionPane.showMessageDialog(null, "취소하였습니다");
-					return;
-				}
-
-				deleteItem(t);
-				loadData();
-				JOptionPane.showMessageDialog(null, "삭제되었습니다");
-
+				if(e.getActionCommand().equals("대여정보조회")){
+					MemberInfo memberinfo = pTable.getSelectedObject(); // 회원 선택해서 그 해당 회원의 정보를 가진 새창 띄우기
+					if (memberinfo == null){
+						JOptionPane.showMessageDialog(null, "데이터를 선택하세요");
+					}
+					MemberSearchMemberPaymentViewFrame memberPayment = new MemberSearchMemberPaymentViewFrame();
+					memberPayment.setVisible(true);
+				}				
 			}
-
 		});
-		popupMenu.add(deleteItem);
-
-		return null;
-	}*/
+		popupMenu.add(infoSearchItem);	// 우클릭 메뉴에 회원의 대여정보조회 기능 버튼 달기
+*/	}
 
 	protected abstract void updateData(T t);
 
@@ -147,5 +144,7 @@ public abstract class AbsTable<T> extends JPanel {
 	protected abstract Object[] getColumn();
 
 	public abstract T getSelectedObject();
+	
+	
 
 }

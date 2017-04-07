@@ -7,6 +7,7 @@ import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
 
+import kr.or.dgit.book_project.dto.BookInfo;
 import kr.or.dgit.book_project.dto.PaymentIO;
 
 public class PaymentIOMapperImpl implements PaymentIOMapper {
@@ -20,6 +21,17 @@ public class PaymentIOMapperImpl implements PaymentIOMapper {
 	public List<PaymentIO> selectAllPaymentIOInfo(Map<String, Object> param) {
 		log.debug("selectAllPaymentIOInfo()");
 		return sqlSession.selectList(namespace + "selectAllPaymentIOInfo", param);
+	}
+	
+	@Override
+	public int insertPaymentIO(Map<String, Object> param) {
+		log.debug("insertPaymentIO()");
+		return sqlSession.update(namespace+"insertPaymentIO",param);
+	}
+	@Override
+	public int updatePaymentIO(Map<String, Object> param) {
+		log.debug("updatePaymentIO()");		
+		return sqlSession.update(namespace+"updatePaymentIO",param);
 	}
 	
 }

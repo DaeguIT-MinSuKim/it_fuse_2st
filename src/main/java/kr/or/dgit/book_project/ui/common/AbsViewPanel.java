@@ -9,7 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 public class AbsViewPanel extends JPanel {
 
-	protected JPanel pMain;
+	public JPanel pMain;
 
 	public AbsViewPanel() {
 		setBorder(new EmptyBorder(20, 20, 20, 20));

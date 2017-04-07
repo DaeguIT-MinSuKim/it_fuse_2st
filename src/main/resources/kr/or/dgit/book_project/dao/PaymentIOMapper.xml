@@ -68,6 +68,30 @@
 		<include refid="selectLeftSql"></include>
 	</select>
 	
+<!-- 프로시저 -->
+ 	 <resultMap type="hashmap" id="paramMap"></resultMap>
+	<!--  <select id="procedureTest" statementType="CALLABLE">
+	 	{
+	 	CALL PROCEDURE_NAME(
+	 			#{mode=IN, b_code, javaType=bCode, resultMap=paramMap},
+	 			#{b_sub_code javaType=bSudCode},
+	 			#{m_code javaType=mCode}
+	 			)
+	 	}	
+	 </select> -->
 	
-
+	
+<!-- 	<update id="getbcode" statementType="CALLABLE" >
+		{call proc_paymentIO_insert(?,?,?)}
+	</update>  -->
+	
+	<!-- 대여 프로시저 -->
+	<select id="insertPaymentIO" statementType="CALLABLE" parameterType="hashmap">
+		{call proc_paymentIO_insert(#{b_code, mode = IN, jdbcType= CHAR},#{b_sub_code, mode = IN, jdbcType= INTEGER},#{m_code, mode = IN, jdbcType= CHAR})}
+	</select>
+	
+	<!-- 반납 프로시저 -->
+	<select id="updatePaymentIO" statementType="CALLABLE" parameterType="hashmap">
+		{call proc_paymentIO_update(#{b_code, mode = IN, jdbcType= CHAR},#{b_sub_code, mode = IN, jdbcType= INTEGER},#{m_code, mode = IN, jdbcType= CHAR},#{return_date, mode = IN, jdbcType= DATE})}
+	</select>
 </mapper>

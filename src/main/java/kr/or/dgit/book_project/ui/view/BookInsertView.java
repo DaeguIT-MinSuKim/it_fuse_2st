@@ -119,7 +119,7 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 		BookSearchViewFrame bookSearchFrame = new BookSearchViewFrame();
 		bookSearchFrame.setBookInsertView(this);
 		bookSearchFrame.addBtn("신규");
-		bookSearchFrame.setMyMouseListener();
+	//	bookSearchFrame.setMyMouseListener();
 		bookSearchFrame.setVisible(true);
 	}
 

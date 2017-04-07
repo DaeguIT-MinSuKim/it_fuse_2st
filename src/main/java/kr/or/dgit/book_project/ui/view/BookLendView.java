@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -112,12 +114,12 @@ public class BookLendView extends AbsViewPanel {
 	}
 	//회원코드 누르면 관리뜨는거
 	protected void mousePressedPanel_4PMCodeTF(MouseEvent arg0) {
-		MemberSearchView msv = new MemberSearchView();
-		msv.loadDate();
+		MemberSearchComboView msc = new MemberSearchComboView();
+		msc.loadDate();
 		JFrame jf = new JFrame();
-		msv.setMyMouseListener(this, jf);
+		msc.setMyMouseListener(this, jf);
 		jf.setBounds(100, 100, 400, 500);
-		jf.getContentPane().add(msv);
+		jf.getContentPane().add(msc);
 		jf.setVisible(true);
 	}
 	public BookLendMemberDetail getPanel_4() {

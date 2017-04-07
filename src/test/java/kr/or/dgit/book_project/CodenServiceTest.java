@@ -22,7 +22,11 @@ public class CodenServiceTest {
 		codenService = null;	
 	}
 
+
 	/*@Test
+
+/*	@Test
+
 	public void aTestInsertCoden() {
 		Coden cd = new Coden();
 		cd.setcName("자연");
@@ -38,10 +42,13 @@ public class CodenServiceTest {
 		int res = CodenService.updateCoden(cd);
 		Assert.assertEquals(1, res);
 	}*/
+
 	/*@Test
 	public void cTestSelectCodenAll() {
 		List<Coden> list = codenService.selectCodenAll();
 		Assert.assertNotNull(list);
 	}*/
+
+
 
 }

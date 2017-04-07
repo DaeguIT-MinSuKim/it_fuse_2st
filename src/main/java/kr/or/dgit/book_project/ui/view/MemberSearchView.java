@@ -63,35 +63,7 @@ public class MemberSearchView extends AbsViewPanel {
 		pMain.add(pTable, gbc_pTable);*/
 	}
 	
-	public void setMyMouseListener(BookLendView booklendview, JFrame myFrarme) {
-		pTable.getTable().addMouseListener(new MouseAdapter() {
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2){
-					//회원 검색시 회원 정보 넣기 더블클릭
-					MemberInfo memberinfo = pTable.getSelectedObject();
-					memberinfo.setmCode(memberinfo.getmCode());
-					booklendview.getPanel_4().getpMCode().setTFValue(memberinfo.getmCode());
-					JOptionPane.showMessageDialog(null,memberinfo.isPosbl());
-					//MemberInfo memberinfo2 = MemberInfoService.getInstance().findMemberInfoByCode(memberinfo);
-					if(memberinfo.isPosbl()){
-						booklendview.getPanel_4().getpMName().setTFValue(memberinfo.getmName());
-						booklendview.getPanel_4().getpMTel().setTFValue(memberinfo.getmTel());
-						booklendview.getPanel_4().getLblMsg().setText("대여가능");
-					}else{
-						booklendview.getPanel_4().getLblMsg().setText("대여불가");
-					}
-					myFrarme.setVisible(false);
-				}
-				if(e.getButton() == MouseEvent.BUTTON3){
-					//오른쪽 우클릭시
-				}
-				
-			}
-
-		});
-	}
+	
 	public void loadDate() {
 		pTable.loadData();
 	}

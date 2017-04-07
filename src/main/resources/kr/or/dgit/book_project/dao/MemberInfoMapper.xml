@@ -57,6 +57,10 @@
 		<include refid="selectSql"/>
 		<include refid="whereSql"/>
 	</select>
+	
+	<select id="updateMemberInfo" statementType="CALLABLE" parameterType="hashmap">
+		{call proc_memberinfo_is_posbl_update(#{m_code, mode = IN, jdbcType= CHAR})}
+	</select>
 
 	<!-- <select id="findMemberInfoByCode" parameterType="memberinfo" resultType="MemberInfoResult" >
 		select m.m_name, m.m_code, m_tel, m_zip_code, m_address, if(black_date is null," ",black_date)

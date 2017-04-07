@@ -9,6 +9,8 @@ import kr.or.dgit.book_project.dto.PublisherInfo;
 import kr.or.dgit.book_project.service.BookInfoService;
 
 public class BookLendTable extends AbsTable<BookInfo> {
+	public BookLendTable() {
+	}
 
 	@Override
 	protected void createPopupMenu() {

@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 
 import kr.or.dgit.book_project.dao.MemberInfoMapper;
 import kr.or.dgit.book_project.dao.MemberInfoMapperImpl;
+import kr.or.dgit.book_project.dao.PaymentIOMapper;
+import kr.or.dgit.book_project.dao.PaymentIOMapperImpl;
 import kr.or.dgit.book_project.dto.MemberInfo;
 import kr.or.dgit.book_project.util.MybatisSqlSessionFactory;
 
@@ -49,7 +51,13 @@ public class MemberInfoService {
 			return memberInfoMapper.findMemberInfoByCode(code);
 		}
 	}	
-	
+	// 회원 프로시저
+	public int updateMemberInfo(Map<String, Object> param){
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
+			MemberInfoMapper memberInfoMapper = new MemberInfoMapperImpl(sqlSession);
+			return memberInfoMapper.updateMemberInfo(param);
+		}
+	}
 }
 
 

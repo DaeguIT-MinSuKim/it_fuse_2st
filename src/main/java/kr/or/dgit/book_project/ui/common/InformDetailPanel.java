@@ -51,7 +51,7 @@ public class InformDetailPanel extends InformSizePanel {
 		flowLayout.setVgap(10);
 		flowLayout.setHgap(20);
 		
-		lblTitle = new JLabel("New label");
+		lblTitle = new JLabel("회원정보");
 		lblTitle.setFont(new Font("굴림", Font.BOLD, 18));
 		lblTitle.setBounds(new Rectangle(20, 20, 0, 0));
 		pTitle.add(lblTitle);
@@ -95,7 +95,7 @@ public class InformDetailPanel extends InformSizePanel {
 		idp1.add(idp4);
 		idp4.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		btnDel = new JButton("버튼");
+		btnDel = new JButton("탈퇴");
 		idp4.add(btnDel);
 		
 		JPanel idp5 = new JPanel();

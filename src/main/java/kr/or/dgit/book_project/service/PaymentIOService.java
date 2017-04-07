@@ -9,6 +9,7 @@ import kr.or.dgit.book_project.dao.BookInfoMapper;
 import kr.or.dgit.book_project.dao.BookInfoMapperImpl;
 import kr.or.dgit.book_project.dao.PaymentIOMapper;
 import kr.or.dgit.book_project.dao.PaymentIOMapperImpl;
+import kr.or.dgit.book_project.dto.BookInfo;
 import kr.or.dgit.book_project.dto.PaymentIO;
 import kr.or.dgit.book_project.util.MybatisSqlSessionFactory;
 
@@ -31,5 +32,18 @@ public class PaymentIOService {
 		}
 	}
 	
+	public int insertPaymentIO(Map<String, Object> param){
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
+			PaymentIOMapper paymentIOMapper = new PaymentIOMapperImpl(sqlSession);
+			return paymentIOMapper.insertPaymentIO(param);
+		}
+	}
+	
+	public int updatePaymentIO(Map<String, Object> param){
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
+			PaymentIOMapper paymentIOMapper = new PaymentIOMapperImpl(sqlSession);
+			return paymentIOMapper.updatePaymentIO(param);
+		}
+	}
 	
 }
