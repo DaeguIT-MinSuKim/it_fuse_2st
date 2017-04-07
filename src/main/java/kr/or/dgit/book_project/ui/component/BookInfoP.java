@@ -159,23 +159,17 @@ public class BookInfoP extends JPanel {
 
 	}
 	
-	/*insert into bookInfo(b_code, b_sub_code, c_name, b_name,
-			author, p_code, price, insert_date, is_del) values
-			(#{bCode},#{bSubCode},#{coden.cName},#{bName},#{author},#{publisherInfo.pCode},#{price},#{insertDate},#{isDel});*/
-	
 	public BookInfo getObject(){
 		String bCode = pBCode.getTfBCode().getText();
 		String bSubCode = pBCode.getTfBSubCode().getText();
 		String bName = pBName.getTFValue();
-		Coden coden = new Coden();
-		coden.setcCode(pBCode.getTfBCode().getText().charAt(0)+"");
 		Map<String, Object> param = new HashMap<>();
-		//param.put("cCode", cCode);
-		Coden codenRes = CodenService.getInstance().selectOneByCode(param);
+		param.put("cCode", pBCode.getTfBCode().getText().charAt(0)+"");
+		Coden coden = CodenService.getInstance().selectOne(param);
 		String author = pAuthor.getTFValue();
 		PublisherInfo publisherInfo = (PublisherInfo) pPublisher.getCombItem();
 		int price = (int) pPrice.getValue();
-		return new BookInfo(bCode, bSubCode, codenRes, bName, author, publisherInfo, price);
+		return new BookInfo(bCode, bSubCode, coden, bName, author, publisherInfo, price);
 	}
 
 	public ComboBoxPanel getpPublisher() {

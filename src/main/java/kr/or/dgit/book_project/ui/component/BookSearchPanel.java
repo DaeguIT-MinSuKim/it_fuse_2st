@@ -21,6 +21,7 @@ public class BookSearchPanel extends JPanel {
 
 	private OptionSearchPanel pBCode;
 	private OptionSearchPanel pBName;
+	private OptionSearchPanel pAuthor;
 	private OptionSearchPanel pCoden;
 	private OptionSearchPanel pPublisher;
 
@@ -28,22 +29,26 @@ public class BookSearchPanel extends JPanel {
 		setLayout(new GridLayout(0, 1, 0, 10));
 
 		pBCode = new OptionSearchTF();
-		pBCode.setTitle("도서코드");
+		pBCode.setTitle("도 서 코 드");
 		add(pBCode);
 
 		pBName = new OptionSearchTF();
-		pBName.setTitle("도  서  명");
+		pBName.setTitle("도   서   명");
 		add(pBName);
 
+		pAuthor = new OptionSearchTF();
+		pAuthor.setTitle("저          자");
+		add(pAuthor);
+
 		pCoden = new OptionSearchCmb<Coden>();
-		
+
 		List<Coden> list = CodenService.getInstance().selectCodenAll();
 		((OptionSearchCmb<Coden>) pCoden).setComboDate(list);
-		pCoden.setTitle("분       류");
+		pCoden.setTitle("분          류");
 		add(pCoden);
 
 		pPublisher = new OptionSearchTF();
-		pPublisher.setTitle("출  판  사");
+		pPublisher.setTitle("출   판   사");
 		add(pPublisher);
 
 	}
@@ -54,21 +59,25 @@ public class BookSearchPanel extends JPanel {
 			param.put("bCode", ((OptionSearchTF) pBCode).getTfValue());
 		}
 		if (pBName.isVaildCheck()) {
-			param.put("bName", "%"+((OptionSearchTF) pBName).getTfValue()+"%");
+			param.put("bName", "%" + ((OptionSearchTF) pBName).getTfValue() + "%");
+		}
+		if (pAuthor.isVaildCheck()) {
+			param.put("author", "%" + ((OptionSearchTF) pAuthor).getTfValue() + "%");
 		}
 		if (pCoden.isVaildCheck()) {
-			param.put("cName", ((Coden)((OptionSearchCmb) pCoden).getCombT()).getcName());
+			param.put("cName", ((Coden) ((OptionSearchCmb) pCoden).getCombT()).getcName());
 		}
 		if (pPublisher.isVaildCheck()) {
-			param.put("publisher", "%"+((OptionSearchTF) pPublisher).getTfValue()+"%");
+			param.put("publisher", "%" + ((OptionSearchTF) pPublisher).getTfValue() + "%");
 		}
 		return param;
 	}
-	
-	public void clearAll(){
+
+	public void clearAll() {
 		((OptionSearchTF) pBCode).clear();
 		((OptionSearchTF) pBName).clear();
-		((OptionSearchCmb) pCoden).setSelected(0);
+		((OptionSearchTF) pAuthor).clear();
+		((OptionSearchCmb) pCoden).clear();
 		((OptionSearchTF) pPublisher).clear();
 	}
 

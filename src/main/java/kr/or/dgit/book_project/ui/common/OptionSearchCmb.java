@@ -42,6 +42,10 @@ public class OptionSearchCmb<T> extends OptionSearchPanel {
 	public void setSelectedTT(T item) {
 		comboBox.setSelectedItem(item);
 	}
+	public void clear(){
+		chbTitle.setSelected(false);
+		comboBox.setSelectedIndex(0);
+	}
 
 	
 }

@@ -12,5 +12,5 @@ public interface CodenMapper {
 	int updateCoden(Coden coden);
 	
 	List<Coden> selectCodenAll();
-	Coden selectOneByCode (Map<String, Object> param);
+	Coden selectOne (Map<String, Object> param);
 }

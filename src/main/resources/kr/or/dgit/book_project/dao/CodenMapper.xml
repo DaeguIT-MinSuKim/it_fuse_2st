@@ -10,21 +10,25 @@
 	</resultMap>
 
 	<sql id="insertSql">
-		insert into coden ( c_name, c_code) values(#{cName}, #{cCode})
+		insert into coden ( c_name, c_code) values(#{cName},
+		#{cCode})
 	</sql>
 	<sql id="updateSql">
 		update CODEN
 		<set>
-			<if test="cCode !=null">c_code=#{cCode}</if><!-- 
-			<if test="cName !=null">c_name=#{cName}</if> -->
+			<if test="cCode !=null">c_code=#{cCode}</if>
+			<if test="cName !=null">c_name=#{cName}</if>
 		</set>
 
 	</sql>
 	<sql id="selectSql">
-		SELECT c_name, c_code FROM coden;
+		SELECT c_name, c_code FROM coden
 	</sql>
 	<sql id="whereSql">
-		where c_name=#{cName}
+		<where>
+			<if test="cCode !=null">c_code=#{cCode}</if>
+			<if test="cName !=null">c_name=#{cName}</if>
+		</where>
 	</sql>
 
 
@@ -33,15 +37,15 @@
 	</insert>
 	<update id="updateCoden" parameterType="Coden">
 		<include refid="updateSql" />
-		<include refid="whereSql" />
+		where c_code = #{cCode}
 	</update>
-	
+
 	<select id="selectCodenAll" resultMap="CodenResult">
 		<include refid="selectSql" />
 	</select>
-	
-	<select id="selectOneByCode" parameterType="hashmap" resultMap="CodenResult">
+
+	<select id="selectOne" parameterType="hashmap" resultMap="CodenResult">
 		<include refid="selectSql" />
-		where c_code = #{cCode}
+		<include refid="whereSql" />
 	</select>
 </mapper>

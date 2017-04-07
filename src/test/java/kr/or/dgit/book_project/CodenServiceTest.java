@@ -38,10 +38,10 @@ public class CodenServiceTest {
 		int res = CodenService.updateCoden(cd);
 		Assert.assertEquals(1, res);
 	}*/
-	@Test
+	/*@Test
 	public void cTestSelectCodenAll() {
 		List<Coden> list = codenService.selectCodenAll();
 		Assert.assertNotNull(list);
-	}
+	}*/
 
 }

@@ -33,8 +33,8 @@ public class CodenMapperImpl implements CodenMapper {
 		return sqlSession.selectList(namespace + "selectCodenAll");
 	}
 	@Override
-	public Coden selectOneByCode(Map<String, Object> param) {
-		log.debug("selectOneByCode");
-		return sqlSession.selectOne(namespace + "selectOneByCode",param);
+	public Coden selectOne(Map<String, Object> param) {
+		log.debug("selectOne()");
+		return sqlSession.selectOne(namespace + "selectOne",param);
 	}
 }

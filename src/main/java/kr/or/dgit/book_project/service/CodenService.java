@@ -47,10 +47,10 @@ public class CodenService {
 		}
 	}
 	
-	public Coden selectOneByCode (Map<String, Object> param){
+	public Coden selectOne (Map<String, Object> param){
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			CodenMapper codenMapper = new CodenMapperImpl(sqlSession);
-			return codenMapper.selectOneByCode(param);
+			return codenMapper.selectOne(param);
 		}
 	}
 }

@@ -63,7 +63,7 @@
 			<if test="coden != null">c_name=#{coden.cName},</if>
 			<if test="bName != null">b_name=#{bName},</if>
 			<if test="author != null">author=#{author},</if>
-			<if test="publisherInfo != null">p_code=#{publisherInfo.pCode}</if>
+			<if test="publisherInfo != null">p_code=#{publisherInfo.pCode},</if>
 			<if test="price != 0">price=#{price}</if>
 		</set>
 
@@ -80,6 +80,9 @@
 			<if test="bName != null">
 				and b.b_name like #{bName}
 			</if>
+			<if test="author != null">
+				and author like #{author}
+			</if>
 			<if test="cName != null">
 				and b.c_name =#{cName}
 			</if>
@@ -93,10 +96,6 @@
 			</if>
 			<if test="isDel != null">
 				and b.is_del = #{isDel}
-			</if>
-			<if test="cCode != null">
-				and c.c_code is not null group by c.c_code
-				
 			</if>
 			<if test="isLending != null">
 				and b.is_lending = #{isLending}
