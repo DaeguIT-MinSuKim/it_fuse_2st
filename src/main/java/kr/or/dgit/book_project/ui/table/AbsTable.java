@@ -41,9 +41,16 @@ public abstract class AbsTable<T> extends JPanel {
 	
 	
 
-	public void loadData() {
-		table.setModel(new DefaultTableModel(getRowData(), getColumn()) {
-
+	public boolean loadData() {
+		Object[][] rowData= getRowData();
+		
+		// 검색결과가 없을 때, 로드데이터가 넘어가면서 빈 화면이 나오는 것을 전체 목록 보기로 출력
+		if(rowData.length == 0){
+			System.out.println("[loadData] length : 0");
+			return false;
+		}
+		table.setModel(new DefaultTableModel(rowData, getColumn()) {
+		
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				// Cell 항목 더블클릭해도 수정되지 않게함
@@ -54,6 +61,7 @@ public abstract class AbsTable<T> extends JPanel {
 		// cell 두개이상 선택 불가. 한개만 선택가능
 		CellAlign();
 		cellWith();
+		return true;
 	}
 
 	protected void tableSetWidth(int... width) {
@@ -84,6 +92,7 @@ public abstract class AbsTable<T> extends JPanel {
 
 		JMenuItem updateItem = new JMenuItem("수정");
 		updateItem.addActionListener(new ActionListener() {
+		
 
 			@Override
 			public void actionPerformed(ActionEvent e) {

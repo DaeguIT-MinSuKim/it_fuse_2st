@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import kr.or.dgit.book_project.dto.BookInfo;
@@ -14,12 +15,15 @@ import kr.or.dgit.book_project.service.MemberInfoService;
 import kr.or.dgit.book_project.service.PaymentIOService;
 
 public class MemberInfoTable extends AbsTable<MemberInfo> {
-
-
-	public MemberInfoTable() {
-		loadData();
+	
+	private Map<String, Object> param;
+	public void setParam(Map<String, Object> param) {
+		this.param = param;
 	}
-
+	
+	
+	public MemberInfoTable() { 	}	
+	
 	@Override
 	protected void createPopupMenu() {
 		// TODO Auto-generated method stub
@@ -46,18 +50,16 @@ public class MemberInfoTable extends AbsTable<MemberInfo> {
 
 	@Override
 	protected void CellAlign() {
-		tableCellAlignment(SwingConstants.CENTER, 1);
-		
+		tableCellAlignment(SwingConstants.CENTER, 1);		
 	}
 
 	@Override
 	protected Object[][] getRowData() {		
-		Map<String, Object> param = new HashMap<>();
+		List<MemberInfo> list = MemberInfoService.getInstance().selectMemberByAll(param);// 회원 목록 검색해서 출력		
 		
-		List<MemberInfo> list = MemberInfoService.getInstance().selectMemberByAll(param);
 		Object[][] datas = new Object[list.size()][];
 		for(int i=0; i<datas.length; i++){
-			datas[i] = list.get(i).toArrayForMemberList();
+			datas[i] = list.get(i).toArrayForMemberList();		// 검색결과 리스트 출력
 		}
 		return datas;
 	}
@@ -77,6 +79,7 @@ public class MemberInfoTable extends AbsTable<MemberInfo> {
 		MemberInfo memberinfo = new MemberInfo();
 		memberinfo.setmCode(mCode);
 		return MemberInfoService.getInstance().findMemberInfoByCode(memberinfo);
-	}
+	}	
+	
 	
 }
