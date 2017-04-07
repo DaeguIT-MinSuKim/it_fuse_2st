@@ -78,6 +78,7 @@ public class BookReturnView extends AbsViewPanel {
 		pReturnbtn.add(btnLend);
 		
 		pTabel = new PaymentIoTable();
+		pTabel.loadData();
 		pTabel.getTable().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {

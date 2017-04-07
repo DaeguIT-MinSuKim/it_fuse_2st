@@ -24,11 +24,11 @@ public class MemberInfoServiceTest {
 	}
 	
 	//회원 프로시저 테스트
-	@Test
+	/*@Test
 	public void TESupdateMemberInfo() {
 		Map<String, Object> param = new HashMap();
 		param.put("m_code", "C009");
 		int res = memberinfoservice.updateMemberInfo(param);
 		//Assert.assertSame(1, res);
-	}
+	}*/
 }

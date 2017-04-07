@@ -30,7 +30,8 @@ public class PaymentIoTable extends AbsTable<PaymentIO> {
 
 	@Override
 	protected void cellWith() {
-		// TODO Auto-generated method stub
+		/*정렬하는거 아직 뎃츠 ㄴㄴ*/
+		/*tableSetWidth(50, 30, 250, 70, 100, 100);*/
 		
 	}
 
@@ -54,7 +55,7 @@ public class PaymentIoTable extends AbsTable<PaymentIO> {
 
 	@Override
 	protected Object[] getColumn() {
-		return new String[]{"도서코드","도서중복코드","도서명","회원코드","대여일","연체여부"};
+		return new String[]{"도서코드","도서중복코드","도서명","회원코드","회원명","대여일","연체여부"};
 	}
 
 	@Override
