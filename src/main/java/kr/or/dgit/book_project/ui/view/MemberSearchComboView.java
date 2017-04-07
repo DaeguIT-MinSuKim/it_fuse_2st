@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
@@ -104,10 +105,10 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 			JOptionPane.showMessageDialog(null, "검색할 내용을 입력하세요.");
 			pTable.setParam(map); 	// 검색내용이 공백일 시, 해시맵으로 전체 목록을 출력하려고 새로운 해시맵(map)을 호출
 			pTable.loadData(); 		// 새로운 해시맵(map)이 호출되면 "selectMemberByAll(param)"이 호출되어 목록이 출력
-		} else if (pSearch.getPanel().getComboBox().getSelectedIndex() == 0) { // 콤보박스 회원코드 선택 시,검색
-			param.put("mCode", pSearch.gettF().getText()); 						// 코드 입력 받아온다.
+		} else if (pSearch.getPanel().getComboBox().getSelectedIndex() == 0) { // 콤보박스 회원코드 선택 시,검색코드 입력 받아온다.
+			param.put("mCode", pSearch.gettF().getText());
 			pTable.setParam(param); 					// view에 입력창에 들어온 값으로 해시맵에게 키와 값을 set한다.
-
+			pTable.loadData();
 			if (pTable.loadData() == false) { 			// 입력된 값으로 검색이 안되어서 값이 없으면 loadData 결과가 0이다. False다.
 				JOptionPane.showMessageDialog(null, "해당 데이터가 존재하지 않습니다.");
 			}
@@ -115,7 +116,7 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 		} else if (pSearch.getPanel().getComboBox().getSelectedIndex() == 1) {
 			param.put("mName", pSearch.gettF().getText());
 			pTable.setParam(param);
-			
+			pTable.loadData();
 			if (pTable.loadData() == false) {
 				JOptionPane.showMessageDialog(null, "해당 데이터가 존재하지 않습니다.");
 			}
@@ -123,21 +124,11 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 		} else if(pSearch.getPanel().getComboBox().getSelectedIndex()==2){		// 콤보박스 전화번호 선택 시, 검색
 			param.put("mTel", "%"+pSearch.gettF().getText());
 			pTable.setParam(param);
-			
+			pTable.loadData();
 			if(pTable.loadData() == false){
-				System.out.println("actionPerformedPanelBtnNewButton load false");
-				JOptionPane.showMessageDialog(null, "해당 데이터가 존재하지 않습니다.");
-			} else if (pSearch.getPanel().getComboBox().getSelectedIndex() == 3) { 
-				param.put("mTel", "%" + pSearch.gettF().getText());
-			}
-			pTable.setParam(param);
-
-			if (pTable.loadData() == false) {
-				System.out.println("actionPerformedPanelBtnNewButton load false");
 				JOptionPane.showMessageDialog(null, "해당 데이터가 존재하지 않습니다.");
 			}
 			pSearch.gettF().setText("");
-
 		}
 	}
 
@@ -166,7 +157,42 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 					myFrarme.setVisible(false);
 				}
 				if (e.getButton() == MouseEvent.BUTTON3) {
-					// 오른쪽 우클릭시(누나 수정부분)
+					popupMenu = new JPopupMenu();
+					
+					JMenuItem updateItem = new JMenuItem("수정");
+					updateItem.addActionListener(new ActionListener() {			
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							if(e.getActionCommand().equals("수정")){
+								MemberInfo memberinfo = pTable.getSelectedObject(); // 회원 선택해서 그 해당 회원의 정보를 가진 새창 띄우기
+								if (memberinfo == null){
+									JOptionPane.showMessageDialog(null, "데이터를 선택하세요");
+								}
+								MemberSearchMemberDetailViewFrame memberDetail = new MemberSearchMemberDetailViewFrame();
+								
+								memberDetail.setVisible(true);
+							}				
+						}
+					});
+					popupMenu.add(updateItem);// 우클릭 메뉴에 수정/버튼 기능 버튼 붙이기
+					
+					
+					
+					JMenuItem infoSearchItem = new JMenuItem("대여정보조회");
+					infoSearchItem.addActionListener(new ActionListener() {			
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							if(e.getActionCommand().equals("대여정보조회")){
+								MemberInfo memberinfo = pTable.getSelectedObject(); // 회원 선택해서 그 해당 회원의 정보를 가진 새창 띄우기
+								if (memberinfo == null){
+									JOptionPane.showMessageDialog(null, "데이터를 선택하세요");
+								}
+								MemberSearchMemberPaymentViewFrame memberPayment = new MemberSearchMemberPaymentViewFrame();
+								memberPayment.setVisible(true);
+							}				
+						}
+					});
+					popupMenu.add(infoSearchItem);	// 우클릭 메뉴에 회원의 대여정보조회 기능 버튼 달기
 				}
 
 			}

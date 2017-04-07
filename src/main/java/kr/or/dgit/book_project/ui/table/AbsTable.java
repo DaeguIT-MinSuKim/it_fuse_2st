@@ -24,11 +24,9 @@ import kr.or.dgit.book_project.ui.view.MemberSearchMemberPaymentViewFrame;
 public abstract class AbsTable<T> extends JPanel {
 	protected JTable table;
 	
-	private MemberInfoTable pTable;
+	private MemberInfoSearchTable pTable;
 	private JPopupMenu popupMenu;
 	
-	
-
 	public AbsTable() {
 		setLayout(new BorderLayout(0, 0));
 
