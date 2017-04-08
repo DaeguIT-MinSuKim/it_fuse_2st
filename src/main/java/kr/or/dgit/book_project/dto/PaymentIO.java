@@ -15,6 +15,19 @@ public class PaymentIO {
 	public PaymentIO() {
 	}
 
+	// 맴버 디테일 생성자
+	public PaymentIO(MemberInfo memberInfo, String lendDate, String returnDate) {
+		super();
+		this.memberInfo = memberInfo;
+		this.lendDate = lendDate;
+		this.returnDate = returnDate;
+	}
+	
+	public PaymentIO(BookInfo bookInfo) {
+		super();
+		this.bookInfo = bookInfo;
+	}
+
 	public int getNo() {
 		return no;
 	}

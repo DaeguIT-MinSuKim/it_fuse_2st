@@ -16,9 +16,8 @@ public class BookInfo { // 도서
 	private boolean isLending; // 대여여부
 	private boolean isDel; // 도서폐기여부
 
-	public BookInfo() {
-	}
-
+	public BookInfo() {	}
+	
 	public BookInfo(String bCode, String bSubCode, Coden coden, String bName, String author,
 			PublisherInfo publisherInfo, int price) {
 		// 도서 입력시 사용

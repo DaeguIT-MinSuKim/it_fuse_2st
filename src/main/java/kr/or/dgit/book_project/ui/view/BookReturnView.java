@@ -1,24 +1,25 @@
 package kr.or.dgit.book_project.ui.view;
 
-import java.awt.GridLayout;
-
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-
-import kr.or.dgit.book_project.ui.common.AbsViewPanel;
-import kr.or.dgit.book_project.ui.component.BookInfoBasic;
-import kr.or.dgit.book_project.ui.component.BookLendMemberDetail;
-import kr.or.dgit.book_project.ui.component.BookLendMemberDetailDate;
-
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.border.EmptyBorder;
 import java.awt.Font;
-import kr.or.dgit.book_project.ui.table.PaymentIoTable;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import kr.or.dgit.book_project.dto.PaymentIO;
+import kr.or.dgit.book_project.ui.common.AbsViewPanel;
+import kr.or.dgit.book_project.ui.component.BookInfoBasic;
+import kr.or.dgit.book_project.ui.component.BookLendMemberDetailDate;
+import kr.or.dgit.book_project.ui.table.PaymentIoTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class BookReturnView extends AbsViewPanel {
 
@@ -74,6 +75,11 @@ public class BookReturnView extends AbsViewPanel {
 		pReturnbtn.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		btnLend = new JButton("반납");
+		btnLend.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				actionPerformedBtnLend(arg0);
+			}
+		});
 		btnLend.setFont(new Font("굴림", Font.PLAIN, 18));
 		pReturnbtn.add(btnLend);
 		
@@ -81,8 +87,8 @@ public class BookReturnView extends AbsViewPanel {
 		pTabel.loadData();
 		pTabel.getTable().addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				mouseClickedPTabelTable(arg0);
+			public void mouseClicked(MouseEvent e) {
+				mouseClickedPTabelTable(e);
 			}
 		});
 		pMain.add(pTabel);
@@ -96,7 +102,22 @@ public class BookReturnView extends AbsViewPanel {
 		this.pTabel = pTabel;
 	}
 	
-	
-	protected void mouseClickedPTabelTable(MouseEvent arg0) {
+	public BookInfoBasic getpBookinfo() {
+		return pBookinfo;
+	}
+
+	public BookLendMemberDetailDate getpMemberDetail() {
+		return pMemberDetail;
+	}
+
+	protected void mouseClickedPTabelTable(MouseEvent e) {
+		if(e.getClickCount()== 2){
+			pBookinfo.setObjectP(pTabel.getSelectedObject());
+			pMemberDetail.setObject(pTabel.getSelectedObject());
+		}
+	}
+	protected void actionPerformedBtnLend(ActionEvent arg0) {
+		PaymentIO paymentio = pTabel.getSelectedObject();
+		JOptionPane.showMessageDialog(null, pMemberDetail.returnMsg());
 	}
 }

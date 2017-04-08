@@ -35,7 +35,7 @@ public class BookInfoServiceTest {
 		bookInfoService = null;
 	}
 
-	@Test
+	/*@Test
 	public void atestselectBookInfoCountBy() { ///됨
 		Map<String, Object> param = new HashMap<>();
 		param.put("bSubCode", 0);
@@ -44,7 +44,7 @@ public class BookInfoServiceTest {
 		System.out.println("검색 조건 : " + param);
 		System.out.println(res);
 		Assert.assertNotNull(res);
-	}
+	}*/
 
 	/*@Test public void btestinsertBookInfo() {
 		insert into bookInfo(b_code, b_sub_code, c_name, b_name,

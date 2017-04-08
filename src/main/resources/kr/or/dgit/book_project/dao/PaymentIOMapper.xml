@@ -4,6 +4,7 @@
 
 
 	<resultMap type="PaymentIO" id="PaymentIOResult">
+		<result property="no" column="no"/>
 		<result property="lendDate" column="lend_date" />
 		<result property="returnDate" column="return_date" />
 		<association property="bookInfo"
@@ -11,6 +12,19 @@
 		<association property="memberInfo"
 			resultMap="kr.or.dgit.book_project.dao.MemberInfoMapper.MemberInfoResult" />
 	</resultMap>
+	
+	<resultMap type="PaymentIO" id="PaymentIOTwoResult">
+		<result property="bCode" column="b_code"/>
+		<result property="bSubCode" column="b_sub_code"/>
+		<result property="mCode" column="m_code"/>
+		<result property="lendDate" column="lend_date"/>
+		<result property="returnDate" column="return_date"/>
+	</resultMap>
+
+	<select id="selectAllPio" parameterType="hashmap" resultMap="PaymentIOTwoResult">
+		select b_code, b_sub_code, m_code, lend_date, return_date from PaymentIO
+		<include refid="whereSql"/>
+	</select>
 
 	<sql id="selectLeftSql">
 		SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name, author, p_code,
@@ -78,9 +92,12 @@
 	<!-- 반납테이블 내용 필드에 뿌리기 -->
 	<select id="selectAllPayment" parameterType="hashmap" resultMap="PaymentIOResult">
 		<include refid="selectLeftSql"/>
+		<include refid="whereSql"/>
+		union
 		<include refid="selectRightSql"/>
 		<include refid="whereSql"/>
 	</select>
+	
 	<!-- 프로시저 -->
 
 	<!-- 대여 프로시저 -->

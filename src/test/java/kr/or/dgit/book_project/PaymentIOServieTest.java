@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -67,12 +68,21 @@ public class PaymentIOServieTest {
 		
 	}*/
 	
-	@Test
+	/*@Test
 	public void TESselectAllPaymentIOInfo() {
 		Map<String, Object> param = new HashMap<>();
 		param.put("returnNull", "returnNull");
 		List<PaymentIO> list = PaymentIOService.getInstance().selectAllPaymentIOInfo(param);
-		
-		
+		System.out.println("list.size() => " + list.size());
+//		Assert.assertEquals(16, list.size());
+	}*/
+	
+	@Test
+	public void TESselectAllPio() {
+		Map<String, Object> param = new HashMap<>();
+		param.put("returnNull", "returnNull");
+		List<PaymentIO> list = PaymentIOService.getInstance().selectAllPio(param);
+		System.out.println("list.size() => " + list.size());
+//		Assert.assertEquals(16, list.size());
 	}
 }

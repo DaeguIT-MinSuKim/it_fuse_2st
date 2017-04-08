@@ -291,4 +291,78 @@ SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name, author, p_code,
 		io.b_sub_code = b.b_sub_code
 		right outer join book_project.memberinfo m on io.m_code = m.m_code
 		
+
 		
+SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name, author, p_code,
+		price, insert_date, b_lend_count, is_lending, is_del, lend_date,
+		return_date,io.m_code, m_pass, m_name, m_tel, m_zip_code, m_address,
+		is_posbl, delay_count, m_lend_count, m_now_count, black_date, m_group,
+		is_secsn
+		FROM paymentio io
+		right outer join bookinfo b on io.b_code = b.b_code and
+		io.b_sub_code = b.b_sub_code
+		left outer join memberinfo m on io.m_code = m.m_code
+		where return_date is null and io.b_code='T003' and io.b_sub_code=0 and io.m_code='C002'
+		union
+SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name,
+		author, p_code, price, insert_date, b_lend_count, is_lending, is_del,
+		lend_date, return_date,io.m_code, m_pass, m_name, m_tel, m_zip_code,
+		m_address, is_posbl, delay_count, m_lend_count, m_now_count,
+		black_date, m_group, is_secsn
+		FROM paymentio io
+		right outer join bookinfo b on io.b_code = b.b_code and
+		io.b_sub_code = b.b_sub_code
+		right outer join memberinfo m on io.m_code = m.m_code
+		where return_date is null and io.b_code='T003' and io.b_sub_code=0 and io.m_code='C002';
+
+		SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name, author, p_code,
+		price, insert_date, b_lend_count, is_lending, is_del, lend_date,
+		return_date,io.m_code, m_pass, m_name, m_tel, m_zip_code, m_address,
+		is_posbl, delay_count, m_lend_count, m_now_count, black_date, m_group,
+		is_secsn
+		FROM paymentio io
+		right outer join bookinfo b on io.b_code = b.b_code and
+		io.b_sub_code = b.b_sub_code
+		left outer join memberinfo m on io.m_code = m.m_code
+		where return_date is null and io.b_code='H002' and io.b_sub_code='00' and io.m_code='C009';
+		
+		SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name,
+		author, p_code, price, insert_date, b_lend_count, is_lending, is_del,
+		lend_date, return_date,io.m_code, m_pass, m_name, m_tel, m_zip_code,
+		m_address, is_posbl, delay_count, m_lend_count, m_now_count,
+		black_date, m_group, is_secsn
+		FROM paymentio io
+		right outer join bookinfo b on io.b_code = b.b_code and
+		io.b_sub_code = b.b_sub_code
+		right outer join memberinfo m on io.m_code = m.m_code
+		where io.return_date is null and b.b_code='H002' and b.b_sub_code='00' and m.m_code='C009';
+		
+		-- -----
+		
+		SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name, author, p_code,
+		price, insert_date, b_lend_count, is_lending, is_del, lend_date,
+		return_date,io.m_code, m_pass, m_name, m_tel, m_zip_code, m_address,
+		is_posbl, delay_count, m_lend_count, m_now_count, black_date, m_group,
+		is_secsn
+		FROM paymentio io
+		right outer join bookinfo b on io.b_code = b.b_code and
+		io.b_sub_code = b.b_sub_code
+		left outer join memberinfo m on io.m_code = m.m_code
+		where return_date is null and lend_date is not null
+		union
+SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name,
+		author, p_code, price, insert_date, b_lend_count, is_lending, is_del,
+		lend_date, return_date,io.m_code, m_pass, m_name, m_tel, m_zip_code,
+		m_address, is_posbl, delay_count, m_lend_count, m_now_count,
+		black_date, m_group, is_secsn
+		FROM paymentio io
+		right outer join bookinfo b on io.b_code = b.b_code and
+		io.b_sub_code = b.b_sub_code
+		right outer join memberinfo m on io.m_code = m.m_code
+		where return_date is null and lend_date is not null;
+		
+		
+		
+-- ////////////////////////////
+		
+SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name, author, p_code, price, insert_date, b_lend_count, is_lending, is_del, lend_date, return_date,io.m_code, m_pass, m_name, m_tel, m_zip_code, m_address, is_posbl, delay_count, m_lend_count, m_now_count, black_date, m_group, is_secsn FROM paymentio io right outer join bookinfo b on io.b_code = b.b_code and io.b_sub_code = b.b_sub_code left outer join memberinfo m on io.m_code = m.m_code WHERE lend_date is not null and return_date is null union SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name, author, p_code, price, insert_date, b_lend_count, is_lending, is_del, lend_date, return_date,io.m_code, m_pass, m_name, m_tel, m_zip_code, m_address, is_posbl, delay_count, m_lend_count, m_now_count, black_date, m_group, is_secsn FROM paymentio io right outer join bookinfo b on io.b_code = b.b_code and io.b_sub_code = b.b_sub_code right outer join memberinfo m on io.m_code = m.m_code WHERE lend_date is not null and return_date is null

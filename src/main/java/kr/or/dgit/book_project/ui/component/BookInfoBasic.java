@@ -2,11 +2,16 @@ package kr.or.dgit.book_project.ui.component;
 
 import java.awt.GridLayout;
 import java.util.List;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 import javax.swing.JPanel;
-
 import kr.or.dgit.book_project.dto.BookInfo;
+import kr.or.dgit.book_project.dto.PaymentIO;
 import kr.or.dgit.book_project.dto.PublisherInfo;
+import kr.or.dgit.book_project.service.BookInfoService;
 import kr.or.dgit.book_project.service.PublisherInfoService;
 import kr.or.dgit.book_project.ui.common.BookCodePanel;
 import kr.or.dgit.book_project.ui.common.ComboBoxPanel;
@@ -78,6 +83,34 @@ public class BookInfoBasic extends JPanel {
 		pBLendCount.setTFValue(bookinfo.getbLendCount() + "");
 	}
 
+	// 출납(반납)때 쓸꺼임 겟
+	public PaymentIO getObjectP() {
+		BookInfo bookInfo = new BookInfo();
+		bookInfo.setbCode(pBCode.getTfBCode().getText());
+		bookInfo.setbSubCode(pBCode.getTfBSubCode().getText());
+		bookInfo.setbName(pBName.getTFValue());
+		bookInfo.setAuthor(pAuthor.getTFValue());
+		PublisherInfo publisherInfo = pPName.getCombItem();
+		bookInfo.setPrice(Integer.parseInt(pPrice.getTFValue()));
+		bookInfo.setbLendCount(Integer.parseInt(pBLendCount.getTFValue()));
+		return new PaymentIO(bookInfo);
+	}
+
+	// 출납(반납)때 쓸꺼임 셋
+	public void setObjectP(PaymentIO paymentio) {
+		Map<String, Object> param = new HashMap<>();
+		param.put("bCode", paymentio.getBookInfo().getbCode());
+		param.put("bSubCode", paymentio.getBookInfo().getbSubCode());
+		BookInfo bookInfo = BookInfoService.getInstance().selectBookInfoOne(param);
+		pBCode.setTfBCode(bookInfo.getbCode());
+		pBCode.setTfBSubCode(bookInfo.getbSubCode());
+		pBName.setTFValue(bookInfo.getbName());
+		pAuthor.setTFValue(bookInfo.getAuthor());
+		pPName.setSelectedTT(bookInfo.getPublisherInfo());
+		pPrice.setTFValue(bookInfo.getPrice() + "");
+		pBLendCount.setTFValue(bookInfo.getbLendCount() + "");
+	}
+
 	public BookCodePanel getpBCode() {
 		return pBCode;
 	}
@@ -91,5 +124,4 @@ public class BookInfoBasic extends JPanel {
 		pBCode.getTfBSubCode().setEnabled(enabled);
 		pBLendCount.getTF().setEnabled(enabled);
 	}
-
 }

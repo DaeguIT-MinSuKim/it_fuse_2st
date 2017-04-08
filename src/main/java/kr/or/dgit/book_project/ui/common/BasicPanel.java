@@ -46,4 +46,14 @@ public class BasicPanel extends JPanel {
 
 	}
 
+	public JPanel getpContent() {
+		return pContent;
+	}
+
+	public void setpContent(JPanel pContent) {
+		this.pContent = pContent;
+	}
+	
+	
+
 }

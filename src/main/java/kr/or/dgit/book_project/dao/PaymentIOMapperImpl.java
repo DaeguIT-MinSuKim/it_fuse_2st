@@ -33,10 +33,18 @@ public class PaymentIOMapperImpl implements PaymentIOMapper {
 		log.debug("updatePaymentIO()");		
 		return sqlSession.update(namespace+"updatePaymentIO",param);
 	}
+	// 출납 테이블 뿌리기
 	@Override
 	public PaymentIO selectAllPayment(Map<String, Object> param) {
-		// TODO Auto-generated method stub
-		return null;
+		log.debug("selectAllPayment");
+		return sqlSession.selectOne(namespace+"selectAllPayment",param);
+	}
+	
+	//test
+	@Override
+	public List<PaymentIO> selectAllPio(Map<String, Object> param) {
+		log.debug("selectAllPio");
+		return sqlSession.selectList(namespace+"selectAllPio",param);
 	}
 	
 }
