@@ -14,10 +14,7 @@ public class BookCodePanel extends CompPanel {
 		tfBCode = new JTextField();
 		tfBCode.setColumns(10);
 		pContent.add(tfBCode);
-		
 
-		
-		
 		tfBSubCode = new JTextField();
 		tfBSubCode.setColumns(2);
 		pContent.add(tfBSubCode);
@@ -39,32 +36,30 @@ public class BookCodePanel extends CompPanel {
 	public void setTfBSubCode(String bSubCode) {
 		tfBSubCode.setText(bSubCode);
 	}
-	
-	public void clear(){
+
+	public void clear() {
 		tfBCode.setText("");
 		tfBSubCode.setText("");
 	}
-	
-	
 
 	public boolean isEmpty() {
-		if (getTfBCode().equals("") || getTfBSubCode().equals("")) {
+		if (getTfBCode().getText().trim().equals("") || getTfBSubCode().getText().trim().equals("")) {
 			return true;
 		}
 		return false;
 	}
 
 	public void isEmptyCheck() throws Exception {
-		if (getTfBCode().equals("") || getTfBSubCode().equals("")) {
+		if (getTfBCode().getText().trim().equals("") || getTfBSubCode().getText().trim().equals("")) {
 			throw new Exception("공백 존재");
 		}
 	}
 
 	public void isValidCheck() throws Exception {
-		if (!Pattern.matches("[A-Z]{1}[0-9]{3}", getTfBCode().getText())) {
+		if (!Pattern.matches("^[A-Z]{1}[0-9]{3}$", getTfBCode().getText().trim())) {
 			throw new Exception("도서코드 형식 오류");
 		}
-		if (!Pattern.matches("[0-9]{2}", getTfBSubCode().getText())) {
+		if (!Pattern.matches("^[0-9]{1,2}$", getTfBSubCode().getText().trim())) {
 			throw new Exception("도서중복코드 형식 오류");
 		}
 

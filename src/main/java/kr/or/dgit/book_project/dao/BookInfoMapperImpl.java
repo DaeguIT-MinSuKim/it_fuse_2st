@@ -8,7 +8,6 @@ import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
 
 import kr.or.dgit.book_project.dto.BookInfo;
-import kr.or.dgit.book_project.dto.Coden;
 
 public class BookInfoMapperImpl implements BookInfoMapper {
 	private String namespace = "kr.or.dgit.book_project.dao.BookInfoMapper.";
@@ -44,9 +43,9 @@ public class BookInfoMapperImpl implements BookInfoMapper {
 	}
 
 	@Override
-	public int delBookInfo(BookInfo bookInfo) {
-		log.debug("delBookInfo()");
-		return sqlSession.update(namespace + "delBookInfo", bookInfo);
+	public int setDelBookInfo(BookInfo bookInfo) {
+		log.debug("setDelBookInfo()");
+		return sqlSession.update(namespace + "setDelBookInfo", bookInfo);
 	}
 
 	@Override

@@ -16,6 +16,7 @@ import kr.or.dgit.book_project.service.CodenService;
 import kr.or.dgit.book_project.ui.common.OptionSearchCmb;
 import kr.or.dgit.book_project.ui.common.OptionSearchPanel;
 import kr.or.dgit.book_project.ui.common.OptionSearchTF;
+import javax.swing.JButton;
 
 public class BookSearchPanel extends JPanel {
 
@@ -24,6 +25,11 @@ public class BookSearchPanel extends JPanel {
 	private OptionSearchPanel pAuthor;
 	private OptionSearchPanel pCoden;
 	private OptionSearchPanel pPublisher;
+	private JPanel pBtn;
+	private JButton btnSearch;
+	private JPanel panel_1;
+	private JPanel panel_2;
+	private JPanel pBtnSub;
 
 	public BookSearchPanel() {
 		setLayout(new GridLayout(0, 1, 0, 10));
@@ -50,6 +56,20 @@ public class BookSearchPanel extends JPanel {
 		pPublisher = new OptionSearchTF();
 		pPublisher.setTitle("출   판   사");
 		add(pPublisher);
+
+		pBtn = new JPanel();
+		add(pBtn);
+		pBtn.setLayout(new GridLayout(0, 3, 20, 0));
+
+		JPanel panel_1 = new JPanel();
+		pBtn.add(panel_1);
+
+		btnSearch = new JButton("검색");
+		pBtn.add(btnSearch);
+
+		pBtnSub = new JPanel();
+		pBtn.add(pBtnSub);
+		pBtnSub.setLayout(new GridLayout(1, 0, 0, 0));
 
 	}
 
@@ -79,6 +99,14 @@ public class BookSearchPanel extends JPanel {
 		((OptionSearchTF) pAuthor).clear();
 		((OptionSearchCmb) pCoden).clear();
 		((OptionSearchTF) pPublisher).clear();
+	}
+
+	public JButton getBtnSearch() {
+		return btnSearch;
+	}
+
+	public JPanel getpBtnSub() {
+		return pBtnSub;
 	}
 
 }

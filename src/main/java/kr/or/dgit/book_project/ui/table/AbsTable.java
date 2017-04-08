@@ -30,12 +30,11 @@ public abstract class AbsTable<T> extends JPanel {
 	public AbsTable() {
 		setLayout(new BorderLayout(0, 0));
 
-		JScrollPane scrollPane = new JScrollPane();
-		add(scrollPane, BorderLayout.CENTER);
 		table = new JTable();
+		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(table);
 
-		table.addMouseListener(new MouseAdapter() {
+	/*	table.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -45,16 +44,18 @@ public abstract class AbsTable<T> extends JPanel {
 			}
 
 		});
-		createPopupMenu();
+		createPopupMenu();*/
+		
+		add(scrollPane);
 	}
 	public boolean loadData() {
 		Object[][] rowData= getRowData();
 		
 		// 검색결과가 없을 때, 로드데이터가 넘어가면서 빈 화면이 나오는 것을 전체 목록 보기로 출력
-		if(rowData.length == 0){
+		/*if(rowData.length == 0){
 			System.out.println("[loadData] length : 0");
 			return false;
-		}
+		}*/
 		table.setModel(new DefaultTableModel(rowData, getColumn()) {
 		
 			@Override
@@ -90,44 +91,8 @@ public abstract class AbsTable<T> extends JPanel {
 	public JTable getTable() {
 		return table;
 	}
-	
-	protected void createPopupMenu() {
-/*		popupMenu = new JPopupMenu();
-		
-		JMenuItem updateItem = new JMenuItem("수정/탈퇴");
-		updateItem.addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(e.getActionCommand().equals("수정/탈퇴")){
-					MemberInfo memberinfo = pTable.getSelectedObject(); // 회원 선택해서 그 해당 회원의 정보를 가진 새창 띄우기
-					if (memberinfo == null){
-						JOptionPane.showMessageDialog(null, "데이터를 선택하세요");
-					}
-					MemberSearchMemberDetailViewFrame memberDetail = new MemberSearchMemberDetailViewFrame();
-					memberDetail.setVisible(true);
-				}				
-			}
-		});
-		popupMenu.add(updateItem);// 우클릭 메뉴에 수정/버튼 기능 버튼 붙이기
-		
-		
-		
-		JMenuItem infoSearchItem = new JMenuItem("대여정보조회");
-		infoSearchItem.addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(e.getActionCommand().equals("대여정보조회")){
-					MemberInfo memberinfo = pTable.getSelectedObject(); // 회원 선택해서 그 해당 회원의 정보를 가진 새창 띄우기
-					if (memberinfo == null){
-						JOptionPane.showMessageDialog(null, "데이터를 선택하세요");
-					}
-					MemberSearchMemberPaymentViewFrame memberPayment = new MemberSearchMemberPaymentViewFrame();
-					memberPayment.setVisible(true);
-				}				
-			}
-		});
-		popupMenu.add(infoSearchItem);	// 우클릭 메뉴에 회원의 대여정보조회 기능 버튼 달기
-*/	}
+
+	protected abstract void createPopupMenu();
 
 	protected abstract void updateData(T t);
 

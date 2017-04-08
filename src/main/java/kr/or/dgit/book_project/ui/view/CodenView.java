@@ -18,28 +18,13 @@ import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.book_project.dto.Coden;
 import kr.or.dgit.book_project.service.BookInfoService;
+import kr.or.dgit.book_project.ui.component.BookInfoP;
 import kr.or.dgit.book_project.ui.table.CodenTable;
 
 public class CodenView extends JFrame {
 
 	private JPanel contentPane;
 	private CodenTable pTable;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CodenView frame = new CodenView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	public CodenView() {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -62,7 +47,7 @@ public class CodenView extends JFrame {
 		pTable.setLayout(new GridLayout(1, 0, 0, 0));
 	}
 
-	public void addMyMouseListner(BookInsertView myPanel) {
+	public void addMyMouseListner(BookInfoP bookInfoP) {
 		pTable.getTable().addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -73,9 +58,10 @@ public class CodenView extends JFrame {
 					param.put("bSubCode", 0);
 					param.put("cName", coden.getcName());
 					int cnt = BookInfoService.getInstance().countBookInfo(param);
-					myPanel.getpContent().setClear();
-					myPanel.getpContent().getpBCode().setTfBCode(coden.getcCode() + String.format("%03d", cnt + 1));
-					myPanel.getpContent().getpBCode().setTfBSubCode(00 + "");
+					System.out.println("해당분야 권수 : " + cnt);
+					bookInfoP.setClear();
+					bookInfoP.getpBCode().setTfBCode(coden.getcCode() + String.format("%03d", cnt + 1));
+					bookInfoP.getpBCode().setTfBSubCode(00 + "");
 					setVisible(false);
 				}
 			}

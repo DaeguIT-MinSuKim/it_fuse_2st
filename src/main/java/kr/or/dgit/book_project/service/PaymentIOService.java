@@ -46,4 +46,18 @@ public class PaymentIOService {
 		}
 	}
 	
+	public PaymentIO selectAllPayment(Map<String, Object>param){
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
+			PaymentIOMapper paymentIOMapper = new PaymentIOMapperImpl(sqlSession);
+			return paymentIOMapper.selectAllPayment(param);
+		}
+	}
+	
+	public List<PaymentIO> selectAllPio(Map<String, Object> param){
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
+			PaymentIOMapper paymentIOMapper = new PaymentIOMapperImpl(sqlSession);
+			return paymentIOMapper.selectAllPio(param);
+		}
+	}
+	
 }

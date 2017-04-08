@@ -12,7 +12,13 @@ import kr.or.dgit.book_project.dto.Coden;
 import kr.or.dgit.book_project.service.BookInfoService;
 import kr.or.dgit.book_project.service.CodenService;
 
+@SuppressWarnings("serial")
 public class CodenTable extends AbsTable<Coden> {
+	
+	
+	public CodenTable() {
+		loadData();
+	}
 
 	@Override
 	protected void createPopupMenu() {

@@ -10,7 +10,7 @@ public interface BookInfoMapper {
 	int insertBookInfo(BookInfo bookInfo); // 도서 추가
 
 	int updateBookInfo(BookInfo bookInfo); // 도서 정보 수정
-	int delBookInfo(BookInfo bookInfo); // 도서 폐기/복원
+	int setDelBookInfo(BookInfo bookInfo); // 도서 폐기/복원
 	
 	BookInfo selectBookInfoOne(Map<String, Object> param);
 

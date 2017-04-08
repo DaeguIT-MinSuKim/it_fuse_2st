@@ -14,6 +14,8 @@ import java.awt.event.ActionEvent;
 
 public class SideBar extends JPanel {
 
+
+	protected JButton btnMenu0;	
 	protected JButton btnMenu1;	
 	protected JButton btnMenu2;
 	protected JButton btnMenu3;
@@ -29,7 +31,10 @@ public class SideBar extends JPanel {
 		btnMenu4 = new JButton("HOME");
 		pMenu.add(btnMenu4);
 		
-		btnMenu1 = new JButton("자료관리");
+		btnMenu0 = new JButton("자료관리");
+		pMenu.add(btnMenu0);
+		
+		btnMenu1 = new JButton("멤버관리");
 		pMenu.add(btnMenu1);
 		
 		btnMenu2 = new JButton("출납관리");

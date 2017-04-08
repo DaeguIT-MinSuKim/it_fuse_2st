@@ -37,7 +37,7 @@ public class BasicPanel extends JPanel {
 		pContent = new JPanel();
 		GridBagConstraints gbc_pContent = new GridBagConstraints();
 		gbc_pContent.weighty = 1.0;
-		gbc_pContent.weightx = 2.0;
+		gbc_pContent.weightx = 1.0;
 		gbc_pContent.fill = GridBagConstraints.BOTH;
 		gbc_pContent.gridx = 1;
 		gbc_pContent.gridy = 0;
@@ -45,5 +45,15 @@ public class BasicPanel extends JPanel {
 		pContent.setLayout(new GridLayout(1, 0, 0, 0));
 
 	}
+
+	public JPanel getpContent() {
+		return pContent;
+	}
+
+	public void setpContent(JPanel pContent) {
+		this.pContent = pContent;
+	}
+	
+	
 
 }

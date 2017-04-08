@@ -63,7 +63,7 @@
 			<if test="pName != null">p_name=#{pName},</if>
 			<if test="pTel != null">p_tel=#{pTel},</if>
 			<if test="pZipCode != null">p_zip_code=#{pZipCode},</if>
-			<if test="pAddress != null">p_address=#{pAddress},</if>
+			<if test="pAddress != null">p_address=#{pAddress}</if>
 		</set>
 		<include refid="whereSql" />
 	</update>

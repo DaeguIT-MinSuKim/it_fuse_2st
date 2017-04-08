@@ -1,6 +1,7 @@
 package kr.or.dgit.book_project;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.AfterClass;
@@ -8,6 +9,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import kr.or.dgit.book_project.dto.PaymentIO;
 import kr.or.dgit.book_project.service.PaymentIOService;
 
 public class PaymentIOServieTest {
@@ -52,7 +54,7 @@ public class PaymentIOServieTest {
 		//Assert.assertSame(1, res);
 	}*/
 	
-	@Test
+/*	@Test
 	public void TESupdatePaymentIO() {
 		Map<String, Object> param = new HashMap();
 		param.put("b_code", "H002");
@@ -64,5 +66,23 @@ public class PaymentIOServieTest {
 		// 헐 됨.. 성공 함... black date 나옴... 한달뒤인 5월 7일... 
 		
 		
+	}*/
+	
+	/*@Test
+	public void TESselectAllPaymentIOInfo() {
+		Map<String, Object> param = new HashMap<>();
+		param.put("returnNull", "returnNull");
+		List<PaymentIO> list = PaymentIOService.getInstance().selectAllPaymentIOInfo(param);
+		System.out.println("list.size() => " + list.size());
+//		Assert.assertEquals(16, list.size());
+	}*/
+	
+	@Test
+	public void TESselectAllPio() {
+		Map<String, Object> param = new HashMap<>();
+		param.put("returnNull", "returnNull");
+		List<PaymentIO> list = PaymentIOService.getInstance().selectAllPio(param);
+		System.out.println("list.size() => " + list.size());
+//		Assert.assertEquals(16, list.size());
 	}
 }

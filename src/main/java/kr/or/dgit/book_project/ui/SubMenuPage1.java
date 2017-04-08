@@ -1,72 +1,81 @@
 package kr.or.dgit.book_project.ui;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import kr.or.dgit.book_project.ui.view.BookInsertView;
-import kr.or.dgit.book_project.ui.view.BookSearchView;
+import kr.or.dgit.book_project.ui.view.BookManageView;
 import kr.or.dgit.book_project.ui.view.CodenManageView;
-import kr.or.dgit.book_project.ui.view.CodenView;
+import kr.or.dgit.book_project.ui.view.DiscardBookManage;
 import kr.or.dgit.book_project.ui.view.MemberInsertView;
-import kr.or.dgit.book_project.ui.view.PublisherView;
 import kr.or.dgit.book_project.ui.view.MemberSearchComboView;
-import java.awt.BorderLayout;
+import kr.or.dgit.book_project.ui.view.PublisherView;
 
-public class SubMenuPage1 extends JTabbedPane {
+public class SubMenuPage1 extends JTabbedPane implements ChangeListener {
 
-private JPanel pMember;
-private JPanel pBook;
-private JPanel pManager;
-private JPanel pPublisher;
-private JPanel pCoden;
+	private JPanel pMember;
+	private JPanel pManager;
+	private JPanel pMemberManager;
+	private MemberSearchComboView memberSearchComboView;
+	private MemberInsertView memberInsertViewEmp;
 
-	public SubMenuPage1() {		
-		pBook = new JPanel();		
-		addTab("도서등록", null, pBook, null);
-		pBook.setLayout(new GridLayout(0, 1, 0, 0));
-		BookInsertView bookInsertview = new BookInsertView();
-		pBook.add(bookInsertview);
-		
-		JPanel pBookManager = new JPanel();
-		addTab("도서관리", null, pBookManager, null);
-		pBookManager.setLayout(new BorderLayout(0, 0));
-		BookSearchView bookSearchview = new BookSearchView();
-		pBookManager.add(bookSearchview);
-		
+	public SubMenuPage1(char mGroup) {
+		addChangeListener(this);
 		pMember = new JPanel();
-		addTab("회원등록", null, pMember, null);		
+		addTab("회원등록", null, pMember, null);
 		pMember.setLayout(new GridLayout(0, 1, 0, 0));
 		MemberInsertView memberInsertView = new MemberInsertView();
-		pMember.add(memberInsertView);		
-				
-		
-		JPanel pMemberManager = new JPanel();
-		addTab("회원관리", null, pMemberManager, null);
-		pMemberManager.setLayout(new GridLayout(0, 1, 0, 0));
-		
-		MemberSearchComboView panel = new MemberSearchComboView();
-		pMemberManager.add(panel);
-		panel.setLayout(new GridLayout(1, 0, 0, 0));
-		
-		pManager = new JPanel();
-		addTab("직원관리", null, pManager, null);
-		pManager.setLayout(new GridLayout(1, 0, 0, 0));
-		MemberInsertView memberInsertViewEmp = new MemberInsertView();
-		pManager.add(memberInsertViewEmp);
-		
-		
-		pPublisher = new JPanel();
-		addTab("출판사관리", null, pPublisher, null);
-		pPublisher.setLayout(new GridLayout(0, 1, 0, 0));
-		PublisherView publisherView = new PublisherView();
-		pPublisher.add(publisherView);
-		
-		pCoden = new JPanel();
-		addTab("분류관리", null, pCoden, null);
-		pCoden.setLayout(new GridLayout(0, 1, 0, 0));
-		CodenManageView codenManagerView = new CodenManageView();
-		pCoden.add(codenManagerView);
-	}	
+		pMember.add(memberInsertView);
+
+		setSubMenuPage1(mGroup);
+
+	}
+
+	public void setSubMenuPage1(char mGroup) {
+		switch (mGroup) {
+		case 'A':
+			// 관리자..직원메뉴까지 볼수있음
+			pMemberManager = new JPanel();
+			addTab("회원관리", null, pMemberManager, null);
+
+			pManager = new JPanel();
+			addTab("직원관리", null, pManager, null);
+			break;
+		case 'B':
+			// 사서.... 직원메뉴 제외 전부 볼 수 있음..
+			pMemberManager = new JPanel();
+			addTab("회원관리", null, pMemberManager, null);
+			break;
+		default:
+			break;
+		}
+	}
+
+	public void stateChanged(ChangeEvent e) {
+		if (e.getSource() == this) {
+			// 선택된 탭의 idx를 넘겨줌
+			stateChangedThis(this.getSelectedIndex());
+		}
+
+	}
+
+	private void stateChangedThis(int idx) {
+		if (this.getTitleAt(idx).equals("회원관리") && memberSearchComboView == null) {
+			// 선택된 탭의 제목에 따라서 조건 지정
+			pMemberManager.setLayout(new GridLayout(0, 1, 0, 0));
+			memberSearchComboView = new MemberSearchComboView();
+			memberSearchComboView.setLayout(new GridLayout(1, 0, 0, 0));
+			pMemberManager.add(memberSearchComboView);
+		} else if (this.getTitleAt(idx).equals("직원관리") && memberInsertViewEmp == null) {
+			pManager.setLayout(new GridLayout(1, 0, 0, 0));
+			memberInsertViewEmp = new MemberInsertView();
+			pManager.add(memberInsertViewEmp);
+		}
+
+	}
 }

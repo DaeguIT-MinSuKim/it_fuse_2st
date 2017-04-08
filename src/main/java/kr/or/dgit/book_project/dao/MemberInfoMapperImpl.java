@@ -10,35 +10,36 @@ import org.apache.ibatis.session.SqlSession;
 import kr.or.dgit.book_project.dto.MemberInfo;
 
 public class MemberInfoMapperImpl implements MemberInfoMapper {
-	private String namespace="kr.or.dgit.book_project.dao.MemberInfoMapper.";
+	private String namespace = "kr.or.dgit.book_project.dao.MemberInfoMapper.";
 	private static final Log log = LogFactory.getLog(BookInfoMapper.class);
-	private SqlSession sqlSession;	
+	private SqlSession sqlSession;
+
 	public MemberInfoMapperImpl(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
-	
+
 	@Override
 	public int selectCountAll() {
-		log.debug("selectCountAll()");		
-		return sqlSession.selectOne(namespace+"selectCountAll");
+		log.debug("selectCountAll()");
+		return sqlSession.selectOne(namespace + "selectCountAll");
 	}
 
 	@Override
 	public int insertMemberInfo(MemberInfo memberInfo) {
 		log.debug("insertMemberInfo()");
-		return sqlSession.insert(namespace+"insertMemberInfo", memberInfo);
+		return sqlSession.insert(namespace + "insertMemberInfo", memberInfo);
 	}
 
 	@Override
 	public List<MemberInfo> selectMemberByAll(Map<String, Object> param) {
 		log.debug("selectMemberByAll()");
-		return sqlSession.selectList(namespace+"selectMemberByAll",param);
+		return sqlSession.selectList(namespace + "selectMemberByAll", param);
 	}
 
 	@Override
 	public MemberInfo findMemberInfoByCode(MemberInfo memberinfo) {
 		log.debug("findMemberInfoByCode()");
-		return sqlSession.selectOne(namespace+"findMemberInfoByCode", memberinfo);
+		return sqlSession.selectOne(namespace + "findMemberInfoByCode", memberinfo);
 	}
 
 	@Override
@@ -46,11 +47,24 @@ public class MemberInfoMapperImpl implements MemberInfoMapper {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	@Override
-	public int updateMemberInfo(Map<String, Object> param) {
+	public int callMemberInfo(Map<String, Object> param) {
+		log.debug("callPaymentIO()");
+		return sqlSession.update(namespace + "callMemberInfo", param);
+
+	}
+
+	@Override
+	public int updateMemberInfo(MemberInfo memberInfo) {
 		log.debug("updatePaymentIO()");
-		return sqlSession.update(namespace+"updateMemberInfo", param);
-		
+		return sqlSession.update(namespace + "updateMemberInfo", memberInfo);
+	}
+
+	@Override
+	public int delMemberInfo(MemberInfo memberInfo) {
+		log.debug("delMemberInfo()");
+		return sqlSession.update(namespace + "delMemberInfo", memberInfo);
+
 	}
 }

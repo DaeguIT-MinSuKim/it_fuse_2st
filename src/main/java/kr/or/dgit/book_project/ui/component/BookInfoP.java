@@ -149,8 +149,8 @@ public class BookInfoP extends JPanel {
 			pBName.isEmptyCheck();
 			pAuthor.isEmptyCheck();
 			pBCode.isValidCheck();
-			pBName.isValidCheck("[a-zA-Z가-힣]+", "한글 또는 영문만 가능");
-			pAuthor.isValidCheck("[a-zA-Z가-힣]+", "한글 또는 영문만 가능");
+			pBName.isValidCheck("^[a-zA-Z가-힣\\s]+$", "한글 또는 영문만 가능");
+			pAuthor.isValidCheck("^[a-zA-Z가-힣\\s]+$", "한글 또는 영문만 가능");
 			return true;
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
@@ -170,6 +170,16 @@ public class BookInfoP extends JPanel {
 		PublisherInfo publisherInfo = (PublisherInfo) pPublisher.getCombItem();
 		int price = (int) pPrice.getValue();
 		return new BookInfo(bCode, bSubCode, coden, bName, author, publisherInfo, price);
+	}
+	
+	public void setObject(BookInfo bookInfo){
+		pBCode.setTfBCode(bookInfo.getbCode());
+		pBCode.setTfBSubCode(bookInfo.getbSubCode());
+		pBName.setTFValue(bookInfo.getbName());
+		pAuthor.setTFValue(bookInfo.getAuthor());
+		pPrice.setValue(bookInfo.getPrice());
+		pPublisher.setSelectedTT(bookInfo.getPublisherInfo());
+		tfAddPublisher.setText("");
 	}
 
 	public ComboBoxPanel getpPublisher() {

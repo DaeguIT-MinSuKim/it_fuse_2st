@@ -3,10 +3,10 @@ package kr.or.dgit.book_project.ui.view;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
 
 public class ViewTest extends JFrame {
 
@@ -44,6 +44,11 @@ public class ViewTest extends JFrame {
 		
 		JButton btnNewButton = new JButton("New button");
 		panel.add(btnNewButton);
+		
+		/*CompPanel panel_1 = new CompPanel();
+		JXDatePicker dxd = new JXDatePicker();
+		panel_1.getpContent().add(dxd);
+		contentPane.add(panel_1);*/
 		
 	/*	MemberSearchMemberPaymentViewFrame panel = new MemberSearchMemberPaymentViewFrame();
 		contentPane.add(panel);*/

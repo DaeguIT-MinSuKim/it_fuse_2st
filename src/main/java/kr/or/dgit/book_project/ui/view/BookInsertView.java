@@ -6,30 +6,37 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import kr.or.dgit.book_project.dto.PublisherInfo;
+import kr.or.dgit.book_project.service.BookInfoService;
 import kr.or.dgit.book_project.service.PublisherInfoService;
 import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.component.BookInfoP;
 import kr.or.dgit.book_project.ui.table.BookSearchTable;
+import java.awt.BorderLayout;
+import javax.swing.border.EmptyBorder;
 
-public class BookInsertView extends AbsViewPanel implements ActionListener {
+public class BookInsertView extends JPanel implements ActionListener {
 
 	private JButton btnSave;
 	private JButton btnCancel;
 	private BookInfoP pContent;
 	private BookSearchTable pTable;
+	private BookSearchViewFrame bookSearchFrame;
 
 	public BookInsertView() {
+		setBorder(new EmptyBorder(20, 20, 20, 20));
+		setLayout(new GridLayout(0, 1, 0, 0));
 
 		JPanel panel_5 = new JPanel();
-		pMain.add(panel_5);
+		add(panel_5);
 		GridBagLayout gbl_panel_5 = new GridBagLayout();
 		gbl_panel_5.columnWidths = new int[] { 600, 0 };
 		gbl_panel_5.rowHeights = new int[] { 300, 50, 200, 0 };
@@ -104,10 +111,15 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 		if(pContent.isVaildCheck()){
 			pContent.getObject();
 			System.out.println(pContent.getObject());
+			BookInfoService.getInstance().insertBookInfo(pContent.getObject());
+			
+			// 하단 테이블에 입력한 데이터 띄우기
+			Map<String, Object> param = new HashMap<>();
+			param.put("bCode", pContent.getObject().getbCode());
+			param.put("bSubCode", pContent.getObject().getbSubCode());
+			pTable.setMap(param);
+			pTable.loadData();
 		}
-		// 새로운 도서정보가 저장
-		// 저장확인메시지
-		// 하단에 테이블 데이터 갱신
 	}
 
 	protected void actionPerformedBtnCancel(ActionEvent e) {
@@ -115,9 +127,14 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 	}
 
 	protected void actionPerformedPContentBtnBookSearch(ActionEvent e) {
-		// 도서 검색창 새창으로
-		BookSearchViewFrame bookSearchFrame = new BookSearchViewFrame();
-		bookSearchFrame.setBookInsertView(this);
+		if (bookSearchFrame == null){
+			// 창 1개만 띄우기
+			bookSearchFrame = new BookSearchViewFrame();
+		}
+		Map<String, Object> param = new HashMap<>();
+		param.put("onlyBook", true);
+		bookSearchFrame.setTableDate(param);
+		bookSearchFrame.setMyMouseListener(pContent);
 		bookSearchFrame.addBtn("신규");
 	//	bookSearchFrame.setMyMouseListener();
 		bookSearchFrame.setVisible(true);
@@ -139,10 +156,8 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 			pContent.getpPublisher().getComboBox().removeAllItems(); // 기존목록 지우기
 			pContent.getpPublisher().setComboDate(list); // 새 목록 넣기
 			// 목록을 넣지 않고 새로 추가된 애만 additem???? 고민중
-			pContent.getpPublisher().setSelected(pis.selectCountAll() - 1); // 제일
-																			// 마지막
-																			// 출판사
-																			// 선택하기
+			// 제일 마지막 출판사 선택하기
+			pContent.getpPublisher().setSelected(pis.selectCountAll() - 1);
 			pContent.getTfAddPublisher().setText(""); // 텍스트필드 초기화
 		}
 	}

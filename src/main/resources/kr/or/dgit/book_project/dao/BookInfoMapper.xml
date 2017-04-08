@@ -25,14 +25,15 @@
 	<sql id="insertSql">
 		insert into bookInfo(b_code, b_sub_code, c_name, b_name,
 		author, p_code, price, insert_date) values
-		(#{bCode},#{bSubCode},#{coden.cName},#{bName},#{author},#{publisherInfo.pCode},#{price}, current_date);
+		(#{bCode},#{bSubCode},#{coden.cName},#{bName},#{author},#{publisherInfo.pCode},#{price},
+		current_date);
 	</sql>
 	<sql id="selectCountSql">
-		select count(*) from bookInfo b 
+		select count(*) from bookInfo b
 	</sql>
 	<sql id="selectSql">
-	SELECT b_code, b_sub_code, c_name, b_name, author, p_code, price, insert_date, b_lend_count, is_lending, is_del
-	FROM bookinfo;
+		<!-- SELECT b_code, b_sub_code, c_name, b_name, author, p_code, price, 
+			insert_date, b_lend_count, is_lending, is_del FROM bookinfo; -->
 	</sql>
 
 
@@ -60,15 +61,14 @@
 	<sql id="updateSql">
 		UPDATE bookinfo
 		<set>
-			<if test="coden != null">c_name=#{coden.cName},</if>
 			<if test="bName != null">b_name=#{bName},</if>
 			<if test="author != null">author=#{author},</if>
-			<if test="publisherInfo != null">p_code=#{publisherInfo.pCode},</if>
-			<if test="price != 0">price=#{price}</if>
-		</set>
+			<if test="price != null">price=#{price},</if>
+			<if test="publisherInfo != null">p_code=#{publisherInfo.pCode}</if>
 
+		</set>
 	</sql>
-	
+
 	<sql id="whereSql">
 		<where>
 			<if test="bCode != null">
@@ -112,10 +112,9 @@
 	<insert id="insertBookInfo" parameterType="BookInfo">
 		<include refid="insertSql" />
 	</insert>
-	<select id="countBookInfo" parameterType="hashmap"
-		resultType="int">
+	<select id="countBookInfo" parameterType="hashmap" resultType="int">
 		<include refid="selectCountSql" />
-		<include refid="whereSql"/>
+		<include refid="whereSql" />
 	</select>
 	<!-- selectLeftSql로 바꿈 -->
 	<select id="selectBookInfoOne" parameterType="hashmap"
@@ -126,12 +125,13 @@
 
 	<update id="updateBookInfo" parameterType="BookInfo">
 		<include refid="updateSql" />
-		<include refid="whereSql" />
+		where b_code = #{bCode} and b_sub_code = #{bSubCode}
 	</update>
 
-	<update id="delBookInfo" parameterType="BookInfo">
-		update bookinfo set is_del = true
-		<include refid="whereSql" />
+	<update id="setDelBookInfo" parameterType="BookInfo">
+		update bookinfo set
+		is_del = #{isDel}
+		where b_code = #{bCode} and b_sub_code = #{bSubCode}
 	</update>
 
 
@@ -145,7 +145,7 @@
 		<include refid="selectRightSql" />
 		<include refid="whereSql" />
 	</select>
-	
+
 
 
 	<select id="selectIslending" parameterType="hashmap" resultMap="BookInfoResult">
@@ -153,6 +153,6 @@
 		<include refid="whereSql" />
 	</select>
 
-	
+
 
 </mapper>
