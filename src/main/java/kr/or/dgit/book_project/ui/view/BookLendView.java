@@ -121,15 +121,6 @@ public class BookLendView extends JPanel implements ActionListener {
 		bsv.setTableDate(param);
 		bsv.setMyMouseListenerPayment(pBookBasic);
 		bsv.setVisible(true);
-		
-		
-		/*//반납부분 검색창 띄우기
-		BookSearchViewFrame bsv = new BookSearchViewFrame();
-		Map<String, Object> param = new HashMap<>();
-		param.put("isDel", false);
-		param.put("isLending", true);
-		bsv.setTableDate(param);
-		bsv.setVisible(true);*/
 	}
 
 	// 회원코드 누르면 관리뜨는거

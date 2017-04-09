@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.SwingConstants;
+
 import kr.or.dgit.book_project.dto.BookInfo;
 import kr.or.dgit.book_project.dto.PublisherInfo;
 import kr.or.dgit.book_project.service.BookInfoService;
@@ -32,14 +34,13 @@ public class BookLendTable extends AbsTable<BookInfo> {
 
 	@Override
 	protected void cellWith() {
-		// TODO Auto-generated method stub
+		tableSetWidth(10, 10, 10, 10, 10, 10, 10);
 		
 	}
 
 	@Override
 	protected void CellAlign() {
-		// TODO Auto-generated method stub
-		
+		tableCellAlignment(SwingConstants.CENTER, 0,1,2,3,4,5,6);		
 	}
 
 	@Override
