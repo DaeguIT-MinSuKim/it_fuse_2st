@@ -74,7 +74,15 @@ public class PageSubForCgroup extends JFrame implements ActionListener, ChangeLi
 
 	protected void actionPerformedBtnHome(ActionEvent e) {
 		// 로그아웃
+		int res = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?\n로그아웃 시 해당 페이지가 종료됩니다.", "", JOptionPane.YES_NO_OPTION);
+		if (res != 0) {
+			JOptionPane.showMessageDialog(null, "취소하였습니다");
+			return;
+		}
 		memberInfo = null;
+		setVisible(false);
+		// 회원 아닌 내정보 제외한 검색창이 떠야하나?
+		new PageLogin().setVisible(true);
 	}
 
 	public void stateChanged(ChangeEvent e) {

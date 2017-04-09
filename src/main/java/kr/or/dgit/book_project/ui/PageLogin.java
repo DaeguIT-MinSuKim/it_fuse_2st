@@ -52,8 +52,7 @@ public class PageLogin extends JFrame implements ActionListener {
 			}
 		});
 	}
-	
-	
+
 	public PageLogin() {
 		setTitle("로그인");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -128,14 +127,19 @@ public class PageLogin extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(null, "해당 아이디가 존재하지 않습니다");
 			pID.clear();// 텍스트필드 초기화
 			pID.getTF().requestFocus(); // 회원번호 텍스트에 포커스
-		} else if (ourMember != null && !pw.equals(ourMember.getmPass())) {
-			JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다");
-			pPW.getPwField().setText("");// 텍스트필드 초기화
-			pPW.getPwField().requestFocus(); // 비밀번호텍스트에 포커스
-		} else if (ourMember != null && pw.equals(ourMember.getmPass())) {
-			// 화면을 띄움
-			JOptionPane.showMessageDialog(null, "로그인 성공");
-			showMainContent(ourMember);
+		} else if (ourMember != null) {
+			if (ourMember.isSecsn()) {
+				// 탈퇴 회원
+				JOptionPane.showMessageDialog(null, "해당 아이디가 존재하지 않습니다");
+			} else if (!pw.equals(ourMember.getmPass())) {
+				JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다");
+				pPW.getPwField().setText("");// 텍스트필드 초기화
+				pPW.getPwField().requestFocus(); // 비밀번호텍스트에 포커스
+			} else if (pw.equals(ourMember.getmPass())) {
+				// 화면을 띄움
+				JOptionPane.showMessageDialog(null, "[ " + ourMember.getmName() + " ] 님의 방문을 환영합니다.");
+				showMainContent(ourMember);
+			}
 		}
 	}
 
@@ -146,7 +150,8 @@ public class PageLogin extends JFrame implements ActionListener {
 		case 'B':
 			// 사서.... 직원메뉴 제외 전부 볼 수 있음..
 			PageSub pageSub = new PageSub();
-			pageSub.setmGroup(ourMemberInfo.getmGroup());
+			pageSub.setMemberInfo(ourMemberInfo);
+			pageSub.getpTabSub().add(new SubMenuPage1(ourMemberInfo.getmGroup()));
 			pageSub.setVisible(true);
 			setVisible(false);
 			break;

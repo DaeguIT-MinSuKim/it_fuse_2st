@@ -28,7 +28,7 @@ public class SideBar extends JPanel {
 		add(pMenu);
 		pMenu.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		btnMenu4 = new JButton("HOME");
+		btnMenu4 = new JButton("로그아웃");
 		pMenu.add(btnMenu4);
 		
 		btnMenu0 = new JButton("자료관리");

@@ -409,7 +409,7 @@ delimiter ;
 call book_project.proc_paymentIO_update('H002',0,'C009','2017-01-01');
 
 
-
+GRANT SELECT ON mysql.proc to user_book IDENTIFIED BY 'rootroot';
 
 
 

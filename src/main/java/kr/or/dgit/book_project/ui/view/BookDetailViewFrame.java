@@ -50,6 +50,7 @@ public class BookDetailViewFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				BookInfoService.getInstance().updateBookInfo(bookInfoBasic.getObject());
 				bookManageView.loadTable();
+				setVisible(false);
 			}
 		});
 
@@ -64,6 +65,7 @@ public class BookDetailViewFrame extends JFrame {
 				}
 				BookInfoService.getInstance().setDelBookInfo(bookInfoBasic.getObject(), true);
 				bookManageView.loadTable();
+				setVisible(false);
 			}
 		});
 	}
