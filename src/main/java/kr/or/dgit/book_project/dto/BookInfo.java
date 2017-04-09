@@ -152,4 +152,38 @@ public class BookInfo { // 도서
 		return new Object[] { bCode, bSubCode, bName, author,
 				String.format("%s(%s)", publisherInfo.getPublisher(), publisherInfo.getpCode()), price, isLending?"대여중":"" };
 	}
+	
+	// 대여프로시때문에 일딴 생성
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((bCode == null) ? 0 : bCode.hashCode());
+		result = prime * result + ((bSubCode == null) ? 0 : bSubCode.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BookInfo other = (BookInfo) obj;
+		if (bCode == null) {
+			if (other.bCode != null)
+				return false;
+		} else if (!bCode.equals(other.bCode))
+			return false;
+		if (bSubCode == null) {
+			if (other.bSubCode != null)
+				return false;
+		} else if (!bSubCode.equals(other.bSubCode))
+			return false;
+		return true;
+	}
+	
+	
 }

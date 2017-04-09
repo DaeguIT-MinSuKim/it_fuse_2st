@@ -108,17 +108,18 @@ public class BookInsertView extends JPanel implements ActionListener {
 
 	protected void actionPerformedBtnSave(ActionEvent e) {
 		// 모두 입력되었는지 확인 후
-		if(pContent.isVaildCheck()){
+		if (pContent.isVaildCheck()) {
 			pContent.getObject();
 			BookInfoService.getInstance().insertBookInfo(pContent.getObject());
-			pContent.setClear();
-			
+
 			// 하단 테이블에 입력한 데이터 띄우기
 			Map<String, Object> param = new HashMap<>();
 			param.put("bCode", pContent.getObject().getbCode());
 			param.put("bSubCode", pContent.getObject().getbSubCode());
 			pTable.setMap(param);
 			pTable.loadData();
+
+			pContent.setClear();
 		}
 	}
 
@@ -127,7 +128,7 @@ public class BookInsertView extends JPanel implements ActionListener {
 	}
 
 	protected void actionPerformedPContentBtnBookSearch(ActionEvent e) {
-		if (bookSearchFrame != null){
+		if (bookSearchFrame != null) {
 			// 창 1개만 띄우기
 		}
 		bookSearchFrame = new BookSearchViewFrame();

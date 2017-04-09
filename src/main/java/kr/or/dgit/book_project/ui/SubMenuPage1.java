@@ -23,14 +23,20 @@ public class SubMenuPage1 extends JTabbedPane implements ChangeListener {
 	private JPanel pMemberManager;
 	private MemberSearchComboView memberSearchComboView;
 	private MemberInsertView memberInsertViewEmp;
+	private MemberInsertView memberInsertView;
 
 	public SubMenuPage1(char mGroup) {
 		addChangeListener(this);
 		pMember = new JPanel();
 		addTab("회원등록", null, pMember, null);
 		pMember.setLayout(new GridLayout(0, 1, 0, 0));
-		MemberInsertView memberInsertView = new MemberInsertView();
+		if( memberInsertView != null){
+			pMember.removeAll();
+		}
+		memberInsertView = new MemberInsertView();
 		pMember.add(memberInsertView);
+		
+		
 
 		setSubMenuPage1(mGroup);
 
@@ -65,14 +71,20 @@ public class SubMenuPage1 extends JTabbedPane implements ChangeListener {
 	}
 
 	private void stateChangedThis(int idx) {
-		if (this.getTitleAt(idx).equals("회원관리") && memberSearchComboView == null) {
+		if (this.getTitleAt(idx).equals("회원관리")) {
 			// 선택된 탭의 제목에 따라서 조건 지정
 			pMemberManager.setLayout(new GridLayout(0, 1, 0, 0));
+			if( memberSearchComboView != null){
+				pMemberManager.removeAll();
+			}
 			memberSearchComboView = new MemberSearchComboView();
 			memberSearchComboView.setLayout(new GridLayout(1, 0, 0, 0));
 			pMemberManager.add(memberSearchComboView);
-		} else if (this.getTitleAt(idx).equals("직원관리") && memberInsertViewEmp == null) {
+		} else if (this.getTitleAt(idx).equals("직원관리")) {
 			pManager.setLayout(new GridLayout(1, 0, 0, 0));
+			if( memberInsertViewEmp != null){
+				pManager.removeAll();
+			}
 			memberInsertViewEmp = new MemberInsertView();
 			pManager.add(memberInsertViewEmp);
 		}

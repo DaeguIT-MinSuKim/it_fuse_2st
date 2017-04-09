@@ -4,9 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+
+import kr.or.dgit.book_project.dto.MemberInfo;
+
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
@@ -17,29 +21,20 @@ public class PageSub extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private SideBar pSideBar;
 	private JPanel pTabSub;
-	private char mGroup;
+	private MemberInfo memberInfo;
 
-	/*public static void main(String[] args) {
-		try {
-			UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
-
-		} catch (Exception e) {
-		}
-		PageMain frame = new PageMain();
-
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-
-					PageSub frame = new PageSub();
-					frame.setVisible(true);
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
+	/*
+	 * public static void main(String[] args) { try {
+	 * UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+	 * 
+	 * } catch (Exception e) { } PageMain frame = new PageMain();
+	 * 
+	 * EventQueue.invokeLater(new Runnable() { public void run() { try {
+	 * 
+	 * PageSub frame = new PageSub(); frame.setVisible(true);
+	 * 
+	 * } catch (Exception e) { e.printStackTrace(); } } }); }
+	 */
 
 	public PageSub() {
 		setTitle("도서관리프로그램");
@@ -93,7 +88,7 @@ public class PageSub extends JFrame implements ActionListener {
 	protected void actionPerformedPSideBarBtnMenu1(ActionEvent e) {
 		// 멤버관리
 		pTabSub.removeAll();
-		pTabSub.add(new SubMenuPage1(mGroup));
+		pTabSub.add(new SubMenuPage1(memberInfo.getmGroup()));
 		revalidate();
 		repaint();
 	}
@@ -115,7 +110,17 @@ public class PageSub extends JFrame implements ActionListener {
 	}
 
 	protected void actionPerformedPSideBarBtnMenu4(ActionEvent e) {
+		// Home -> 로그아웃
+		// 로그아웃
+		int res = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?\n로그아웃 시 해당 페이지가 종료됩니다.", "",
+				JOptionPane.YES_NO_OPTION);
+		if (res != 0) {
+			JOptionPane.showMessageDialog(null, "취소하였습니다");
+			return;
+		}
+		memberInfo = null;
 		setVisible(false);
+		new PageLogin().setVisible(true);
 	}
 
 	public JPanel getpTabSub() {
@@ -126,8 +131,8 @@ public class PageSub extends JFrame implements ActionListener {
 		this.pTabSub = pTabSub;
 	}
 
-	public void setmGroup(char mGroup) {
-		this.mGroup = mGroup;
+	public void setMemberInfo(MemberInfo memberInfo) {
+		this.memberInfo = memberInfo;
 	}
 
 }
