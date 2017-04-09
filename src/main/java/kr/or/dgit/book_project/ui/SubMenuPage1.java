@@ -11,7 +11,7 @@ import javax.swing.event.ChangeListener;
 import kr.or.dgit.book_project.ui.view.BookInsertView;
 import kr.or.dgit.book_project.ui.view.BookManageView;
 import kr.or.dgit.book_project.ui.view.CodenManageView;
-import kr.or.dgit.book_project.ui.view.DiscardBookManage;
+import kr.or.dgit.book_project.ui.view.BookManageForDelBookView;
 import kr.or.dgit.book_project.ui.view.MemberInsertView;
 import kr.or.dgit.book_project.ui.view.MemberSearchComboView;
 import kr.or.dgit.book_project.ui.view.PublisherView;

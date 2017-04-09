@@ -147,4 +147,9 @@ public class BookInfo { // 도서
 		return new Object[] { bCode, bSubCode, bName, author,
 				String.format("%s(%s)", publisherInfo.getPublisher(), publisherInfo.getpCode()), price, bLendCount };
 	}
+	public Object[] toArrayForCgroup() {
+		// "도서코드","도서중복코드","도서명","저자","출판사","가격", "대여여부"
+		return new Object[] { bCode, bSubCode, bName, author,
+				String.format("%s(%s)", publisherInfo.getPublisher(), publisherInfo.getpCode()), price, isLending?"대여중":"" };
+	}
 }

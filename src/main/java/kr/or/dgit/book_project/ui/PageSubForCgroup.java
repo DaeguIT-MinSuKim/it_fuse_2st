@@ -18,7 +18,10 @@ import javax.swing.event.ChangeListener;
 
 import kr.or.dgit.book_project.dto.MemberInfo;
 import kr.or.dgit.book_project.service.MemberInfoService;
+import kr.or.dgit.book_project.ui.table.BookSearchTableForCgroup;
 import kr.or.dgit.book_project.ui.view.AbsBookSearchView;
+import kr.or.dgit.book_project.ui.view.BookSearchView;
+import kr.or.dgit.book_project.ui.view.BookSearchViewForC;
 import kr.or.dgit.book_project.ui.view.MemberSearchMemberDetailViewFrame;
 
 public class PageSubForCgroup extends JFrame implements ActionListener, ChangeListener {
@@ -30,7 +33,7 @@ public class PageSubForCgroup extends JFrame implements ActionListener, ChangeLi
 	private JPanel pBookSearch;
 	private JPanel pMyInfo;
 	private MemberSearchMemberDetailViewFrame msmdvf;
-	private AbsBookSearchView absv;
+	private BookSearchViewForC absv;
 
 	public PageSubForCgroup() {
 		setTitle("도서관리프로그램");
@@ -81,19 +84,34 @@ public class PageSubForCgroup extends JFrame implements ActionListener, ChangeLi
 	}
 
 	protected void stateChangedTabbedPane(int idx) {
-		if (tabbedPane.getTitleAt(idx).equals("도서검색") && absv == null) {
+		if (tabbedPane.getTitleAt(idx).equals("도서검색")) {
 			pBookSearch.setLayout(new GridLayout(1, 0, 0, 0));
-			absv = new AbsBookSearchView() {
-				@Override
-				protected void createPopupMenu() {
-				}
-			};
+			if (absv != null) {
+				pBookSearch.removeAll();
+			}
+			absv = new BookSearchViewForC();
 			Map<String, Object> map = new HashMap<>();
+			// map.put("onlyBook", true);
 			map.put("isDel", false);
 			absv.setMap(map);
+			absv.loadTable();
+			pBookSearch.add(absv);
+
+			/*BookSearchView absv = new BookSearchView();
+			BookSearchTableForCgroup bsbs = new BookSearchTableForCgroup();
+			absv.setpTable(bsbs);
+			Map<String, Object> map = new HashMap<>();
+			//map.put("onlyBook", true);
+			map.put("isDel", false);
+			absv.setMap(map);
+			absv.loadTable(); // 테이블 로드가 안된다....
+			pBookSearch.add(absv);*/
 			
 		} else if (tabbedPane.getTitleAt(idx).equals("내정보") && msmdvf == null) {
 			pMyInfo.setLayout(new GridLayout(1, 0, 0, 0));
+			if (msmdvf != null) {
+				pMyInfo.removeAll();
+			}
 			msmdvf = new MemberSearchMemberDetailViewFrame();
 			// msmdvf에 해당 회원 정보 뿌리기
 			msmdvf.getPanel().setObject(memberInfo);

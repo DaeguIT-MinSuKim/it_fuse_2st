@@ -3,9 +3,6 @@ package kr.or.dgit.book_project.ui.view;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JOptionPane;
@@ -16,17 +13,16 @@ import javax.swing.border.EmptyBorder;
 import kr.or.dgit.book_project.dto.BookInfo;
 import kr.or.dgit.book_project.ui.component.BookSearchPanel;
 import kr.or.dgit.book_project.ui.table.AbsTable;
-import kr.or.dgit.book_project.ui.table.BookSearchTable;
+import kr.or.dgit.book_project.ui.table.BookSearchTableForCgroup;
 
-public abstract class AbsBookSearchView extends JPanel implements ActionListener {
-
+public class BookSearchViewForC extends JPanel implements ActionListener {
 	protected AbsTable<BookInfo> pTable;
 	protected BookSearchPanel pContent;
 	protected Map<String, Object> map;
 	protected BookInsertView bookInsertView;
 	protected JPopupMenu popupMenu;
 
-	public AbsBookSearchView() {
+	public BookSearchViewForC() {
 		setBorder(new EmptyBorder(20, 20, 20, 20));
 
 		pContent = new BookSearchPanel();
@@ -34,17 +30,19 @@ public abstract class AbsBookSearchView extends JPanel implements ActionListener
 		setLayout(new GridLayout(0, 1, 0, 20));
 		add(pContent);
 
-		pTable = new BookSearchTable();
+		pTable = new BookSearchTableForCgroup();
+
 		add(pTable);
 	}
 
 	public AbsTable<BookInfo> getpTable() {
 		return pTable;
 	}
+
 	public void setpTable(AbsTable<BookInfo> pTable) {
 		this.pTable = pTable;
 	}
-	
+
 	public BookSearchPanel getpContent() {
 		return pContent;
 	}
@@ -75,7 +73,7 @@ public abstract class AbsBookSearchView extends JPanel implements ActionListener
 			// 검색하기
 
 			for (String key : map.keySet()) {
-				// 대여중인지.. 폐기된 도서인지.... 
+				// 대여중인지.. 폐기된 도서인지....
 				// 창을 띄울떄 사용된 기본조건을 검색조건으로 추가합니다.
 				param.put(key, map.get(key));
 			}
@@ -85,21 +83,4 @@ public abstract class AbsBookSearchView extends JPanel implements ActionListener
 			pContent.clearAll();
 		}
 	}
-
-	protected void addPopupMenu() {
-		(pTable.getTable()).addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (e.getButton() == MouseEvent.BUTTON3) {
-					createPopupMenu();
-					popupMenu.show(pTable.getTable(), e.getX(), e.getY());
-					// show(활성화될 컴포넌트, X좌표, Y좌표)
-				}
-			}
-		});
-	}
-
-	protected abstract void createPopupMenu();
-
-	
 }

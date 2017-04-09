@@ -110,8 +110,8 @@ public class BookInsertView extends JPanel implements ActionListener {
 		// 모두 입력되었는지 확인 후
 		if(pContent.isVaildCheck()){
 			pContent.getObject();
-			System.out.println(pContent.getObject());
 			BookInfoService.getInstance().insertBookInfo(pContent.getObject());
+			pContent.setClear();
 			
 			// 하단 테이블에 입력한 데이터 띄우기
 			Map<String, Object> param = new HashMap<>();
@@ -127,16 +127,15 @@ public class BookInsertView extends JPanel implements ActionListener {
 	}
 
 	protected void actionPerformedPContentBtnBookSearch(ActionEvent e) {
-		if (bookSearchFrame == null){
+		if (bookSearchFrame != null){
 			// 창 1개만 띄우기
-			bookSearchFrame = new BookSearchViewFrame();
 		}
+		bookSearchFrame = new BookSearchViewFrame();
 		Map<String, Object> param = new HashMap<>();
 		param.put("onlyBook", true);
 		bookSearchFrame.setTableDate(param);
 		bookSearchFrame.setMyMouseListener(pContent);
 		bookSearchFrame.addBtn("신규");
-	//	bookSearchFrame.setMyMouseListener();
 		bookSearchFrame.setVisible(true);
 	}
 
