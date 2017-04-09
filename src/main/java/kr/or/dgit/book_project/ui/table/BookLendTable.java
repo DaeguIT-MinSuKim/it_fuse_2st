@@ -46,6 +46,7 @@ public class BookLendTable extends AbsTable<BookInfo> {
 	protected Object[][] getRowData() {
 		Map<String, Object> param = new HashMap<>();
 		param.put("isLending", false);
+		param.put("isDel", false);
 		List<BookInfo> bi = BookInfoService.getInstance().selectIslending(param);
 		Object[][] datas = new Object[bi.size()][];
 		for(int i =0; i< datas.length; i++){
