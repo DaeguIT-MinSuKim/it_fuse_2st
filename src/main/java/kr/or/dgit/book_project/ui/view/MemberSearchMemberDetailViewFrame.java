@@ -5,21 +5,17 @@ import kr.or.dgit.book_project.ui.component.MemberInfoP;
 
 public class MemberSearchMemberDetailViewFrame extends InformDetailPanel {
 
-	private MemberInfoP panel;
+	private MemberInfoP memberInfoP;
 
 	public MemberSearchMemberDetailViewFrame() {
-		
-		panel = new MemberInfoP();
-		pContent.add(panel);
+
+		memberInfoP = new MemberInfoP();
+		pContent.add(memberInfoP);
 		setOption("- 회원정보 -", "탈퇴");
 	}
 
 	public MemberInfoP getPanel() {
-		return panel;
+		return memberInfoP;
 	}
-	
-	
-	
-	
 
 }

@@ -13,13 +13,13 @@
 			resultMap="kr.or.dgit.book_project.dao.MemberInfoMapper.MemberInfoResult" />
 	</resultMap>
 	
-	<resultMap type="PaymentIO" id="PaymentIOTwoResult">
+ 	<resultMap type="PaymentIO" id="PaymentIOTwoResult">
 		<result property="bCode" column="b_code"/>
 		<result property="bSubCode" column="b_sub_code"/>
 		<result property="mCode" column="m_code"/>
 		<result property="lendDate" column="lend_date"/>
 		<result property="returnDate" column="return_date"/>
-	</resultMap>
+	</resultMap> 
 
 	<select id="selectAllPio" parameterType="hashmap" resultMap="PaymentIOTwoResult">
 		select b_code, b_sub_code, m_code, lend_date, return_date from PaymentIO

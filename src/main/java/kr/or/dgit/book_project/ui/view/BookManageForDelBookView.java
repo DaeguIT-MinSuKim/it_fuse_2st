@@ -2,6 +2,7 @@ package kr.or.dgit.book_project.ui.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -11,12 +12,12 @@ import kr.or.dgit.book_project.dto.BookInfo;
 import kr.or.dgit.book_project.service.BookInfoService;
 import java.awt.Color;
 
-public class DiscardBookManage extends AbsBookSearchView {
-
+public class BookManageForDelBookView extends AbsBookSearchView {
+	// 폐기도서 관리화면
 	
-	
-	public DiscardBookManage() {
+	public BookManageForDelBookView() {
 		super();
+		map = new HashMap<>();
 		map.put("isDel", true);
 		loadTable();
 		addPopupMenu();

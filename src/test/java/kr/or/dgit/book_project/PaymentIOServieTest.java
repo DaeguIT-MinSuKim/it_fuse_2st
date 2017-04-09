@@ -44,17 +44,17 @@ public class PaymentIOServieTest {
 	 * }
 	 */
 
-	/*@Test
+	@Test
 	public void TESprocedureTest() {
 		Map<String, Object> param = new HashMap();
-		param.put("b_code", "J001");
+		param.put("b_code", "J002");
 		param.put("b_sub_code", 00);
-		param.put("m_code", "C004");
+		param.put("m_code", "C003");
 		int res = paymentIOServie.insertPaymentIO(param);
-		//Assert.assertSame(1, res);
-	}*/
+		/*Assert.assertSame(1, res);*/
+	}
 	
-/*	@Test
+	/*@Test
 	public void TESupdatePaymentIO() {
 		Map<String, Object> param = new HashMap();
 		param.put("b_code", "H002");
@@ -64,8 +64,6 @@ public class PaymentIOServieTest {
 		int res = paymentIOServie.updatePaymentIO(param);
 		//Assert.assertSame(1, res);
 		// 헐 됨.. 성공 함... black date 나옴... 한달뒤인 5월 7일... 
-		
-		
 	}*/
 	
 	/*@Test
@@ -76,7 +74,7 @@ public class PaymentIOServieTest {
 		System.out.println("list.size() => " + list.size());
 //		Assert.assertEquals(16, list.size());
 	}*/
-	
+/*	
 	@Test
 	public void TESselectAllPio() {
 		Map<String, Object> param = new HashMap<>();
@@ -84,5 +82,5 @@ public class PaymentIOServieTest {
 		List<PaymentIO> list = PaymentIOService.getInstance().selectAllPio(param);
 		System.out.println("list.size() => " + list.size());
 //		Assert.assertEquals(16, list.size());
-	}
+	}*/
 }

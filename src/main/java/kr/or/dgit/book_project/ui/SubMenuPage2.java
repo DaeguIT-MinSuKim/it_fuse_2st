@@ -26,18 +26,28 @@ public class SubMenuPage2 extends JTabbedPane implements ChangeListener {
 
 	private BookReturnView bRetrunView;
 	private JPanel pPaymentUpdate;
+	private BookLendView bLendView;
 
 	public SubMenuPage2() {
-
+		addChangeListener(this);
 		JPanel pPaymentInput = new JPanel();
 		add("대여관리", pPaymentInput);
 		pPaymentInput.setLayout(new GridLayout(0, 1, 0, 0));
-		BookLendView bLendView = new BookLendView();
+		if( bLendView != null){
+			pPaymentInput.removeAll();
+		}
+		bLendView = new BookLendView();
 		pPaymentInput.add(bLendView);
+		
+		
+		
 
 		pPaymentUpdate = new JPanel();
 		add("반납관리", pPaymentUpdate);
 		pPaymentUpdate.setLayout(new GridLayout(0, 1, 0, 0));
+		if( bRetrunView != null){
+			pPaymentUpdate.removeAll();
+		}
 		bRetrunView = new BookReturnView();
 		pPaymentUpdate.add(bRetrunView);
 

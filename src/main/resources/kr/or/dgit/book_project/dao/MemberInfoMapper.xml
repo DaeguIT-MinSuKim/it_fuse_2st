@@ -36,6 +36,8 @@
 		
 	</sql>
 	
+	<!-- 메소드에 필요한 문구들.. -->
+	
 	<select id="selectCountAll" resultType="int">
 		select count(*) from memberinfo
 	</select>
@@ -58,7 +60,23 @@
 		<include refid="whereSql"/>
 	</select>
 	
-	<select id="updateMemberInfo" statementType="CALLABLE" parameterType="hashmap">
+	<update id="updateMemberInfo" parameterType="MemberInfo">
+		UPDATE memberinfo 
+		<set>
+			<if test="mPass != null">m_pass=#{mPass},</if>
+			<if test="mName != null">m_name=#{mName},</if>
+			<if test="mTel != null">m_tel=#{mTel},</if>
+			<if test="mZipCode != null">m_zip_code=#{mZipCode},</if>
+			<if test="mAddress != null">m_address=#{mAddress}</if>
+		</set>
+		 WHERE m_code=#{mCode}
+	</update>
+	<update id="delMemberInfo" parameterType="MemberInfo">
+		UPDATE memberinfo set is_secsn = true, is_posbl = false WHERE m_code=#{mCode}
+	</update>
+	
+	<!-- 회원 프로시저 -->
+	<select id="callMemberInfo" statementType="CALLABLE" parameterType="hashmap">
 		{call proc_memberinfo_is_posbl_update(#{m_code, mode = IN, jdbcType= CHAR})}
 	</select>
 

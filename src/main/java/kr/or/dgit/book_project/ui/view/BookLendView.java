@@ -1,5 +1,6 @@
 package kr.or.dgit.book_project.ui.view;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -17,32 +18,40 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import kr.or.dgit.book_project.dto.BookInfo;
+import kr.or.dgit.book_project.dto.MemberInfo;
+import kr.or.dgit.book_project.service.PaymentIOService;
 import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.component.BookInfoBasic;
 import kr.or.dgit.book_project.ui.component.BookLendMemberDetail;
 import kr.or.dgit.book_project.ui.table.BookLendTable;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
-public class BookLendView extends AbsViewPanel {
+public class BookLendView extends JPanel implements ActionListener {
 
 	private BookLendTable blv4;
-	private BookInfoBasic panel_3;
-	private BookLendMemberDetail panel_4;
+	private BookInfoBasic pBookBasic;
+	private BookLendMemberDetail pMemberlendDetail;
+	private JButton btnLend;
 
 	public BookLendView() {
+		setBorder(new EmptyBorder(20, 20, 20, 20));
+		setLayout(new GridLayout(0, 1, 10, 10));
 
 		JPanel blv1 = new JPanel();
-		pMain.add(blv1);
+		add(blv1);
 		blv1.setLayout(new GridLayout(0, 2, 0, 0));
 
-		panel_3 = new BookInfoBasic();
-		panel_3.getpBCode().getTfBCode().addMouseListener(new MouseAdapter() {
+		pBookBasic = new BookInfoBasic();
+		pBookBasic.getpBCode().getTfBCode().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				mousePressedPanel_3PBCodeTfBCode(e);
 			}
 		});
 
-		blv1.add(panel_3);
+		blv1.add(pBookBasic);
 
 		JPanel blv2 = new JPanel();
 		blv1.add(blv2);
@@ -53,8 +62,8 @@ public class BookLendView extends AbsViewPanel {
 		gbl_panel_5.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
 		blv2.setLayout(gbl_panel_5);
 
-		panel_4 = new BookLendMemberDetail();
-		panel_4.getpMCode().getTF().addMouseListener(new MouseAdapter() {
+		pMemberlendDetail = new BookLendMemberDetail();
+		pMemberlendDetail.getpMCode().getTF().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				mousePressedPanel_4PMCodeTF(arg0);
@@ -67,7 +76,7 @@ public class BookLendView extends AbsViewPanel {
 		gbc_panel_4.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_4.gridx = 0;
 		gbc_panel_4.gridy = 0;
-		blv2.add(panel_4, gbc_panel_4);
+		blv2.add(pMemberlendDetail, gbc_panel_4);
 
 		JPanel blv3 = new JPanel();
 		blv3.setBorder(new EmptyBorder(20, 100, 20, 100));
@@ -80,7 +89,8 @@ public class BookLendView extends AbsViewPanel {
 		blv2.add(blv3, gbc_panel_2);
 		blv3.setLayout(new GridLayout(1, 1, 10, 0));
 
-		JButton btnLend = new JButton("대여");
+		btnLend = new JButton("대여");
+		btnLend.addActionListener(this);
 		btnLend.setFont(new Font("굴림", Font.PLAIN, 18));
 		blv3.add(btnLend);
 
@@ -93,12 +103,12 @@ public class BookLendView extends AbsViewPanel {
 			}
 		});
 
-		pMain.add(blv4);
+		add(blv4);
 	}
 
 	protected void mouseClickedBlv4Table(MouseEvent e) {
 		if (e.getClickCount() == 2) {
-			panel_3.setObject(blv4.getSelectedObject());
+			pBookBasic.setObject(blv4.getSelectedObject());
 		}
 	}
 
@@ -109,16 +119,8 @@ public class BookLendView extends AbsViewPanel {
 		param.put("isDel", false);
 		param.put("isLending", false);
 		bsv.setTableDate(param);
+		bsv.setMyMouseListenerPayment(pBookBasic);
 		bsv.setVisible(true);
-		
-		
-		/*//반납부분 검색창 띄우기
-		BookSearchViewFrame bsv = new BookSearchViewFrame();
-		Map<String, Object> param = new HashMap<>();
-		param.put("isDel", false);
-		param.put("isLending", true);
-		bsv.setTableDate(param);
-		bsv.setVisible(true);*/
 	}
 
 	// 회원코드 누르면 관리뜨는거
@@ -132,7 +134,37 @@ public class BookLendView extends AbsViewPanel {
 		jf.setVisible(true);
 	}
 
-	public BookLendMemberDetail getPanel_4() {
-		return panel_4;
+	
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnLend) {
+			btnLendActionPerformed(e);
+		}
 	}
+	//대여 버튼 (프로시저 실행)
+	protected void btnLendActionPerformed(ActionEvent e) {
+		BookInfo bookinfo = pBookBasic.getObject();
+		MemberInfo memberinfo = pMemberlendDetail.getObject();
+	
+		Map<String, Object> param = new HashMap<>();
+		param.put("b_code", bookinfo.getbCode());
+		param.put("b_sub_code", bookinfo.getbSubCode());
+		param.put("m_code", memberinfo.getmCode());
+		PaymentIOService.getInstance().insertPaymentIO(param);
+		
+		blv4.loadData();
+		JOptionPane.showMessageDialog(null, "대여가 되었습니다");
+		pBookBasic.clear();
+		pMemberlendDetail.clear();
+	}
+
+	public BookInfoBasic getpBookBasic() {
+		return pBookBasic;
+	}
+
+	public BookLendMemberDetail getpMemberlendDetail() {
+		return pMemberlendDetail;
+	}
+
+	
+	
 }

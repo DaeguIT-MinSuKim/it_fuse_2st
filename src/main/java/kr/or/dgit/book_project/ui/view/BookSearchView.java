@@ -1,12 +1,8 @@
 package kr.or.dgit.book_project.ui.view;
 
-public class BookSearchView extends AbsBookSearchView {
+import java.util.HashMap;
 
-	
-	
-	public BookSearchView() {
-		super();
-	}
+public class BookSearchView extends AbsBookSearchView {
 
 	@Override
 	protected void createPopupMenu() {
