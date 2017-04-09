@@ -75,6 +75,7 @@
 		UPDATE memberinfo set is_secsn = true, is_posbl = false WHERE m_code=#{mCode}
 	</update>
 	
+	<!-- 회원 프로시저 -->
 	<select id="callMemberInfo" statementType="CALLABLE" parameterType="hashmap">
 		{call proc_memberinfo_is_posbl_update(#{m_code, mode = IN, jdbcType= CHAR})}
 	</select>

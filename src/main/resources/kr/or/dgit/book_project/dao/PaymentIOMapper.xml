@@ -102,7 +102,7 @@
 
 	<!-- 대여 프로시저 -->
 	<select id="insertPaymentIO" statementType="CALLABLE" parameterType="hashmap">
-		{call proc_paymentIO_insert(#{b_code, mode = IN, jdbcType= CHAR},#{b_sub_code, mode = IN, jdbcType= INTEGER},#{m_code, mode = IN, jdbcType= CHAR})}
+		{call proc_paymentIO_insert(#{_b_code, mode = IN, jdbcType= CHAR},#{_b_sub_code, mode = IN, jdbcType= INTEGER},#{_m_code, mode = IN, jdbcType= CHAR})}
 	</select>
 	
 	<!-- 반납 프로시저 -->
