@@ -152,16 +152,16 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 					MemberInfo memberinfo = pTable.getSelectedObject();
 					JOptionPane.showMessageDialog(null, memberinfo.toArrayForMemberList());
 					memberinfo.setmCode(memberinfo.getmCode());
-					booklendview.getPanel_4().getpMCode().setTFValue(memberinfo.getmCode());
+					booklendview.getpMemberlendDetail().getpMCode().setTFValue(memberinfo.getmCode());
 					JOptionPane.showMessageDialog(null, memberinfo.isPosbl());
 					// MemberInfo memberinfo2 =
 					// MemberInfoService.getInstance().findMemberInfoByCode(memberinfo);
 					if (memberinfo.isPosbl()) {
-						booklendview.getPanel_4().getpMName().setTFValue(memberinfo.getmName());
-						booklendview.getPanel_4().getpMTel().setTFValue(memberinfo.getmTel());
-						booklendview.getPanel_4().getLblMsg().setText("대여가능");
+						booklendview.getpMemberlendDetail().getpMName().setTFValue(memberinfo.getmName());
+						booklendview.getpMemberlendDetail().getpMTel().setTFValue(memberinfo.getmTel());
+						booklendview.getpMemberlendDetail().getLblMsg().setText("대여가능");
 					} else {
-						booklendview.getPanel_4().getLblMsg().setText("대여불가");
+						booklendview.getpMemberlendDetail().getLblMsg().setText("대여불가");
 					}
 					myFrarme.setVisible(false);
 				}
