@@ -24,6 +24,7 @@ import kr.or.dgit.book_project.ui.view.BookSearchView;
 import kr.or.dgit.book_project.ui.view.BookSearchViewForC;
 import kr.or.dgit.book_project.ui.view.MemberSearchMemberDetailViewFrame;
 import kr.or.dgit.book_project.ui.view.MemberSearchMemberPaymentViewFrame;
+import javax.swing.JLabel;
 
 public class PageSubForCgroup extends JFrame implements ActionListener, ChangeListener {
 
@@ -37,6 +38,8 @@ public class PageSubForCgroup extends JFrame implements ActionListener, ChangeLi
 	private MemberSearchMemberDetailViewFrame memberInfoView;
 	private BookSearchViewForC absv;
 	private MemberSearchMemberPaymentViewFrame paymentInfoView;
+	private JPanel panel;
+	private JLabel lblNewLabel;
 
 	public PageSubForCgroup() {
 		setTitle("도서관리프로그램");
@@ -48,9 +51,16 @@ public class PageSubForCgroup extends JFrame implements ActionListener, ChangeLi
 		getContentPane().add(pSideMenu, BorderLayout.WEST);
 		pSideMenu.setLayout(new BorderLayout(0, 0));
 
+		panel = new JPanel();
+		pSideMenu.add(panel, BorderLayout.NORTH);
+		panel.setLayout(new GridLayout(0, 1, 0, 0));
+
+		lblNewLabel = new JLabel("회원님 접속중");
+		panel.add(lblNewLabel);
+
 		btnHome = new JButton("로그아웃");
+		panel.add(btnHome);
 		btnHome.addActionListener(this);
-		pSideMenu.add(btnHome, BorderLayout.NORTH);
 
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addChangeListener(this);
@@ -70,6 +80,7 @@ public class PageSubForCgroup extends JFrame implements ActionListener, ChangeLi
 	public void setMemberInfo(MemberInfo memberInfo) {
 		// 로그인한 회원의 정보 받기
 		this.memberInfo = memberInfo;
+		lblNewLabel.setText("["+memberInfo.getmName()+ "] 님 접속중");
 	}
 
 	public void actionPerformed(ActionEvent e) {

@@ -40,6 +40,7 @@ public class PageSub extends JFrame implements ActionListener {
 		setTitle("도서관리프로그램");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 1000, 600);
+		
 
 		pSideBar = new SideBar();
 		pSideBar.btnMenu0.addActionListener(this);
@@ -52,7 +53,7 @@ public class PageSub extends JFrame implements ActionListener {
 		gl_pSideBar.setVgap(10);
 		gl_pSideBar.setHgap(10);
 		getContentPane().add(pSideBar, BorderLayout.WEST);
-
+		
 		pTabSub = new JPanel();
 		getContentPane().add(pTabSub, BorderLayout.CENTER);
 		pTabSub.setLayout(new GridLayout(1, 0, 0, 0));
@@ -133,6 +134,7 @@ public class PageSub extends JFrame implements ActionListener {
 
 	public void setMemberInfo(MemberInfo memberInfo) {
 		this.memberInfo = memberInfo;
+		pSideBar.getLblNewLabel().setText("["+memberInfo.getmName()+ "] 님 접속중");
 	}
 
 }
