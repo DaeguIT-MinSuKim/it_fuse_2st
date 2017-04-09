@@ -69,18 +69,18 @@ public class MemberInfoSearchTable extends AbsTable<MemberInfo> {
 
 	@Override
 	public MemberInfo getSelectedObject() {
-		int selectedIdx = table.getSelectedRow();
+		int selectedIdx = table.getSelectedRow();	// 선택된 로우의 값을 받아옴.
 		if (selectedIdx == -1) {
 			return null;
 		}
-		String mCode = (String) table.getValueAt(selectedIdx, 1);
+		String mCode = (String) table.getValueAt(selectedIdx, 1); //셀렉트된 row의 두번째 컬럼값을 받아옴(검색할조건이 있는 컬럼위치)
 		MemberInfo memberinfo = new MemberInfo();
-		memberinfo.setmCode(mCode);
-		return MemberInfoService.getInstance().findMemberInfoByCode(memberinfo);
+		memberinfo.setmCode(mCode);		//테이블에서 받아온값을 넣어줌
+		return MemberInfoService.getInstance().findMemberInfoByCode(memberinfo);		//가져온 코드값으로 select문 멤버인포타입으로 리턴
 	}
 
 	public void setParam(Map<String, Object> param) {
 		this.param = param;
-	}
+	}	
 
 }

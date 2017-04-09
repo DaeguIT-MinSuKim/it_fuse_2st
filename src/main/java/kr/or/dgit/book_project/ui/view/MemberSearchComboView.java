@@ -133,7 +133,7 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 	}
 
 	// 성환이 대여에서 땡겨오는거랑 인영이누나 수정부분
-	public void setMyMouseListener(BookLendView booklendview, JFrame myFrarme) {
+	public void setMyMouseListener(BookLendView booklendview, JFrame myFrame) {
 		pTable.getTable().addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -154,7 +154,7 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 					} else {
 						booklendview.getPanel_4().getLblMsg().setText("대여불가");
 					}
-					myFrarme.setVisible(false);
+					myFrame.setVisible(false);
 				}
 				if (e.getButton() == MouseEvent.BUTTON3) {
 					popupMenu = new JPopupMenu();
@@ -223,6 +223,9 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 		pTable.setParam(map);
 		pTable.loadData();
 	}
+	
+	
 
 
 }
+

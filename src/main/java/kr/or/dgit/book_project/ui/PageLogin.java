@@ -21,6 +21,8 @@ import kr.or.dgit.book_project.dto.MemberInfo;
 import kr.or.dgit.book_project.service.MemberInfoService;
 import kr.or.dgit.book_project.ui.common.InputComp;
 import kr.or.dgit.book_project.ui.common.PasswordPanel;
+import kr.or.dgit.book_project.ui.view.MemberSearchMemberDetailViewFrame;
+import kr.or.dgit.book_project.ui.view.tableTestView;
 
 public class PageLogin extends JFrame implements ActionListener {
 
@@ -29,7 +31,7 @@ public class PageLogin extends JFrame implements ActionListener {
 	private PageSub sub;
 	private JButton btnEnter;
 	private InputComp pID;
-	private PasswordPanel pPW;
+	private PasswordPanel pPW;	
 
 	public static void main(String[] args) {
 		try {
@@ -38,11 +40,11 @@ public class PageLogin extends JFrame implements ActionListener {
 		} catch (Exception e) {
 		}
 		PageLogin frame = new PageLogin();
-
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-
+				try {				
+					
 					PageLogin frame = new PageLogin();
 					frame.setVisible(true);
 
