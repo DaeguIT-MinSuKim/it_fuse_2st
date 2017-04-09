@@ -47,9 +47,9 @@ public class PaymentIOServieTest {
 	@Test
 	public void TESprocedureTest() {
 		Map<String, Object> param = new HashMap();
-		param.put("_b_code", "J002");
-		param.put("_b_sub_code", 00);
-		param.put("_m_code", "C003");
+		param.put("b_code", "J002");
+		param.put("b_sub_code", 00);
+		param.put("m_code", "C003");
 		int res = paymentIOServie.insertPaymentIO(param);
 		/*Assert.assertSame(1, res);*/
 	}
