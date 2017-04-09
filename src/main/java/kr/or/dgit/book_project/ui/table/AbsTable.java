@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Map;
 
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -22,11 +23,11 @@ import kr.or.dgit.book_project.ui.view.MemberSearchMemberDetailViewFrame;
 import kr.or.dgit.book_project.ui.view.MemberSearchMemberPaymentViewFrame;
 
 public abstract class AbsTable<T> extends JPanel {
+	
 	protected JTable table;
-	
-	private MemberInfoTable pTable;
-	private JPopupMenu popupMenu;
-	
+	private MemberInfoTable pTable; 
+	protected JPopupMenu popupMenu;
+	protected Map<String, Object> map;
 	
 
 	public AbsTable() {
@@ -35,25 +36,12 @@ public abstract class AbsTable<T> extends JPanel {
 		table = new JTable();
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(table);
-
-	/*	table.addMouseListener(new MouseAdapter() {
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (e.getButton() == MouseEvent.BUTTON3) {
-					popupMenu.show(pTable, e.getX(), e.getY());
-				}
-			}
-
-		});
-		createPopupMenu();*/
 		
 		add(scrollPane);
 	}
+	
 	public boolean loadData() {
 		Object[][] rowData= getRowData();
-		
-		// 검색결과가 없을 때, 로드데이터가 넘어가면서 빈 화면이 나오는 것을 전체 목록 보기로 출력
 		/*if(rowData.length == 0){
 			System.out.println("[loadData] length : 0");
 			return false;
@@ -93,6 +81,10 @@ public abstract class AbsTable<T> extends JPanel {
 	public JTable getTable() {
 		return table;
 	}
+	public void setMap(Map<String, Object> map) {
+		// 데이터 검색조건 지정
+		this.map = map;
+	}
 
 	protected abstract void createPopupMenu();
 
@@ -109,6 +101,7 @@ public abstract class AbsTable<T> extends JPanel {
 	protected abstract Object[] getColumn();
 
 	public abstract T getSelectedObject();
+	
 	
 	
 

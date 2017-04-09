@@ -4,9 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+
+import kr.or.dgit.book_project.dto.MemberInfo;
+
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
@@ -17,34 +21,27 @@ public class PageSub extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private SideBar pSideBar;
 	private JPanel pTabSub;
-	
-	public static void main(String[] args) {
-		try {
-	         UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+	private MemberInfo memberInfo;
 
-	      } catch (Exception e) {
-	      }
-		PageMain frame = new PageMain();
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					
-					PageSub frame = new PageSub();
-					frame.setVisible(true);
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	/*
+	 * public static void main(String[] args) { try {
+	 * UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+	 * 
+	 * } catch (Exception e) { } PageMain frame = new PageMain();
+	 * 
+	 * EventQueue.invokeLater(new Runnable() { public void run() { try {
+	 * 
+	 * PageSub frame = new PageSub(); frame.setVisible(true);
+	 * 
+	 * } catch (Exception e) { e.printStackTrace(); } } }); }
+	 */
 
 	public PageSub() {
 		setTitle("도서관리프로그램");
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 1000, 600);
 		
+
 		pSideBar = new SideBar();
 		pSideBar.btnMenu0.addActionListener(this);
 		pSideBar.getBtnMenu4().addActionListener(this);
@@ -58,9 +55,9 @@ public class PageSub extends JFrame implements ActionListener {
 		getContentPane().add(pSideBar, BorderLayout.WEST);
 		
 		pTabSub = new JPanel();
-		getContentPane().add(pTabSub, BorderLayout.CENTER);	
-		pTabSub.setLayout(new GridLayout(1, 0, 0, 0));			
-	
+		getContentPane().add(pTabSub, BorderLayout.CENTER);
+		pTabSub.setLayout(new GridLayout(1, 0, 0, 0));
+
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -80,32 +77,51 @@ public class PageSub extends JFrame implements ActionListener {
 			actionPerformedPSideBarBtnMenu1(e);
 		}
 	}
+
 	protected void actionPerformedPSideBarBtnMenu0(ActionEvent e) {
+		// 자료관리
 		pTabSub.removeAll();
 		pTabSub.add(new SubMenuPage0());
 		revalidate();
 		repaint();
 	}
+
 	protected void actionPerformedPSideBarBtnMenu1(ActionEvent e) {
+		// 멤버관리
 		pTabSub.removeAll();
-		pTabSub.add(new SubMenuPage1());
+		pTabSub.add(new SubMenuPage1(memberInfo.getmGroup()));
 		revalidate();
 		repaint();
 	}
+
 	protected void actionPerformedPSideBarBtnMenu2(ActionEvent e) {
+		// 출납관리
 		pTabSub.removeAll();
 		pTabSub.add(new SubMenuPage2());
 		revalidate();
 		repaint();
 	}
+
 	protected void actionPerformedPSideBarBtnMenu3(ActionEvent e) {
+		// 통계
 		pTabSub.removeAll();
 		pTabSub.add(new SubMenuPage3());
 		revalidate();
 		repaint();
 	}
+
 	protected void actionPerformedPSideBarBtnMenu4(ActionEvent e) {
+		// Home -> 로그아웃
+		// 로그아웃
+		int res = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?\n로그아웃 시 해당 페이지가 종료됩니다.", "",
+				JOptionPane.YES_NO_OPTION);
+		if (res != 0) {
+			JOptionPane.showMessageDialog(null, "취소하였습니다");
+			return;
+		}
+		memberInfo = null;
 		setVisible(false);
+		new PageLogin().setVisible(true);
 	}
 
 	public JPanel getpTabSub() {
@@ -115,7 +131,10 @@ public class PageSub extends JFrame implements ActionListener {
 	public void setpTabSub(JPanel pTabSub) {
 		this.pTabSub = pTabSub;
 	}
-	
-	
-	
+
+	public void setMemberInfo(MemberInfo memberInfo) {
+		this.memberInfo = memberInfo;
+		pSideBar.getLblNewLabel().setText("["+memberInfo.getmName()+ "] 님 접속중");
+	}
+
 }

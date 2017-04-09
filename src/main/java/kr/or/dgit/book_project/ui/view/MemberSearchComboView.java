@@ -19,17 +19,18 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 
 import kr.or.dgit.book_project.dto.MemberInfo;
+import kr.or.dgit.book_project.service.MemberInfoService;
 import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.common.SearchComboPanel;
+import kr.or.dgit.book_project.ui.component.BookLendMemberDetail;
 import kr.or.dgit.book_project.ui.table.MemberInfoSearchTable;
-import kr.or.dgit.book_project.ui.table.MemberInfoTable;
 
 public class MemberSearchComboView extends AbsViewPanel implements ActionListener, ItemListener {
 	private SearchComboPanel pSearch;
 	private MemberInfoSearchTable pTable;
 	private Map<String, Object> map;
 	private JPopupMenu popupMenu;
-
+	private BookLendMemberDetail pMemberlendDetail;// 회원프로시저때문에 넣음
 	public MemberSearchComboView() {
 		GridBagLayout gridBagLayout_2 = new GridBagLayout();
 		gridBagLayout_2.columnWidths = new int[] { 735, 0 };
@@ -151,17 +152,23 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 					// 회원 검색시 회원 정보 넣기 더블클릭 , 일딴은 올리는데 내부분에서 잠시 수정해야됨
 					MemberInfo memberinfo = pTable.getSelectedObject();
 					JOptionPane.showMessageDialog(null, memberinfo.toArrayForMemberList());
+					//회원 프로시저 넣음
+					//MemberInfo mi = pMemberlendDetail.getObject();
+					Map<String, Object> param = new HashMap<>();
+					param.put("m_code", memberinfo.getmCode());
+					MemberInfoService.getInstance().callMemberInfo(param);
+					MemberInfo mi = pTable.getSelectedObject();
+					MemberInfoService.getInstance().findMemberInfoByCode(mi);
+					//System.out.println("됫냐??");
 					memberinfo.setmCode(memberinfo.getmCode());
-					booklendview.getPanel_4().getpMCode().setTFValue(memberinfo.getmCode());
-					JOptionPane.showMessageDialog(null, memberinfo.isPosbl());
-					// MemberInfo memberinfo2 =
-					// MemberInfoService.getInstance().findMemberInfoByCode(memberinfo);
+					booklendview.getpMemberlendDetail().getpMCode().setTFValue(memberinfo.getmCode());
+					JOptionPane.showMessageDialog(null, memberinfo.isPosbl());//여기까지 넘어가는데....
 					if (memberinfo.isPosbl()) {
-						booklendview.getPanel_4().getpMName().setTFValue(memberinfo.getmName());
-						booklendview.getPanel_4().getpMTel().setTFValue(memberinfo.getmTel());
-						booklendview.getPanel_4().getLblMsg().setText("대여가능");
+						booklendview.getpMemberlendDetail().getpMName().setTFValue(memberinfo.getmName());
+						booklendview.getpMemberlendDetail().getpMTel().setTFValue(memberinfo.getmTel());
+						booklendview.getpMemberlendDetail().getLblMsg().setText("대여가능");
 					} else {
-						booklendview.getPanel_4().getLblMsg().setText("대여불가");
+						booklendview.getpMemberlendDetail().getLblMsg().setText("대여불가");
 					}
 					myFrarme.setVisible(false);
 				}

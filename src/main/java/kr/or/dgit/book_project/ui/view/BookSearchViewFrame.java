@@ -8,11 +8,13 @@ import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.book_project.dto.BookInfo;
 import kr.or.dgit.book_project.service.BookInfoService;
+import kr.or.dgit.book_project.ui.component.BookInfoBasic;
 import kr.or.dgit.book_project.ui.component.BookInfoP;
 
 public class BookSearchViewFrame extends JFrame {
@@ -21,7 +23,9 @@ public class BookSearchViewFrame extends JFrame {
 	private BookInfoP bookInfoP;
 	private BookSearchView bookSearchView;
 	private BookInsertView bookInsertView;
-
+	private BookLendView booklendView; // 대여 추가
+	private BookInfoBasic bookinfobasic; // 대여 추가
+	
 	public BookSearchViewFrame() {
 		setTitle("도서검색");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -35,6 +39,12 @@ public class BookSearchViewFrame extends JFrame {
 
 	public void setBookInsertView(BookInsertView bookInsertView) {
 		this.bookInsertView = bookInsertView;
+	}
+	
+	
+	// 대여 부분
+	public void setBooklendView(BookLendView booklendView) {
+		this.booklendView = booklendView;
 	}
 
 	public void setMyMouseListener(BookInfoP bookInfoP) {
@@ -51,6 +61,23 @@ public class BookSearchViewFrame extends JFrame {
 					bookInfoP.setObject(bookInfo);
 					setVisible(false);
 
+				}
+			}
+
+		});
+	}
+	
+	// 대여창에서 도서코드 눌러서 코드 찾아서 넣는부분 출납!
+	public void setMyMouseListenerPayment(BookInfoBasic bookinfobasic) {
+		bookSearchView.getpTable().getTable().addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) {
+					BookInfo bookInfo = bookSearchView.getpTable().getSelectedObject();
+					JOptionPane.showMessageDialog(null, bookInfo.toArray());
+					bookinfobasic.setObject(bookInfo);
+					setVisible(false);
 				}
 			}
 
@@ -83,5 +110,9 @@ public class BookSearchViewFrame extends JFrame {
 		bookSearchView.loadTable();
 		contentPane.add(bookSearchView);
 	}
-
+	//대여에서 창띄워서 검색 하는거 할라고
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+	
 }

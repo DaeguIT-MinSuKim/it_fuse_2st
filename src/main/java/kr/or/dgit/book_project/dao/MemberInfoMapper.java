@@ -8,6 +8,8 @@ import kr.or.dgit.book_project.dto.MemberInfo;
 public interface MemberInfoMapper {
 	int selectCountAll();								//회원 수 
 	int insertMemberInfo(MemberInfo memberInfo);		//회원삽입
+	int updateMemberInfo(MemberInfo memberInfo);		// 회원정보 수정
+	int delMemberInfo(MemberInfo memberInfo);			// 회원 탈퇴하기
 
 	List<MemberInfo> selectMemberByAll(Map<String, Object> param);	//목록출력
 	
@@ -18,5 +20,5 @@ public interface MemberInfoMapper {
 	List<MemberInfo> selectMemberByAll();				//목록출력
 	
 	// 회원 프로시저
-	int updateMemberInfo(Map<String, Object> param);
+	int callMemberInfo(Map<String, Object> param);
 }

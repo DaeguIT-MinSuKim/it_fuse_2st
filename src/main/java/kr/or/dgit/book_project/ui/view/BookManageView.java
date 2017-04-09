@@ -2,6 +2,7 @@ package kr.or.dgit.book_project.ui.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -15,6 +16,7 @@ public class BookManageView extends AbsBookSearchView implements ActionListener 
 	public BookManageView() {
 		super();
 		// 삭제되지 않은 도서만 출력
+		map = new HashMap<>();
 		map.put("isDel", false);
 		loadTable();
 		addPopupMenu();

@@ -16,55 +16,7 @@ import kr.or.dgit.book_project.service.PaymentIOService;
 
 public class MemberInfoTable extends AbsTable<MemberInfo> {
 
-	@Override
-	protected void createPopupMenu() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void updateData(MemberInfo t) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void deleteItem(MemberInfo t) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void cellWith() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void CellAlign() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected Object[][] getRowData() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected Object[] getColumn() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public MemberInfo getSelectedObject() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	/*private Map<String, Object> param;
+	private Map<String, Object> param;
 	public void setParam(Map<String, Object> param) {
 		this.param = param;
 	}
@@ -110,13 +62,13 @@ public class MemberInfoTable extends AbsTable<MemberInfo> {
 			datas[i] = list.get(i).toArrayForMemberList();		// 검색결과 리스트 출력
 		}
 		return datas;
-		return null;
+		/*return null;*/
 	}
 	
 	@Override
 	protected Object[] getColumn() {
 		return new String[] {"이름","회원코드","전화번호","우편번호","주소","대여금지일"};
-		return null;
+		/*return null;*/
 	}
 
 	@Override
@@ -130,7 +82,7 @@ public class MemberInfoTable extends AbsTable<MemberInfo> {
 		memberinfo.setmCode(mCode);
 		return MemberInfoService.getInstance().findMemberInfoByCode(memberinfo);
 		
-	}	*/
+	}	
 	
 	
 }

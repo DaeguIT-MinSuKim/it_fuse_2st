@@ -46,22 +46,22 @@ public class MemberInsertView extends AbsViewPanel implements ActionListener {
 		memberInfoP = new MemberInfoP();
 		panel.add(memberInfoP);
 		
-		JPanel panel_3 = new JPanel();
-		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
-		gbc_panel_3.weighty = 1.0;
-		gbc_panel_3.weightx = 1.0;
-		gbc_panel_3.fill = GridBagConstraints.BOTH;
-		gbc_panel_3.insets = new Insets(0, 0, 5, 0);
-		gbc_panel_3.gridx = 0;
-		gbc_panel_3.gridy = 1;
-		panel_5.add(panel_3, gbc_panel_3);
-		panel_3.setLayout(new GridLayout(1, 0, 10, 0));
+		JPanel pBtn = new JPanel();
+		GridBagConstraints gbc_pBtn = new GridBagConstraints();
+		gbc_pBtn.weighty = 1.0;
+		gbc_pBtn.weightx = 1.0;
+		gbc_pBtn.fill = GridBagConstraints.BOTH;
+		gbc_pBtn.insets = new Insets(0, 0, 5, 0);
+		gbc_pBtn.gridx = 0;
+		gbc_pBtn.gridy = 1;
+		panel_5.add(pBtn, gbc_pBtn);
+		pBtn.setLayout(new GridLayout(1, 0, 10, 0));
 		
 		JPanel panel_7 = new JPanel();
-		panel_3.add(panel_7);
+		pBtn.add(panel_7);
 		
 		JPanel panel_6 = new JPanel();
-		panel_3.add(panel_6);
+		pBtn.add(panel_6);
 		panel_6.setLayout(new GridLayout(0, 2, 10, 0));
 		
 		btnSave = new JButton("저장");
@@ -74,7 +74,7 @@ public class MemberInsertView extends AbsViewPanel implements ActionListener {
 		panel_6.add(btnCancel);
 		
 		JPanel panel_8 = new JPanel();
-		panel_3.add(panel_8);
+		pBtn.add(panel_8);
 		
 		JPanel pTable = new JPanel();
 		GridBagConstraints gbc_pTable = new GridBagConstraints();

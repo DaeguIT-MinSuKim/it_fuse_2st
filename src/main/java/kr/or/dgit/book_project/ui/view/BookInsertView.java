@@ -20,8 +20,10 @@ import kr.or.dgit.book_project.service.PublisherInfoService;
 import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.component.BookInfoP;
 import kr.or.dgit.book_project.ui.table.BookSearchTable;
+import java.awt.BorderLayout;
+import javax.swing.border.EmptyBorder;
 
-public class BookInsertView extends AbsViewPanel implements ActionListener {
+public class BookInsertView extends JPanel implements ActionListener {
 
 	private JButton btnSave;
 	private JButton btnCancel;
@@ -30,12 +32,14 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 	private BookSearchViewFrame bookSearchFrame;
 
 	public BookInsertView() {
+		setBorder(new EmptyBorder(20, 20, 20, 20));
+		setLayout(new GridLayout(0, 1, 0, 0));
 
 		JPanel panel_5 = new JPanel();
-		pMain.add(panel_5);
+		add(panel_5);
 		GridBagLayout gbl_panel_5 = new GridBagLayout();
 		gbl_panel_5.columnWidths = new int[] { 600, 0 };
-		gbl_panel_5.rowHeights = new int[] { 300, 50, 200, 0 };
+		gbl_panel_5.rowHeights = new int[] {300, 80, 200, 0};
 		gbl_panel_5.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
 		gbl_panel_5.rowWeights = new double[] { 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		panel_5.setLayout(gbl_panel_5);
@@ -104,17 +108,18 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 
 	protected void actionPerformedBtnSave(ActionEvent e) {
 		// 모두 입력되었는지 확인 후
-		if(pContent.isVaildCheck()){
+		if (pContent.isVaildCheck()) {
 			pContent.getObject();
-			System.out.println(pContent.getObject());
 			BookInfoService.getInstance().insertBookInfo(pContent.getObject());
-			
+
 			// 하단 테이블에 입력한 데이터 띄우기
 			Map<String, Object> param = new HashMap<>();
 			param.put("bCode", pContent.getObject().getbCode());
 			param.put("bSubCode", pContent.getObject().getbSubCode());
 			pTable.setMap(param);
 			pTable.loadData();
+
+			pContent.setClear();
 		}
 	}
 
@@ -123,16 +128,15 @@ public class BookInsertView extends AbsViewPanel implements ActionListener {
 	}
 
 	protected void actionPerformedPContentBtnBookSearch(ActionEvent e) {
-		if (bookSearchFrame == null){
+		if (bookSearchFrame != null) {
 			// 창 1개만 띄우기
-			bookSearchFrame = new BookSearchViewFrame();
 		}
+		bookSearchFrame = new BookSearchViewFrame();
 		Map<String, Object> param = new HashMap<>();
 		param.put("onlyBook", true);
 		bookSearchFrame.setTableDate(param);
 		bookSearchFrame.setMyMouseListener(pContent);
 		bookSearchFrame.addBtn("신규");
-	//	bookSearchFrame.setMyMouseListener();
 		bookSearchFrame.setVisible(true);
 	}
 

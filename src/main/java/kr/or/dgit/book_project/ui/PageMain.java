@@ -112,7 +112,7 @@ public class PageMain extends JFrame implements ActionListener {
 
 	protected void actionPerformedBtnMenu1(ActionEvent e) {
 		sub = new PageSub();
-		sub.getpTabSub().add(new SubMenuPage1());
+		sub.getpTabSub().add(new SubMenuPage1('B'));
 		sub.setVisible(true);
 	}
 

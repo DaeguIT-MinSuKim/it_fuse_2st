@@ -111,17 +111,45 @@ public class BookInfoBasic extends JPanel {
 		pBLendCount.setTFValue(bookInfo.getbLendCount() + "");
 	}
 
+	public void setEnable(boolean enabled) {
+		pBCode.getTfBCode().setEnabled(enabled);
+		pBCode.getTfBSubCode().setEnabled(enabled);
+		pBLendCount.getTF().setEnabled(enabled);
+	}
+	
+	//클리어
+	public void clear(){
+		pBCode.setTfBCode("");
+		pBCode.setTfBSubCode("");
+		pBName.setTFValue("");
+		pAuthor.setTFValue("");
+		pPName.setSelected(0);
+		pPrice.setTFValue("");
+		pBLendCount.setTFValue("");
+	}
+	
 	public BookCodePanel getpBCode() {
 		return pBCode;
 	}
 
 	public InputComp getpBLendCount() {
 		return pBLendCount;
+
+	}
+	
+	public InputComp getpBName() {
+		return pBName;
 	}
 
-	public void setEnable(boolean enabled) {
-		pBCode.getTfBCode().setEnabled(enabled);
-		pBCode.getTfBSubCode().setEnabled(enabled);
-		pBLendCount.getTF().setEnabled(enabled);
+	public InputComp getpAuthor() {
+		return pAuthor;
+	}
+
+	public InputComp getpPrice() {
+		return pPrice;
+	}
+
+	public ComboBoxPanel<PublisherInfo> getpPName() {
+		return pPName;
 	}
 }

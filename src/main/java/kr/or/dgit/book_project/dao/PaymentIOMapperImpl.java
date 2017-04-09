@@ -22,7 +22,7 @@ public class PaymentIOMapperImpl implements PaymentIOMapper {
 		log.debug("selectAllPaymentIOInfo()");
 		return sqlSession.selectList(namespace + "selectAllPaymentIOInfo", param);
 	}
-	
+	//대여 프로시저
 	@Override
 	public int insertPaymentIO(Map<String, Object> param) {
 		log.debug("insertPaymentIO()");

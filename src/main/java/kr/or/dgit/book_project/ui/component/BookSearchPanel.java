@@ -17,6 +17,7 @@ import kr.or.dgit.book_project.ui.common.OptionSearchCmb;
 import kr.or.dgit.book_project.ui.common.OptionSearchPanel;
 import kr.or.dgit.book_project.ui.common.OptionSearchTF;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 public class BookSearchPanel extends JPanel {
 
@@ -76,21 +77,45 @@ public class BookSearchPanel extends JPanel {
 	public Map getValueForSearch() {
 		Map<String, Object> param = new HashMap<>();
 		if (pBCode.isVaildCheck()) {
-			param.put("bCode", ((OptionSearchTF) pBCode).getTfValue());
+			if (((OptionSearchTF) pBCode).getTfValue().trim().equals("")) {
+				JOptionPane.showMessageDialog(null, "검색할 내용을 입력해주세요.");
+				((OptionSearchTF) pBCode).getTextField().requestFocus();
+				return null;
+			} else {
+				param.put("bCode", ((OptionSearchTF) pBCode).getTfValue());
+			}
 		}
 		if (pBName.isVaildCheck()) {
-			param.put("bName", "%" + ((OptionSearchTF) pBName).getTfValue() + "%");
+			if (((OptionSearchTF) pBName).getTfValue().trim().equals("")) {
+				JOptionPane.showMessageDialog(null, "검색할 내용을 입력해주세요.");
+				((OptionSearchTF) pBName).getTextField().requestFocus();
+				return null;
+			} else {
+				param.put("bName", "%" + ((OptionSearchTF) pBName).getTfValue() + "%");
+			}
 		}
 		if (pAuthor.isVaildCheck()) {
-			param.put("author", "%" + ((OptionSearchTF) pAuthor).getTfValue() + "%");
+			if (((OptionSearchTF) pAuthor).getTfValue().trim().equals("")) {
+				JOptionPane.showMessageDialog(null, "검색할 내용을 입력해주세요.");
+				((OptionSearchTF) pAuthor).getTextField().requestFocus();
+				return null;
+			} else {
+				param.put("author", "%" + ((OptionSearchTF) pAuthor).getTfValue() + "%");
+			}
 		}
 		if (pCoden.isVaildCheck()) {
 			param.put("cName", ((Coden) ((OptionSearchCmb) pCoden).getCombT()).getcName());
 		}
 		if (pPublisher.isVaildCheck()) {
-			param.put("publisher", "%" + ((OptionSearchTF) pPublisher).getTfValue() + "%");
+			if (((OptionSearchTF) pPublisher).getTfValue().trim().equals("")) {
+				JOptionPane.showMessageDialog(null, "검색할 내용을 입력해주세요.");
+				((OptionSearchTF) pPublisher).getTextField().requestFocus();
+				return null;
+			} else
+				param.put("publisher", "%" + ((OptionSearchTF) pPublisher).getTfValue() + "%");
 		}
 		return param;
+
 	}
 
 	public void clearAll() {
