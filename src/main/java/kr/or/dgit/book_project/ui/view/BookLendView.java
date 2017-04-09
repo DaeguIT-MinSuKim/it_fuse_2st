@@ -18,17 +18,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import kr.or.dgit.book_project.service.PaymentIOService;
 import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.component.BookInfoBasic;
 import kr.or.dgit.book_project.ui.component.BookLendMemberDetail;
 import kr.or.dgit.book_project.ui.table.BookLendTable;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
-public class BookLendView extends JPanel {
+public class BookLendView extends JPanel implements ActionListener {
 
 	private BookLendTable blv4;
 	private BookInfoBasic panel_3;
 	private BookLendMemberDetail panel_4;
+	private JButton btnLend;
 
 	public BookLendView() {
 		setBorder(new EmptyBorder(20, 20, 20, 20));
@@ -84,7 +87,8 @@ public class BookLendView extends JPanel {
 		blv2.add(blv3, gbc_panel_2);
 		blv3.setLayout(new GridLayout(1, 1, 10, 0));
 
-		JButton btnLend = new JButton("대여");
+		btnLend = new JButton("대여");
+		btnLend.addActionListener(this);
 		btnLend.setFont(new Font("굴림", Font.PLAIN, 18));
 		blv3.add(btnLend);
 
@@ -138,5 +142,20 @@ public class BookLendView extends JPanel {
 
 	public BookLendMemberDetail getPanel_4() {
 		return panel_4;
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnLend) {
+			btnLendActionPerformed(e);
+		}
+	}
+	//대여 버튼 (프로시저 실행)
+	protected void btnLendActionPerformed(ActionEvent e) {
+		Map<String, Object> param = new HashMap<>();
+		param.put("_b_code", hashCode());
+		param.put("_b_sub_code", hashCode());
+		param.put("_m_code", hashCode());
+		PaymentIOService.getInstance().insertPaymentIO(param);
+		blv4.loadData();
+		JOptionPane.showMessageDialog(null, "대여가 되었습니다");
 	}
 }
