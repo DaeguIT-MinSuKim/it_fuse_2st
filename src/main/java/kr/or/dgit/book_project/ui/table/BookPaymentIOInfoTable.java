@@ -51,12 +51,7 @@ public class BookPaymentIOInfoTable extends AbsTable<PaymentIO> {
 	@Override
 	protected Object[][] getRowData() {
 		List<PaymentIO> list = PaymentIOService.getInstance().selectAllPaymentIOInfo(param);
-		if (list.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "해당 데이터가 존재하지 않습니다.");
-			return null;
-		}
 		dataCnt = list.size();
-		System.out.println(dataCnt);
 		Object[][] datas = new Object[list.size()][];
 		for (int i = 0; i < datas.length; i++) {
 			datas[i] = list.get(i).toArray();
