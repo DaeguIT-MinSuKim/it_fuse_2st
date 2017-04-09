@@ -71,13 +71,11 @@ public class BookSearchViewForC extends JPanel implements ActionListener {
 			JOptionPane.showMessageDialog(null, "검색하고 싶은 항목을 선택해주세요");
 		} else {
 			// 검색하기
-
 			for (String key : map.keySet()) {
 				// 대여중인지.. 폐기된 도서인지....
 				// 창을 띄울떄 사용된 기본조건을 검색조건으로 추가합니다.
 				param.put(key, map.get(key));
 			}
-
 			pTable.setMap(param);
 			pTable.loadData();
 			pContent.clearAll();
