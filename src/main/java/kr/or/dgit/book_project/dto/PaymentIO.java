@@ -22,7 +22,7 @@ public class PaymentIO {
 		this.lendDate = lendDate;
 		this.returnDate = returnDate;
 	}
-	
+
 	public PaymentIO(BookInfo bookInfo) {
 		super();
 		this.bookInfo = bookInfo;
@@ -98,8 +98,15 @@ public class PaymentIO {
 		return new Object[] { bookInfo.getbCode(), bookInfo.getbSubCode(), bookInfo.getbName(), memberInfo.getmCode(),
 				memberInfo.getmName(), lendDate, isDelay() ? "Y" : "N" };
 	}
+	public Object[] toArrayForMember() {
+		// 회원입장에서 대여정보
+		// "도서코드","도서중복코드", "도서명", "대여일", "반납일", "연체여부"		
+		return new Object[] { bookInfo.getbCode(), bookInfo.getbSubCode(), bookInfo.getbName(), lendDate, returnDate, isDelay() ? "Y" : "N" };
+	}
 
-	public Object[] toArray() {
+	public Object[] toArrayForBook() {
+		// 도서 입장에서 대여정보
+		// "회원코드", "회원명", "대여일", "반납일", "연체여부"		
 		return new Object[] { memberInfo.getmCode(), memberInfo.getmName(), lendDate, returnDate,
 				lendDate != null ? (isDelay() ? "Y" : "N") : "" };
 	}

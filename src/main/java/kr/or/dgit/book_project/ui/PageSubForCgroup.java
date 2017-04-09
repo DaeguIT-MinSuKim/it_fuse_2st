@@ -23,6 +23,7 @@ import kr.or.dgit.book_project.ui.view.AbsBookSearchView;
 import kr.or.dgit.book_project.ui.view.BookSearchView;
 import kr.or.dgit.book_project.ui.view.BookSearchViewForC;
 import kr.or.dgit.book_project.ui.view.MemberSearchMemberDetailViewFrame;
+import kr.or.dgit.book_project.ui.view.MemberSearchMemberPaymentViewFrame;
 
 public class PageSubForCgroup extends JFrame implements ActionListener, ChangeListener {
 
@@ -32,8 +33,10 @@ public class PageSubForCgroup extends JFrame implements ActionListener, ChangeLi
 	private JTabbedPane tabbedPane;
 	private JPanel pBookSearch;
 	private JPanel pMyInfo;
-	private MemberSearchMemberDetailViewFrame msmdvf;
+	private JPanel pMyPaymentIO;
+	private MemberSearchMemberDetailViewFrame memberInfoView;
 	private BookSearchViewForC absv;
+	private MemberSearchMemberPaymentViewFrame paymentInfoView;
 
 	public PageSubForCgroup() {
 		setTitle("도서관리프로그램");
@@ -59,6 +62,9 @@ public class PageSubForCgroup extends JFrame implements ActionListener, ChangeLi
 		pMyInfo = new JPanel();
 		tabbedPane.addTab("내정보", null, pMyInfo, null);
 
+		pMyPaymentIO = new JPanel();
+		tabbedPane.addTab("대여현황", null, pMyPaymentIO, null);
+
 	}
 
 	public void setMemberInfo(MemberInfo memberInfo) {
@@ -74,7 +80,8 @@ public class PageSubForCgroup extends JFrame implements ActionListener, ChangeLi
 
 	protected void actionPerformedBtnHome(ActionEvent e) {
 		// 로그아웃
-		int res = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?\n로그아웃 시 해당 페이지가 종료됩니다.", "", JOptionPane.YES_NO_OPTION);
+		int res = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?\n로그아웃 시 해당 페이지가 종료됩니다.", "",
+				JOptionPane.YES_NO_OPTION);
 		if (res != 0) {
 			JOptionPane.showMessageDialog(null, "취소하였습니다");
 			return;
@@ -105,33 +112,32 @@ public class PageSubForCgroup extends JFrame implements ActionListener, ChangeLi
 			absv.loadTable();
 			pBookSearch.add(absv);
 
-			/*BookSearchView absv = new BookSearchView();
-			BookSearchTableForCgroup bsbs = new BookSearchTableForCgroup();
-			absv.setpTable(bsbs);
-			Map<String, Object> map = new HashMap<>();
-			//map.put("onlyBook", true);
-			map.put("isDel", false);
-			absv.setMap(map);
-			absv.loadTable(); // 테이블 로드가 안된다....
-			pBookSearch.add(absv);*/
-			
-		} else if (tabbedPane.getTitleAt(idx).equals("내정보") && msmdvf == null) {
+			/*
+			 * BookSearchView absv = new BookSearchView();
+			 * BookSearchTableForCgroup bsbs = new BookSearchTableForCgroup();
+			 * absv.setpTable(bsbs); Map<String, Object> map = new HashMap<>();
+			 * //map.put("onlyBook", true); map.put("isDel", false);
+			 * absv.setMap(map); absv.loadTable(); // 테이블 로드가 안된다....
+			 * pBookSearch.add(absv);
+			 */
+
+		} else if (tabbedPane.getTitleAt(idx).equals("내정보")) {
 			pMyInfo.setLayout(new GridLayout(1, 0, 0, 0));
-			if (msmdvf != null) {
+			if (memberInfoView != null) {
 				pMyInfo.removeAll();
 			}
-			msmdvf = new MemberSearchMemberDetailViewFrame();
+			memberInfoView = new MemberSearchMemberDetailViewFrame();
 			// msmdvf에 해당 회원 정보 뿌리기
-			msmdvf.getPanel().setObject(memberInfo);
-			msmdvf.getPanel().getpMCode().getTF().setEnabled(false);
-			msmdvf.getBtnModify().addActionListener(new ActionListener() {
+			memberInfoView.getPanel().setObject(memberInfo);
+			memberInfoView.getPanel().getpMCode().getTF().setEnabled(false);
+			memberInfoView.getBtnModify().addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// 수정 버튼을 눌렀을때
-					MemberInfoService.getInstance().updateMemberInfo(msmdvf.getPanel().getObject());
+					MemberInfoService.getInstance().updateMemberInfo(memberInfoView.getPanel().getObject());
 				}
 			});
-			msmdvf.getBtnDel().addActionListener(new ActionListener() {
+			memberInfoView.getBtnDel().addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// 탈퇴 버튼을 눌렀을때
@@ -141,11 +147,30 @@ public class PageSubForCgroup extends JFrame implements ActionListener, ChangeLi
 						return;
 					}
 					// 정말 탈퇴하시겠습니까?
+					int res = JOptionPane.showConfirmDialog(null, "탈퇴 하시겠습니까?\n탈퇴 시 해당 페이지가 종료됩니다.", "",
+							JOptionPane.YES_NO_OPTION);
+					if (res != 0) {
+						JOptionPane.showMessageDialog(null, "취소하였습니다");
+						return;
+					}
 					// 탈퇴시 프로그램이 종료됩니다?????? <-- ?? 어떻게 처리를 해야 할까요??
-					MemberInfoService.getInstance().delMemberInfo(msmdvf.getPanel().getObject());
+					MemberInfoService.getInstance().delMemberInfo(memberInfoView.getPanel().getObject());
+					JOptionPane.showMessageDialog(null, "탈퇴가 완료되었습니다.\n프로그램을 종료합니다.");
+					memberInfo = null;
+					setVisible(false);
+					new PageLogin().setVisible(true);
 				}
 			});
-			pMyInfo.add(msmdvf);
+			pMyInfo.add(memberInfoView);
+		} else if (tabbedPane.getTitleAt(idx).equals("대여현황")) {
+			// 회원대여정보
+			pMyPaymentIO.setLayout(new GridLayout(1, 0, 0, 0));
+			if (paymentInfoView != null) {
+				pMyPaymentIO.removeAll();
+			}
+			paymentInfoView = new MemberSearchMemberPaymentViewFrame();
+			paymentInfoView.loadTable(memberInfo);
+			pMyPaymentIO.add(paymentInfoView);
 		}
 
 	}

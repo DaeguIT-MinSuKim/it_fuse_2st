@@ -54,7 +54,7 @@ public class BookPaymentIOInfoTable extends AbsTable<PaymentIO> {
 		dataCnt = list.size();
 		Object[][] datas = new Object[list.size()][];
 		for (int i = 0; i < datas.length; i++) {
-			datas[i] = list.get(i).toArray();
+			datas[i] = list.get(i).toArrayForBook();
 		}
 		return datas;
 	}

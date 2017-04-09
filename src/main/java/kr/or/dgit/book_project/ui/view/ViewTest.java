@@ -2,17 +2,12 @@ package kr.or.dgit.book_project.ui.view;
 
 import java.awt.EventQueue;
 import java.awt.GridLayout;
-import java.util.HashMap;
-import java.util.Map;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.book_project.ui.common.BookCodePanel;
-import kr.or.dgit.book_project.ui.common.InputComp;
-import kr.or.dgit.book_project.ui.table.BookSearchTableForCgroup;
+import kr.or.dgit.book_project.dto.MemberInfo;
 
 public class ViewTest extends JFrame {
 
@@ -56,11 +51,17 @@ public class ViewTest extends JFrame {
 		absv.loadTable();
 		contentPane.add(absv);*/
 		
-		BookCodePanel bcp = new BookCodePanel();
+		/*BookCodePanel bcp = new BookCodePanel();
 		InputComp ic = new InputComp();
 		ic.setTitle("테스트");
 		add(bcp);
-		add(ic);
+		add(ic);*/
+		
+		
+		MemberSearchMemberPaymentViewFrame paymentInfoView = new MemberSearchMemberPaymentViewFrame();
+		MemberInfo memberInfo = new MemberInfo("C002");
+		paymentInfoView.loadTable(memberInfo);
+		add(paymentInfoView);
 	}
 
 }
