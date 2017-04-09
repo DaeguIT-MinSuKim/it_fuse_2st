@@ -39,7 +39,7 @@ public class BookInsertView extends JPanel implements ActionListener {
 		add(panel_5);
 		GridBagLayout gbl_panel_5 = new GridBagLayout();
 		gbl_panel_5.columnWidths = new int[] { 600, 0 };
-		gbl_panel_5.rowHeights = new int[] { 300, 50, 200, 0 };
+		gbl_panel_5.rowHeights = new int[] {300, 80, 200, 0};
 		gbl_panel_5.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
 		gbl_panel_5.rowWeights = new double[] { 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		panel_5.setLayout(gbl_panel_5);
