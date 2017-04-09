@@ -40,17 +40,15 @@ public class BookInfoP extends JPanel {
 		add(panel);
 		panel.setLayout(new GridLayout(5, 2, 0, 10));
 
-		JPanel panel_7 = new JPanel();
-		panel.add(panel_7);
-		panel_7.setLayout(new GridLayout(1, 1, 5, 0));
+		JPanel ppBookCode = new JPanel();
+		panel.add(ppBookCode);
+		ppBookCode.setLayout(new GridLayout(0, 2, 5, 0));
 
 		pBCode = new BookCodePanel();
-		GridBagLayout gbl_pBCode = (GridBagLayout) pBCode.getLayout();
-		gbl_pBCode.columnWidths = new int[] { 120, 200, 0 };
-		panel_7.add(pBCode);
+		ppBookCode.add(pBCode);
 
 		JPanel panel_6 = new JPanel();
-		panel_7.add(panel_6);
+		ppBookCode.add(panel_6);
 		panel_6.setLayout(new GridLayout(1, 0, 5, 0));
 
 		btnBookSearch = new JButton("도서검색");
@@ -59,21 +57,21 @@ public class BookInfoP extends JPanel {
 		JPanel panel_1 = new JPanel();
 		panel_6.add(panel_1);
 
-		JPanel panel_3 = new JPanel();
-		panel.add(panel_3);
-		panel_3.setLayout(new GridLayout(0, 2, 0, 0));
+		JPanel ppBName = new JPanel();
+		panel.add(ppBName);
+		ppBName.setLayout(new GridLayout(0, 2, 5, 0));
 
 		pBName = new InputComp();
 		pBName.setTitle("도  서  명");
-		panel_3.add(pBName);
+		ppBName.add(pBName);
 
 		JPanel panel_9 = new JPanel();
-		panel_3.add(panel_9);
+		ppBName.add(panel_9);
 		panel_9.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JPanel panel_4 = new JPanel();
 		panel.add(panel_4);
-		panel_4.setLayout(new GridLayout(0, 2, 0, 0));
+		panel_4.setLayout(new GridLayout(0, 2, 5, 0));
 
 		pAuthor = new InputComp();
 		pAuthor.setTitle("저       자");
@@ -84,7 +82,7 @@ public class BookInfoP extends JPanel {
 
 		JPanel panel_5 = new JPanel();
 		panel.add(panel_5);
-		panel_5.setLayout(new GridLayout(0, 2, 0, 0));
+		panel_5.setLayout(new GridLayout(0, 2, 5, 0));
 
 		pPrice = new SpinnerPanel();
 		pPrice.setValues(0, 0, 500000, 100);

@@ -65,11 +65,11 @@ public class PageLogin extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 
-		String path = "icon/bookImage.png"; // 경로를 어떻게...
+		String path = "icon/bookImage.png";
 		JPanel pImage = new JPanel(new BorderLayout());
 		JLabel label = new JLabel(new ImageIcon(path));
 		label.setHorizontalAlignment(JLabel.CENTER);
-		pImage.add(label); // default center section
+		pImage.add(label); 
 		contentPane.add(pImage);
 
 		JPanel pLogin = new JPanel();
@@ -101,13 +101,8 @@ public class PageLogin extends JFrame implements ActionListener {
 
 	private void appearInTheCenter() {
 		Dimension frameSize = this.getSize();
-		// 자신의 windowscreen 사이즈 측정
 		Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
-		// 출력해보면 두 사이즈가 출력되는걸 확인할 수 있다.
-		System.out.println(frameSize + " " + windowSize);
-		// 설정할 위치에 (윈도우width-프레임width)/2, (윈도우height-프레임height)/2를 입력한다
 		this.setLocation((windowSize.width - frameSize.width) / 2, (windowSize.height - frameSize.height) / 2);
-		// 프레임창 활성화하면 현재 모니터에 중앙에 프레임이 실행되는걸 볼수 있다.
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -151,7 +146,7 @@ public class PageLogin extends JFrame implements ActionListener {
 			// 사서.... 직원메뉴 제외 전부 볼 수 있음..
 			PageSub pageSub = new PageSub();
 			pageSub.setMemberInfo(ourMemberInfo);
-			pageSub.getpTabSub().add(new SubMenuPage1(ourMemberInfo.getmGroup()));
+			pageSub.getpTabSub().add(new SubMenuPage0());
 			pageSub.setVisible(true);
 			setVisible(false);
 			break;

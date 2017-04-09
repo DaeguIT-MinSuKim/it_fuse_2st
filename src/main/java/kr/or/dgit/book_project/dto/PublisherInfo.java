@@ -70,8 +70,7 @@ public class PublisherInfo {
 
 	@Override
 	public String toString() {
-		return String.format("%s, %s",
-				pCode, publisher);
+		return String.format("%s(%s)", publisher, pCode);
 	}
 
 	public Object[] toArrayForPublisherList() {

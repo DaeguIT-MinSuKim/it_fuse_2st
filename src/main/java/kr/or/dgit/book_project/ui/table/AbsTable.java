@@ -41,7 +41,6 @@ public abstract class AbsTable<T> extends JPanel {
 	
 	public boolean loadData() {
 		Object[][] rowData= getRowData();
-		
 		// 검색결과가 없을 때, 로드데이터가 넘어가면서 빈 화면이 나오는 것을 전체 목록 보기로 출력
 		if(rowData.length == 0){
 			System.out.println("[loadData] length : 0");

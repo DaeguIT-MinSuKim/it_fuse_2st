@@ -15,7 +15,6 @@ public class CompPanel extends BasicPanel {
 
 	public CompPanel() {
 		GridLayout gridLayout = (GridLayout) pContent.getLayout();
-		gridLayout.setHgap(5);
 		
 		lblTitle = new JLabel("New label");
 		lblTitle.setHorizontalAlignment(SwingConstants.TRAILING);
