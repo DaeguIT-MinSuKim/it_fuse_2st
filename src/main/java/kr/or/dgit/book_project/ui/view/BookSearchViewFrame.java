@@ -69,7 +69,7 @@ public class BookSearchViewFrame extends JFrame {
 	
 	// 대여창에서 도서코드 눌러서 코드 찾아서 넣는부분 출납!
 	public void setMyMouseListenerPayment(BookInfoBasic bookinfobasic) {
-		bookinfobasic.getpBCode().addMouseListener(new MouseAdapter() {
+		bookSearchView.getpTable().getTable().addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
