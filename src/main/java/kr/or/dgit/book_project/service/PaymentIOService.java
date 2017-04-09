@@ -9,8 +9,10 @@ import kr.or.dgit.book_project.dao.BookInfoMapper;
 import kr.or.dgit.book_project.dao.BookInfoMapperImpl;
 import kr.or.dgit.book_project.dao.PaymentIOMapper;
 import kr.or.dgit.book_project.dao.PaymentIOMapperImpl;
+import kr.or.dgit.book_project.dao.PublisherInfoMapper;
 import kr.or.dgit.book_project.dto.BookInfo;
 import kr.or.dgit.book_project.dto.PaymentIO;
+import kr.or.dgit.book_project.dto.PublisherInfo;
 import kr.or.dgit.book_project.util.MybatisSqlSessionFactory;
 
 public class PaymentIOService {
@@ -31,10 +33,12 @@ public class PaymentIOService {
 			return paymentIOMapper.selectAllPaymentIOInfo(param);
 		}
 	}
-	
+	//대여 프로시저
 	public int insertPaymentIO(Map<String, Object> param){
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			PaymentIOMapper paymentIOMapper = new PaymentIOMapperImpl(sqlSession);
+			/*int res = paymentIOMapper.insertPaymentIO(param);
+			sqlSession.commit();*/
 			return paymentIOMapper.insertPaymentIO(param);
 		}
 	}
