@@ -42,10 +42,10 @@ public abstract class AbsTable<T> extends JPanel {
 	
 	public boolean loadData() {
 		Object[][] rowData= getRowData();
-		if(rowData.length == 0){
+		/*if(rowData.length == 0){
 			System.out.println("[loadData] length : 0");
 			return false;
-		}
+		}*/
 		table.setModel(new DefaultTableModel(rowData, getColumn()) {
 		
 			@Override

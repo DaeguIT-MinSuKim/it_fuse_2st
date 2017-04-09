@@ -12,13 +12,6 @@ import kr.or.dgit.book_project.service.BookInfoService;
 
 public class BookSearchTableForCgroup extends AbsTable<BookInfo> {
 
-	public BookSearchTableForCgroup() {
-	}
-
-	private Map<String, Object> map;
-
-	private JPopupMenu popupMenu;
-
 	@Override
 	protected void createPopupMenu() {
 	}
@@ -51,13 +44,8 @@ public class BookSearchTableForCgroup extends AbsTable<BookInfo> {
 
 	@Override
 	protected Object[][] getRowData() {
-		if(map == null){
-		}
+
 		List<BookInfo> list = BookInfoService.getInstance().selectAllBookInfo(map);
-		/*if (list.isEmpty()) {
-			//JOptionPane.showMessageDialog(null, "해당 데이터가 존재하지 않습니다.");
-			return null;
-		}*/
 		Object[][] datas = new Object[list.size()][];
 		for (int i = 0; i < datas.length; i++) {
 			datas[i] = list.get(i).toArrayForCgroup();
