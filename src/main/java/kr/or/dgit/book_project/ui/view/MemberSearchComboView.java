@@ -172,11 +172,10 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 
 								MemberInfo memberinfo = pTable.getSelectedObject(); // 회원 선택해서 그 해당 회원의 대여정보를 가진 새창 띄우기
 								JFrame jf = new JFrame();
-								MemberSearchMemberPaymentViewFrame memberPayment = new MemberSearchMemberPaymentViewFrame();
-								
-								
-								
-								
+								MemberSearchMemberPaymentViewFrame memberPayment = new MemberSearchMemberPaymentViewFrame();								
+
+								memberPayment.loadTable(memberinfo);		//loadTable....
+								jf.add(memberPayment);
 
 								jf.add(memberPayment);
 								jf.setBounds(300, 400, 600, 400);
