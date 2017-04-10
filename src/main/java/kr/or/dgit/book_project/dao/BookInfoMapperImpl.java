@@ -68,4 +68,10 @@ public class BookInfoMapperImpl implements BookInfoMapper {
 		return sqlSession.selectList(namespace + "selectAllBookInfo", param);
 	}
 
+	@Override
+	public BookInfo selectOnlyBookInfo(BookInfo bookInfo) {
+		log.debug("selectOnlyBookInfo()");
+		return sqlSession.selectOne(namespace + "selectOnlyBookInfo", bookInfo);
+	}
+
 }

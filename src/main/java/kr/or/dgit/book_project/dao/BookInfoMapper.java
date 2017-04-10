@@ -13,6 +13,7 @@ public interface BookInfoMapper {
 	int setDelBookInfo(BookInfo bookInfo); // 도서 폐기/복원
 	
 	BookInfo selectBookInfoOne(Map<String, Object> param);
+	BookInfo selectOnlyBookInfo(BookInfo bookInfo);
 
 	int countBookInfo(Map<String, Object> param);
 

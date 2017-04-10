@@ -76,6 +76,10 @@ public class BookSearchViewFrame extends JFrame {
 				if (e.getClickCount() == 2) {
 					BookInfo bookInfo = bookSearchView.getpTable().getSelectedObject();
 					JOptionPane.showMessageDialog(null, bookInfo.toArray());
+					Map<String, Object> param = new HashMap<>();
+					param.put("bCode", bookInfo.getbCode());
+					param.put("bSubCode", bookInfo.getbSubCode());
+					JOptionPane.showMessageDialog(null, param);
 					bookinfobasic.setObject(bookInfo);
 					setVisible(false);
 				}

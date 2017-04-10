@@ -35,8 +35,8 @@ public class BookInfoService {
 	public int setDelBookInfo(BookInfo bookInfo, boolean isDel) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
-			bookInfo.setDel(isDel); // 복원이면 false 
-			bookInfo.setLending(!isDel); // 대여여부 false
+			
+			bookInfo.setDel(isDel); // 복원이면 false
 			int res = bookInfoMapper.setDelBookInfo(bookInfo);
 			sqlSession.commit();
 			if (bookInfo.isDel()) {
@@ -109,6 +109,13 @@ public class BookInfoService {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
 			return bookInfoMapper.selectIslending(param);
+		}
+	}
+
+	public BookInfo selectOnlyBookInfo(BookInfo bookInfo) {
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
+			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
+			return bookInfoMapper.selectOnlyBookInfo(bookInfo);
 		}
 	}
 }
