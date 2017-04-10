@@ -79,7 +79,7 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 
 		pTable = new MemberInfoSearchTable();
 		map = new HashMap<>();
-		//map.put("mGroup", 'C');
+		map.put("mGroup", 'C');
 		pTable.setParam(map);
 		pTable.loadData();
 		gbc_pTable.fill = GridBagConstraints.BOTH;
@@ -173,6 +173,10 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 								MemberInfo memberinfo = pTable.getSelectedObject(); // 회원 선택해서 그 해당 회원의 대여정보를 가진 새창 띄우기
 								JFrame jf = new JFrame();
 								MemberSearchMemberPaymentViewFrame memberPayment = new MemberSearchMemberPaymentViewFrame();
+								
+								
+								
+								
 
 								jf.add(memberPayment);
 								jf.setBounds(300, 400, 600, 400);
