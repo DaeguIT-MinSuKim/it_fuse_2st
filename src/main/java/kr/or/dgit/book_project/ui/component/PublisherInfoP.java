@@ -6,11 +6,14 @@ import javax.swing.JPanel;
 
 import kr.or.dgit.book_project.dto.PublisherInfo;
 import kr.or.dgit.book_project.service.PublisherInfoService;
+import kr.or.dgit.book_project.ui.common.BookCodePanel;
 import kr.or.dgit.book_project.ui.common.InputComp;
 import kr.or.dgit.book_project.ui.view.PublisherView;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
@@ -122,7 +125,7 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 	} 
 
 	public PublisherInfo getObject() {
-		String pCode = null;
+		String pCode = pPCode.getTFValue();
 		String publisher = pPublisher.getTFValue();
 		String pName = pPName.getTFValue();
 		String pTel = pPTel.getTFValue();
@@ -153,6 +156,7 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 
 	protected void actionPerformedBtnCancel(ActionEvent e) {
 		clear();
+		btnPubSave.setText("저장");
 	}
 
 	protected void actionPerformedBtnPubSave(ActionEvent e) {
@@ -174,6 +178,7 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 			}
 		}
 	}
+
 
 	/*public void setNoInit() {
 		PublisherInfoService pis = new PublisherInfoService();

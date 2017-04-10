@@ -4,9 +4,11 @@ import javax.swing.JPanel;
 
 import kr.or.dgit.book_project.dto.Coden;
 import kr.or.dgit.book_project.service.CodenService;
+import kr.or.dgit.book_project.service.PublisherInfoService;
 import kr.or.dgit.book_project.ui.common.InputComp;
 import kr.or.dgit.book_project.ui.view.CodenManageView;
 import kr.or.dgit.book_project.ui.view.CodenView;
+import kr.or.dgit.book_project.ui.view.PublisherView;
 
 import java.awt.GridLayout;
 import javax.swing.JButton;
@@ -19,7 +21,7 @@ import java.awt.event.ActionEvent;
 @SuppressWarnings("serial")
 public class CodenP extends JPanel implements ActionListener {
 
-	private JButton btnSave;
+	public JButton btnCodenSave;
 	private JButton btnCancel;
 	private InputComp pCName;
 	private InputComp pCCode;
@@ -46,9 +48,9 @@ public class CodenP extends JPanel implements ActionListener {
 		panelC.add(pCodenBtn);
 		pCodenBtn.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		btnSave = new JButton("저장");
-		btnSave.addActionListener(this);
-		pCodenBtn.add(btnSave);
+		btnCodenSave = new JButton("저장");
+		btnCodenSave.addActionListener(this);
+		pCodenBtn.add(btnCodenSave);
 
 		btnCancel = new JButton("취소");
 		btnCancel.addActionListener(this);
@@ -80,8 +82,8 @@ public class CodenP extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnSave) {
-			actionPerformedBtnSave(e);
+		if (e.getSource() == btnCodenSave) {
+			actionPerformedBtnCodenSave(e);
 		}
 		if (e.getSource() == btnCancel) {
 			actionPerformedBtnCancel(e);
@@ -90,14 +92,25 @@ public class CodenP extends JPanel implements ActionListener {
 
 	protected void actionPerformedBtnCancel(ActionEvent e) {
 		clear();
+		btnCodenSave.setText("저장");
 	}
 
-	protected void actionPerformedBtnSave(ActionEvent e) {
-		if (isVaildCheck()) {
-			CodenService.insertCoden(getObject());
-			JOptionPane.showMessageDialog(null, "등록완료");
-			clear();
-			CodenManageView.pTable.loadData();
+	protected void actionPerformedBtnCodenSave(ActionEvent e) {
+		if (btnCodenSave.getText() == "저장") {
+			if (isVaildCheck()) {
+				CodenService.getInstance().insertCoden(getObject());
+				JOptionPane.showMessageDialog(null, "등록완료");
+				clear();
+				CodenManageView.pTable.loadData();
+			}
+		} else if (btnCodenSave.getText() == "수정") {
+			if (isVaildCheck()) {
+				CodenService.getInstance().updateCoden(getObject());
+				JOptionPane.showMessageDialog(null, "수정완료");
+				clear();
+				CodenManageView.pTable.loadData();
+				btnCodenSave.setText("저장");
+			}
 		}
 	}
 }
