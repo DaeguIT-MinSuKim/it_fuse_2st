@@ -59,6 +59,7 @@ public class BookLendMemberDetail extends JPanel {
 		pMCode.setTFValue("");
 		pMName.setTFValue("");
 		pMTel.setTFValue("");
+		lblMsg.setText("");
 	}
 	public InputComp getpMCode() {
 		return pMCode;

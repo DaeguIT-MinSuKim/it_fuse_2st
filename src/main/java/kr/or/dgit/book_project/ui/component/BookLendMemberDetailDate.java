@@ -4,9 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Properties;
 
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
@@ -30,6 +29,7 @@ public class BookLendMemberDetailDate extends JPanel {
 	private JDatePickerImpl datePicker;
 	private JDatePanelImpl datePanel;
 	private UtilDateModel model;
+	private Properties p;
 
 	public BookLendMemberDetailDate() {
 		setLayout(new GridLayout(0, 1, 0, 10));
@@ -53,6 +53,10 @@ public class BookLendMemberDetailDate extends JPanel {
 		pReturnDate = new CompPanel();
 		pReturnDate.setTitle("반 납 일");
 		model = new UtilDateModel();
+		p = new Properties();
+		p.put("text.today", "오늘");
+		p.put("text.month","Month");
+		p.put("text.year", "Year");
 		datePanel = new JDatePanelImpl(model);
 		pReturnDate.getpContent().setLayout(new BorderLayout(0, 0));
 		datePicker = new JDatePickerImpl(datePanel);
@@ -67,6 +71,7 @@ public class BookLendMemberDetailDate extends JPanel {
 		pReturnDate.getpContent().add(datePicker, BorderLayout.CENTER);
 		add(pReturnDate);
 		// 달력 창에 오늘날짜 표시
+		
 		// p.put("text.today", "오늘");
 		// 입력창 폰트설정
 		datePicker.getJFormattedTextField().setFont(new Font("굴림", Font.PLAIN, 12));
@@ -92,7 +97,17 @@ public class BookLendMemberDetailDate extends JPanel {
 		String lendDate = pLendDate.getTFValue();
 		//DateFormat returnDate = new SimpleDateFormat("yyyymmdd");
 		//Date tempDate = returnDate.parse(datePicker.getJFormattedTextField().getText());
-		String returnDate = (String) datePicker.getModel().getValue();// 수정함
+		String reDate = datePicker.getJFormattedTextField().getText();
+		int idx = reDate.indexOf(".");
+		int idx2 = reDate.lastIndexOf(".");
+		String date1 = reDate.substring(0, idx);
+		String date2 = reDate.substring(idx+2, idx2);
+		String date3 = reDate.substring(idx2+2, reDate.length());
+		String returnDate = String.format("%s-%s-%s", date1, date2, date3);
+		
+		//String returnDate = datePicker.getJFormattedTextField().getText().replaceAll(".", "-");
+		System.out.println(returnDate);
+						/*(String) datePicker.getModel().getValue();*/
 		/*SimpleDateFormat formatter = new SimpleDateFormat(returnDate);
 		Date date;
 		try {
@@ -126,4 +141,26 @@ public class BookLendMemberDetailDate extends JPanel {
 	public String returnMsg() {
 		return datePicker.getJFormattedTextField().getText();
 	}
+
+	public InputComp getpMCode() {
+		return pMCode;
+	}
+
+	public InputComp getpMName() {
+		return pMName;
+	}
+
+	public InputComp getpMTel() {
+		return pMTel;
+	}
+
+	public InputComp getpLendDate() {
+		return pLendDate;
+	}
+
+	public JDatePickerImpl getDatePicker() {
+		return datePicker;
+	}
+	
+	
 }

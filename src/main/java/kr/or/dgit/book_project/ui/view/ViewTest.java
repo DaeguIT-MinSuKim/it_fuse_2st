@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -57,12 +58,30 @@ public class ViewTest extends JFrame {
 		add(bcp);
 		add(ic);*/
 		
+
 		
 	/*	MemberSearchMemberPaymentViewFrame paymentInfoView = new MemberSearchMemberPaymentViewFrame();
+
+		/*
+		MemberSearchMemberPaymentViewFrame paymentInfoView = new MemberSearchMemberPaymentViewFrame();
+
 		MemberInfo memberInfo = new MemberInfo("C002");
 		paymentInfoView.loadTable(memberInfo);
 		add(paymentInfoView);*/
+
 		BookCodenSave bl = new BookCodenSave();
 		}
 
-}
+		
+		/*String reDate = "2017.4.1";
+		int idx = reDate.indexOf(".");
+		int idx2 = reDate.lastIndexOf(".");
+		String date1 = reDate.substring(0, idx);
+		String date2 = reDate.substring(idx+1, idx2);
+		String date3 = reDate.substring(idx2+1, reDate.length());
+		String returnDate = String.format("%s-%s-%s", date1, date2, date3);
+		JOptionPane.showMessageDialog(null, returnDate);*/
+	}
+
+
+
