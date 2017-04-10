@@ -12,20 +12,6 @@
 		<association property="memberInfo"
 			resultMap="kr.or.dgit.book_project.dao.MemberInfoMapper.MemberInfoResult" />
 	</resultMap>
-	
- 	<resultMap type="PaymentIO" id="PaymentIOTwoResult">
-		<result property="bCode" column="b_code"/>
-		<result property="bSubCode" column="b_sub_code"/>
-		<result property="mCode" column="m_code"/>
-		<result property="lendDate" column="lend_date"/>
-		<result property="returnDate" column="return_date"/>
-	</resultMap> 
-
-	<select id="selectAllPio" parameterType="hashmap" resultMap="PaymentIOTwoResult">
-		select b_code, b_sub_code, m_code, lend_date, return_date from PaymentIO
-		<include refid="whereSql"/>
-	</select>
-
 	<sql id="selectLeftSql">
 		SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name, author, p_code,
 		price, insert_date, b_lend_count, is_lending, is_del, lend_date,
