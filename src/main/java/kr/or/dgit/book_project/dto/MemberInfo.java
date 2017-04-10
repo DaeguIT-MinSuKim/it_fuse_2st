@@ -169,7 +169,37 @@ public class MemberInfo {
 	public Object[] toArrayForMemberList() {
 		//{"이름","회원코드","전화번호","우편번호","주소","대여금지일"};		
 		return new Object[]{mName, mCode, mTel, mZipCode, mAddress, blackDate};
+	}
+
+
+	//대여 프로시저때문에
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((mCode == null) ? 0 : mCode.hashCode());
+		return result;
+	}
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MemberInfo other = (MemberInfo) obj;
+		if (mCode == null) {
+			if (other.mCode != null)
+				return false;
+		} else if (!mCode.equals(other.mCode))
+			return false;
+		return true;
 	}	
+	
 	
 	
 }

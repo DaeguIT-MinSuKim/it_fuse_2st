@@ -2,23 +2,17 @@ package kr.or.dgit.book_project.ui.view;
 
 import java.awt.EventQueue;
 import java.awt.GridLayout;
-import java.util.HashMap;
-import java.util.Map;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.book_project.ui.table.BookSearchTableForCgroup;
+import kr.or.dgit.book_project.dto.MemberInfo;
 
 public class ViewTest extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -47,7 +41,7 @@ public class ViewTest extends JFrame {
 		JButton btnNewButton = new JButton("New button");
 		panel.add(btnNewButton);*/
 		
-		BookSearchView absv = new BookSearchView();
+		/*BookSearchView absv = new BookSearchView();
 		BookSearchTableForCgroup bsbs = new BookSearchTableForCgroup();
 		absv.setpTable(bsbs);
 		Map<String, Object> map = new HashMap<>();
@@ -55,7 +49,19 @@ public class ViewTest extends JFrame {
 		map.put("isDel", false);
 		absv.setMap(map);
 		absv.loadTable();
-		contentPane.add(absv);
+		contentPane.add(absv);*/
+		
+		/*BookCodePanel bcp = new BookCodePanel();
+		InputComp ic = new InputComp();
+		ic.setTitle("테스트");
+		add(bcp);
+		add(ic);*/
+		
+		
+		MemberSearchMemberPaymentViewFrame paymentInfoView = new MemberSearchMemberPaymentViewFrame();
+		MemberInfo memberInfo = new MemberInfo("C002");
+		paymentInfoView.loadTable(memberInfo);
+		add(paymentInfoView);
 	}
 
 }

@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
@@ -87,7 +90,18 @@ public class BookLendMemberDetailDate extends JPanel {
 		memberInfo.setmName(pMName.getTFValue());
 		memberInfo.setmTel(pMTel.getTFValue());
 		String lendDate = pLendDate.getTFValue();
-		String returnDate = datePicker.getJFormattedTextField().getText();
+		//DateFormat returnDate = new SimpleDateFormat("yyyymmdd");
+		//Date tempDate = returnDate.parse(datePicker.getJFormattedTextField().getText());
+		String returnDate = (String) datePicker.getModel().getValue();// 수정함
+		/*SimpleDateFormat formatter = new SimpleDateFormat(returnDate);
+		Date date;
+		try {
+			date = (Date)formatter.parse(returnDate);
+			returnDate.set
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}*/
+		//String returnDate = datePicker.getJFormattedTextField().getText();
 		return new PaymentIO(memberInfo, lendDate, returnDate);
 	}
 
@@ -97,9 +111,18 @@ public class BookLendMemberDetailDate extends JPanel {
 		pMTel.setTFValue(paymentio.getMemberInfo().getmTel());
 		pLendDate.setTFValue(paymentio.getLendDate());
 		// 필요한지 모르겟지만 일딴 뺌
-		// pReturnDate.date(paymentio.getReturnDate());
+		 //pReturnDate.set(paymentio.getReturnDate());
+		//model.setValue(paymentio.getReturnDate());
 	}
-
+	
+	public void clear(){
+		//클리어
+		pMCode.setTFValue("");
+		pMCode.setTFValue("");
+		pMCode.setTFValue("");
+		pLendDate.setTFValue("");
+		//데이트피커 되겟지 뭐
+	}
 	public String returnMsg() {
 		return datePicker.getJFormattedTextField().getText();
 	}

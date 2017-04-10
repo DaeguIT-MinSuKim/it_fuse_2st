@@ -152,4 +152,5 @@ public class BookInfo { // 도서
 		return new Object[] { bCode, bSubCode, bName, author,
 				String.format("%s(%s)", publisherInfo.getPublisher(), publisherInfo.getpCode()), price, isLending?"대여중":"" };
 	}
+	
 }

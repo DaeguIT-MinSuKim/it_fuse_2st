@@ -21,6 +21,8 @@ import kr.or.dgit.book_project.dto.MemberInfo;
 import kr.or.dgit.book_project.service.MemberInfoService;
 import kr.or.dgit.book_project.ui.common.InputComp;
 import kr.or.dgit.book_project.ui.common.PasswordPanel;
+import kr.or.dgit.book_project.ui.view.MemberSearchMemberDetailViewFrame;
+import kr.or.dgit.book_project.ui.view.tableTestView;
 
 public class PageLogin extends JFrame implements ActionListener {
 
@@ -29,7 +31,7 @@ public class PageLogin extends JFrame implements ActionListener {
 	private PageSub sub;
 	private JButton btnEnter;
 	private InputComp pID;
-	private PasswordPanel pPW;
+	private PasswordPanel pPW;	
 
 	public static void main(String[] args) {
 		try {
@@ -38,11 +40,11 @@ public class PageLogin extends JFrame implements ActionListener {
 		} catch (Exception e) {
 		}
 		PageLogin frame = new PageLogin();
-
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-
+				try {				
+					
 					PageLogin frame = new PageLogin();
 					frame.setVisible(true);
 
@@ -52,8 +54,7 @@ public class PageLogin extends JFrame implements ActionListener {
 			}
 		});
 	}
-	
-	
+
 	public PageLogin() {
 		setTitle("로그인");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,11 +67,11 @@ public class PageLogin extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 
-		String path = "icon/bookImage.png"; // 경로를 어떻게...
+		String path = "icon/bookImage.png";
 		JPanel pImage = new JPanel(new BorderLayout());
 		JLabel label = new JLabel(new ImageIcon(path));
 		label.setHorizontalAlignment(JLabel.CENTER);
-		pImage.add(label); // default center section
+		pImage.add(label); 
 		contentPane.add(pImage);
 
 		JPanel pLogin = new JPanel();
@@ -102,13 +103,8 @@ public class PageLogin extends JFrame implements ActionListener {
 
 	private void appearInTheCenter() {
 		Dimension frameSize = this.getSize();
-		// 자신의 windowscreen 사이즈 측정
 		Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
-		// 출력해보면 두 사이즈가 출력되는걸 확인할 수 있다.
-		System.out.println(frameSize + " " + windowSize);
-		// 설정할 위치에 (윈도우width-프레임width)/2, (윈도우height-프레임height)/2를 입력한다
 		this.setLocation((windowSize.width - frameSize.width) / 2, (windowSize.height - frameSize.height) / 2);
-		// 프레임창 활성화하면 현재 모니터에 중앙에 프레임이 실행되는걸 볼수 있다.
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -128,14 +124,19 @@ public class PageLogin extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(null, "해당 아이디가 존재하지 않습니다");
 			pID.clear();// 텍스트필드 초기화
 			pID.getTF().requestFocus(); // 회원번호 텍스트에 포커스
-		} else if (ourMember != null && !pw.equals(ourMember.getmPass())) {
-			JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다");
-			pPW.getPwField().setText("");// 텍스트필드 초기화
-			pPW.getPwField().requestFocus(); // 비밀번호텍스트에 포커스
-		} else if (ourMember != null && pw.equals(ourMember.getmPass())) {
-			// 화면을 띄움
-			JOptionPane.showMessageDialog(null, "로그인 성공");
-			showMainContent(ourMember);
+		} else if (ourMember != null) {
+			if (ourMember.isSecsn()) {
+				// 탈퇴 회원
+				JOptionPane.showMessageDialog(null, "해당 아이디가 존재하지 않습니다");
+			} else if (!pw.equals(ourMember.getmPass())) {
+				JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다");
+				pPW.getPwField().setText("");// 텍스트필드 초기화
+				pPW.getPwField().requestFocus(); // 비밀번호텍스트에 포커스
+			} else if (pw.equals(ourMember.getmPass())) {
+				// 화면을 띄움
+				JOptionPane.showMessageDialog(null, "[ " + ourMember.getmName() + " ] 님의 방문을 환영합니다.");
+				showMainContent(ourMember);
+			}
 		}
 	}
 
@@ -146,7 +147,8 @@ public class PageLogin extends JFrame implements ActionListener {
 		case 'B':
 			// 사서.... 직원메뉴 제외 전부 볼 수 있음..
 			PageSub pageSub = new PageSub();
-			pageSub.setmGroup(ourMemberInfo.getmGroup());
+			pageSub.setMemberInfo(ourMemberInfo);
+			pageSub.getpTabSub().add(new SubMenuPage0());
 			pageSub.setVisible(true);
 			setVisible(false);
 			break;

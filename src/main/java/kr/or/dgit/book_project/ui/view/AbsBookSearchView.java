@@ -38,21 +38,6 @@ public abstract class AbsBookSearchView extends JPanel implements ActionListener
 		add(pTable);
 	}
 
-	public AbsTable<BookInfo> getpTable() {
-		return pTable;
-	}
-	public void setpTable(AbsTable<BookInfo> pTable) {
-		this.pTable = pTable;
-	}
-	
-	public BookSearchPanel getpContent() {
-		return pContent;
-	}
-
-	public void setMap(Map<String, Object> map) {
-		this.map = map;
-	}
-
 	public void loadTable() {
 		pTable.setMap(map);
 		pTable.loadData();
@@ -73,13 +58,11 @@ public abstract class AbsBookSearchView extends JPanel implements ActionListener
 			JOptionPane.showMessageDialog(null, "검색하고 싶은 항목을 선택해주세요");
 		} else {
 			// 검색하기
-
 			for (String key : map.keySet()) {
-				// 대여중인지.. 폐기된 도서인지.... 
+				// 대여중인지.. 폐기된 도서인지....
 				// 창을 띄울떄 사용된 기본조건을 검색조건으로 추가합니다.
 				param.put(key, map.get(key));
 			}
-
 			pTable.setMap(param);
 			pTable.loadData();
 			pContent.clearAll();
@@ -101,5 +84,20 @@ public abstract class AbsBookSearchView extends JPanel implements ActionListener
 
 	protected abstract void createPopupMenu();
 
-	
+	public AbsTable<BookInfo> getpTable() {
+		return pTable;
+	}
+
+	public void setpTable(AbsTable<BookInfo> pTable) {
+		this.pTable = pTable;
+	}
+
+	public BookSearchPanel getpContent() {
+		return pContent;
+	}
+
+	public void setMap(Map<String, Object> map) {
+		this.map = map;
+	}
+
 }

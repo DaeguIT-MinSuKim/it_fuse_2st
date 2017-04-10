@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.SwingConstants;
+
 import kr.or.dgit.book_project.dto.BookInfo;
 import kr.or.dgit.book_project.dto.MemberInfo;
 import kr.or.dgit.book_project.dto.PaymentIO;
@@ -32,14 +34,13 @@ public class PaymentIoTable extends AbsTable<PaymentIO> {
 	@Override
 	protected void cellWith() {
 		/* 정렬하는거 아직 뎃츠 ㄴㄴ */
-		/* tableSetWidth(50, 30, 250, 70, 100, 100); */
+		 tableSetWidth(50, 30, 250, 70, 100, 100); 
 
 	}
 
 	@Override
 	protected void CellAlign() {
-		// TODO Auto-generated method stub
-
+		tableCellAlignment(SwingConstants.CENTER, 0,1,2,3,4,5,6);
 	}
 
 	@Override

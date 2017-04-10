@@ -1,54 +1,70 @@
 package kr.or.dgit.book_project.ui.view;
 
+import java.awt.GridLayout;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import kr.or.dgit.book_project.dto.MemberInfo;
 import kr.or.dgit.book_project.ui.common.PaymentDataDetail;
-
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
+import kr.or.dgit.book_project.ui.table.MemberPaymentIOInfoTable;
 
 public class MemberSearchMemberPaymentViewFrame extends PaymentDataDetail {
 
-	/**
-	 * Create the panel.
-	 */
+	private JLabel lblreturnBook;
+	private JLabel lblLendBook;
+	private JLabel lblAllBook;
+	private MemberPaymentIOInfoTable pTable;
+
 	public MemberSearchMemberPaymentViewFrame() {
 		lblTitle.setText("- 회원대여정보 -");
-		
-		JPanel pTable = new JPanel();
-		pResult.add(pTable);
-		
-		JPanel pSum = new JPanel();
-		pResult.add(pSum);
-		
-		int res1 = 8;
-		int res2 = 3;
-		int res3 = 11;
-		int res1_1 = 3;
-		int res2_1 = 1;
-		int res3_1 = 4;
-		
-		JLabel lblNewLabel = new JLabel("label");
-		String text = String.format("총계 : %n반납된 도서 : %d권 (연체 : %d권),",	res1, res1_1);
-		pSum.setLayout(new GridLayout(0, 1, 0, 0));
-		
-		lblNewLabel.setText(text);
-		pSum.add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		String text1 = String.format("\t대출중 도서: %d권(연체 : %d권),", res2, res2_1);
-		
-		lblNewLabel_1.setText(text1);
-		pSum.add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		String text2 = String.format("\t총 이용도서: %d권(연체 : %d권)", res3, res3_1);
-		
-		lblNewLabel_2.setText(text2);
-		pSum.add(lblNewLabel_2);
 
+		pTable = new MemberPaymentIOInfoTable();
+		pResult.add(pTable);
+
+		JPanel pSum = new JPanel();
+		pSum.setLayout(new GridLayout(0, 1, 0, 0));
+
+		pResult.add(pSum);
+
+		lblreturnBook = new JLabel("label");
+		pSum.add(lblreturnBook);
+
+		lblLendBook = new JLabel("New label");
+		pSum.add(lblLendBook);
+
+		lblAllBook = new JLabel("New label");
+		pSum.add(lblAllBook);
+
+	}
+
+	public void loadTable(MemberInfo memberInfo) {
+		Map<String, Object> param = new HashMap<>();
+		param.put("no", "no");
+		param.put("mCode", memberInfo.getmCode());
+		pTable.setMap(param);
+		pTable.loadData();
+		setPSum(pTable.getArrayCnt());
+	}
+
+	public void setPSum(int[] cntArray) {
+		int allCnt = cntArray[0]; // 총 이용권수
+		int allDelayCnt = cntArray[1]; // 총 연체권수
+		int lendCnt = cntArray[2]; // 현재 대여권수
+		int lendDelayCnt = cntArray[3]; // 대여도서 중 연체권수
+		int returnCnt = cntArray[4]; // 현재 반납권수
+		int returnDelayCnt = cntArray[5]; // 반납도서 중 연체권수
+
+		String text = String.format("총계 : %n반납된 도서 : %d권 (연체 : %d권),", returnCnt, returnDelayCnt);
+		lblreturnBook.setText(text);
+		String text1 = String.format("\t대출중 도서: %d권(연체 : %d권),", lendCnt, lendDelayCnt);
+
+		lblLendBook.setText(text1);
+		String text2 = String.format("\t총 이용도서: %d권(연체 : %d권)", allCnt, allDelayCnt);
+
+		lblAllBook.setText(text2);
 	}
 
 }

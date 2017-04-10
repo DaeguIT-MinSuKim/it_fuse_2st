@@ -7,23 +7,24 @@ public class OptionSearchTF extends OptionSearchPanel {
 	private JTextField textField;
 
 	public OptionSearchTF() {
-		
+
 		textField = new JTextField();
 		panel.add(textField);
 		textField.setColumns(10);
-		
 
 	}
-	
-	public String getTfValue(){
+
+	public String getTfValue() {
 		return textField.getText();
 	}
-	
-	public void clear(){
+
+	public void clear() {
 		chbTitle.setSelected(false);
 		textField.setText("");
 	}
-	
 
+	public JTextField getTextField() {
+		return textField;
+	}
 
 }

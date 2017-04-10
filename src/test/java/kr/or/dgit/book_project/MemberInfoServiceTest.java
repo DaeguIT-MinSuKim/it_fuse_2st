@@ -45,19 +45,19 @@ public class MemberInfoServiceTest {
 		Assert.assertSame(1, res);
 	}*/
 	
-	@Test
+	/*@Test
 	public void btestupdateMemberInfo(){
 		MemberInfo mi = new MemberInfo("C100", "pass", "테스트1", "010-111-1234", 54321, "주소주소");
 		int res = memberinfoservice.updateMemberInfo(mi);
 		Assert.assertSame(1, res);
-	}
+	}*/
 	
 	
-	@Test
+	/*@Test
 	public void ctestdelMemberInfo(){
 		//MemberInfo mi = new MemberInfo("C100", "pass", "테스트1", "010-111-1234", 54321, "주소주소");
 		MemberInfo mi = new MemberInfo("C001");
 		int res = memberinfoservice.delMemberInfo(mi);
 		Assert.assertSame(1, res);
-	}
+	}*/
 }
