@@ -77,7 +77,8 @@ public class MemberInfoP extends JPanel {
 		String mTel  = pMTel.getTFValue();
 		int mZipCode = Integer.parseInt(pMZipCode.getTFValue());
 		String mAddress = pMAddress.getTFValue();
-		return new MemberInfo(mCode, mPass, mName, mTel, mZipCode, mAddress);
+		char mGroup = mCode.charAt(0);
+		return new MemberInfo(mCode, mPass, mName, mTel, mZipCode, mAddress, mGroup);
 	}
 	
 	public void setObject(MemberInfo memberinfo){
@@ -89,10 +90,12 @@ public class MemberInfoP extends JPanel {
 		
 	}
 	
+	
 	public boolean isVaildCheck(){
 		try {
-			pMPass.isValidCheck("[a-zA-Z0-9]+", "영문 또는 숫자만 가능");
-			pMName.isValidCheck("[a-zA-Z가-힣]+", "한글 또는 영문만 가능");
+			pMPass.isValidCheck("^[a-zA-Z0-9]+$", "영문 또는 숫자만 가능합니다.");
+			pMName.isValidCheck("^[a-zA-Z가-힣]+$", "영문 또는 숫자만 가능합니다.");
+			pMZipCode.isValidCheck("^[0-9]{5}$", "숫자만 가능합니다.");
 			pMTel.isEmptyCheck();
 			pMZipCode.isEmptyCheck();
 			pMAddress.isEmptyCheck();

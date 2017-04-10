@@ -24,6 +24,21 @@ public class MemberInfo {
 		this.mCode = mCode;
 	}
 
+	
+
+	public MemberInfo(String mCode, String mPass, String mName, String mTel, int mZipCode, String mAddress,
+			char mGroup) {
+		super();
+		//(#{mCode}, #{mName} ,#{mTel} ,#{mZipCode} ,#{mAddress} ,#{mPass} ,#{mGroup})
+		this.mCode = mCode;
+		this.mPass = mPass;
+		this.mName = mName;
+		this.mTel = mTel;
+		this.mZipCode = mZipCode;
+		this.mAddress = mAddress;
+		this.mGroup = mGroup;
+	}
+
 
 
 	public MemberInfo(String mCode, String mName, String mTel, int mZipCode, String mAddress) {
@@ -51,7 +66,9 @@ public class MemberInfo {
 		this.mName = mName;
 		this.mTel = mTel;
 	}
-
+	
+	
+	
 
 
 	public String getmCode() {
@@ -87,6 +104,8 @@ public class MemberInfo {
 	}
 
 	public int getmZipCode() {
+		
+	//	return String.format("%05d", mZipCode);
 		return mZipCode;
 	}
 

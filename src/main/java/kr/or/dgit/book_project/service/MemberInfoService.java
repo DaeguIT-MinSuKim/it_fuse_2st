@@ -1,5 +1,6 @@
 package kr.or.dgit.book_project.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,8 @@ import kr.or.dgit.book_project.dao.MemberInfoMapper;
 import kr.or.dgit.book_project.dao.MemberInfoMapperImpl;
 import kr.or.dgit.book_project.dao.PaymentIOMapper;
 import kr.or.dgit.book_project.dao.PaymentIOMapperImpl;
+import kr.or.dgit.book_project.dao.PublisherInfoMapper;
+import kr.or.dgit.book_project.dao.PublisherInfoMapperImpl;
 import kr.or.dgit.book_project.dto.MemberInfo;
 import kr.or.dgit.book_project.util.MybatisSqlSessionFactory;
 
@@ -25,12 +28,28 @@ public class MemberInfoService {
 		return instance;
 	}
 
-	public int selectCountAll() { // 회원 목록 수
+	public int selectCountAll(MemberInfo memberInfo) { // 회원 목록 수
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			MemberInfoMapper memberInfoMapper = new MemberInfoMapperImpl(sqlSession);
-			int res = memberInfoMapper.selectCountAll();
-			return res;
+			return memberInfoMapper.selectCountAll(memberInfo);
 		}
+	}	
+	
+	public MemberInfo insertMcodeAuto(MemberInfo memberInfo){
+		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
+			MemberInfoMapper memberInfoMapper = new MemberInfoMapperImpl(sqlSession);
+			memberInfo.setmGroup('C');
+			int memberCnt = selectCountAll(memberInfo);	
+			System.out.println(memberCnt);
+			
+			/*Map<String, Object> map = new HashMap<>();
+			map.put("mGroup", "C");*/
+			String mCode = String.format("C%03d", memberCnt+1);
+			memberInfo.setmCode(mCode);
+	/*		int res = memberInfoMapper.insertMcodeAuto(memberInfo);
+			sqlSession.commit();*/
+			return memberInfo;
+		}		
 	}
 
 	public int insertMemberInfo(MemberInfo memberInfo) {
@@ -42,9 +61,7 @@ public class MemberInfoService {
 		}
 	}
 
-	public List<MemberInfo> selectMemberByAll(Map<String, Object> param) { // 전체
-																			// 회원
-																			// 출력
+	public List<MemberInfo> selectMemberByAll(Map<String, Object> param) { // 전체 회원 출력
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			MemberInfoMapper memberInfoMapper = new MemberInfoMapperImpl(sqlSession);
 			return memberInfoMapper.selectMemberByAll(param);

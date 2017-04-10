@@ -44,14 +44,14 @@ public class PaymentIOServieTest {
 	 * }
 	 */
 
-	@Test
+	/*@Test
 	public void TESprocedureTest() {
 		Map<String, Object> param = new HashMap();
 		param.put("b_code", "J002");
 		param.put("b_sub_code", 00);
 		param.put("m_code", "C003");
 		int res = paymentIOServie.insertPaymentIO(param);
-		/*Assert.assertSame(1, res);*/
+		Assert.assertSame(1, res);*/
 	}
 	
 	/*@Test
@@ -83,4 +83,3 @@ public class PaymentIOServieTest {
 		System.out.println("list.size() => " + list.size());
 //		Assert.assertEquals(16, list.size());
 	}*/
-}

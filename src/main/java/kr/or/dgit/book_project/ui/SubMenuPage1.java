@@ -34,12 +34,15 @@ public class SubMenuPage1 extends JTabbedPane implements ChangeListener {
 			pMember.removeAll();
 		}
 		memberInsertView = new MemberInsertView();
+		memberInsertView.setMcodeAuto();			// 회원등록 번호 자동 카운팅
+		
 		pMember.add(memberInsertView);
 		
-		
+
 
 		setSubMenuPage1(mGroup);
-
+		
+	
 	}
 
 	public void setSubMenuPage1(char mGroup) {
@@ -78,6 +81,7 @@ public class SubMenuPage1 extends JTabbedPane implements ChangeListener {
 				pMemberManager.removeAll();
 			}
 			memberSearchComboView = new MemberSearchComboView();
+			memberSearchComboView.setMyMouseListenerForManage();		// 회원검색화면에서 우클
 			memberSearchComboView.setLayout(new GridLayout(1, 0, 0, 0));
 			pMemberManager.add(memberSearchComboView);
 		} else if (this.getTitleAt(idx).equals("직원관리")) {

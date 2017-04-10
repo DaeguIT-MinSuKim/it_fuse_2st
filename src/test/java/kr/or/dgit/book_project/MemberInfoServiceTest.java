@@ -1,7 +1,6 @@
 package kr.or.dgit.book_project;
 
-import java.util.HashMap;
-import java.util.Map;
+import javax.swing.JOptionPane;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -11,7 +10,6 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import kr.or.dgit.book_project.dto.MemberInfo;
-import kr.or.dgit.book_project.service.BookInfoService;
 import kr.or.dgit.book_project.service.MemberInfoService;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -60,6 +58,7 @@ public class MemberInfoServiceTest {
 		int res = memberinfoservice.delMemberInfo(mi);
 		Assert.assertSame(1, res);
 	}*/
+
 	@Test
 	public void testPW(){
 		/*MemberInfo mi = new MemberInfo();
@@ -68,4 +67,5 @@ public class MemberInfoServiceTest {
 		boolean res = memberinfoservice.confirmPW(mi);
 		Assert.assertSame(true, res);*/
 	}
+
 }
