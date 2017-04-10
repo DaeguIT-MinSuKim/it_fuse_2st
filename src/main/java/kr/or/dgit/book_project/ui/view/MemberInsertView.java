@@ -114,13 +114,9 @@ public class MemberInsertView extends AbsViewPanel implements ActionListener {
 			setMcodeAuto();
 
 			Map<String, Object> param = new HashMap<>();
-			param.put("mCode", memberInfoP.getObject().getmCode());/*
-			param.put("mName", memberInfoP.getObject().getmName());
-			param.put("mPass", memberInfoP.getObject().getmPass());
-			param.put("mTel", memberInfoP.getObject().getmTel());*/
+			param.put("mCode", memberInfoP.getObject().getmCode());
 			pTable.setMap(param);
 			pTable.loadData();
-			// 테이블에 목록을 어디로 불러온다냐...
 		}
 	}
 

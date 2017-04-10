@@ -60,8 +60,7 @@ public class MemberInfoP extends JPanel {
 		panelM.add(pMAddDetail);
 	}
 	
-	public void setClear(){
-		pMCode.setTFValue("");		
+	public void setClear(){		
 		pMName.setTFValue("");
 		pMPass.setTFValue("");		
 		pMTel.setTFValue("");
@@ -87,6 +86,7 @@ public class MemberInfoP extends JPanel {
 		pMName.setTFValue(memberinfo.getmName());
 		pMTel.setTFValue(memberinfo.getmTel());
 		pMZipCode.setTFValue(String.valueOf(memberinfo.getmZipCode()));
+		pMAddress.setTFValue(memberinfo.getmAddress());
 		
 	}
 	

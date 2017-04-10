@@ -18,8 +18,10 @@ import java.awt.event.ActionEvent;
 public class MemberSearchMemberDetailViewFrame extends InformDetailPanel implements ActionListener {
 
 	private MemberInfoP memberInfoP;	
-	private MemberInfoSearchTable memberSearchTable;
+	private MemberInfoSearchTable pTable;
 	private MemberInfo memberinfo;
+	private MemberSearchMemberDetailViewFrame memberInfoView;
+	private Map<String, Object> map;
 
 	public MemberSearchMemberDetailViewFrame() {		
 		getBtnDel().addActionListener(this);
@@ -31,8 +33,6 @@ public class MemberSearchMemberDetailViewFrame extends InformDetailPanel impleme
 		pContent.add(memberInfoP);
 		setOption("- 회원정보 -", "탈퇴");
 	}
-
-
 
 	public MemberInfoP getPanel() {
 		return memberInfoP;
@@ -47,11 +47,14 @@ public class MemberSearchMemberDetailViewFrame extends InformDetailPanel impleme
 		}
 	}
 	protected void actionPerformedThisBtnModify(ActionEvent e) {
-		memberInfoP.setObject(memberSearchTable.getSelectedObject());// 해당 회원 정보를 가져와서 회원정보 창에 set
 		
+		Map<String, Object> param = new HashMap<>();
+		MemberInfoService.getInstance().updateMemberInfo(getPanel().getObject());// 해당 회원의 정보를 수정 후, 수정 버튼 누르면 끝. 데이터가 바뀌는지 확인하기		
+		pTable.setParam(param);
+		pTable.loadData();
 		
-		//MemberInfoService.getInstance().updateMemberInfo(memberinfo);// 해당 회원의 정보를 수정 후, 수정 버튼 누르면 끝. 데이터가 바뀌는지 확인하기
-		JOptionPane.showMessageDialog(null, "정보 수정이 완료되었습니다.");
+		JOptionPane.showMessageDialog(null, "수정되었습니다.");
+		setVisible(false);
 	}
 
 	protected void actionPerformedThisBtnDel(ActionEvent e) {
@@ -61,7 +64,7 @@ public class MemberSearchMemberDetailViewFrame extends InformDetailPanel impleme
 			JOptionPane.showMessageDialog(null, "취소하였습니다.");
 			return;
 		}else {
-			MemberInfoService.getInstance().delMemberInfo(memberinfo);
+			MemberInfoService.getInstance().delMemberInfo(memberInfoView.getPanel().getObject());
 			JOptionPane.showMessageDialog(null, "삭제하였습니다.");
 		}
 	}
