@@ -60,7 +60,6 @@ public class PublisherInfoService {
 			String pCode = String.format("P%03d", cnt + 1);
 			publisherInfo.setpCode(pCode);
 			publisherInfo.setPublisher(publisher);
-
 			publisherInfoMapper.insertPublisherShort(publisherInfo);
 			sqlSession.commit();
 			JOptionPane.showMessageDialog(null, "추가되었습니다.");

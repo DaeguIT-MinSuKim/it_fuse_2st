@@ -67,11 +67,15 @@ public class MemberInfoMapperImpl implements MemberInfoMapper {
 		return sqlSession.update(namespace + "delMemberInfo", memberInfo);
 
 	}
-
 	/*
 	 * @Override public int insertMcodeAuto(MemberInfo memberInfo) { //코드 입력 x
 	 * 하고 정보만 입력했을때 코드 자동으로 만들어서 테이블에 넣어주는거.. log.debug("insertMcodeAuto()");
 	 * return sqlSession.insert(namespace+"insertMcodeAuto", memberInfo); }
 	 */
 
+	@Override
+	public boolean confirmPW(MemberInfo memberinfo) {
+		log.debug("confirmPW()");
+		return sqlSession.selectOne(namespace + "confirmPW", memberinfo);
+	}
 }

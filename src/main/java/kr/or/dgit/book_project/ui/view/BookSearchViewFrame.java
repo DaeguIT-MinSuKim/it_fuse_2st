@@ -13,7 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.book_project.dto.BookInfo;
+import kr.or.dgit.book_project.dto.PaymentIO;
 import kr.or.dgit.book_project.service.BookInfoService;
+import kr.or.dgit.book_project.service.PaymentIOService;
 import kr.or.dgit.book_project.ui.component.BookInfoBasic;
 import kr.or.dgit.book_project.ui.component.BookInfoP;
 
@@ -25,6 +27,8 @@ public class BookSearchViewFrame extends JFrame {
 	private BookInsertView bookInsertView;
 	private BookLendView booklendView; // 대여 추가
 	private BookInfoBasic bookinfobasic; // 대여 추가
+	private BookReturnView bookReturnView;
+	//private String bookReturn;
 	
 	public BookSearchViewFrame() {
 		setTitle("도서검색");
@@ -41,7 +45,11 @@ public class BookSearchViewFrame extends JFrame {
 		this.bookInsertView = bookInsertView;
 	}
 	
-	
+
+	public void setBookReturnView(BookReturnView bookReturnView) {
+		this.bookReturnView = bookReturnView;
+	}
+
 	// 대여 부분
 	public void setBooklendView(BookLendView booklendView) {
 		this.booklendView = booklendView;
@@ -75,8 +83,18 @@ public class BookSearchViewFrame extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
 					BookInfo bookInfo = bookSearchView.getpTable().getSelectedObject();
+					/*MemberInfo */
 					JOptionPane.showMessageDialog(null, bookInfo.toArray());
 					bookinfobasic.setObject(bookInfo);
+					if(bookReturnView != null){
+						Map<String, Object> param = new HashMap<>();
+						param.put("bCode", bookInfo.getbCode());
+						param.put("bSubCode", bookInfo.getbSubCode());
+						param.put("returnNull","returnNull");
+						PaymentIO paymentIO=PaymentIOService.getInstance().selectAllPayment(param);
+						bookReturnView.getpMemberDetail().setObject(paymentIO);
+						
+					}
 					setVisible(false);
 				}
 			}

@@ -21,7 +21,6 @@ import kr.or.dgit.book_project.ui.component.PublisherInfoP;
 public class PublisherView extends JPanel {
 
 	public static PublisherInfoTable pTable;
-	public PublisherInfoP pub;
 	private JPopupMenu popupMenu;
 	private PublisherInfoP panel;
 
@@ -65,11 +64,6 @@ public class PublisherView extends JPanel {
 				}
 				panel.setObject(pubIn);
 				panel.getBtnPubSave().setText("수정");
-				/*
-				 * PublisherInfoTable pub2 = new PublisherInfoTable();
-				 * ((PublisherInfoP) pub2.getSelectedObject).setObject(pubIn);
-				 * pub.btnPubSave.setText("수정");
-				 */
 			}
 		});
 		popupMenu.add(updateItem);

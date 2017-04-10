@@ -23,4 +23,6 @@ public interface MemberInfoMapper {
 	
 	// 회원 프로시저
 	int callMemberInfo(Map<String, Object> param);
+	
+	boolean confirmPW(MemberInfo memberinfo);
 }

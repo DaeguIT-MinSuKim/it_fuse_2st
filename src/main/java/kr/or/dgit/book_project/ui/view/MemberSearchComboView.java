@@ -150,11 +150,11 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 
 								MemberInfo memberinfo = pTable.getSelectedObject(); // 회원 선택해서 그 해당 회원정보를 가진 새창 띄우기								
 								JFrame jf = new JFrame();
-								
+
 								MemberSearchMemberDetailViewFrame memberDetail = new MemberSearchMemberDetailViewFrame();								
 								memberDetail.getPanel().setObject(memberinfo);	// getSelectObject로 찾아서 Detail에 정보 심기
 								memberDetail.getPanel().getpMCode().getTF().setEnabled(false);
-								
+
 								jf.add(memberDetail);
 								jf.setBounds(300, 400, 600, 400);
 								jf.setVisible(true);
@@ -173,7 +173,7 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 								MemberInfo memberinfo = pTable.getSelectedObject(); // 회원 선택해서 그 해당 회원의 대여정보를 가진 새창 띄우기
 								JFrame jf = new JFrame();
 								MemberSearchMemberPaymentViewFrame memberPayment = new MemberSearchMemberPaymentViewFrame();
-								 
+
 								jf.add(memberPayment);
 								jf.setBounds(300, 400, 600, 400);
 								jf.setVisible(true);
@@ -188,9 +188,9 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 			}
 		});	
 	}
-	
-	
-	
+
+
+
 	// 성환이 대여 더블클릭
 	public void setMyMouseListener(BookLendView booklendview, JFrame myFrame) {
 		pTable.getTable().addMouseListener(new MouseAdapter() {
@@ -202,6 +202,10 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 					JOptionPane.showMessageDialog(null, memberinfo.toArrayForMemberList());
 					// 회원 프로시저 넣음
 					// MemberInfo mi = pMemberlendDetail.getObject();
+					//JOptionPane.showMessageDialog(null, memberinfo.toArrayForMemberList());
+
+					//회원 대여가능여부 판단 프로시저 넣음
+
 					Map<String, Object> param = new HashMap<>();
 					param.put("m_code", memberinfo.getmCode());
 					MemberInfoService.getInstance().callMemberInfo(param);
@@ -215,15 +219,26 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 					if (memberinfo.isPosbl()) {
 						booklendview.getpMemberlendDetail().getpMName().setTFValue(memberinfo.getmName());
 						booklendview.getpMemberlendDetail().getpMTel().setTFValue(memberinfo.getmTel());
-						booklendview.getpMemberlendDetail().getLblMsg().setText("대여가능");
-					} else {
-						booklendview.getpMemberlendDetail().getLblMsg().setText("대여불가");
+
+						//프로시저 실행하고 업데이트된 정보 새로 받아옴
+						MemberInfo updateMember = MemberInfoService.getInstance().findMemberInfoByCode(memberinfo);
+						System.out.println("됫냐??");
+						System.out.println(updateMember);
+						//memberinfo.setmCode(updateMember.getmCode());
+						booklendview.getpMemberlendDetail().clear();
+						booklendview.getpMemberlendDetail().getpMCode().setTFValue(updateMember.getmCode());
+						//JOptionPane.showMessageDialog(null, memberinfo.isPosbl());//여기까지 넘어가는데....
+						if (updateMember.isPosbl()) {
+							booklendview.getpMemberlendDetail().getpMName().setTFValue(updateMember.getmName());
+							booklendview.getpMemberlendDetail().getpMTel().setTFValue(updateMember.getmTel());
+							booklendview.getpMemberlendDetail().getLblMsg().setText("대여가능");
+						} else {
+							booklendview.getpMemberlendDetail().getLblMsg().setText("대여불가");
+						}
+						myFrame.setVisible(false);
 					}
-					myFrame.setVisible(false);
 				}
-
 			}
-
 		});
 	}
 

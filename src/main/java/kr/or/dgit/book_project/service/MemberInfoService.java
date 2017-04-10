@@ -89,7 +89,7 @@ public class MemberInfoService {
 			MemberInfoMapper memberInfoMapper = new MemberInfoMapperImpl(sqlSession);
 			int res = memberInfoMapper.updateMemberInfo(memberInfo);
 			sqlSession.commit();
-			//JOptionPane.showMessageDialog(null, "회원정보 수정완료");
+			// JOptionPane.showMessageDialog(null, "회원정보 수정완료");
 			return res;
 		}
 	}
@@ -99,8 +99,15 @@ public class MemberInfoService {
 			MemberInfoMapper memberInfoMapper = new MemberInfoMapperImpl(sqlSession);
 			int res = memberInfoMapper.delMemberInfo(memberInfo);
 			sqlSession.commit();
-			//JOptionPane.showMessageDialog(null, "회원탈퇴 성공");
+			// JOptionPane.showMessageDialog(null, "회원탈퇴 성공");
 			return res;
+		}
+	}
+
+	public boolean confirmPW(MemberInfo memberinfo) {
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
+			MemberInfoMapper memberInfoMapper = new MemberInfoMapperImpl(sqlSession);
+			return memberInfoMapper.confirmPW(memberinfo);
 		}
 	}
 

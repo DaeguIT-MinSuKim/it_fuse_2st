@@ -10,12 +10,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -58,6 +57,12 @@ public class BookReturnView extends JPanel implements MouseListener {
 		pMemberinfo.setLayout(gbl_pMemberinfo);
 		
 		pMemberDetail = new BookLendMemberDetailDate();
+		pMemberDetail.getpMCode().getTF().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				mousePressedPMemberDetailPMCodeTF(arg0);
+			}
+		});
 		GridBagConstraints gbc_pMemberDetail = new GridBagConstraints();
 		gbc_pMemberDetail.weightx = 1.0;
 		gbc_pMemberDetail.weighty = 2.0;
@@ -65,6 +70,7 @@ public class BookReturnView extends JPanel implements MouseListener {
 		gbc_pMemberDetail.insets = new Insets(0, 0, 5, 0);
 		gbc_pMemberDetail.gridx = 0;
 		gbc_pMemberDetail.gridy = 0;
+		
 		pMemberinfo.add(pMemberDetail, gbc_pMemberDetail);
 		
 		pReturnbtn = new JPanel();
@@ -127,9 +133,11 @@ public class BookReturnView extends JPanel implements MouseListener {
 		}
 	}
 	protected void actionPerformedBtnLend(ActionEvent arg0) {
+		//JOptionPane.showMessageDialog(null, pMemberDetail.getObject().getReturnDate());
+		
 		// 반납 버튼 프로시저..이것만되면 슈바 끝인가...
-		/*PaymentIO paymentio = pTabel.getSelectedObject();
-		JOptionPane.showMessageDialog(null, pMemberDetail.returnMsg());*/
+		PaymentIO paymentio = pTabel.getSelectedObject();
+		JOptionPane.showMessageDialog(null, pMemberDetail.returnMsg());
 		
 		PaymentIO bookinfo = pBookinfo.getObjectP();
 		PaymentIO memberinfo = pMemberDetail.getObject();
@@ -139,10 +147,10 @@ public class BookReturnView extends JPanel implements MouseListener {
 		param.put("b_sub_code", bookinfo.getBookInfo().getbSubCode());
 		param.put("m_code", memberinfo.getMemberInfo().getmCode());
 		// 여기서 막힘
-		/*SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-		Date date = sdf.parse(param.put("return_date", memberinfo.getReturnDate()));*/
+		//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		//Date date = sdf.parse(param.put("return_date", memberinfo.getReturnDate()));
 		//하얗게 불태웟다 도저히 무리다
-		//param.put("return_date", memberinfo.getReturnDate());
+		param.put("return_date", memberinfo.getReturnDate());
 		PaymentIOService.getInstance().updatePaymentIO(param);
 		pTabel.loadData();
 		JOptionPane.showMessageDialog(null, "반납되었습니다");
@@ -158,9 +166,21 @@ public class BookReturnView extends JPanel implements MouseListener {
 		param.put("isDel", false);
 		param.put("isLending", true);
 		bsv.setTableDate(param);
+		bsv.setBookReturnView(this);
+		bsv.setMyMouseListenerPayment(pBookinfo);
 		bsv.setVisible(true);
 	}
-
+	
+	protected void mousePressedPMemberDetailPMCodeTF(MouseEvent arg0) {
+		//회원 누르는거
+		MemberSearchComboView msc = new MemberSearchComboView();
+		msc.loadDate();
+		JFrame jf = new JFrame();
+		jf.setBounds(200, 200, 500, 500);
+		jf.getContentPane().add(msc);
+		jf.setVisible(true);
+	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -185,5 +205,6 @@ public class BookReturnView extends JPanel implements MouseListener {
 		
 	}
 
+	
 	
 }

@@ -12,6 +12,10 @@ import kr.or.dgit.book_project.ui.view.PublisherView;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.CardLayout;
+import javax.swing.BoxLayout;
+import java.awt.FlowLayout;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class PublisherInfoP extends JPanel implements ActionListener {
@@ -31,7 +35,7 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 
 		JPanel panelPub = new JPanel();
 		add(panelPub);
-		panelPub.setLayout(new GridLayout(0, 1, 0, 10));
+		panelPub.setLayout(new GridLayout(0, 1, 0, 5));
 
 		pPCode = new InputComp();
 		pPCode.setTitle("출판사코드");
@@ -62,7 +66,9 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		panelPub.add(pBtn);
 
 		btnPubSave = new JButton("저장");
+		btnPubSave.setHorizontalAlignment(SwingConstants.LEADING);
 		btnPubSave.addActionListener(this);
+		pBtn.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
 		pBtn.add(btnPubSave);
 
 		btnCancel = new JButton("취소");
@@ -122,12 +128,12 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 	} 
 
 	public PublisherInfo getObject() {
-		String pCode = null;
+		String pCode = pPCode.getTFValue();
 		String publisher = pPublisher.getTFValue();
 		String pName = pPName.getTFValue();
 		String pTel = pPTel.getTFValue();
 		Integer pZipCode = Integer.parseInt(pPZipCode.getTFValue());
-		/* String pZipCode = pPZipCode.getTFValue(); */
+		/*String pZipCode = pPZipCode.getTFValue();*/
 		String pAddress = pPAddress.getTFValue();
 		return new PublisherInfo(pCode, publisher, pName, pTel, pZipCode, pAddress);
 	}
@@ -153,6 +159,7 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 
 	protected void actionPerformedBtnCancel(ActionEvent e) {
 		clear();
+		btnPubSave.setText("저장");
 	}
 
 	protected void actionPerformedBtnPubSave(ActionEvent e) {
@@ -174,17 +181,4 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 			}
 		}
 	}
-
-	/*public void setNoInit() {
-		PublisherInfoService pis = new PublisherInfoService();
-		pis.insertPublisherShort(getObject());
-		pPCode.getTF().setEditable(false);
-		 Integer.parseInt(ps.pPZipCode()); 
-		
-		 * PublisherInfoService pubInfoSer = new PublisherInfoService();
-		 * pubInfoSer.insertPubliherShort.setTfValue(value);
-		 * pubInfoSer.insertPubliherShort().gettF().setEditable(false);
-		 * pubInfoSer.insertPubliherShort().gettF().requestFocus();
-		 
-	}*/
 }

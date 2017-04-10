@@ -3,6 +3,9 @@ package kr.or.dgit.book_project.ui.view;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -55,12 +58,24 @@ public class BookDetailViewFrame extends JFrame {
 		});
 
 		bookInformDetailPanel.getBtnDel().addActionListener(new ActionListener() {
-			// 폐기 버튼 동작
+			
+			// 폐기 버튼 동작 
+			
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int res = JOptionPane.showConfirmDialog(null, "해당도서를 폐기하시겠습니까", "", JOptionPane.YES_NO_OPTION);
 				if (res != 0) {
 					JOptionPane.showMessageDialog(null, "취소하였습니다");
+					return;
+				}
+				// 해당도서 대여여부 찾아오기
+				Map <String, Object> param = new HashMap<>();
+				param.put("bCode", bookInfoBasic.getObject().getbCode());
+				param.put("bSubCode", bookInfoBasic.getObject().getbSubCode());
+				BookInfo bookInfo = BookInfoService.getInstance().selectBookInfoOne(param);
+				if (bookInfo.isLending()) {
+					JOptionPane.showMessageDialog(null, "대여중인 도서는 폐기가 불가능합니다.");
 					return;
 				}
 				BookInfoService.getInstance().setDelBookInfo(bookInfoBasic.getObject(), true);

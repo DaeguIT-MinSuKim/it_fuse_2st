@@ -30,7 +30,7 @@ ALTER TABLE book_project.bookInfo
 -- 회원
 CREATE TABLE book_project.memberInfo (
 	m_code       CHAR(4)     NOT NULL, -- 회원코드
-	m_pass       VARCHAR(20) NULL,     -- 비밀번호
+	m_pass       char(41)	 NULL,     -- 비밀번호
 	m_name       VARCHAR(20) NULL,     -- 성명
 	m_tel        CHAR(13)    NULL,     -- 연락처
 	m_zip_code   INTEGER(5)  NULL,     -- 우편번호
@@ -215,19 +215,19 @@ INSERT INTO book_project.bookInfo(b_code, b_sub_code, c_name, b_name, author, p_
 
 
 INSERT INTO book_project.memberInfo (m_code, m_name, m_tel, m_zip_code, m_address, is_secsn, m_pass, m_group, is_posbl, delay_count, m_lend_count, m_now_count, black_date) VALUES
-('C001', '김유정', '010-1111-1234',04524,'서울특별시 중구 세종대로 110',false, '1234', 'C', true, 0, 2, 2, null),
-('C002', '박보영', '010-1234-2255',35242,'대전광역시 서구 둔산로 100',false, '4567', 'C', true, 1, 2, 2, null), 
-('C003', '박보영', '010-2222-4567',41911,'대구광역시 중구 공평로 88',false, '5864', 'C', true, 0, 4, 1, null),
-('C004', '전지현', '010-7777-2255',47545,'부산광역시 연제구 중앙대로 1001',false, 'aaba', 'C', true, 0, 5, 4, null),						-- 4권 빌린사람
-('C005', 'Emma Watson', '010-5555-4567',41908,'대구광역시 중구 국채보상로139길 1',false, 'bbbb', 'C', false, 1, 7, 5, null),            -- 5권 빌린사람
-('C006', '고수', '010-1234-1234',41185,'대구광역시 동구 아양로 207',true, '8888', 'C', false, 0, 1, 0, null), -- 탈퇴상태
-('C007', '박보검', '010-5432-1234',41777,'대구광역시 서구 국채보상로 257',false, '9595', 'C', false, 0, 1, 0, null),            -- 탈퇴회원
-('C008', '박형식', '010-1234-9999',42429,'대구광역시 남구 이천로 51',false, '5555', 'C', false, 1, 3, 1, null),            -- 책 연체 중인 사람(일반)
-('C009', 'Dan Stevens', '010-9876-1200',41590,'대구광역시 북구 옥산로 65',false, '4444', 'C', true, 2, 4, 2, null),               -- 곧 블랙.. 연체횟수 2번이나 연체중 아님
-('C010', '원빈', '010-9876-5432',42424,'대구 남구 중앙대로 220 3층',false, '8811', 'C', false, 2, 6, 2, null),             -- 곧 블랙리스트 될 사람.. 연체횟수2번에 연체중인사람
-('C050', '원빈', '010-234-1234',42424,'대구 남구 중앙대로 220 3층',false, '8811', 'C', false, 3, 5, 0, '2017-03-23'), 	-- 현재 블랙리스트
-('A001', '관리자', '010-234-1234',42424,'대구 남구 중앙대로 220 3층',false, 'admin', 'A', false, 0, 0, 0, null), -- 관리자
-('B001', '사서', '010-234-1234',42424,'대구 남구 중앙대로 220 3층',false, '8811', 'B', false, 0, 0, 0, null);      -- 사서
+('C001', '김유정', '010-1111-1234',04524,'서울특별시 중구 세종대로 110',false, password('1234'), 'C', true, 0, 2, 2, null),
+('C002', '박보영', '010-1234-2255',35242,'대전광역시 서구 둔산로 100',false, password('4567'), 'C', true, 1, 2, 2, null), 
+('C003', '박보영', '010-2222-4567',41911,'대구광역시 중구 공평로 88',false, password('5864'), 'C', true, 0, 4, 1, null),
+('C004', '전지현', '010-7777-2255',47545,'부산광역시 연제구 중앙대로 1001',false, password('aaba'), 'C', true, 0, 5, 4, null),						-- 4권 빌린사람
+('C005', 'Emma Watson', '010-5555-4567',41908,'대구광역시 중구 국채보상로139길 1',false, password('bbbb'), 'C', false, 1, 7, 5, null),            -- 5권 빌린사람
+('C006', '고수', '010-1234-1234',41185,'대구광역시 동구 아양로 207',true, password('8888'), 'C', false, 0, 1, 0, null), -- 탈퇴상태
+('C007', '박보검', '010-5432-1234',41777,'대구광역시 서구 국채보상로 257',false, password('9595'), 'C', false, 0, 1, 0, null),            -- 탈퇴회원
+('C008', '박형식', '010-1234-9999',42429,'대구광역시 남구 이천로 51',false, password('5555'), 'C', false, 1, 3, 1, null),            -- 책 연체 중인 사람(일반)
+('C009', 'Dan Stevens', '010-9876-1200',41590,'대구광역시 북구 옥산로 65',false, password('4444'), 'C', true, 2, 4, 2, null),               -- 곧 블랙.. 연체횟수 2번이나 연체중 아님
+('C010', '원빈', '010-9876-5432',42424,'대구 남구 중앙대로 220 3층',false, password('8811'), 'C', false, 2, 6, 2, null),             -- 곧 블랙리스트 될 사람.. 연체횟수2번에 연체중인사람
+('C050', '원빈', '010-234-1234',42424,'대구 남구 중앙대로 220 3층',false, password('8811'), 'C', false, 3, 5, 0, '2017-03-23'), 	-- 현재 블랙리스트
+('A001', '관리자', '010-234-1234',42424,'대구 남구 중앙대로 220 3층',false, password('admin'), 'A', false, 0, 0, 0, null), -- 관리자
+('B001', '사서', '010-234-1234',42424,'대구 남구 중앙대로 220 3층',false, password('8811'), 'B', false, 0, 0, 0, null);      -- 사서
 UPDATE book_project.memberinfo SET is_secsn=true WHERE m_code='C006';
 
 
@@ -271,6 +271,8 @@ INSERT INTO book_project.paymentIO (no, b_code, b_sub_code, m_code, lend_date, r
 (37,'T002',00,'C001','2017-03-23' , null),
 (38,'D001',00,'C004','2017-03-23' , null),
 (39,'H003',00,'C009','2017-03-23' , null);
+
+GRANT SELECT ON mysql.proc to user_book IDENTIFIED BY 'rootroot';
 
 --  테스트
 
@@ -409,12 +411,19 @@ delimiter ;
 call book_project.proc_paymentIO_update('H002',0,'C009','2017-01-01');
 
 
-GRANT SELECT ON mysql.proc to user_book IDENTIFIED BY 'rootroot';
 
 
 
 
+select length(password('12341564313212sdfsdafaf4'));
+
+INSERT INTO book_project.newtable (temp_col) VALUES(password('1234'));
+select * from book_project.newtable;
+password('') -- 암호화... 얘로 비교를....해야해요....
+
+UPDATE book_project.memberinfo
+SET m_pass='' WHERE m_code='';
 
 
-
-
+call book_project.proc_memberinfo_is_posbl_update('C001');
+select*from book_project.paymentio;
