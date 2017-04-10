@@ -79,8 +79,9 @@ public class PaymentIOServieTest {
 	public void TESTshowRank() {
 		Map<String, Object> param = new HashMap<>();
 		
-		param.put("lendDate1", "2017-02-01");
-		param.put("lendDate2", "2017-03-01");
+		param.put("cName", "IT");
+		param.put("lendDate1", "2017-03-01");
+		param.put("lendDate2", "2017-04-01");
 		List<PaymentIO> list = PaymentIOService.getInstance().showRank(param);
 		Assert.assertNotNull(list);
 	}

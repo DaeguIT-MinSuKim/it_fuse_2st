@@ -94,6 +94,7 @@
 			</if>
 			<if test="lendDate2 != null">
 				and <![CDATA[ io.lend_date < #{lendDate2} ]]>
+				<!-- mybatis에서는 부등호를 사용할 수 없어서 <![CDATA[ 부등호 비교식 ]]> 사용-->
 			</if>
 		</where>
 	</sql>
@@ -149,7 +150,7 @@
 		b.b_code = io.b_code and b.b_sub_code = io.b_sub_code
 		<!-- where c_name = ? and lend_date >= '2017-01-01' and lend_date < '2017-02-01' -->
 		<include refid="whereForRankSql" />
-		group by p.b_code order by cnt desc, in_date desc
+		group by io.b_code order by cnt desc, in_date desc
 		limit 0, 3;
 	</select>
 
