@@ -67,4 +67,10 @@ public class MemberInfoMapperImpl implements MemberInfoMapper {
 		return sqlSession.update(namespace + "delMemberInfo", memberInfo);
 
 	}
+
+	@Override
+	public boolean confirmPW(MemberInfo memberinfo) {
+		log.debug("confirmPW()");
+		return sqlSession.selectOne(namespace + "confirmPW", memberinfo);
+	}
 }

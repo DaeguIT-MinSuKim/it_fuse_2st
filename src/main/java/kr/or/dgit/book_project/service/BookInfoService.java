@@ -35,10 +35,6 @@ public class BookInfoService {
 	public int setDelBookInfo(BookInfo bookInfo, boolean isDel) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
-			if (bookInfo.isLending()) {
-				JOptionPane.showMessageDialog(null, "대여중인 도서는 폐기가 불가능합니다.");
-				return 0;
-			}
 			bookInfo.setDel(isDel); // 복원이면 false 
 			bookInfo.setLending(!isDel); // 대여여부 false
 			int res = bookInfoMapper.setDelBookInfo(bookInfo);

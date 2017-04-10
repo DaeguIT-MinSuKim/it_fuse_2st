@@ -84,4 +84,7 @@
 		select m.m_name, m.m_code, m_tel, m_zip_code, m_address, if(black_date is null," ",black_date)
 		from memberInfo m inner join memberLend ml on m.m_code = ml.m_code where m.m_code = #{memberInfo.mCode}
 	</select> -->
+	<select id="confirmPW" parameterType="MemberInfo" resultType="boolean">
+		select if(m_pass = password(#{mPass}),true,false) from book_project.memberinfo where m_code = #{mCode};	
+	</select>
 </mapper>

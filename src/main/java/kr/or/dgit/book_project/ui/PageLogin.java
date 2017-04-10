@@ -117,6 +117,9 @@ public class PageLogin extends JFrame implements ActionListener {
 
 		String id = pID.getTFValue(); // 입력받은 ID
 		String pw = String.valueOf(pPW.getPwField().getPassword());// 입력받은 PW
+		MemberInfo visitMember = new MemberInfo();
+		visitMember.setmCode(id);
+		visitMember.setmPass(pw);
 
 		// 로그인 버튼을 눌렀을때
 		MemberInfo ourMember = MemberInfoService.getInstance().findMemberInfoByCode(new MemberInfo(id));
@@ -128,11 +131,11 @@ public class PageLogin extends JFrame implements ActionListener {
 			if (ourMember.isSecsn()) {
 				// 탈퇴 회원
 				JOptionPane.showMessageDialog(null, "해당 아이디가 존재하지 않습니다");
-			} else if (!pw.equals(ourMember.getmPass())) {
+			} else if (!MemberInfoService.getInstance().confirmPW(visitMember)) {
 				JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다");
 				pPW.getPwField().setText("");// 텍스트필드 초기화
 				pPW.getPwField().requestFocus(); // 비밀번호텍스트에 포커스
-			} else if (pw.equals(ourMember.getmPass())) {
+			} else if (MemberInfoService.getInstance().confirmPW(visitMember)) {
 				// 화면을 띄움
 				JOptionPane.showMessageDialog(null, "[ " + ourMember.getmName() + " ] 님의 방문을 환영합니다.");
 				showMainContent(ourMember);
