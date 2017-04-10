@@ -63,6 +63,10 @@ public class BookDetailViewFrame extends JFrame {
 					JOptionPane.showMessageDialog(null, "취소하였습니다");
 					return;
 				}
+				if (bookInfoBasic.getObject().isLending()) {
+					JOptionPane.showMessageDialog(null, "대여중인 도서는 폐기가 불가능합니다.");
+					return;
+				}
 				BookInfoService.getInstance().setDelBookInfo(bookInfoBasic.getObject(), true);
 				bookManageView.loadTable();
 				setVisible(false);
