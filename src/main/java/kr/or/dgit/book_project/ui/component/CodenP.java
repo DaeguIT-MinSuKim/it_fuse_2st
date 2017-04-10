@@ -80,7 +80,7 @@ public class CodenP extends JPanel implements ActionListener {
 		}
 	}
 
-	public Coden getObject() {
+	public Coden getCodenObject() {
 		String cName = pCName.getTFValue();
 		String cCode = pCCode.getTFValue();
 		return new Coden(cName, cCode);
@@ -106,19 +106,18 @@ public class CodenP extends JPanel implements ActionListener {
 	protected void actionPerformedBtnCodenSave(ActionEvent e) {
 		if (btnCodenSave.getText() == "저장") {
 			if (isVaildCheck()) {
-				CodenService.getInstance().insertCoden(getObject());
+				CodenService.getInstance().insertCoden(getCodenObject());
 				JOptionPane.showMessageDialog(null, "등록완료");
 				clear();
 				CodenManageView.pTable.loadData();
 			}
 		} else if (btnCodenSave.getText() == "수정") {
-			if (isVaildCheck()) {
-				CodenService.getInstance().updateCoden(getObject());
+				CodenService.getInstance().updateCoden(getCodenObject());
 				JOptionPane.showMessageDialog(null, "수정완료");
 				clear();
 				CodenManageView.pTable.loadData();
 				btnCodenSave.setText("저장");
-			}
+			
 		}
 	}
 }

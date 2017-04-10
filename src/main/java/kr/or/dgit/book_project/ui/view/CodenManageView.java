@@ -7,12 +7,9 @@ import javax.swing.JPopupMenu;
 import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.book_project.dto.Coden;
-import kr.or.dgit.book_project.dto.PublisherInfo;
-import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.component.CodenP;
 import kr.or.dgit.book_project.ui.table.CodenTable;
 
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -65,11 +62,6 @@ public class CodenManageView extends JPanel {
 				}
 				pCodenMain.setCodenObject(coden);
 				pCodenMain.getBtnCodenSave().setText("수정");
-				/*
-				 * PublisherInfoTable pub2 = new PublisherInfoTable();
-				 * ((PublisherInfoP) pub2.getSelectedObject).setObject(pubIn);
-				 * pub.btnPubSave.setText("수정");
-				 */
 			}
 		});
 		popupMenu.add(updateItem);

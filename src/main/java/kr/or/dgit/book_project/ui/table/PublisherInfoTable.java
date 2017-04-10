@@ -1,14 +1,11 @@
 package kr.or.dgit.book_project.ui.table;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.swing.SwingConstants;
 
 import kr.or.dgit.book_project.dto.PublisherInfo;
 import kr.or.dgit.book_project.service.PublisherInfoService;
 
+@SuppressWarnings("serial")
 public class PublisherInfoTable extends AbsTable<PublisherInfo> {
 	
 	
@@ -72,9 +69,9 @@ public class PublisherInfoTable extends AbsTable<PublisherInfo> {
 		String publisher = (String) table.getValueAt(selectedIdx, 1);
 		String pName = (String) table.getValueAt(selectedIdx, 2);
 		String pTel = (String) table.getValueAt(selectedIdx, 3);
-		Integer pZipCode = (Integer) table.getValueAt(selectedIdx, 4);
+		String	pZipCode = (String) table.getValueAt(selectedIdx, 4);
 		String	pAddress = (String) table.getValueAt(selectedIdx, 5);
-		return new PublisherInfo(pCode, publisher, pName, pTel, pZipCode, pAddress);
+		return new PublisherInfo(pCode, publisher, pName, pTel, Integer.parseInt(pZipCode), pAddress);
 	}
 
 	

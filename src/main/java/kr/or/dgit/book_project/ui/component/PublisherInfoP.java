@@ -6,14 +6,11 @@ import javax.swing.JPanel;
 
 import kr.or.dgit.book_project.dto.PublisherInfo;
 import kr.or.dgit.book_project.service.PublisherInfoService;
-import kr.or.dgit.book_project.ui.common.BookCodePanel;
 import kr.or.dgit.book_project.ui.common.InputComp;
 import kr.or.dgit.book_project.ui.view.PublisherView;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.Map;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
@@ -130,7 +127,7 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		String pName = pPName.getTFValue();
 		String pTel = pPTel.getTFValue();
 		Integer pZipCode = Integer.parseInt(pPZipCode.getTFValue());
-		/* String pZipCode = pPZipCode.getTFValue(); */
+		/*String pZipCode = pPZipCode.getTFValue();*/
 		String pAddress = pPAddress.getTFValue();
 		return new PublisherInfo(pCode, publisher, pName, pTel, pZipCode, pAddress);
 	}
@@ -178,18 +175,4 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 			}
 		}
 	}
-
-
-	/*public void setNoInit() {
-		PublisherInfoService pis = new PublisherInfoService();
-		pis.insertPublisherShort(getObject());
-		pPCode.getTF().setEditable(false);
-		 Integer.parseInt(ps.pPZipCode()); 
-		
-		 * PublisherInfoService pubInfoSer = new PublisherInfoService();
-		 * pubInfoSer.insertPubliherShort.setTfValue(value);
-		 * pubInfoSer.insertPubliherShort().gettF().setEditable(false);
-		 * pubInfoSer.insertPubliherShort().gettF().requestFocus();
-		 
-	}*/
 }

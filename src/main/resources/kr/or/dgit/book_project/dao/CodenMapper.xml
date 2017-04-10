@@ -16,8 +16,8 @@
 	<sql id="updateSql">
 		update CODEN
 		<set>
+			<if test="cName !=null">c_name=#{cName},</if>
 			<if test="cCode !=null">c_code=#{cCode}</if>
-			<if test="cName !=null">c_name=#{cName}</if>
 		</set>
 
 	</sql>
@@ -26,8 +26,9 @@
 	</sql>
 	<sql id="whereSql">
 		<where>
-			<if test="cCode !=null">c_code=#{cCode}</if>
-			<if test="cName !=null">c_name=#{cName}</if>
+			<!-- <if test="cCode !=null">c_code=#{cCode}</if>
+			<if test="cName !=null">c_name=#{cName}</if> -->
+			where c_name = #{name}
 		</where>
 	</sql>
 
@@ -37,7 +38,7 @@
 	</insert>
 	<update id="updateCoden" parameterType="Coden">
 		<include refid="updateSql" />
-		where c_code = #{cCode}
+		where c_name = #{cName}
 	</update>
 
 	<select id="selectCodenAll" resultMap="CodenResult">
