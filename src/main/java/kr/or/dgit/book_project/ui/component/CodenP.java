@@ -56,6 +56,12 @@ public class CodenP extends JPanel implements ActionListener {
 		btnCancel.addActionListener(this);
 		pCodenBtn.add(btnCancel);
 	}
+	
+
+	public JButton getBtnCodenSave() {
+		return btnCodenSave;
+	}
+
 
 	public void clear() {
 		pCName.setTFValue("");
@@ -78,9 +84,11 @@ public class CodenP extends JPanel implements ActionListener {
 		String cName = pCName.getTFValue();
 		String cCode = pCCode.getTFValue();
 		return new Coden(cName, cCode);
-
 	}
-
+	public void setCodenObject(Coden codenItem){
+		pCCode.setTFValue(codenItem.getcCode());
+		pCName.setTFValue(codenItem.getcName());
+	}
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnCodenSave) {
 			actionPerformedBtnCodenSave(e);

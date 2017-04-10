@@ -69,15 +69,12 @@ public class PublisherInfoTable extends AbsTable<PublisherInfo> {
 		}
 
 		String pCode = (String) table.getValueAt(selectedIdx, 0);
-		/*String publisher = (String) table.getValueAt(selectedIdx, 1);*/
-		Map<String, Object> hash = new HashMap<>();
-		hash.put("pCode", pCode);
-		/*String pName = (String) table.getValueAt(selectedIdx, 2);
+		String publisher = (String) table.getValueAt(selectedIdx, 1);
+		String pName = (String) table.getValueAt(selectedIdx, 2);
 		String pTel = (String) table.getValueAt(selectedIdx, 3);
 		Integer pZipCode = (Integer) table.getValueAt(selectedIdx, 4);
-		String	pAddress = (String) table.getValueAt(selectedIdx, 5);*/
-		
-		return PublisherInfoService.getInstance().selectPublisherInfoOne(hash);
+		String	pAddress = (String) table.getValueAt(selectedIdx, 5);
+		return new PublisherInfo(pCode, publisher, pName, pTel, pZipCode, pAddress);
 	}
 
 	
