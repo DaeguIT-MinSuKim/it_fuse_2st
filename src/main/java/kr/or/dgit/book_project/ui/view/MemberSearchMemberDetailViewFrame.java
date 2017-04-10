@@ -21,7 +21,7 @@ public class MemberSearchMemberDetailViewFrame extends InformDetailPanel impleme
 	private MemberInfoSearchTable pTable;
 	private MemberInfo memberinfo;
 	private MemberSearchMemberDetailViewFrame memberInfoView;
-	private Map<String, Object> param;
+	private Map<String, Object> map;
 
 	public MemberSearchMemberDetailViewFrame() {		
 		getBtnDel().addActionListener(this);
@@ -47,12 +47,13 @@ public class MemberSearchMemberDetailViewFrame extends InformDetailPanel impleme
 		}
 	}
 	protected void actionPerformedThisBtnModify(ActionEvent e) {
-		MemberInfoService.getInstance().updateMemberInfo(getPanel().getObject());// 해당 회원의 정보를 수정 후, 수정 버튼 누르면 끝. 데이터가 바뀌는지 확인하기	
-				
-		pTable.setParam(param);
-		pTable.loadData();		
 		
-		JOptionPane.showMessageDialog(null, "수정되었습니다..");
+		Map<String, Object> param = new HashMap<>();
+		MemberInfoService.getInstance().updateMemberInfo(getPanel().getObject());// 해당 회원의 정보를 수정 후, 수정 버튼 누르면 끝. 데이터가 바뀌는지 확인하기		
+		pTable.setParam(param);
+		pTable.loadData();
+		
+		JOptionPane.showMessageDialog(null, "수정되었습니다.");
 		setVisible(false);
 	}
 
