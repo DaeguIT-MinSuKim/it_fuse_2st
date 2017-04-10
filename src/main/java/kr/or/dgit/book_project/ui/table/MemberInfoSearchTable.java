@@ -83,4 +83,6 @@ public class MemberInfoSearchTable extends AbsTable<MemberInfo> {
 		this.param = param;
 	}	
 
+	
+
 }

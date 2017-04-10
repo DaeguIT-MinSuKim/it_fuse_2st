@@ -85,6 +85,11 @@ public abstract class AbsTable<T> extends JPanel {
 		// 데이터 검색조건 지정
 		this.map = map;
 	}
+	
+	public void loadTable() {
+		pTable.setMap(map);
+		pTable.loadData();
+	}
 
 	protected abstract void createPopupMenu();
 

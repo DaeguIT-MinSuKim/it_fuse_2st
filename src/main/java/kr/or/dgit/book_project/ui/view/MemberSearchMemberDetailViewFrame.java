@@ -3,6 +3,7 @@ package kr.or.dgit.book_project.ui.view;
 import kr.or.dgit.book_project.dto.MemberInfo;
 import kr.or.dgit.book_project.service.MemberInfoService;
 import kr.or.dgit.book_project.ui.common.InformDetailPanel;
+import kr.or.dgit.book_project.ui.common.InputComp;
 import kr.or.dgit.book_project.ui.component.MemberInfoP;
 import kr.or.dgit.book_project.ui.table.MemberInfoSearchTable;
 
@@ -22,6 +23,7 @@ public class MemberSearchMemberDetailViewFrame extends InformDetailPanel impleme
 	private MemberInfo memberinfo;
 	private MemberSearchMemberDetailViewFrame memberInfoView;
 	private Map<String, Object> map;
+	private MemberSearchComboView memberSearchView;
 
 	public MemberSearchMemberDetailViewFrame() {		
 		getBtnDel().addActionListener(this);
@@ -48,13 +50,13 @@ public class MemberSearchMemberDetailViewFrame extends InformDetailPanel impleme
 	}
 	protected void actionPerformedThisBtnModify(ActionEvent e) {
 		
-		Map<String, Object> param = new HashMap<>();
-		MemberInfoService.getInstance().updateMemberInfo(getPanel().getObject());// 해당 회원의 정보를 수정 후, 수정 버튼 누르면 끝. 데이터가 바뀌는지 확인하기		
-		pTable.setParam(param);
-		pTable.loadData();
+		int memberInfo = MemberInfoService.getInstance().updateMemberInfo(memberInfoP.getObject());// 해당 회원의 정보를 수정 후, 수정 버튼 누르면 끝. 데이터가 바뀌는지 확인하기		
+		map.put("mCode", memberInfo);
+		pTable.setMap(map);
+		pTable.loadData();		
 		
 		JOptionPane.showMessageDialog(null, "수정되었습니다.");
-		setVisible(false);
+		
 	}
 
 	protected void actionPerformedThisBtnDel(ActionEvent e) {
