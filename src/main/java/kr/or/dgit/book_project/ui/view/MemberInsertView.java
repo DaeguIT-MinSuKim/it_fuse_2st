@@ -5,22 +5,31 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import kr.or.dgit.book_project.dto.MemberInfo;
+import kr.or.dgit.book_project.service.MemberInfoService;
 import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.component.MemberInfoP;
+import kr.or.dgit.book_project.ui.table.AbsTable;
+import kr.or.dgit.book_project.ui.table.MemberInfoSearchTable;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 import java.awt.event.ActionEvent;
 
 public class MemberInsertView extends AbsViewPanel implements ActionListener {
 	
-	private JButton btnCancel;
-		
+	private JButton btnCancel;		
 	private JButton btnSave;
-
 	private MemberInfoP memberInfoP;
+	private JPanel pTable;
+	private MemberInfoSearchTable memberInfoSesrchTable;
 	
 	public MemberInsertView() {
 		JPanel panel_5 = new JPanel();
@@ -76,7 +85,7 @@ public class MemberInsertView extends AbsViewPanel implements ActionListener {
 		JPanel panel_8 = new JPanel();
 		pBtn.add(panel_8);
 		
-		JPanel pTable = new JPanel();
+		pTable = new JPanel();
 		GridBagConstraints gbc_pTable = new GridBagConstraints();
 		gbc_pTable.weighty = 1.0;
 		gbc_pTable.weightx = 1.0;
@@ -99,12 +108,26 @@ public class MemberInsertView extends AbsViewPanel implements ActionListener {
 	// 우편번호 더블클릭 시, 주소 검색 창 오픈시켜야 함. (툴팁으로 힌트주기)
 	
 	protected void actionPerformedBtnSave(ActionEvent e) {
-		// 입력확인 후 등록 완료 팝업 창 출력
-		// 등록된 목록을 테이블에 출력
-		
-		
+		if(memberInfoP.isVaildCheck()){			// 중복체크 해야함.....
+			memberInfoP.getObject();
+			MemberInfoService.getInstance().insertMemberInfo(memberInfoP.getObject());		// 입력받은 회원 정보 삽입하기			
+			JOptionPane.showMessageDialog(null, "회원으로 등록되었습니다.");
+			memberInfoP.setClear();
+			
+			Map<String, Object> param = new HashMap<>();
+			param.put("mCode", memberInfoP.getObject().getmCode());
+			param.put("mName", memberInfoP.getObject().getmName());
+			param.put("mPass", memberInfoP.getObject().getmPass());
+			param.put("mTel", memberInfoP.getObject().getmTel());
+			// 테이블에 목록을 어디로 불러온다냐...
+		}		
 	}
+	
+	
 	protected void actionPerformedBtnCancel(ActionEvent e) {
-		memberInfoP.setClear();
+		memberInfoP.setClear();	// 취소버튼
 	}
+	
+	
+	
 }

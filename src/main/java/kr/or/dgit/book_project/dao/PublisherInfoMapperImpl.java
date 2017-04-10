@@ -1,6 +1,7 @@
 package kr.or.dgit.book_project.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
@@ -19,9 +20,9 @@ public class PublisherInfoMapperImpl implements PublisherInfoMapper {
 	}
 
 	@Override
-	public int insertPubliherShort(PublisherInfo publisherInfo) {
-		log.debug("insertPubliherShort()");
-		return sqlSession.insert(namespace + "insertPubliherShort", publisherInfo);
+	public int insertPublisherShort(PublisherInfo publisherInfo) {
+		log.debug("insertPublisherShort()");
+		return sqlSession.insert(namespace + "insertPublisherShort", publisherInfo);
 	}
 
 	@Override
@@ -58,4 +59,11 @@ public class PublisherInfoMapperImpl implements PublisherInfoMapper {
 		log.debug("selectPublisherInfoByAll()");
 		return sqlSession.selectList(namespace + "selectPublisherInfoByAll", null, rowBounds);
 	}
+
+	@Override
+	public PublisherInfo selectPublisherInfoOne(Map<String, Object> param) {
+		log.debug("selectPublisherInfoOne()");
+		return sqlSession.selectOne(namespace + "selectPublisherInfoOne", param);
+	}
+	
 }

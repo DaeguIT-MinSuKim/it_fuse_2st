@@ -27,7 +27,7 @@
 
 
 
-	<insert id="insertPubliherShort" parameterType="PublisherInfo">
+	<insert id="insertPublisherShort" parameterType="PublisherInfo">
 		<include refid="insertShortSql" />
 	</insert>
 	<select id="selectCountAll" resultType="int">
@@ -41,8 +41,6 @@
 
 		where p_code=#{pCode}
 
-
-		where p_code=#{pCode}
 	</sql>
 
 	<select id="selectPublisherInfo" resultMap="PublisherInfoResult"
@@ -67,6 +65,11 @@
 		</set>
 		<include refid="whereSql" />
 	</update>
+	<select id="selectPublisherInfoOne" parameterType="hashmap"
+		resultMap="PublisherInfoResult">
+		<include refid="selectSql" />
+		<include refid="whereSql" />
+	</select>
 	<select id="selectPublisherInfoByAll" resultMap="PublisherInfoResult">
 		<include refid="selectSql" />
 	</select>

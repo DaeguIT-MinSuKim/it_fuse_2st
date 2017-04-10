@@ -32,8 +32,8 @@
 		select count(*) from bookInfo b
 	</sql>
 	<sql id="selectSql">
-		<!-- SELECT b_code, b_sub_code, c_name, b_name, author, p_code, price, 
-			insert_date, b_lend_count, is_lending, is_del FROM bookinfo; -->
+		SELECT b_code, b_sub_code, c_name, b_name, author, p_code, price,
+		insert_date, b_lend_count, is_lending, is_del FROM bookinfo b
 	</sql>
 
 
@@ -153,6 +153,9 @@
 		<include refid="whereSql" />
 	</select>
 
-
+	<select id="selectOnlyBookInfo" parameterType="BookInfo" resultMap="BookInfoResult">
+		<include refid="selectSql" />
+		<include refid="whereSql" />
+	</select>
 
 </mapper>
