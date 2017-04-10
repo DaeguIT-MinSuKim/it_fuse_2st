@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.book_project.dto.MemberInfo;
+import kr.or.dgit.book_prject.chart.BookCodenSave;
 
 public class ViewTest extends JFrame {
 
@@ -58,10 +58,11 @@ public class ViewTest extends JFrame {
 		add(ic);*/
 		
 		
-		MemberSearchMemberPaymentViewFrame paymentInfoView = new MemberSearchMemberPaymentViewFrame();
+	/*	MemberSearchMemberPaymentViewFrame paymentInfoView = new MemberSearchMemberPaymentViewFrame();
 		MemberInfo memberInfo = new MemberInfo("C002");
 		paymentInfoView.loadTable(memberInfo);
-		add(paymentInfoView);
-	}
+		add(paymentInfoView);*/
+		BookCodenSave bl = new BookCodenSave();
+		}
 
 }
