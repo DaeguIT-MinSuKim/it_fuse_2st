@@ -1,6 +1,7 @@
 package kr.or.dgit.book_project.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 
@@ -8,7 +9,7 @@ import kr.or.dgit.book_project.dto.PublisherInfo;
 
 
 public interface PublisherInfoMapper {
-	int insertPubliherShort(PublisherInfo publisherInfo);
+	int insertPublisherShort(PublisherInfo publisherInfo);
 
 	int selectCountAll();
 
@@ -21,4 +22,6 @@ public interface PublisherInfoMapper {
 	int updateSetPublisherInfo(PublisherInfo publisherInfo);
 
 	List<PublisherInfo> selectPublisherInfoByAll(RowBounds rowBounds);
+
+	PublisherInfo selectPublisherInfoOne(Map<String, Object> param);
 }

@@ -1,6 +1,8 @@
 package kr.or.dgit.book_project.ui.table;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.SwingConstants;
 
@@ -10,6 +12,8 @@ import kr.or.dgit.book_project.service.PublisherInfoService;
 public class PublisherInfoTable extends AbsTable<PublisherInfo> {
 	
 	
+	public Object getSelectedObject;
+
 	public PublisherInfoTable() {
 		loadData();
 	}
@@ -59,13 +63,21 @@ public class PublisherInfoTable extends AbsTable<PublisherInfo> {
 
 	@Override
 	public PublisherInfo getSelectedObject() {
-		/*int selectedIdx = table.getSelectedRow();
+		int selectedIdx = table.getSelectedRow();
 		if(selectedIdx == -1){
 			return null;
 		}
-		String pub = (String) table.getValueAt(selectedIdx, 0);
-		PublisherInfo pu = PublisherInfoService.getInstance().selectPublisherInfo(new PublisherInfo());*/
-		return null;
+
+		String pCode = (String) table.getValueAt(selectedIdx, 0);
+		/*String publisher = (String) table.getValueAt(selectedIdx, 1);*/
+		Map<String, Object> hash = new HashMap<>();
+		hash.put("pCode", pCode);
+		/*String pName = (String) table.getValueAt(selectedIdx, 2);
+		String pTel = (String) table.getValueAt(selectedIdx, 3);
+		Integer pZipCode = (Integer) table.getValueAt(selectedIdx, 4);
+		String	pAddress = (String) table.getValueAt(selectedIdx, 5);*/
+		
+		return PublisherInfoService.getInstance().selectPublisherInfoOne(hash);
 	}
 
 	
