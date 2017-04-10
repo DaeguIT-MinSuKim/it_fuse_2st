@@ -52,8 +52,9 @@ public class PublisherInfo {
 		this.pTel = pTel;
 	}
 
-	public int getpZipCode() {
-		return pZipCode;
+	public String getpZipCode() {
+		// 데이터수정할떄 입력되는 값 스트링포멧으로
+		return String.format("%05d", pZipCode);
 	}
 
 	public void setpZipCode(int pZipCode) {
@@ -75,7 +76,7 @@ public class PublisherInfo {
 
 	public Object[] toArrayForPublisherList() {
 		//"출판사코드","출판사명","담당자명","연락처","우편번호","주소"
-		return new Object[]{pCode, publisher, pName, pTel, pZipCode, pAddress};
+		return new Object[]{pCode, publisher, pName, pTel, String.format("%05d", pZipCode), pAddress};
 	}
 
 	@Override
