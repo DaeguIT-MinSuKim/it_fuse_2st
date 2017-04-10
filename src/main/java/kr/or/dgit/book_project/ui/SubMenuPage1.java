@@ -34,6 +34,7 @@ public class SubMenuPage1 extends JTabbedPane implements ChangeListener {
 			pMember.removeAll();
 		}
 		memberInsertView = new MemberInsertView();
+		
 		pMember.add(memberInsertView);
 		
 		

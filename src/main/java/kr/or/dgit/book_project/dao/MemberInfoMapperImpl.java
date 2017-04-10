@@ -67,4 +67,12 @@ public class MemberInfoMapperImpl implements MemberInfoMapper {
 		return sqlSession.update(namespace + "delMemberInfo", memberInfo);
 
 	}
+
+	@Override
+	public int insertMcodeAuto(MemberInfo memberInfo) {
+		log.debug("insertMcodeAuto()");
+		return sqlSession.insert(namespace+"insertMcodeAuto", memberInfo);
+	}
+	
+	
 }

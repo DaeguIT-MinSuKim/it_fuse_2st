@@ -30,6 +30,7 @@ public class MemberInsertView extends AbsViewPanel implements ActionListener {
 	private MemberInfoP memberInfoP;
 	private JPanel pTable;
 	private MemberInfoSearchTable memberInfoSesrchTable;
+	private MemberInfo memberInfo;
 	
 	public MemberInsertView() {
 		JPanel panel_5 = new JPanel();
@@ -126,6 +127,14 @@ public class MemberInsertView extends AbsViewPanel implements ActionListener {
 	
 	protected void actionPerformedBtnCancel(ActionEvent e) {
 		memberInfoP.setClear();	// 취소버튼
+	}
+	
+	public void setMcodeAuto(){		//회원코드 자동으로 넣어주기
+		int memberCnt = MemberInfoService.getInstance().insertMcodeAuto(memberInfo);
+		System.out.println(memberCnt);
+		memberInfoP.getpMCode().setTFValue(memberInfoP.getpMCode()+String.format("%03d", memberCnt+1));
+		memberInfoP.getpMCode().getTF().setEnabled(false);
+		
 	}
 	
 	

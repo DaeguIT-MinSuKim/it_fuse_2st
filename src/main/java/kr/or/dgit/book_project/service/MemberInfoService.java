@@ -11,6 +11,8 @@ import kr.or.dgit.book_project.dao.MemberInfoMapper;
 import kr.or.dgit.book_project.dao.MemberInfoMapperImpl;
 import kr.or.dgit.book_project.dao.PaymentIOMapper;
 import kr.or.dgit.book_project.dao.PaymentIOMapperImpl;
+import kr.or.dgit.book_project.dao.PublisherInfoMapper;
+import kr.or.dgit.book_project.dao.PublisherInfoMapperImpl;
 import kr.or.dgit.book_project.dto.MemberInfo;
 import kr.or.dgit.book_project.util.MybatisSqlSessionFactory;
 
@@ -28,9 +30,23 @@ public class MemberInfoService {
 	public int selectCountAll() { // 회원 목록 수
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			MemberInfoMapper memberInfoMapper = new MemberInfoMapperImpl(sqlSession);
-			int res = memberInfoMapper.selectCountAll();
-			return res;
+			return memberInfoMapper.selectCountAll();
 		}
+	}	
+	
+	public int insertMcodeAuto(MemberInfo memberInfo){
+		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
+			MemberInfoMapper memberInfoMapper = new MemberInfoMapperImpl(sqlSession);
+			int memberCnt = selectCountAll();
+			
+			String mCode = String.format("C%3d", memberCnt+1);
+			
+			memberInfo.setmCode(mCode);
+			
+			int res = memberInfoMapper.insertMcodeAuto(memberInfo);
+			sqlSession.commit();
+			return res;
+		}		
 	}
 
 	public int insertMemberInfo(MemberInfo memberInfo) {
@@ -42,9 +58,7 @@ public class MemberInfoService {
 		}
 	}
 
-	public List<MemberInfo> selectMemberByAll(Map<String, Object> param) { // 전체
-																			// 회원
-																			// 출력
+	public List<MemberInfo> selectMemberByAll(Map<String, Object> param) { // 전체 회원 출력
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			MemberInfoMapper memberInfoMapper = new MemberInfoMapperImpl(sqlSession);
 			return memberInfoMapper.selectMemberByAll(param);

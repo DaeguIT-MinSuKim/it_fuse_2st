@@ -51,7 +51,9 @@ public class MemberInfo {
 		this.mName = mName;
 		this.mTel = mTel;
 	}
-
+	
+	
+	
 
 
 	public String getmCode() {
