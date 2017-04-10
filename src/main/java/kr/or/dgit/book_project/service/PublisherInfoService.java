@@ -16,7 +16,6 @@ import kr.or.dgit.book_project.util.MybatisSqlSessionFactory;
 public class PublisherInfoService {
 
 	private static final PublisherInfoService instance = new PublisherInfoService();
-	
 
 	public PublisherInfoService() {
 	}
@@ -69,16 +68,19 @@ public class PublisherInfoService {
 		}
 	}
 
-	public static int insertAllPublisherInfo(PublisherInfo publisherInfo) {
+	public int insertAllPublisherInfo(PublisherInfo publisherInfo) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			PublisherInfoMapper publisherInfoMapper = new PublisherInfoMapperImpl(sqlSession);
+			int cnt = selectCountAll();
+			String pCode = String.format("P%03d", cnt + 1);
+			publisherInfo.setpCode(pCode);
 			int res = publisherInfoMapper.insertAllPublisherInfo(publisherInfo);
 			sqlSession.commit();
 			return res;
 		}
 	}
 
-	public static int updateSetPublisherInfo(PublisherInfo publisherInfo) {
+	public int updateSetPublisherInfo(PublisherInfo publisherInfo) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			PublisherInfoMapper publisherInfoMapper = new PublisherInfoMapperImpl(sqlSession);
 			int res = publisherInfoMapper.updateSetPublisherInfo(publisherInfo);

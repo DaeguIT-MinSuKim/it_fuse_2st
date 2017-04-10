@@ -40,15 +40,14 @@ public class PublisherView extends JPanel {
 			/* add(pTable); */
 
 			public void mouseClicked(MouseEvent e) {
-				if (e.getButton() == MouseEvent.BUTTON3)
-					;
-				createPopupMenu();
-				popupMenu.show(pTable.getTable(), e.getX(), e.getY());
+				if (e.getButton() == MouseEvent.BUTTON3) {
+					createPopupMenu();
+					popupMenu.show(pTable.getTable(), e.getX(), e.getY());
+				}
 			}
 		});
 
 		add(pTable);
-	/*	panel.setNoInit();*/
 	}
 
 	private void createPopupMenu() {
