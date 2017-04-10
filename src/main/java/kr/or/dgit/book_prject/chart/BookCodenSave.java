@@ -12,12 +12,12 @@ import kr.or.dgit.book_project.dto.Coden;
  
 public class BookCodenSave extends Application {
 	
- 
+	private Coden coden;
     @Override public void start(Stage stage) {
         Scene scene = new Scene(new Group());
         stage.setTitle("분야별도서보유통계");
-        stage.setWidth(1024);
-        stage.setHeight(768);
+        stage.setWidth(640);
+        stage.setHeight(480);
         
        /* List<Coden> CodenService.getInstance().selectCodenAll();
         Object[][] data = new Object[][];
