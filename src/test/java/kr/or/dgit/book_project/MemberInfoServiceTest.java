@@ -58,14 +58,14 @@ public class MemberInfoServiceTest {
 		int res = memberinfoservice.delMemberInfo(mi);
 		Assert.assertSame(1, res);
 	}*/
-
-	@Test
+	/*@Test
+>>>>>>> refs/remotes/origin/RankPage
 	public void testPW(){
 		/*MemberInfo mi = new MemberInfo();
 		mi.setmCode("A001");
 		mi.setmPass("admin");
 		boolean res = memberinfoservice.confirmPW(mi);
-		Assert.assertSame(true, res);*/
-	}
-
+<<<<<<< HEAD
+		Assert.assertSame(true, res);}*/
+	
 }

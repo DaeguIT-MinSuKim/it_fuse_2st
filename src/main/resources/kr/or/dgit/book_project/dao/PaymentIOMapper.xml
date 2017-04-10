@@ -4,7 +4,7 @@
 
 
 	<resultMap type="PaymentIO" id="PaymentIOResult">
-		<result property="no" column="no"/>
+		<result property="no" column="no" />
 		<result property="lendDate" column="lend_date" />
 		<result property="returnDate" column="return_date" />
 		<association property="bookInfo"
@@ -13,15 +13,21 @@
 			resultMap="kr.or.dgit.book_project.dao.MemberInfoMapper.MemberInfoResult" />
 	</resultMap>
 	<sql id="selectLeftSql">
-		SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name, author, p_code,
-		price, insert_date, b_lend_count, is_lending, is_del, lend_date,
-		return_date,io.m_code, m_pass, m_name, m_tel, m_zip_code, m_address,
-		is_posbl, delay_count, m_lend_count, m_now_count, black_date, m_group,
+		SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name,
+		author, p_code,
+		price, insert_date, b_lend_count, is_lending, is_del,
+		lend_date,
+		return_date,io.m_code, m_pass, m_name, m_tel, m_zip_code,
+		m_address,
+		is_posbl, delay_count, m_lend_count, m_now_count,
+		black_date, m_group,
 		is_secsn
 		FROM paymentio io
-		right outer join bookinfo b on io.b_code = b.b_code and
+		right outer join bookinfo
+		b on io.b_code = b.b_code and
 		io.b_sub_code = b.b_sub_code
-		left outer join memberinfo m on io.m_code = m.m_code
+		left outer
+		join memberinfo m on io.m_code = m.m_code
 	</sql>
 	<sql id="selectRightSql">
 		SELECT `no`, io.b_code, io.b_sub_code, c_name, b_name,
@@ -30,11 +36,12 @@
 		m_address, is_posbl, delay_count, m_lend_count, m_now_count,
 		black_date, m_group, is_secsn
 		FROM paymentio io
-		right outer join bookinfo b on io.b_code = b.b_code and
+		right outer join
+		bookinfo b on io.b_code = b.b_code and
 		io.b_sub_code = b.b_sub_code
 		right outer join memberinfo m on io.m_code = m.m_code
 	</sql>
-	
+
 	<sql id="whereSql">
 		<where>
 			<if test="bCode != null">
@@ -61,38 +68,78 @@
 			</if>
 		</where>
 	</sql>
-	<!-- 반납테이블 다보이게 하는거 일딴은 -->
-	<select id="selectAllPaymentIOInfo" parameterType="hashmap"  resultMap="PaymentIOResult">
-		<include refid="selectLeftSql"/>
-		<include refid="whereSql"/>
-		 union 
-		<include refid="selectRightSql"/>
-		<include refid="whereSql"/>
-	</select>
 	
+	<sql id="whereForRankSql">
+		<where>
+			<if test="cName != null">
+				b.c_name = #{cName}
+			</if>
+			<if test="lendDate1 != null">
+				and io.lend_date >= #{lendDate1}
+			</if>
+			<if test="lendDate2 != null">
+				and <![CDATA[ io.lend_date < #{lendDate2} ]]>
+				<!-- mybatis에서는 부등호를 사용할 수 없어서 <![CDATA[ 부등호 비교식 ]]> 사용-->
+			</if>
+		</where>
+	</sql>
+	
+	<!-- 반납테이블 다보이게 하는거 일딴은 -->
+	<select id="selectAllPaymentIOInfo" parameterType="hashmap"
+		resultMap="PaymentIOResult">
+		<include refid="selectLeftSql" />
+		<include refid="whereSql" />
+		union
+		<include refid="selectRightSql" />
+		<include refid="whereSql" />
+	</select>
+
 	<!-- 이건 뭐여?? -->
-	<select id="selectAllMemberInfo" parameterType="hashmap" resultMap="PaymentIOResult">
+	<select id="selectAllMemberInfo" parameterType="hashmap"
+		resultMap="PaymentIOResult">
 		<include refid="selectLeftSql"></include>
 	</select>
-	
+
 	<!-- 반납테이블 내용 필드에 뿌리기 -->
 	<select id="selectAllPayment" parameterType="hashmap" resultMap="PaymentIOResult">
-		<include refid="selectLeftSql"/>
-		<include refid="whereSql"/>
+		<include refid="selectLeftSql" />
+		<include refid="whereSql" />
 		union
-		<include refid="selectRightSql"/>
-		<include refid="whereSql"/>
+		<include refid="selectRightSql" />
+		<include refid="whereSql" />
 	</select>
-	
+
 	<!-- 프로시저 -->
 
 	<!-- 대여 프로시저 -->
-	<select id="insertPaymentIO" statementType="CALLABLE" parameterType="hashmap">
-		{call proc_paymentIO_insert(#{b_code, mode = IN, jdbcType= CHAR},#{b_sub_code, mode = IN, jdbcType= INTEGER},#{m_code, mode = IN, jdbcType= CHAR})}
+	<select id="insertPaymentIO" statementType="CALLABLE"
+		parameterType="hashmap">
+		{call proc_paymentIO_insert(#{b_code, mode = IN,
+		jdbcType= CHAR},#{b_sub_code, mode = IN, jdbcType= INTEGER},#{m_code,
+		mode = IN, jdbcType= CHAR})}
 	</select>
-	
+
 	<!-- 반납 프로시저 -->
-	<select id="updatePaymentIO" statementType="CALLABLE" parameterType="hashmap">
-		{call proc_paymentIO_update(#{b_code, mode = IN, jdbcType= CHAR},#{b_sub_code, mode = IN, jdbcType= INTEGER},#{m_code, mode = IN, jdbcType= CHAR},#{return_date, mode = IN, jdbcType= DATE})}
+	<select id="updatePaymentIO" statementType="CALLABLE"
+		parameterType="hashmap">
+		{call proc_paymentIO_update(#{b_code, mode = IN,
+		jdbcType= CHAR},#{b_sub_code, mode = IN, jdbcType= INTEGER},#{m_code,
+		mode = IN, jdbcType= CHAR},#{return_date, mode = IN, jdbcType= DATE})}
 	</select>
+
+
+	<select id="showRank" parameterType="hashmap" resultType="hashmap">
+		select count(*) cnt, b.c_name, io.b_code, b.b_name, b.author, b.p_code, p.publisher, 
+		min(insert_Date) in_date from paymentio io
+		inner join bookinfo b on
+		b.b_code = io.b_code and b.b_sub_code = io.b_sub_code
+		inner join publisherinfo p on
+		b.p_code = p.p_code 
+		<!-- where c_name = ? and lend_date >= '2017-01-01' and lend_date < '2017-02-01' -->
+		<include refid="whereForRankSql" />
+		group by io.b_code order by cnt desc, in_date desc
+		limit 0, 3;
+	</select>
+
+	
 </mapper>
