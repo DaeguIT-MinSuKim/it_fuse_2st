@@ -20,7 +20,7 @@ public class CodenService {
 	}
 	
 
-	public static int insertCoden(Coden coden) {
+	public int insertCoden(Coden coden) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			CodenMapper codenMapper = new CodenMapperImpl(sqlSession);
 			int res = codenMapper.insertCoden(coden);
@@ -29,7 +29,7 @@ public class CodenService {
 		}
 	}
 
-	public static int updateCoden(Coden coden) {
+	public int updateCoden(Coden coden) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			CodenMapper codenMapper = new CodenMapperImpl(sqlSession);
 			int res = codenMapper.updateCoden(coden);
@@ -39,7 +39,7 @@ public class CodenService {
 		}
 	}
 	
-	public static List<Coden> selectCodenAll() {
+	public List<Coden> selectCodenAll() {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			CodenMapper codenMapper = new CodenMapperImpl(sqlSession);
 			return codenMapper.selectCodenAll();
