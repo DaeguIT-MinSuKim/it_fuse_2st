@@ -147,7 +147,7 @@ public class BookInsertView extends JPanel implements ActionListener {
 			PublisherInfoService pis = new PublisherInfoService();
 			PublisherInfo ps = new PublisherInfo();
 			ps.setPublisher(pContent.getTfAddPublisher().getText());
-			pis.insertPubliherShort(ps);
+			pis.insertPublisherShort(ps);
 			List<PublisherInfo> list = pis.selectByAll();
 
 			// 추가후... 추가한 항목을 selected로

@@ -16,6 +16,7 @@ import kr.or.dgit.book_project.util.MybatisSqlSessionFactory;
 public class PublisherInfoService {
 
 	private static final PublisherInfoService instance = new PublisherInfoService();
+	
 
 	public PublisherInfoService() {
 	}
@@ -24,7 +25,7 @@ public class PublisherInfoService {
 		return instance;
 	}
 
-	public int insertPubliherShort(PublisherInfo publisherInfo) {
+	public int insertPublisherShort(PublisherInfo publisherInfo) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			PublisherInfoMapper publisherInfoMapper = new PublisherInfoMapperImpl(sqlSession);
 			int cnt = selectCountAll();

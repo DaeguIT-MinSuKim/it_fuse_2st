@@ -48,6 +48,7 @@ public class PublisherView extends JPanel {
 		});
 
 		add(pTable);
+		panel.setNoInit();
 	}
 
 	private void createPopupMenu() {

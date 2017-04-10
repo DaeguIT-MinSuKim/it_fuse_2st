@@ -21,8 +21,8 @@ public class PublisherInfoMapperImpl implements PublisherInfoMapper {
 
 	@Override
 	public int insertPublisherShort(PublisherInfo publisherInfo) {
-		log.debug("insertPubliherShort()");
-		return sqlSession.insert(namespace + "insertPubliherShort", publisherInfo);
+		log.debug("insertPublisherShort()");
+		return sqlSession.insert(namespace + "insertPublisherShort", publisherInfo);
 	}
 
 	@Override

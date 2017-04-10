@@ -90,11 +90,11 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 	 */
 	private boolean addCheck() {
 
-		if (pPCode.getTFValue().trim().equals("")) {
+		/*if (pPCode.getTFValue().trim().equals("")) {
 			JOptionPane.showMessageDialog(null, "출판사코드를 입력해주세요");
 			pPCode.getTF().requestFocus();
 			return false;
-		} else if (pPublisher.getTFValue().trim().equals("")) {
+		} else*/ if (pPublisher.getTFValue().trim().equals("")) {
 			JOptionPane.showMessageDialog(null, "출판사명을 입력해주세요");
 			pPublisher.getTF().requestFocus();
 			return false;
@@ -126,6 +126,7 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		String pName = pPName.getTFValue();
 		String pTel = pPTel.getTFValue();
 		Integer pZipCode = Integer.parseInt(pPZipCode.getTFValue());
+		/*String pZipCode = pPZipCode.getTFValue();*/
 		String pAddress = pPAddress.getTFValue();
 		return new PublisherInfo(pCode, publisher, pName, pTel, pZipCode, pAddress);
 	}
@@ -171,5 +172,16 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 				btnPubSave.setText("저장");
 			}
 		}
+	}
+	public void setNoInit() {
+		PublisherInfoService pis = new PublisherInfoService();
+		PublisherInfoP ps = new PublisherInfoP();
+		pis.insertPublisherShort(getObject());
+		ps.pPCode.getTF().setEditable(false);
+		/*Integer.parseInt(ps.pPZipCode());*/
+		/*PublisherInfoService pubInfoSer = new PublisherInfoService();
+		pubInfoSer.insertPubliherShort.setTfValue(value);
+		pubInfoSer.insertPubliherShort().gettF().setEditable(false);
+		pubInfoSer.insertPubliherShort().gettF().requestFocus();		*/
 	}
 }
