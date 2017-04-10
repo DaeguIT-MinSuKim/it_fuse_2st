@@ -78,6 +78,7 @@ public class SubMenuPage1 extends JTabbedPane implements ChangeListener {
 				pMemberManager.removeAll();
 			}
 			memberSearchComboView = new MemberSearchComboView();
+			memberSearchComboView.setMyMouseListenerForManage();		// 회원검색화면에서 우클
 			memberSearchComboView.setLayout(new GridLayout(1, 0, 0, 0));
 			pMemberManager.add(memberSearchComboView);
 		} else if (this.getTitleAt(idx).equals("직원관리")) {
