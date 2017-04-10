@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JOptionPane;
+
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -82,7 +84,15 @@ public class PaymentIOServieTest {
 		param.put("cName", "IT");
 		param.put("lendDate1", "2017-03-01");
 		param.put("lendDate2", "2017-04-01");
-		List<PaymentIO> list = PaymentIOService.getInstance().showRank(param);
+		List<HashMap<String, Object>> list = PaymentIOService.getInstance().showRank(param);
+		
+
+		/*JOptionPane.showMessageDialog(null, list.get(0).get("cnt"));
+		JOptionPane.showMessageDialog(null, list.get(0).get("c_name"));
+		JOptionPane.showMessageDialog(null, list.get(0).get("b_code"));
+		JOptionPane.showMessageDialog(null, list.get(0).get("b_name"));
+		JOptionPane.showMessageDialog(null, list.get(0).get("author"));
+		JOptionPane.showMessageDialog(null, list.get(0).get("in_date"));*/
 		Assert.assertNotNull(list);
 	}
 }

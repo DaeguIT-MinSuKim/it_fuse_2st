@@ -1,5 +1,6 @@
 package kr.or.dgit.book_project.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -53,7 +54,7 @@ public class PaymentIOMapperImpl implements PaymentIOMapper {
 	}
 
 	@Override
-	public List<PaymentIO> showRank(Map<String, Object> param) {
+	public List<HashMap<String, Object>> showRank(Map<String, Object> param) {
 		log.debug("showRank()");
 		return sqlSession.selectList(namespace + "showRank", param);
 	}

@@ -1,5 +1,6 @@
 package kr.or.dgit.book_project.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ public interface PaymentIOMapper {
 	//반납 프로시저
 	int updatePaymentIO(Map<String, Object> param);
 	
-	List<PaymentIO> showRank(Map<String, Object> param);
+	List<HashMap<String, Object>> showRank(Map<String, Object> param);
 	
 	//test
 	List<PaymentIO> selectAllPio(Map<String, Object> param);

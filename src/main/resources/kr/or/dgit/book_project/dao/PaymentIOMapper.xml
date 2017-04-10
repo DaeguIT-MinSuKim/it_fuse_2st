@@ -143,11 +143,13 @@
 	</select>
 
 
-	<select id="showRank" parameterType="hashmap" resultMap="PaymentIOResult">
-		select count(*) cnt, b.c_name, io.b_code, b.b_name, b.author,
+	<select id="showRank" parameterType="hashmap" resultType="hashmap">
+		select count(*) cnt, b.c_name, io.b_code, b.b_name, b.author, b.p_code, p.publisher, 
 		min(insert_Date) in_date from paymentio io
 		inner join bookinfo b on
 		b.b_code = io.b_code and b.b_sub_code = io.b_sub_code
+		inner join publisherinfo p on
+		b.p_code = p.p_code 
 		<!-- where c_name = ? and lend_date >= '2017-01-01' and lend_date < '2017-02-01' -->
 		<include refid="whereForRankSql" />
 		group by io.b_code order by cnt desc, in_date desc

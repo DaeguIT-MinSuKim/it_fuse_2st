@@ -1,5 +1,6 @@
 package kr.or.dgit.book_project.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -63,7 +64,7 @@ public class PaymentIOService {
 			return paymentIOMapper.selectAllPio(param);
 		}
 	}
-	public List<PaymentIO> showRank(Map<String, Object> param){
+	public List<HashMap<String, Object>> showRank(Map<String, Object> param){
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			PaymentIOMapper paymentIOMapper = new PaymentIOMapperImpl(sqlSession);
 			return paymentIOMapper.showRank(param);

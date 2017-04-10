@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,6 +24,8 @@ import kr.or.dgit.book_project.ui.common.InputComp;
 import kr.or.dgit.book_project.ui.common.PasswordPanel;
 import kr.or.dgit.book_project.ui.view.MemberSearchMemberDetailViewFrame;
 import kr.or.dgit.book_project.ui.view.tableTestView;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 
 public class PageLogin extends JFrame implements ActionListener {
 
@@ -31,7 +34,7 @@ public class PageLogin extends JFrame implements ActionListener {
 	private PageSub sub;
 	private JButton btnEnter;
 	private InputComp pID;
-	private PasswordPanel pPW;	
+	private PasswordPanel pPW;
 
 	public static void main(String[] args) {
 		try {
@@ -40,11 +43,11 @@ public class PageLogin extends JFrame implements ActionListener {
 		} catch (Exception e) {
 		}
 		PageLogin frame = new PageLogin();
-		
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {				
-					
+				try {
+
 					PageLogin frame = new PageLogin();
 					frame.setVisible(true);
 
@@ -71,7 +74,7 @@ public class PageLogin extends JFrame implements ActionListener {
 		JPanel pImage = new JPanel(new BorderLayout());
 		JLabel label = new JLabel(new ImageIcon(path));
 		label.setHorizontalAlignment(JLabel.CENTER);
-		pImage.add(label); 
+		pImage.add(label);
 		contentPane.add(pImage);
 
 		JPanel pLogin = new JPanel();
@@ -96,6 +99,18 @@ public class PageLogin extends JFrame implements ActionListener {
 		panel_3.setLayout(new GridLayout(0, 1, 0, 0));
 
 		btnEnter = new JButton("로그인");
+		btnEnter.addKeyListener(new KeyAdapter() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getSource() == btnEnter) {
+					if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+						myLogin();
+					}
+				}
+			}
+
+		});
 		btnEnter.addActionListener(this);
 		panel_3.add(btnEnter);
 
@@ -114,7 +129,11 @@ public class PageLogin extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformedBtnEnter(ActionEvent e) {
+		myLogin();
 
+	}
+
+	private void myLogin() {
 		String id = pID.getTFValue(); // 입력받은 ID
 		String pw = String.valueOf(pPW.getPwField().getPassword());// 입력받은 PW
 		MemberInfo visitMember = new MemberInfo();
