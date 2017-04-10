@@ -3,7 +3,6 @@
 <mapper namespace="kr.or.dgit.book_project.dao.MemberInfoMapper">
 
 	<resultMap type="MemberInfo" id="MemberInfoResult">
-<<<<<<< HEAD
 		<id property="mCode" column="m_code"/>
 		<result property="mPass" column="m_pass"/>
 		<result property="mName" column="m_name"/>
@@ -17,20 +16,6 @@
 		<result property="mNowCount" column="m_now_count"/>
 		<result property="blackDate" column="black_date"/>		
 		<result property="mGroup" column="m_group"/>
-=======
-		<id property="mCode" column="m_code" />
-		<result property="mPass" column="m_pass" />
-		<result property="mName" column="m_name" />
-		<result property="mTel" column="m_tel" />
-		<result property="mZipCode" column="m_zip_code" />
-		<result property="mAddress" column="m_address" />
-		<result property="isSecsn" column="is_secsn" />
-		<result property="isPosbl" column="is_posbl" />
-		<result property="delayCount" column="delay_count" />
-		<result property="mLendCount" column="m_lend_count" />
-		<result property="mNowCount" column="m_now_count" />
-		<result property="blackDate" column="black_date" />
->>>>>>> refs/remotes/origin/master
 	</resultMap>
 
 	<sql id="whereSql">
@@ -72,19 +57,11 @@
 	</sql>
 
 	<!-- 메소드에 필요한 문구들.. -->
-<<<<<<< HEAD
-	
 	<select id="selectCountAll" parameterType="MemberInfo" resultType="int">
 		select count(*) from memberinfo
 		where m_group = #{mGroup}
-=======
-
-	<select id="selectCountAll" resultType="int">
-		select count(*) from
-		memberinfo
->>>>>>> refs/remotes/origin/master
 	</select>
-
+	
 	<insert id="insertMemberInfo" parameterType="MemberInfo">
 		insert into
 		memberinfo
@@ -93,29 +70,17 @@
 		values(#{mCode}, #{mName} ,#{mTel} ,#{mZipCode} ,#{mAddress} ,password(#{mPass})
 		,#{mGroup})
 	</insert>
-<<<<<<< HEAD
 	
 	<insert id="insertMcodeAuto" parameterType="MemberInfo">
 		insert into memberinfo (m_code) values (#{mCode})
 	</insert>
 	
-=======
-
->>>>>>> refs/remotes/origin/master
 	<!-- 일딴 목록보이게 하는거 -->
-<<<<<<< HEAD
 	<select id="selectMemberByAll" parameterType="hashmap" resultMap="MemberInfoResult">
 		<include refid="selectSql"/>
 		<include refid="whereSql2"/>
-=======
-	<select id="selectMemberByAll" parameterType="hashmap"
-		resultMap="MemberInfoResult">
-		<include refid="selectSql" />
-		<include refid="whereSql" />
->>>>>>> refs/remotes/origin/master
 	</select>
-
-
+	
 	<select id="findMemberInfoByCode" parameterType="memberinfo"
 		resultMap="MemberInfoResult">
 		<include refid="selectSql" />
