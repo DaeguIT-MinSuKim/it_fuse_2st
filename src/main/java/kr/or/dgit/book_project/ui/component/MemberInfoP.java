@@ -2,6 +2,7 @@ package kr.or.dgit.book_project.ui.component;
 
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -79,12 +80,12 @@ public class MemberInfoP extends JPanel {
 		return new MemberInfo(mCode, mPass, mName, mTel, mZipCode, mAddress);
 	}
 	
-	public void setObject(MemberInfo item){
-		pMCode.setTFValue(item.getmCode());
-		pMPass.setTFValue(item.getmPass());
-		pMName.setTFValue(item.getmName());
-		pMTel.setTFValue(item.getmTel());
-		pMZipCode.setTFValue(String.valueOf(item.getmZipCode()));
+	public void setObject(MemberInfo memberinfo){
+		pMCode.setTFValue(memberinfo.getmCode());
+		pMPass.setTFValue(memberinfo.getmPass());
+		pMName.setTFValue(memberinfo.getmName());
+		pMTel.setTFValue(memberinfo.getmTel());
+		pMZipCode.setTFValue(String.valueOf(memberinfo.getmZipCode()));
 		
 	}
 	

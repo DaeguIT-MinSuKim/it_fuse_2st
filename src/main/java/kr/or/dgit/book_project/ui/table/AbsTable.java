@@ -24,11 +24,10 @@ import kr.or.dgit.book_project.ui.view.MemberSearchMemberPaymentViewFrame;
 
 public abstract class AbsTable<T> extends JPanel {
 	
-	protected JTable table;
-	private MemberInfoTable pTable; 
+	protected JTable table;	
+	private MemberInfoSearchTable pTable;
 	protected JPopupMenu popupMenu;
 	protected Map<String, Object> map;
-	
 
 	public AbsTable() {
 		setLayout(new BorderLayout(0, 0));
@@ -42,10 +41,11 @@ public abstract class AbsTable<T> extends JPanel {
 	
 	public boolean loadData() {
 		Object[][] rowData= getRowData();
-		/*if(rowData.length == 0){
+		// 검색결과가 없을 때, 로드데이터가 넘어가면서 빈 화면이 나오는 것을 전체 목록 보기로 출력
+		if(rowData.length == 0){
 			System.out.println("[loadData] length : 0");
 			return false;
-		}*/
+		}
 		table.setModel(new DefaultTableModel(rowData, getColumn()) {
 		
 			@Override

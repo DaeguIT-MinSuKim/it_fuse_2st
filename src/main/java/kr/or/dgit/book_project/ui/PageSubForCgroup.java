@@ -139,6 +139,7 @@ public class PageSubForCgroup extends JFrame implements ActionListener, ChangeLi
 			}
 			memberInfoView = new MemberSearchMemberDetailViewFrame();
 			// msmdvf에 해당 회원 정보 뿌리기
+
 			memberInfoView.getPanel().setObject(memberInfo);
 			memberInfoView.getPanel().getpMCode().getTF().setEnabled(false);
 			memberInfoView.getBtnModify().addActionListener(new ActionListener() {
