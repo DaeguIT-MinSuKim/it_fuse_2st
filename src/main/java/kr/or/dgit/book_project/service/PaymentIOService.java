@@ -63,5 +63,11 @@ public class PaymentIOService {
 			return paymentIOMapper.selectAllPio(param);
 		}
 	}
+	public List<PaymentIO> showRank(Map<String, Object> param){
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
+			PaymentIOMapper paymentIOMapper = new PaymentIOMapperImpl(sqlSession);
+			return paymentIOMapper.showRank(param);
+		}
+	}
 	
 }

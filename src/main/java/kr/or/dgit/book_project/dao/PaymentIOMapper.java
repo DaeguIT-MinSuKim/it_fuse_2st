@@ -15,6 +15,8 @@ public interface PaymentIOMapper {
 	//반납 프로시저
 	int updatePaymentIO(Map<String, Object> param);
 	
+	List<PaymentIO> showRank(Map<String, Object> param);
+	
 	//test
 	List<PaymentIO> selectAllPio(Map<String, Object> param);
 	

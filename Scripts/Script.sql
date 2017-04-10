@@ -427,3 +427,7 @@ SET m_pass='' WHERE m_code='';
 
 call book_project.proc_memberinfo_is_posbl_update('C001');
 select*from book_project.paymentio;
+
+
+select datediff(current_date, DATE_ADD(lend_date, interval 2 day)) into @datecnt from paymentio 
+	where return_date is null and m_code = 'C001';

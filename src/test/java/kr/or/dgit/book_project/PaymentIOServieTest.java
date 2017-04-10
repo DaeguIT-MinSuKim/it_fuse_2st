@@ -44,15 +44,15 @@ public class PaymentIOServieTest {
 	 * }
 	 */
 
-	@Test
+	/*@Test
 	public void TESprocedureTest() {
 		Map<String, Object> param = new HashMap();
 		param.put("b_code", "J002");
 		param.put("b_sub_code", 00);
 		param.put("m_code", "C003");
 		int res = paymentIOServie.insertPaymentIO(param);
-		/*Assert.assertSame(1, res);*/
-	}
+		Assert.assertSame(1, res);
+	}*/
 	
 	/*@Test
 	public void TESupdatePaymentIO() {
@@ -74,13 +74,14 @@ public class PaymentIOServieTest {
 		System.out.println("list.size() => " + list.size());
 //		Assert.assertEquals(16, list.size());
 	}*/
-/*	
+	
 	@Test
-	public void TESselectAllPio() {
+	public void TESTshowRank() {
 		Map<String, Object> param = new HashMap<>();
-		param.put("returnNull", "returnNull");
-		List<PaymentIO> list = PaymentIOService.getInstance().selectAllPio(param);
-		System.out.println("list.size() => " + list.size());
-//		Assert.assertEquals(16, list.size());
-	}*/
+		
+		param.put("lendDate1", "2017-02-01");
+		param.put("lendDate2", "2017-03-01");
+		List<PaymentIO> list = PaymentIOService.getInstance().showRank(param);
+		Assert.assertNotNull(list);
+	}
 }
