@@ -87,6 +87,7 @@ public class MemberInfoP extends JPanel {
 		pMName.setTFValue(memberinfo.getmName());
 		pMTel.setTFValue(memberinfo.getmTel());
 		pMZipCode.setTFValue(String.valueOf(memberinfo.getmZipCode()));
+		pMAddress.setTFValue(memberinfo.getmAddress());
 		
 	}
 	
