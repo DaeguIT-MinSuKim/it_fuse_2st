@@ -12,6 +12,10 @@ import kr.or.dgit.book_project.ui.view.PublisherView;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.CardLayout;
+import javax.swing.BoxLayout;
+import java.awt.FlowLayout;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class PublisherInfoP extends JPanel implements ActionListener {
@@ -31,7 +35,7 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 
 		JPanel panelPub = new JPanel();
 		add(panelPub);
-		panelPub.setLayout(new GridLayout(0, 1, 0, 10));
+		panelPub.setLayout(new GridLayout(0, 1, 0, 5));
 
 		pPCode = new InputComp();
 		pPCode.setTitle("출판사코드");
@@ -62,7 +66,9 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		panelPub.add(pBtn);
 
 		btnPubSave = new JButton("저장");
+		btnPubSave.setHorizontalAlignment(SwingConstants.LEADING);
 		btnPubSave.addActionListener(this);
+		pBtn.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
 		pBtn.add(btnPubSave);
 
 		btnCancel = new JButton("취소");
