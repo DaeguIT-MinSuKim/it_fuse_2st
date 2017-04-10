@@ -74,7 +74,7 @@
 	<insert id="insertMcodeAuto" parameterType="MemberInfo">
 		insert into memberinfo (m_code) values (#{mCode})
 	</insert>
-	
+
 	<!-- 일딴 목록보이게 하는거 -->
 	<select id="selectMemberByAll" parameterType="hashmap" resultMap="MemberInfoResult">
 		<include refid="selectSql"/>
