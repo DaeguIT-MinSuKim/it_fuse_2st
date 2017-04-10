@@ -424,3 +424,6 @@ password('') -- 암호화... 얘로 비교를....해야해요....
 UPDATE book_project.memberinfo
 SET m_pass='' WHERE m_code='';
 
+
+call book_project.proc_memberinfo_is_posbl_update('C001');
+select*from book_project.paymentio;

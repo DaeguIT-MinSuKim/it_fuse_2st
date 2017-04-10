@@ -166,6 +166,7 @@ public class BookReturnView extends JPanel implements MouseListener {
 		param.put("isDel", false);
 		param.put("isLending", true);
 		bsv.setTableDate(param);
+		bsv.setBookReturnView(this);
 		bsv.setMyMouseListenerPayment(pBookinfo);
 		bsv.setVisible(true);
 	}

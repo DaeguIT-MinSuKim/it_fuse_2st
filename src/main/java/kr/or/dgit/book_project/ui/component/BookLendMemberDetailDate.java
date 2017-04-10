@@ -133,8 +133,8 @@ public class BookLendMemberDetailDate extends JPanel {
 	public void clear(){
 		//클리어
 		pMCode.setTFValue("");
-		pMCode.setTFValue("");
-		pMCode.setTFValue("");
+		pMName.setTFValue("");
+		pMTel.setTFValue("");
 		pLendDate.setTFValue("");
 		//데이트피커 되겟지 뭐
 	}
