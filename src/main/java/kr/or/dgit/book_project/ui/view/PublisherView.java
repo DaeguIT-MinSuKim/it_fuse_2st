@@ -21,7 +21,6 @@ import kr.or.dgit.book_project.ui.component.PublisherInfoP;
 public class PublisherView extends JPanel {
 
 	public static PublisherInfoTable pTable;
-	public PublisherInfoP pub;
 	private JPopupMenu popupMenu;
 	private PublisherInfoP panel;
 

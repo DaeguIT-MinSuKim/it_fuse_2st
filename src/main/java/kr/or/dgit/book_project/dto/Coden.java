@@ -37,4 +37,29 @@ public class Coden {
 		return new String[]{ cName, cCode};
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cCode == null) ? 0 : cCode.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Coden other = (Coden) obj;
+		if (cCode == null) {
+			if (other.cCode != null)
+				return false;
+		} else if (!cCode.equals(other.cCode))
+			return false;
+		return true;
+	}
+
 }
