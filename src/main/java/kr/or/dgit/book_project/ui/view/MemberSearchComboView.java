@@ -79,6 +79,7 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 
 		pTable = new MemberInfoSearchTable();
 		map = new HashMap<>();
+		//map.put("mGroup", 'C');
 		pTable.setParam(map);
 		pTable.loadData();
 		gbc_pTable.fill = GridBagConstraints.BOTH;
@@ -105,10 +106,8 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 
 		if (pSearch.gettF().getText().trim().equals("")) {
 			JOptionPane.showMessageDialog(null, "검색할 내용을 입력하세요.");
-			pTable.setParam(map); // 검색내용이 공백일 시, 해시맵으로 전체 목록을 출력하려고 새로운
-			// 해시맵(map)을 호출
-			pTable.loadData();		 // 새로운 해시맵(map)이 호출되면 "selectMemberByAll(param)"이
-			// 호출되어 목록이 출력
+			pTable.setParam(map); // 검색내용이 공백일 시, 해시맵으로 전체 목록을 출력하려고 새로운 해시맵(map)을 호출
+			pTable.loadData();		 // 새로운 해시맵(map)이 호출되면 "selectMemberByAll(param)"이 호출되어 목록이 출력
 		} else if (pSearch.getPanel().getComboBox().getSelectedIndex() == 0) { // 콤보박스  선택시,검색코드 입력 받아온다.
 			param.put("mCode", pSearch.gettF().getText());
 			pTable.setParam(param); // view에 입력창에 들어온 값으로 해시맵에게 키와 값을 set한다.
@@ -136,7 +135,62 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 			pSearch.gettF().setText("");
 		}
 	}
+	public void setMyMouseListenerForManage() {		// 검색화면에서 해당 회원을 우클릭하면 해당 프레임이 오픈
+		pTable.getTable().addMouseListener(new MouseAdapter() {
 
+			@Override
+			public void mouseClicked(MouseEvent e) {				
+				if (e.getButton() == MouseEvent.BUTTON3) {					
+					popupMenu = new JPopupMenu();					
+					JMenuItem updateItem = new JMenuItem("수정");
+					updateItem.addActionListener(new ActionListener() {			
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							if(e.getActionCommand().equals("수정")){
+
+								MemberInfo memberinfo = pTable.getSelectedObject(); // 회원 선택해서 그 해당 회원정보를 가진 새창 띄우기								
+								JFrame jf = new JFrame();
+								
+								MemberSearchMemberDetailViewFrame memberDetail = new MemberSearchMemberDetailViewFrame();								
+								memberDetail.getPanel().setObject(memberinfo);	// getSelectObject로 찾아서 Detail에 정보 심기
+								memberDetail.getPanel().getpMCode().getTF().setEnabled(false);
+								
+								jf.add(memberDetail);
+								jf.setBounds(300, 400, 600, 400);
+								jf.setVisible(true);
+							}				
+						}
+					});
+					popupMenu.add(updateItem);// 우클릭 메뉴에 수정/버튼 기능 버튼 붙이기
+
+
+					JMenuItem infoSearchItem = new JMenuItem("대여정보조회");
+					infoSearchItem.addActionListener(new ActionListener() {			
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							if(e.getActionCommand().equals("대여정보조회")){
+
+								MemberInfo memberinfo = pTable.getSelectedObject(); // 회원 선택해서 그 해당 회원의 대여정보를 가진 새창 띄우기
+								JFrame jf = new JFrame();
+								MemberSearchMemberPaymentViewFrame memberPayment = new MemberSearchMemberPaymentViewFrame();
+								 
+								jf.add(memberPayment);
+								jf.setBounds(300, 400, 600, 400);
+								jf.setVisible(true);
+								memberPayment.setVisible(true);
+							}				
+						}
+					});
+					popupMenu.add(infoSearchItem);	// 우클릭 메뉴에 회원의 대여정보조회 기능 버튼 달기
+
+					popupMenu.show(pTable.getTable(), e.getX(), e.getY());		// add하고 show... 
+				}
+			}
+		});	
+	}
+	
+	
+	
 	// 성환이 대여 더블클릭
 	public void setMyMouseListener(BookLendView booklendview, JFrame myFrame) {
 		pTable.getTable().addMouseListener(new MouseAdapter() {
@@ -173,58 +227,6 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 		});
 	}
 
-	public void setMyMouseListenerForManage() {		// 검색화면에서 해당 회원을 우클릭하면 해당 프레임이 오픈
-		pTable.getTable().addMouseListener(new MouseAdapter() {
-
-			@Override
-			public void mouseClicked(MouseEvent e) {				
-				if (e.getButton() == MouseEvent.BUTTON3) {					
-					popupMenu = new JPopupMenu();					
-					JMenuItem updateItem = new JMenuItem("수정");
-					updateItem.addActionListener(new ActionListener() {			
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getActionCommand().equals("수정")){
-
-								MemberInfo memberinfo = pTable.getSelectedObject(); // 회원 선택해서 그 해당 회원정보를 가진 새창 띄우기								
-								JFrame jf = new JFrame();
-								
-								MemberSearchMemberDetailViewFrame memberDetail = new MemberSearchMemberDetailViewFrame();								
-								memberDetail.getPanel().setObject(memberinfo);	// getSelectObject로 찾아서 Detail에 정보 심기
-								
-								jf.add(memberDetail);
-								jf.setBounds(300, 400, 600, 400);
-								jf.setVisible(true);
-							}				
-						}
-					});
-					popupMenu.add(updateItem);// 우클릭 메뉴에 수정/버튼 기능 버튼 붙이기
-
-
-					JMenuItem infoSearchItem = new JMenuItem("대여정보조회");
-					infoSearchItem.addActionListener(new ActionListener() {			
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getActionCommand().equals("대여정보조회")){
-
-								MemberInfo memberinfo = pTable.getSelectedObject(); // 회원 선택해서 그 해당 회원의 대여정보를 가진 새창 띄우기
-								JFrame jf = new JFrame();
-								MemberSearchMemberPaymentViewFrame memberPayment = new MemberSearchMemberPaymentViewFrame();
-								 
-								jf.add(memberPayment);
-								jf.setBounds(300, 400, 600, 400);
-								jf.setVisible(true);
-								memberPayment.setVisible(true);
-							}				
-						}
-					});
-					popupMenu.add(infoSearchItem);	// 우클릭 메뉴에 회원의 대여정보조회 기능 버튼 달기
-
-					popupMenu.show(pTable.getTable(), e.getX(), e.getY());		// add하고 show... 
-				}
-			}
-		});	
-	}
 
 	public MemberInfoSearchTable getpTable() {
 		return pTable;
@@ -239,7 +241,7 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 		pTable.loadData();
 	}
 
-	public void itemStateChanged(ItemEvent e) {
+	public void itemStateChanged(ItemEvent e) {				// 검색 콤보 박스 누를 때 마다 리스트 출력
 		if (e.getSource() == pSearch.getPanel().getComboBox()) {
 			itemStateChangedPSearchPanelComboBox(e);
 		}

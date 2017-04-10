@@ -15,6 +15,7 @@
 		<result property="mLendCount" column="m_lend_count"/>
 		<result property="mNowCount" column="m_now_count"/>
 		<result property="blackDate" column="black_date"/>		
+		<result property="mGroup" column="m_group"/>
 	</resultMap>
 	
 	<sql id ="whereSql">
@@ -30,7 +31,22 @@
 			</if>
 		</where>
 	</sql>
-	
+	<sql id ="whereSql2">		<!-- 그룹 별 회원 출력 -->
+		<where>
+			<if test="mCode != null">
+				m_code=#{mCode}
+			</if>
+			<if test="mName != null">
+				and m_name like #{mName}
+			</if>
+			<if test="mTel != null">
+				and m_tel like #{mTel}
+			</if>
+			<if test="mGroup != null">
+				and m_group like #{mGroup}
+			</if>
+		</where>
+	</sql>
 	
 	<sql id="selectSql">
 		SELECT m_code, m_pass, m_name, m_tel, m_zip_code, m_address, is_posbl, delay_count, m_lend_count, m_now_count, black_date, m_group, is_secsn
@@ -40,8 +56,9 @@
 	
 	<!-- 메소드에 필요한 문구들.. -->
 	
-	<select id="selectCountAll" resultType="int">
+	<select id="selectCountAll" parameterType="MemberInfo" resultType="int">
 		select count(*) from memberinfo
+		where m_group = #{mGroup}
 	</select>
 	
 	<insert id="insertMemberInfo" parameterType="MemberInfo">
@@ -57,7 +74,7 @@
 	<!-- 일딴 목록보이게 하는거 -->
 	<select id="selectMemberByAll" parameterType="hashmap" resultMap="MemberInfoResult">
 		<include refid="selectSql"/>
-		<include refid="whereSql"/>
+		<include refid="whereSql2"/>
 	</select>
 	
 	

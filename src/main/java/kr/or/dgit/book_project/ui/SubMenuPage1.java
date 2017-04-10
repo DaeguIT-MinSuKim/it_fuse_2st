@@ -34,13 +34,15 @@ public class SubMenuPage1 extends JTabbedPane implements ChangeListener {
 			pMember.removeAll();
 		}
 		memberInsertView = new MemberInsertView();
+		memberInsertView.setMcodeAuto();			// 회원등록 번호 자동 카운팅
 		
 		pMember.add(memberInsertView);
 		
-		
+
 
 		setSubMenuPage1(mGroup);
-
+		
+	
 	}
 
 	public void setSubMenuPage1(char mGroup) {

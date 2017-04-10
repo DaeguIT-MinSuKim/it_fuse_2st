@@ -1,5 +1,6 @@
 package kr.or.dgit.book_project.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,25 +28,27 @@ public class MemberInfoService {
 		return instance;
 	}
 
-	public int selectCountAll() { // 회원 목록 수
+	public int selectCountAll(MemberInfo memberInfo) { // 회원 목록 수
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
 			MemberInfoMapper memberInfoMapper = new MemberInfoMapperImpl(sqlSession);
-			return memberInfoMapper.selectCountAll();
+			return memberInfoMapper.selectCountAll(memberInfo);
 		}
 	}	
 	
-	public int insertMcodeAuto(MemberInfo memberInfo){
+	public MemberInfo insertMcodeAuto(MemberInfo memberInfo){
 		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
 			MemberInfoMapper memberInfoMapper = new MemberInfoMapperImpl(sqlSession);
-			int memberCnt = selectCountAll();
+			memberInfo.setmGroup('C');
+			int memberCnt = selectCountAll(memberInfo);	
+			System.out.println(memberCnt);
 			
-			String mCode = String.format("C%3d", memberCnt+1);
-			
+			/*Map<String, Object> map = new HashMap<>();
+			map.put("mGroup", "C");*/
+			String mCode = String.format("C%03d", memberCnt+1);
 			memberInfo.setmCode(mCode);
-			
-			int res = memberInfoMapper.insertMcodeAuto(memberInfo);
-			sqlSession.commit();
-			return res;
+	/*		int res = memberInfoMapper.insertMcodeAuto(memberInfo);
+			sqlSession.commit();*/
+			return memberInfo;
 		}		
 	}
 

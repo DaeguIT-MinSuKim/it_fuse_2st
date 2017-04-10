@@ -60,22 +60,4 @@ public class MemberInfoServiceTest {
 	}*/
 	
 	
-	
-
-	@Test
-	public void testSelectCountAll(){		
-		int res = memberinfoservice.selectCountAll();		
-		Assert.assertNotNull(res);
-	}
-	
-	@Test
-	public void testInsertMcodeAuto(){
-		MemberInfo mi = new MemberInfo();
-		int memberCnt = MemberInfoService.getInstance().selectCountAll();
-		
-		String mCode=String.format("C%03d",memberCnt+1);
-		mi.setmCode(mCode);
-		int res = memberinfoservice.insertMcodeAuto(mi);
-		Assert.assertEquals(1, res);
-	}
 }

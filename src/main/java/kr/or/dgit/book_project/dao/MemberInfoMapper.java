@@ -6,8 +6,8 @@ import java.util.Map;
 import kr.or.dgit.book_project.dto.MemberInfo;
 
 public interface MemberInfoMapper {
-	int selectCountAll();								//회원 수 
-	int insertMcodeAuto(MemberInfo memberInfo);			//회원 코드 자동 삽입 용
+	int selectCountAll(MemberInfo memberInfo);								//회원 수 
+	//int insertMcodeAuto(MemberInfo memberInfo);			//회원 코드 자동 삽입 용
 	
 	int insertMemberInfo(MemberInfo memberInfo);		//회원삽입
 	int updateMemberInfo(MemberInfo memberInfo);		//회원정보 수정
