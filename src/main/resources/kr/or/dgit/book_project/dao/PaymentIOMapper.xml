@@ -108,6 +108,7 @@
 		union
 		<include refid="selectRightSql" />
 		<include refid="whereSql" />
+		
 	</select>
 
 	<!-- 프로시저 -->

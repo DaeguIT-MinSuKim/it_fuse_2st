@@ -40,6 +40,7 @@ public abstract class AbsBookSearchView extends JPanel implements ActionListener
 
 	public void loadTable() {
 		pTable.setMap(map);
+		System.out.println(map);
 		pTable.loadData();
 	}
 
