@@ -74,7 +74,8 @@ public class MemberInfoP extends JPanel {
 		String mName = pMName.getTFValue();
 		String mPass = pMPass.getTFValue();
 		String mTel  = pMTel.getTFValue();
-		int mZipCode = Integer.parseInt(pMZipCode.getTFValue());
+		//int mZipCode = Integer.parseInt(pMZipCode.getTFValue());
+		String mZipCode  = pMZipCode.getTFValue();
 		String mAddress = pMAddress.getTFValue();
 		char mGroup = mCode.charAt(0);
 		return new MemberInfo(mCode, mPass, mName, mTel, mZipCode, mAddress, mGroup);
@@ -85,7 +86,8 @@ public class MemberInfoP extends JPanel {
 		pMPass.setTFValue("");
 		pMName.setTFValue(memberinfo.getmName());
 		pMTel.setTFValue(memberinfo.getmTel());
-		pMZipCode.setTFValue(String.valueOf(memberinfo.getmZipCode()));
+		//pMZipCode.setTFValue(String.valueOf(memberinfo.getmZipCode()));
+		pMZipCode.setTFValue(memberinfo.getmZipCode());
 		pMAddress.setTFValue(memberinfo.getmAddress());
 		
 	}

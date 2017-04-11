@@ -5,13 +5,13 @@ public class PublisherInfo {
 	private String publisher; // 출판사명
 	private String pName; // 담당자 명
 	private String pTel; // 연락처
-	private int pZipCode; // 우편번호
+	private String pZipCode; // 우편번호
 	private String pAddress; // 주소
 
 	public PublisherInfo() {
 	}
 
-	public PublisherInfo(String pCode, String publisher, String pName, String pTel, int pZipCode, String pAddress) {
+	public PublisherInfo(String pCode, String publisher, String pName, String pTel, String pZipCode, String pAddress) {
 		this.pCode = pCode;
 		this.publisher = publisher;
 		this.pName = pName;
@@ -54,10 +54,10 @@ public class PublisherInfo {
 
 	public String getpZipCode() {
 		// 데이터수정할떄 입력되는 값 스트링포멧으로
-		return String.format("%05d", pZipCode);
+		return pZipCode;
 	}
 
-	public void setpZipCode(int pZipCode) {
+	public void setpZipCode(String pZipCode) {
 		this.pZipCode = pZipCode;
 	}
 
@@ -76,7 +76,7 @@ public class PublisherInfo {
 
 	public Object[] toArrayForPublisherList() {
 		//"출판사코드","출판사명","담당자명","연락처","우편번호","주소"
-		return new Object[]{pCode, publisher, pName, pTel, String.format("%05d", pZipCode), pAddress};
+		return new Object[]{pCode, publisher, pName, pTel, pZipCode, pAddress};
 	}
 
 	@Override

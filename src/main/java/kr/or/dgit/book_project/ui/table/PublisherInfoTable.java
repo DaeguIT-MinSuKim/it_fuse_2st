@@ -55,7 +55,8 @@ public class PublisherInfoTable extends AbsTable<PublisherInfo> {
 		String pTel = (String) table.getValueAt(selectedIdx, 3);
 		String	pZipCode = (String) table.getValueAt(selectedIdx, 4);
 		String	pAddress = (String) table.getValueAt(selectedIdx, 5);
-		return new PublisherInfo(pCode, publisher, pName, pTel, Integer.parseInt(pZipCode), pAddress);
+		//return new PublisherInfo(pCode, publisher, pName, pTel, Integer.parseInt(pZipCode), pAddress);
+		return new PublisherInfo(pCode, publisher, pName, pTel, pZipCode, pAddress);
 	}
 
 	

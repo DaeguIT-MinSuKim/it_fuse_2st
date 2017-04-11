@@ -14,7 +14,7 @@ import java.awt.Color;
 
 public class BookManageForDelBookView extends AbsBookSearchView {
 	// 폐기도서 관리화면
-	
+
 	public BookManageForDelBookView() {
 		super();
 		map = new HashMap<>();
@@ -43,8 +43,11 @@ public class BookManageForDelBookView extends AbsBookSearchView {
 					return;
 				}
 				// 복원하는 메소드
-				BookInfoService.getInstance().setDelBookInfo(bookInfo, false);
-				loadTable();
+				if (BookInfoService.getInstance().setDelBookInfo(bookInfo, false) != 0) {
+					System.out.println("복원!!!!!!!!!!!!!!!!!");
+					map.put("isDel", true);
+					loadTable();
+				}
 			}
 		});
 		popupMenu.add(updateItem);

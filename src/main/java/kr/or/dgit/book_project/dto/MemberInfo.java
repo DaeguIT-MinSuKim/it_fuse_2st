@@ -5,7 +5,7 @@ public class MemberInfo {
 	private String mPass;		// 비밀번호
 	private String mName;		// 성명
 	private String mTel;		// 연락처
-	private int mZipCode;		// 우편번호
+	private String mZipCode;		// 우편번호
 	private String mAddress;	// 주소
 	private boolean isPosbl; 	// 대여가능여부
 	private int delayCount;		// 연체횟수
@@ -26,7 +26,7 @@ public class MemberInfo {
 
 	
 
-	public MemberInfo(String mCode, String mPass, String mName, String mTel, int mZipCode, String mAddress,
+	public MemberInfo(String mCode, String mPass, String mName, String mTel, String mZipCode, String mAddress,
 			char mGroup) {
 		super();
 		//(#{mCode}, #{mName} ,#{mTel} ,#{mZipCode} ,#{mAddress} ,#{mPass} ,#{mGroup})
@@ -41,7 +41,7 @@ public class MemberInfo {
 
 
 
-	public MemberInfo(String mCode, String mName, String mTel, int mZipCode, String mAddress) {
+	public MemberInfo(String mCode, String mName, String mTel, String mZipCode, String mAddress) {
 		this.mCode = mCode;
 		this.mName = mName;
 		this.mTel = mTel;
@@ -49,7 +49,7 @@ public class MemberInfo {
 		this.mAddress = mAddress;
 	}
 	
-	public MemberInfo(String mCode, String mPass, String mName, String mTel, int mZipCode, String mAddress) {
+	public MemberInfo(String mCode, String mPass, String mName, String mTel, String mZipCode, String mAddress) {
 		this.mCode = mCode;
 		this.mPass = mPass;
 		this.mName = mName;
@@ -103,13 +103,13 @@ public class MemberInfo {
 		this.mTel = mTel;
 	}
 
-	public int getmZipCode() {
+	public String getmZipCode() {
 		
 	//	return String.format("%05d", mZipCode);
 		return mZipCode;
 	}
 
-	public void setmZipCode(int mZipCode) {
+	public void setmZipCode(String mZipCode) {
 		this.mZipCode = mZipCode;
 	}
 

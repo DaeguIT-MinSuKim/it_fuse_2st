@@ -113,8 +113,7 @@ public class PageSub extends JFrame implements ActionListener {
 	protected void actionPerformedPSideBarBtnMenu4(ActionEvent e) {
 		// Home -> 로그아웃
 		// 로그아웃
-		int res = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?\n로그아웃 시 해당 페이지가 종료됩니다.", "",
-				JOptionPane.YES_NO_OPTION);
+		int res = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?\n로그아웃 시 해당 페이지가 종료됩니다.", "",JOptionPane.YES_NO_OPTION);
 		if (res != 0) {
 			JOptionPane.showMessageDialog(null, "취소하였습니다");
 			return;
