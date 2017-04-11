@@ -28,7 +28,7 @@ public class BookLendMemberDetail extends JPanel {
 		pMCode.setTitle("회원코드");
 		
 		lblMsg = new JLabel();
-		lblMsg.setForeground(Color.RED);
+		//lblMsg.setForeground(Color.RED);
 		lblMsg.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblMsg);
 		

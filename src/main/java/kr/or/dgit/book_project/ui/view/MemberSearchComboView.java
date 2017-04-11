@@ -1,5 +1,6 @@
 package kr.or.dgit.book_project.ui.view;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -78,9 +79,7 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 		panel_2.add(pSearch, gbc_pSearch);
 
 		pTable = new MemberInfoSearchTable();
-		
-		
-		
+
 		gbc_pTable.fill = GridBagConstraints.BOTH;
 		gbc_pTable.gridx = 0;
 		gbc_pTable.gridy = 1;
@@ -93,15 +92,14 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 		gbc_pTable_1.gridx = 0;
 		gbc_pTable_1.gridy = 1;
 	}
-	
-	
+
 	public void setTableMap(char mGruop) {
 		map = new HashMap<>();
 		map.put("mGroup", mGruop);
 		map.put("isSecsn", false);
 		pTable.setParam(map);
 		pTable.loadData();
-		
+
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -115,9 +113,14 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 
 		if (pSearch.gettF().getText().trim().equals("")) {
 			JOptionPane.showMessageDialog(null, "검색할 내용을 입력하세요.");
-			pTable.setParam(map); // 검색내용이 공백일 시, 해시맵으로 전체 목록을 출력하려고 새로운 해시맵(map)을 호출
-			pTable.loadData();		 // 새로운 해시맵(map)이 호출되면 "selectMemberByAll(param)"이 호출되어 목록이 출력
-		} else if (pSearch.getPanel().getComboBox().getSelectedIndex() == 0) { // 콤보박스  선택시,검색코드 입력 받아온다.
+			pTable.setParam(map); // 검색내용이 공백일 시, 해시맵으로 전체 목록을 출력하려고 새로운
+									// 해시맵(map)을 호출
+			pTable.loadData(); // 새로운 해시맵(map)이 호출되면 "selectMemberByAll(param)"이
+								// 호출되어 목록이 출력
+		} else if (pSearch.getPanel().getComboBox().getSelectedIndex() == 0) { // 콤보박스
+																				// 선택시,검색코드
+																				// 입력
+																				// 받아온다.
 			param.put("mCode", pSearch.gettF().getText());
 			pTable.setParam(param); // view에 입력창에 들어온 값으로 해시맵에게 키와 값을 set한다.
 			pTable.loadData();
@@ -125,7 +128,8 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 				// loadData 결과가 0이다. False다.
 				JOptionPane.showMessageDialog(null, "해당 데이터가 존재하지 않습니다.");
 			}
-			pSearch.gettF().setText(""); // 데이터를 입력하고 검색버튼 누르면 검색결과가 출력되고, 입력창이 지워진다.
+			pSearch.gettF().setText(""); // 데이터를 입력하고 검색버튼 누르면 검색결과가 출력되고, 입력창이
+											// 지워진다.
 		} else if (pSearch.getPanel().getComboBox().getSelectedIndex() == 1) {
 			param.put("mName", pSearch.gettF().getText());
 			pTable.setParam(param);
@@ -134,7 +138,10 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 				JOptionPane.showMessageDialog(null, "해당 데이터가 존재하지 않습니다.");
 			}
 			pSearch.gettF().setText("");
-		} else if (pSearch.getPanel().getComboBox().getSelectedIndex() == 2) { // 콤보박스 전화번호 선택시, 검색
+		} else if (pSearch.getPanel().getComboBox().getSelectedIndex() == 2) { // 콤보박스
+																				// 전화번호
+																				// 선택시,
+																				// 검색
 			param.put("mTel", "%" + pSearch.gettF().getText());
 			pTable.setParam(param);
 			pTable.loadData();
@@ -144,25 +151,39 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 			pSearch.gettF().setText("");
 		}
 	}
-	public void setMyMouseListenerForManage() {		// 검색화면에서 해당 회원을 우클릭하면 해당 프레임이 오픈
+
+	public void setMyMouseListenerForManage() { // 검색화면에서 해당 회원을 우클릭하면 해당 프레임이
+												// 오픈
 		pTable.getTable().addMouseListener(new MouseAdapter() {
 
 			@Override
-			public void mouseClicked(MouseEvent e) {				
-				if (e.getButton() == MouseEvent.BUTTON3) {					
-					popupMenu = new JPopupMenu();					
+			public void mouseClicked(MouseEvent e) {
+				if (e.getButton() == MouseEvent.BUTTON3) {
+					popupMenu = new JPopupMenu();
 					JMenuItem updateItem = new JMenuItem("수정");
-					updateItem.addActionListener(new ActionListener() {			
+					updateItem.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							if(e.getActionCommand().equals("수정")){
+							if (e.getActionCommand().equals("수정")) {
 
-								MemberInfo memberinfo = pTable.getSelectedObject(); // 회원 선택해서 그 해당 회원정보를 가진 새창 띄우기								
+								MemberInfo memberinfo = pTable.getSelectedObject(); // 회원
+																					// 선택해서
+																					// 그
+																					// 해당
+																					// 회원정보를
+																					// 가진
+																					// 새창
+																					// 띄우기
 								JFrame jf = new JFrame();
-								//System.out.println("멤버서치뷰 테이블 : " +pTable );
-								MemberSearchMemberDetailViewFrame memberDetail = new MemberSearchMemberDetailViewFrame();	
+								// System.out.println("멤버서치뷰 테이블 : " +pTable );
+								MemberSearchMemberDetailViewFrame memberDetail = new MemberSearchMemberDetailViewFrame();
 								memberDetail.setpTable(pTable);
 								memberDetail.setJf(jf);
+								memberDetail.getPanel().setObject(memberinfo); // getSelectObject로
+																				// 찾아서
+																				// Detail에
+																				// 정보
+																				// 심기
 								memberDetail.getBtnModify().addActionListener(new ActionListener() {
 									
 									@Override
@@ -206,40 +227,53 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 								jf.getContentPane().add(memberDetail);
 								jf.setBounds(300, 400, 600, 400);
 								jf.setVisible(true);
-							}				
+							}
 						}
 					});
 					popupMenu.add(updateItem);// 우클릭 메뉴에 수정/버튼 기능 버튼 붙이기
 
-
 					JMenuItem infoSearchItem = new JMenuItem("대여정보조회");
-					infoSearchItem.addActionListener(new ActionListener() {			
+					infoSearchItem.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							if(e.getActionCommand().equals("대여정보조회")){
+							if (e.getActionCommand().equals("대여정보조회")) {
 
-								MemberInfo memberinfo = pTable.getSelectedObject(); // 회원 선택해서 그 해당 회원의 대여정보를 가진 새창 띄우기
+								MemberInfo memberinfo = pTable.getSelectedObject(); // 회원
+																					// 선택해서
+																					// 그
+																					// 해당
+																					// 회원의
+																					// 대여정보를
+																					// 가진
+																					// 새창
+																					// 띄우기
 								JFrame jf = new JFrame();
-								MemberSearchMemberPaymentViewFrame memberPayment = new MemberSearchMemberPaymentViewFrame();	
+
+								MemberSearchMemberPaymentViewFrame memberPayment = new MemberSearchMemberPaymentViewFrame();
+								memberPayment.loadTable(memberinfo); // loadTable....
+								jf.add(memberPayment);
+
+								/*MemberSearchMemberPaymentViewFrame memberPayment = new MemberSearchMemberPaymentViewFrame();	
 								memberPayment.loadTable(memberinfo);		//loadTable....
-								jf.getContentPane().add(memberPayment);
+								jf.getContentPane().add(memberPayment);*/
+
 
 								jf.getContentPane().add(memberPayment);
 								jf.setBounds(300, 400, 600, 400);
 								jf.setVisible(true);
 								memberPayment.setVisible(true);
-							}				
+							}
 						}
 					});
-					popupMenu.add(infoSearchItem);	// 우클릭 메뉴에 회원의 대여정보조회 기능 버튼 달기
+					popupMenu.add(infoSearchItem); // 우클릭 메뉴에 회원의 대여정보조회 기능 버튼
+													// 달기
 
-					popupMenu.show(pTable.getTable(), e.getX(), e.getY());		// add하고 show... 
+					popupMenu.show(pTable.getTable(), e.getX(), e.getY()); // add하고
+																			// show...
 				}
 			}
-		});	
+		});
 	}
-
-
 
 	// 성환이 대여 더블클릭
 	public void setMyMouseListener(BookLendView booklendview, JFrame myFrame) {
@@ -248,51 +282,62 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
 					// 회원 검색시 회원 정보 넣기 더블클릭 , 일딴은 올리는데 내부분에서 잠시 수정해야됨
-					MemberInfo memberinfo = pTable.getSelectedObject();
-					JOptionPane.showMessageDialog(null, memberinfo.toArrayForMemberList());
+					// MemberInfo memberinfo = pTable.getSelectedObject();
+					// JOptionPane.showMessageDialog(null,
+					// memberinfo.toArrayForMemberList());
 					// 회원 프로시저 넣음
 					// MemberInfo mi = pMemberlendDetail.getObject();
-					//JOptionPane.showMessageDialog(null, memberinfo.toArrayForMemberList());
+					// JOptionPane.showMessageDialog(null,
+					// memberinfo.toArrayForMemberList());
 
-					//회원 대여가능여부 판단 프로시저 넣음
-
-					Map<String, Object> param = new HashMap<>();
-					param.put("m_code", memberinfo.getmCode());
-					MemberInfoService.getInstance().callMemberInfo(param);
+					// 회원 대여가능여부 판단 프로시저 넣음
 					MemberInfo mi = pTable.getSelectedObject();
-					MemberInfoService.getInstance().findMemberInfoByCode(mi);
-					// System.out.println("됫냐??");
-					
-					memberinfo.setmCode(memberinfo.getmCode());
-					booklendview.getpMemberlendDetail().getpMCode().setTFValue(memberinfo.getmCode());
-					JOptionPane.showMessageDialog(null, memberinfo.isPosbl());// 여기까지
-					// 넘어가는데....
-					if (memberinfo.isPosbl()) {
-						booklendview.getpMemberlendDetail().getpMName().setTFValue(memberinfo.getmName());
-						booklendview.getpMemberlendDetail().getpMTel().setTFValue(memberinfo.getmTel());
+					Map<String, Object> param = new HashMap<>();
+					param.put("m_code", mi.getmCode());
+					MemberInfoService.getInstance().callMemberInfo(param);
 
-						//프로시저 실행하고 업데이트된 정보 새로 받아옴
-						MemberInfo updateMember = MemberInfoService.getInstance().findMemberInfoByCode(memberinfo);
-						System.out.println("됫냐??");
-						System.out.println(updateMember);
-						//memberinfo.setmCode(updateMember.getmCode());
-						booklendview.getpMemberlendDetail().clear();
-						booklendview.getpMemberlendDetail().getpMCode().setTFValue(updateMember.getmCode());
-						//JOptionPane.showMessageDialog(null, memberinfo.isPosbl());//여기까지 넘어가는데....
+					MemberInfo updateMember = MemberInfoService.getInstance().findMemberInfoByCode(mi);
+					// System.out.println("됫냐??");
+
+					// memberinfo.setmCode(memberinfo.getmCode());
+					booklendview.getpMemberlendDetail().getpMCode().setTFValue(updateMember.getmCode());
+					// JOptionPane.showMessageDialog(null,
+					// memberinfo.isPosbl());// 여기까지
+					// 넘어가는데....
+					/*if (updateMember.isPosbl()) {
+						booklendview.getpMemberlendDetail().getpMName().setTFValue(updateMember.getmName());
+						booklendview.getpMemberlendDetail().getpMTel().setTFValue(updateMember.getmTel());
+*/
+						// 프로시저 실행하고 업데이트된 정보 새로 받아옴
+						// MemberInfo updateMember =
+						// MemberInfoService.getInstance().findMemberInfoByCode(memberinfo);
+						//System.out.println("됫냐??");
+						//System.out.println(updateMember);
+						// memberinfo.setmCode(updateMember.getmCode());
+						//booklendview.getpMemberlendDetail().clear();
+						// booklendview.getpMemberlendDetail().getpMCode().setTFValue(updateMember.getmCode());
+						// JOptionPane.showMessageDialog(null,
+						// memberinfo.isPosbl());//여기까지 넘어가는데....
 						if (updateMember.isPosbl()) {
+							booklendview.getpMemberlendDetail().clear();
+							booklendview.getpMemberlendDetail().getpMCode().setTFValue(updateMember.getmCode());
 							booklendview.getpMemberlendDetail().getpMName().setTFValue(updateMember.getmName());
 							booklendview.getpMemberlendDetail().getpMTel().setTFValue(updateMember.getmTel());
 							booklendview.getpMemberlendDetail().getLblMsg().setText("대여가능");
+							booklendview.getpMemberlendDetail().getLblMsg().setForeground(Color.BLUE);
+
 						} else {
+							booklendview.getpMemberlendDetail().clear();
+							booklendview.getpMemberlendDetail().getpMCode().setTFValue(updateMember.getmCode());
 							booklendview.getpMemberlendDetail().getLblMsg().setText("대여불가");
+							booklendview.getpMemberlendDetail().getLblMsg().setForeground(Color.RED);
 						}
 						myFrame.setVisible(false);
 					}
 				}
-			}
+			
 		});
 	}
-
 
 	public MemberInfoSearchTable getpTable() {
 		return pTable;
@@ -307,7 +352,7 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 		pTable.loadData();
 	}
 
-	public void itemStateChanged(ItemEvent e) {				// 검색 콤보 박스 누를 때 마다 리스트 출력
+	public void itemStateChanged(ItemEvent e) { // 검색 콤보 박스 누를 때 마다 리스트 출력
 		if (e.getSource() == pSearch.getPanel().getComboBox()) {
 			itemStateChangedPSearchPanelComboBox(e);
 		}
