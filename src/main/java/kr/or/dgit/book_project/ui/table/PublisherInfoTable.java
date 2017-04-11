@@ -15,23 +15,7 @@ public class PublisherInfoTable extends AbsTable<PublisherInfo> {
 		loadData();
 	}
 
-	@Override
-	protected void createPopupMenu() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void updateData(PublisherInfo t) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void deleteItem(PublisherInfo t) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	protected void cellWith() {
