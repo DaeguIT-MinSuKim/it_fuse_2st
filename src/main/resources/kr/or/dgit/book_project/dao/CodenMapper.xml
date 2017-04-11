@@ -43,6 +43,7 @@
 
 	<select id="selectCodenAll" resultType="Coden">
 		<include refid="selectSql" />
+		order by c_name
 	</select>
 
 	<select id="selectOne" parameterType="hashmap" resultMap="CodenResult">

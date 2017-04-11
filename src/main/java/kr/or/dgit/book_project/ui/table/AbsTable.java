@@ -42,10 +42,12 @@ public abstract class AbsTable<T> extends JPanel {
 	public boolean loadData() {
 		Object[][] rowData= getRowData();
 		// 검색결과가 없을 때, 로드데이터가 넘어가면서 빈 화면이 나오는 것을 전체 목록 보기로 출력
-		if(rowData.length == 0){
+	/*	if(rowData.length == 0){
 			System.out.println("[loadData] length : 0");
 			return false;
-		}
+			// 이거하니까 테이블에 데이터 한개도 안 남게 되면 테이블 새로고침이 안됨 ㅠㅠ
+		}*/
+		
 		table.setModel(new DefaultTableModel(rowData, getColumn()) {
 		
 			@Override

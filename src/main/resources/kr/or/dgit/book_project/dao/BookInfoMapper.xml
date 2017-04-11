@@ -141,16 +141,19 @@
 		union
 		<include refid="selectRightSql" />
 		<include refid="whereSql" />
+		order by b_code asc, b_sub_code asc
 	</select>
 
 	<select id="selectIslending" parameterType="hashmap" resultMap="BookInfoResult">
 		<include refid="selectLeftSql" />
 		<include refid="whereSql" />
+		
 	</select>
 
 	<select id="selectOnlyBookInfo" parameterType="BookInfo" resultMap="BookInfoResult">
 		<include refid="selectSql" />
 		<include refid="whereSql" />
+		
 	</select>
 
 </mapper>

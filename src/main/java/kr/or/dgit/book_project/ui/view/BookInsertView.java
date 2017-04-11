@@ -118,7 +118,6 @@ public class BookInsertView extends JPanel implements ActionListener {
 			param.put("bSubCode", pContent.getObject().getbSubCode());
 			pTable.setMap(param);
 			pTable.loadData();
-
 			pContent.setClear();
 		}
 	}
