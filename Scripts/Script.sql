@@ -186,9 +186,9 @@ insert into book_project.coden (c_name, c_code) values
 
 
 INSERT INTO book_project.bookInfo(b_code, b_sub_code, c_name, b_name, author, p_code, price, insert_date, is_lending, b_lend_count) values
-('T001',00, 'IT','이것이자바다', '신용권', 'P001', 30000,'2016-01-01', true, 1),
+('T001',00, 'IT','이것이자바다', '신용권', 'P001', 30000,'2016-01-01', false, 1),
 ('T001',01, 'IT','이것이자바다', '신용권', 'P001', 30000,'2016-01-01', true, 2),
-('T001',02, 'IT','이것이자바다', '신용권', 'P001', 30000,'2016-04-01', true, 0),
+('T001',02, 'IT','이것이자바다', '신용권', 'P001', 30000,'2016-04-01', false, 0),
 ('T002',00,'IT', '자바+안드로이드를다루는기술', '정재곤', 'P002', 40000,'2016-01-10', true, 1),
 ('T003',00,'IT', '인사이드자바스크립트','송형주','P023',18000,'2016-01-15', true, 4),
 ('T004',00,'IT', '자바스크립트&제이쿼리','존두켓','P003',36000,'2016-01-20', true, 1),
@@ -199,8 +199,8 @@ INSERT INTO book_project.bookInfo(b_code, b_sub_code, c_name, b_name, author, p_
 ('H004',00,'인문','나는생각이너무많아','크리스텔프리콜랭','P007',14800,'2016-02-20', true, 1),
 ('S001',00,'사회','국가란무엇인가','유시민','P008',15000,'2016-02-28', true, 1),
 ('S002',00,'사회','정의란무엇인가','마이클샌델','P009',15000,'2016-03-01', true, 3),
-('S002',01,'사회','정의란무엇인가','마이클샌델','P009',15000,'2016-03-01', true, 1),
-('S002',02,'사회','정의란무엇인가','마이클샌델','P009',15000,'2016-03-15', true, 1),
+('S002',01,'사회','정의란무엇인가','마이클샌델','P009',15000,'2016-03-01', false, 1),
+('S002',02,'사회','정의란무엇인가','마이클샌델','P009',15000,'2016-03-15', false, 1),
 ('S003',00,'사회','한국사회어디로','김우창','P010',16000,'2016-03-01', true, 2),
 ('S004',00,'사회','페페의희망교육','로베르트프란시스가르시아','P011',15000,'2016-03-05', true, 1),
 ('S005',00,'사회','국가가 할 일은 무엇인가','이헌재,이원재','P020',12500,'2016-03-05', true, 1),
@@ -209,7 +209,7 @@ INSERT INTO book_project.bookInfo(b_code, b_sub_code, c_name, b_name, author, p_
 ('J001',01,'여행','여행이아니면알수없는것들','손미나','P012',15000,'2016-03-15', false, 4),
 ('J002',00,'여행','후쿠오카여행가는길','김남규','P015',14000,'2016-03-20', true, 2),
 ('J003',00,'여행','런던여행백서','정꽃나래','P014',18000,'2016-03-07', true, 1),
-('J003',01,'여행','런던여행백서','정꽃나래','P014',18000,'2016-03-17', true, 0),
+('J003',01,'여행','런던여행백서','정꽃나래','P014',18000,'2016-03-17', false, 0),
 ('D001',00,'자기계발', '쓸모없는짓의행복', '크리스길아보', 'P016', 15000,'2016-03-22', true, 1),
 ('D002',00,'자기계발', '버리고시작하라', '위르겐볼프', 'P017', 12000,'2016-04-03', true, 1);
 
@@ -225,7 +225,7 @@ INSERT INTO book_project.memberInfo (m_code, m_name, m_tel, m_zip_code, m_addres
 ('C008', '박형식', '010-1234-9999',42429,'대구광역시 남구 이천로 51',false, password('5555'), 'C', false, 1, 3, 1, null),            -- 책 연체 중인 사람(일반)
 ('C009', 'Dan Stevens', '010-9876-1200',41590,'대구광역시 북구 옥산로 65',false, password('4444'), 'C', true, 2, 4, 2, null),               -- 곧 블랙.. 연체횟수 2번이나 연체중 아님
 ('C010', '원빈', '010-9876-5432',42424,'대구 남구 중앙대로 220 3층',false, password('8811'), 'C', false, 2, 6, 2, null),             -- 곧 블랙리스트 될 사람.. 연체횟수2번에 연체중인사람
-('C050', '원빈', '010-234-1234',42424,'대구 남구 중앙대로 220 3층',false, password('8811'), 'C', false, 3, 5, 0, '2017-03-23'), 	-- 현재 블랙리스트
+('C011', '원빈', '010-234-1234',42424,'대구 남구 중앙대로 220 3층',false, password('8811'), 'C', false, 3, 5, 0, '2017-03-23'), 	-- 현재 블랙리스트
 ('A001', '관리자', '010-234-1234',42424,'대구 남구 중앙대로 220 3층',false, password('admin'), 'A', false, 0, 0, 0, null), -- 관리자
 ('B001', '사서', '010-234-1234',42424,'대구 남구 중앙대로 220 3층',false, password('8811'), 'B', false, 0, 0, 0, null);      -- 사서
 UPDATE book_project.memberinfo SET is_secsn=true WHERE m_code='C006';
@@ -378,7 +378,7 @@ begin
 	
 	-- 연체발생시 대여불가설정
 	select datediff(current_date, DATE_ADD(lend_date, interval 2 day)) into datecnt from paymentio 
-	where return_date is null and m_code = _m_code;
+	where return_date is null and m_code = _m_code limit 0,1;
 	if datecnt > 0 then 
 	 	update memberinfo set is_posbl = false where m_code = _m_code;
 	end if;
@@ -401,7 +401,7 @@ end $$
 delimiter ;
 
 
-
+/*
 
 
  UPDATE book_project.paymentIO SET return_date = '2017-01-01'
@@ -424,10 +424,12 @@ password('') -- 암호화... 얘로 비교를....해야해요....
 UPDATE book_project.memberinfo
 SET m_pass='' WHERE m_code='';
 
+/*
 
 call book_project.proc_memberinfo_is_posbl_update('C001');
 select*from book_project.paymentio;
+*/
 
 
 select datediff(current_date, DATE_ADD(lend_date, interval 2 day)) into @datecnt from paymentio 
-	where return_date is null and m_code = 'C001';
+	where return_date is null and m_code = 'C001';*/
