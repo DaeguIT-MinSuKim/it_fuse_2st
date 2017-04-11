@@ -135,7 +135,7 @@ public class BookInfo { // 도서
 	@Override
 	public String toString() {
 		return String.format("%s %s %s %s %s %s %s %s %s %s %s", bCode, bSubCode, coden, bName, author, publisherInfo,
-				price, insertDate, bLendCount, isLending, isDel);
+				String.format("%,d", price), insertDate, bLendCount, isLending, isDel);
 	}
 	public Object[] toArrayForBoookList() {
 		// "도서코드", "중복코드", "도서명", "분야", "저자", "출판사"
@@ -145,12 +145,12 @@ public class BookInfo { // 도서
 	public Object[] toArray() {
 		// "도서코드","도서중복코드","도서명","저자","출판사","가격", "총대여 횟수"
 		return new Object[] { bCode, bSubCode, bName, author,
-				String.format("%s(%s)", publisherInfo.getPublisher(), publisherInfo.getpCode()),price, bLendCount };
+				String.format("%s(%s)", publisherInfo.getPublisher(), publisherInfo.getpCode()), String.format("%,d", price), bLendCount };
 	}
 	public Object[] toArrayForCgroup() {
 		// "도서코드","도서중복코드","도서명","저자","출판사","가격", "대여여부"
 		return new Object[] { bCode, bSubCode, bName, author,
-				String.format("%s(%s)", publisherInfo.getPublisher(), publisherInfo.getpCode()), price, isLending?"대여중":"" };
+				String.format("%s(%s)", publisherInfo.getPublisher(), publisherInfo.getpCode()), String.format("%,d", price), isLending?"대여중":"" };
 	}
 	
 }

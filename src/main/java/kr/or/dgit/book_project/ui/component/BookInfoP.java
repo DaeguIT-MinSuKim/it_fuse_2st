@@ -32,6 +32,8 @@ public class BookInfoP extends JPanel {
 	private InputComp pBName;
 	private SpinnerPanel pPrice;
 	protected ComboBoxPanel pPublisher;
+	private JPanel panel_2;
+	private JPanel pPubAdd;
 
 	public BookInfoP() {
 		setLayout(new GridLayout(0, 1, 0, 0));
@@ -92,7 +94,7 @@ public class BookInfoP extends JPanel {
 		JPanel panel_15 = new JPanel();
 		panel_5.add(panel_15);
 
-		JPanel panel_2 = new JPanel();
+		panel_2 = new JPanel();
 		panel.add(panel_2);
 		panel_2.setLayout(new GridLayout(0, 2, 5, 0));
 
@@ -100,23 +102,35 @@ public class BookInfoP extends JPanel {
 		List<PublisherInfo> list = pis.selectByAll();
 		pPublisher = new ComboBoxPanel();
 		pPublisher.setComboDate(list);
+		pPublisher.getComboBox().addItem(new PublisherInfo());
 		pPublisher.setTitle("출  판  사");
 		panel_2.add(pPublisher);
 
-		JPanel panel_13 = new JPanel();
-		panel_2.add(panel_13);
-		panel_13.setLayout(new GridLayout(0, 2, 5, 0));
+		pPubAdd = new JPanel();
+
+		// showPubAdd();
+
+	}
+
+	public void showPubAdd() {
+
+		panel_2.add(pPubAdd);
+		pPubAdd.setLayout(new GridLayout(0, 2, 5, 0));
 
 		tfAddPublisher = new JTextField();
-		panel_13.add(tfAddPublisher);
+		pPubAdd.add(tfAddPublisher);
 		tfAddPublisher.setColumns(10);
 
 		btnAddPublisher = new JButton("추가");
-		panel_13.add(btnAddPublisher);
-		JLabel label = new JLabel("");
+		pPubAdd.add(btnAddPublisher);
+		pPubAdd.revalidate();
+		pPubAdd.repaint();
+	}
 
-		JLabel label_1 = new JLabel("");
-
+	public void hidePubAdd() {
+		pPubAdd.removeAll();
+		pPubAdd.revalidate();
+		pPubAdd.repaint();
 	}
 
 	public JTextField getTfAddPublisher() {
@@ -138,7 +152,9 @@ public class BookInfoP extends JPanel {
 		pAuthor.setTFValue("");
 		pPrice.setValue(0);
 		pPublisher.setSelected(0);
-		tfAddPublisher.setText("");
+		if (tfAddPublisher != null) {
+			tfAddPublisher.setText("");
+		}
 	}
 
 	public boolean isVaildCheck() {
@@ -156,28 +172,30 @@ public class BookInfoP extends JPanel {
 		}
 
 	}
-	
-	public BookInfo getObject(){
+
+	public BookInfo getObject() {
 		String bCode = pBCode.getTfBCode().getText();
 		String bSubCode = pBCode.getTfBSubCode().getText();
 		String bName = pBName.getTFValue();
 		Map<String, Object> param = new HashMap<>();
-		param.put("cCode", pBCode.getTfBCode().getText().charAt(0)+"");
+		param.put("cCode", pBCode.getTfBCode().getText().charAt(0) + "");
 		Coden coden = CodenService.getInstance().selectOne(param);
 		String author = pAuthor.getTFValue();
 		PublisherInfo publisherInfo = (PublisherInfo) pPublisher.getCombItem();
 		int price = (int) pPrice.getValue();
 		return new BookInfo(bCode, bSubCode, coden, bName, author, publisherInfo, price);
 	}
-	
-	public void setObject(BookInfo bookInfo){
+
+	public void setObject(BookInfo bookInfo) {
 		pBCode.setTfBCode(bookInfo.getbCode());
 		pBCode.setTfBSubCode(bookInfo.getbSubCode());
 		pBName.setTFValue(bookInfo.getbName());
 		pAuthor.setTFValue(bookInfo.getAuthor());
 		pPrice.setValue(bookInfo.getPrice());
 		pPublisher.setSelectedTT(bookInfo.getPublisherInfo());
-		tfAddPublisher.setText("");
+		if (tfAddPublisher != null) {
+			tfAddPublisher.setText("");
+		}
 	}
 
 	public ComboBoxPanel getpPublisher() {

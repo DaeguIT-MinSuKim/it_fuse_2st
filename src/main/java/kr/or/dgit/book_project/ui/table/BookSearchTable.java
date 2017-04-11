@@ -18,8 +18,6 @@ public class BookSearchTable extends AbsTable<BookInfo> {
 
 	private JPopupMenu popupMenu;
 
-
-
 	@Override
 	protected void cellWith() {
 		// return new String[] { "도서코드","도서중복코드","도서명","저자","출판사","가격","총대여
@@ -30,7 +28,7 @@ public class BookSearchTable extends AbsTable<BookInfo> {
 
 	@Override
 	protected void CellAlign() {
-		tableCellAlignment(SwingConstants.CENTER, 0,1,2,3,4,5,6);
+		tableCellAlignment(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6);
 
 	}
 
@@ -67,7 +65,7 @@ public class BookSearchTable extends AbsTable<BookInfo> {
 		PublisherInfo publisherInfo = new PublisherInfo();
 		publisherInfo.setpCode(pCode);
 		publisherInfo.setPublisher(publisher);
-		int price = (int) table.getValueAt(selectedIdx, 5);
+		int price = Integer.valueOf(((String) table.getValueAt(selectedIdx, 5)).replaceAll(",", ""));
 		int bLendCount = (int) table.getValueAt(selectedIdx, 6);
 		return new BookInfo(bCode, bSubCode, bName, author, publisherInfo, price, bLendCount);
 	}

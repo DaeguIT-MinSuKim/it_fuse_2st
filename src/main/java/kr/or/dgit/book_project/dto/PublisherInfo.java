@@ -71,7 +71,7 @@ public class PublisherInfo {
 
 	@Override
 	public String toString() {
-		return String.format("%s(%s)", publisher, pCode);
+		return pCode == null ? "--출판사추가--" : String.format("%s(%s)", publisher, pCode);
 	}
 
 	public Object[] toArrayForPublisherList() {
