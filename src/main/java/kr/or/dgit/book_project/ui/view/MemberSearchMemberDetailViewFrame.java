@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.event.ActionEvent;
 
-public class MemberSearchMemberDetailViewFrame extends InformDetailPanel implements ActionListener {
+public class MemberSearchMemberDetailViewFrame extends InformDetailPanel {
 
 	private MemberInfoP memberInfoP;
 	private MemberInfoSearchTable pTable;
@@ -25,8 +25,8 @@ public class MemberSearchMemberDetailViewFrame extends InformDetailPanel impleme
 	private JFrame jf;
 
 	public MemberSearchMemberDetailViewFrame() {
-		getBtnDel().addActionListener(this);
-		getBtnModify().addActionListener(this);
+//		getBtnDel().addActionListener(this);
+//		getBtnModify().addActionListener(this);
 		getBtnDel().setText("삭제");
 		lblTitle.setText("- 회원정보 -");
 
@@ -39,16 +39,16 @@ public class MemberSearchMemberDetailViewFrame extends InformDetailPanel impleme
 		return memberInfoP;
 	}
 
-	public void actionPerformed(ActionEvent e) {
+	/*public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == getBtnDel()) {
 			actionPerformedThisBtnDel(e);
 		}
 		if (e.getSource() == getBtnModify()) {
 			actionPerformedThisBtnModify(e);
 		}
-	}
+	}*/
 
-	protected void actionPerformedThisBtnModify(ActionEvent e) {
+	/*protected void actionPerformedThisBtnModify(ActionEvent e) {
 
 		Map<String, Object> param = new HashMap<>();
 		MemberInfoService.getInstance().updateMemberInfo(getPanel().getObject());// 해당 회원의 정보를 수정 후, 수정 버튼 누르면 끝. 데이터가 바뀌는지 확인하기
@@ -58,9 +58,9 @@ public class MemberSearchMemberDetailViewFrame extends InformDetailPanel impleme
 
 		JOptionPane.showMessageDialog(null, "수정되었습니다.");
 		jf.setVisible(false);
-	}
+	}*/
 
-	protected void actionPerformedThisBtnDel(ActionEvent e) {
+	/*protected void actionPerformedThisBtnDel(ActionEvent e) {
 		
 			int res = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까?", "", JOptionPane.YES_NO_OPTION);
 			if (res != 0) {
@@ -76,7 +76,7 @@ public class MemberSearchMemberDetailViewFrame extends InformDetailPanel impleme
 				pTable.loadData();
 				jf.setVisible(false);
 			}
-	}
+	}*/
 
 	public void setpTable(MemberInfoSearchTable pTable) {
 		this.pTable = pTable;

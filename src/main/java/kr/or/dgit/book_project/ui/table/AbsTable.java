@@ -86,12 +86,6 @@ public abstract class AbsTable<T> extends JPanel {
 		this.map = map;
 	}
 
-	protected abstract void createPopupMenu();
-
-	protected abstract void updateData(T t);
-
-	protected abstract void deleteItem(T t);
-
 	protected abstract void cellWith();
 
 	protected abstract void CellAlign();

@@ -14,23 +14,7 @@ public class BookLendTable extends AbsTable<BookInfo> {
 	public BookLendTable() {
 	}
 
-	@Override
-	protected void createPopupMenu() {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	protected void updateData(BookInfo bookinfo) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void deleteItem(BookInfo bookinfo) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	protected void cellWith() {

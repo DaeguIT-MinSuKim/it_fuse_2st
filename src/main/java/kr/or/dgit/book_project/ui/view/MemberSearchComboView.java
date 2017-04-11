@@ -184,9 +184,47 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 																				// Detail에
 																				// 정보
 																				// 심기
+								memberDetail.getBtnModify().addActionListener(new ActionListener() {
+									
+									@Override
+									public void actionPerformed(ActionEvent e) {
+										Map<String, Object> param = new HashMap<>();
+										MemberInfoService.getInstance().updateMemberInfo(memberDetail.getPanel().getObject());// 해당 회원의 정보를 수정 후, 수정 버튼 누르면 끝. 데이터가 바뀌는지 확인하기
+										pTable.setMap(param);
+										// System.out.println("pTable 넘어왔니 여기는 멤버서치 : " + pTable);
+										pTable.loadData();
+
+										JOptionPane.showMessageDialog(null, "수정되었습니다.");
+										jf.setVisible(false);
+										
+									}
+								});
+								memberDetail.getBtnDel().addActionListener(new ActionListener() {
+									
+									@Override
+									public void actionPerformed(ActionEvent e) {
+										int res = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까?", "", JOptionPane.YES_NO_OPTION);
+										if (res != 0) {
+											JOptionPane.showMessageDialog(null, "취소하였습니다.");
+											return;
+										} else {
+											
+											MemberInfoService.getInstance().delMemberInfo(memberDetail.getPanel().getObject());
+											JOptionPane.showMessageDialog(null, "삭제하였습니다.");
+											Map<String, Object> param = new HashMap<>();
+											// param.put("isSecsn", false);
+											pTable.setMap(param);
+											pTable.loadData();
+											jf.setVisible(false);
+										}
+										
+									}
+								});
+								
+								memberDetail.getPanel().setObject(memberinfo);	// getSelectObject로 찾아서 Detail에 정보 심기
 								memberDetail.getPanel().getpMCode().getTF().setEnabled(false);
 
-								jf.add(memberDetail);
+								jf.getContentPane().add(memberDetail);
 								jf.setBounds(300, 400, 600, 400);
 								jf.setVisible(true);
 							}
@@ -210,11 +248,17 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 																					// 새창
 																					// 띄우기
 								JFrame jf = new JFrame();
+
 								MemberSearchMemberPaymentViewFrame memberPayment = new MemberSearchMemberPaymentViewFrame();
 								memberPayment.loadTable(memberinfo); // loadTable....
 								jf.add(memberPayment);
 
-								jf.add(memberPayment);
+								/*MemberSearchMemberPaymentViewFrame memberPayment = new MemberSearchMemberPaymentViewFrame();	
+								memberPayment.loadTable(memberinfo);		//loadTable....
+								jf.getContentPane().add(memberPayment);*/
+
+
+								jf.getContentPane().add(memberPayment);
 								jf.setBounds(300, 400, 600, 400);
 								jf.setVisible(true);
 								memberPayment.setVisible(true);

@@ -39,7 +39,7 @@ public class PageSub extends JFrame implements ActionListener {
 	public PageSub() {
 		setTitle("도서관리프로그램");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(400, 200, 1000, 600);
+		setBounds(400, 200, 1100, 700);
 		
 
 		pSideBar = new SideBar();
