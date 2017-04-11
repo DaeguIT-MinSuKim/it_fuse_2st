@@ -80,7 +80,7 @@ public class PageSubForCgroup extends JFrame implements ActionListener, ChangeLi
 	public void setMemberInfo(MemberInfo memberInfo) {
 		// 로그인한 회원의 정보 받기
 		this.memberInfo = memberInfo;
-		lblNewLabel.setText("["+memberInfo.getmName()+ "] 님 접속중");
+		lblNewLabel.setText("[" + memberInfo.getmName() + "] 님 접속중");
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -157,20 +157,21 @@ public class PageSubForCgroup extends JFrame implements ActionListener, ChangeLi
 						// 현재 대여중인 도서가 0권이 아닐 시
 						JOptionPane.showMessageDialog(null, "도서 대여중에는 탈퇴하실 수 없습니다.");
 						return;
+					} else {
+						// 정말 탈퇴하시겠습니까?
+						int res = JOptionPane.showConfirmDialog(null, "탈퇴 하시겠습니까?\n탈퇴 시 해당 페이지가 종료됩니다.", "",
+								JOptionPane.YES_NO_OPTION);
+						if (res != 0) {
+							JOptionPane.showMessageDialog(null, "취소하였습니다");
+							return;
+						}
+						// 탈퇴시 프로그램이 종료됩니다?????? <-- ?? 어떻게 처리를 해야 할까요??
+						MemberInfoService.getInstance().delMemberInfo(memberInfoView.getPanel().getObject());
+						JOptionPane.showMessageDialog(null, "탈퇴가 완료되었습니다.\n프로그램을 종료합니다.");
+						memberInfo = null;
+						setVisible(false);
+						new PageLogin().setVisible(true);
 					}
-					// 정말 탈퇴하시겠습니까?
-					int res = JOptionPane.showConfirmDialog(null, "탈퇴 하시겠습니까?\n탈퇴 시 해당 페이지가 종료됩니다.", "",
-							JOptionPane.YES_NO_OPTION);
-					if (res != 0) {
-						JOptionPane.showMessageDialog(null, "취소하였습니다");
-						return;
-					}
-					// 탈퇴시 프로그램이 종료됩니다?????? <-- ?? 어떻게 처리를 해야 할까요??
-					MemberInfoService.getInstance().delMemberInfo(memberInfoView.getPanel().getObject());
-					JOptionPane.showMessageDialog(null, "탈퇴가 완료되었습니다.\n프로그램을 종료합니다.");
-					memberInfo = null;
-					setVisible(false);
-					new PageLogin().setVisible(true);
 				}
 			});
 			pMyInfo.add(memberInfoView);

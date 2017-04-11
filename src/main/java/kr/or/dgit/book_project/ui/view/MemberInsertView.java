@@ -105,16 +105,17 @@ public class MemberInsertView extends AbsViewPanel implements ActionListener {
 	// 우편번호 더블클릭 시, 주소 검색 창 오픈시켜야 함. (툴팁으로 힌트주기)
 
 	protected void actionPerformedBtnSave(ActionEvent e) {		// 회원등록
-
+		
 		if (memberInfoP.isVaildCheck()) { // 중복체크 해야함.....
-			memberInfoP.getObject();			
-			MemberInfoService.getInstance().insertMemberInfo(memberInfoP.getObject()); // 입력받은 회원 정보 입력하기
+			MemberInfo memberInfo = memberInfoP.getObject();			
+			MemberInfoService.getInstance().insertMemberInfo(memberInfo); // 입력받은 회원 정보 입력하기
 			JOptionPane.showMessageDialog(null, "회원으로 등록되었습니다.");
 			memberInfoP.setClear();
 			setMcodeAuto();
 
+			
 			Map<String, Object> param = new HashMap<>();
-			param.put("mCode", memberInfoP.getObject().getmCode());
+			param.put("mCode", memberInfo.getmCode());
 			pTable.setMap(param);
 			pTable.loadData();
 		}
@@ -128,7 +129,7 @@ public class MemberInsertView extends AbsViewPanel implements ActionListener {
 		MemberInfo memberInfoInit = new MemberInfo();
 		MemberInfo memberInfo = MemberInfoService.getInstance().insertMcodeAuto(memberInfoInit);
 		memberInfoP.getpMCode().setTFValue(memberInfo.getmCode());	
-		//memberInfoP.getpMCode().getTF().setEditable(false);
+		memberInfoP.getpMCode().getTF().setEditable(false);
 		memberInfoP.getpMName().getTF().requestFocus();			// 포커스 안된다.
 		
 		

@@ -67,4 +67,5 @@ public class MemberSearchMemberPaymentViewFrame extends PaymentDataDetail {
 		lblAllBook.setText(text2);
 	}
 
+
 }
