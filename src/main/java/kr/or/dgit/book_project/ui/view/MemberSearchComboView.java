@@ -225,6 +225,7 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 					MemberInfo mi = pTable.getSelectedObject();
 					MemberInfoService.getInstance().findMemberInfoByCode(mi);
 					// System.out.println("됫냐??");
+					
 					memberinfo.setmCode(memberinfo.getmCode());
 					booklendview.getpMemberlendDetail().getpMCode().setTFValue(memberinfo.getmCode());
 					JOptionPane.showMessageDialog(null, memberinfo.isPosbl());// 여기까지

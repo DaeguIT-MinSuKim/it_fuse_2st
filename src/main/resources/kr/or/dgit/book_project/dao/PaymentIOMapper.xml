@@ -61,7 +61,7 @@
 			</if>
 			<if test="returnNull != null">
 				and lend_date is not null
-				and return_date is null
+				and return_date is null 
 			</if>
 			<if test="no != null">
 				and io.no is not null
@@ -92,6 +92,7 @@
 		union
 		<include refid="selectRightSql" />
 		<include refid="whereSql" />
+		order by lend_date 
 	</select>
 
 	<!-- 이건 뭐여?? -->
