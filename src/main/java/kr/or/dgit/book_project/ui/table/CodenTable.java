@@ -20,19 +20,6 @@ public class CodenTable extends AbsTable<Coden> {
 		loadData();
 	}
 
-	@Override
-	protected void createPopupMenu() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	protected void updateData(Coden t) {
-	}
-
-	@Override
-	protected void deleteItem(Coden t) {
-	}
 
 	@Override
 	protected void cellWith() {

@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
+import javax.swing.SwingConstants;
 
 import kr.or.dgit.book_project.dto.BookInfo;
 import kr.or.dgit.book_project.dto.PublisherInfo;
@@ -17,21 +18,7 @@ public class BookSearchTable extends AbsTable<BookInfo> {
 
 	private JPopupMenu popupMenu;
 
-	@Override
-	protected void createPopupMenu() {
-	}
 
-	@Override
-	protected void updateData(BookInfo t) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	protected void deleteItem(BookInfo t) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	protected void cellWith() {
@@ -43,7 +30,7 @@ public class BookSearchTable extends AbsTable<BookInfo> {
 
 	@Override
 	protected void CellAlign() {
-		// tableCellAlignment(SwingConstants.CENTER, 0, 1);
+		tableCellAlignment(SwingConstants.CENTER, 0,1,2,3,4,5,6);
 
 	}
 

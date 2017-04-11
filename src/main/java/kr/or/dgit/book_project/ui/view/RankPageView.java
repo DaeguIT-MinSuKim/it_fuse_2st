@@ -27,35 +27,18 @@ public class RankPageView extends JPanel {
 
 	public RankPageView() {
 		setBorder(new EmptyBorder(20, 20, 20, 20));
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 410, 0 };
-		gridBagLayout.rowHeights = new int[] { 100, 400, 0 };
-		gridBagLayout.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
-		setLayout(gridBagLayout);
+		setLayout(new BorderLayout(0, 0));
 
 		panel2 = new JPanel();
-		GridBagConstraints gbc_panel2 = new GridBagConstraints();
-		gbc_panel2.weighty = 1.0;
-		gbc_panel2.weightx = 1.0;
-		gbc_panel2.fill = GridBagConstraints.BOTH;
-		gbc_panel2.insets = new Insets(0, 0, 5, 0);
-		gbc_panel2.gridx = 0;
-		gbc_panel2.gridy = 0;
-		add(panel2, gbc_panel2);
+		add(panel2, BorderLayout.NORTH);
 		panel2.setLayout(new BorderLayout(0, 0));
 
 		pCombo = new JPanel();
 		panel2.add(pCombo, BorderLayout.WEST);
+		pCombo.setLayout(new GridLayout(1, 0, 0, 0));
 
 		panel = new JPanel();
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.weighty = 1.0;
-		gbc_panel.weightx = 1.0;
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 1;
-		add(panel, gbc_panel);
+		add(panel);
 		panel.setLayout(new GridLayout(1, 0, 0, 0));
 
 		pMain = new JPanel();

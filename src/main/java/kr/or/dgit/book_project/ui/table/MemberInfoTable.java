@@ -24,23 +24,7 @@ public class MemberInfoTable extends AbsTable<MemberInfo> {
 	
 	public MemberInfoTable() { 	}	
 	
-	@Override
-	protected void createPopupMenu() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void updateData(MemberInfo t) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void deleteItem(MemberInfo t) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	protected void cellWith() {
