@@ -32,25 +32,25 @@ public class RankPage extends JPanel {
 		pRankNum.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JLabel lblRank = new JLabel("  " + rank + "  ");
-		lblRank.setFont(new Font("돋움", Font.BOLD, 60));
+		lblRank.setFont(new Font("돋움", Font.BOLD, 55));
 		pRankNum.add(lblRank);
 
 		JPanel pRankBook = new JPanel();
 		pRankBook.setBorder(new EmptyBorder(20, 20, 20, 20));
 		pRank.add(pRankBook);
-		pRankBook.setLayout(new GridLayout(0, 1, 5, 5));
+		pRankBook.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JLabel lblBookName = new JLabel(param.get("b_name") + String.format("( %s )", param.get("b_code")));
-		lblBookName.setFont(new Font("돋움", Font.PLAIN, 26));
+		lblBookName.setFont(new Font("돋움", Font.PLAIN, 22));
 		pRankBook.add(lblBookName);
 
 		JLabel lblAuthor = new JLabel((String) param.get("author"));
-		lblAuthor.setFont(new Font("돋움", Font.PLAIN, 18));
+		lblAuthor.setFont(new Font("돋움", Font.PLAIN, 16));
 		pRankBook.add(lblAuthor);
 
 		JLabel lblPub = new JLabel((String) param.get("publisher") + String.format("( %s )", param.get("p_code")));
 		lblPub.setForeground(Color.GRAY);
-		lblPub.setFont(new Font("돋움", Font.PLAIN, 16));
+		lblPub.setFont(new Font("돋움", Font.PLAIN, 14));
 		pRankBook.add(lblPub);
 
 		JLabel lblAllCnt = new JLabel(String.format(String.format("총 대여회수 : %s회", param.get("cnt"))));

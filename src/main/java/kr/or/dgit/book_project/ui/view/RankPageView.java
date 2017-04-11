@@ -49,13 +49,9 @@ public class RankPageView extends JPanel {
 
 	public void setRankInfo() {
 		List<HashMap<String, Object>> list = PaymentIOService.getInstance().showRank(param);
-		System.out.println(list);
-		RankPage rank1 = new RankPage(1, list.get(0));
-		pMain.add(rank1.setRankBookInfo());
-		RankPage rank2 = new RankPage(2, list.get(1));
-		pMain.add(rank2.setRankBookInfo());
-		RankPage rank3 = new RankPage(3, list.get(2));
-		pMain.add(rank3.setRankBookInfo());
+		for (int i = 0; i < list.size(); i++) {
+			pMain.add(new RankPage((i + 1), list.get(i)).setRankBookInfo());
+		}
 	}
 
 	public void setViewTitle(String viewTitle) {
