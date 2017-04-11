@@ -175,9 +175,9 @@ public class BookReturnView extends JPanel implements MouseListener {
 		//회원 누르는거
 		MemberSearchComboView msc = new MemberSearchComboView();
 		msc.setTableMap('C');
-		//msc.loadDate();
 		JFrame jf = new JFrame();
-		jf.setBounds(200, 200, 500, 500);
+		jf.setTitle("회원검색");
+		jf.setBounds(100, 130, 700, 600);
 		jf.getContentPane().add(msc);
 		jf.setVisible(true);
 	}

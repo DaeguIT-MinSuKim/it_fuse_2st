@@ -129,7 +129,8 @@ public class BookLendView extends JPanel implements ActionListener {
 		msc.setTableMap('C');
 		JFrame jf = new JFrame();
 		msc.setMyMouseListener(this, jf);
-		jf.setBounds(100, 100, 400, 500);
+		jf.setBounds(100, 130, 700, 600);
+		jf.setTitle("회원검색");
 		jf.getContentPane().add(msc);
 		jf.setVisible(true);
 	}

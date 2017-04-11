@@ -9,6 +9,7 @@ import kr.or.dgit.book_project.dto.MemberInfo;
 import kr.or.dgit.book_project.ui.common.InputComp;
 import javax.swing.SwingConstants;
 import java.awt.Color;
+import kr.or.dgit.book_project.ui.common.BasicPanel;
 
 public class BookLendMemberDetail extends JPanel {
 
@@ -16,6 +17,7 @@ public class BookLendMemberDetail extends JPanel {
 	private InputComp pMCode;
 	private InputComp pMName;
 	private InputComp pMTel;
+	private BasicPanel panel;
 
 	/**
 	 * Create the panel.
@@ -27,10 +29,12 @@ public class BookLendMemberDetail extends JPanel {
 		add(pMCode);
 		pMCode.setTitle("회원코드");
 		
+		panel = new BasicPanel();
+		add(panel);
+		
 		lblMsg = new JLabel();
-		//lblMsg.setForeground(Color.RED);
-		lblMsg.setHorizontalAlignment(SwingConstants.CENTER);
-		add(lblMsg);
+		panel.getpContent().add(lblMsg);
+		lblMsg.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		pMName = new InputComp();
 		add(pMName);

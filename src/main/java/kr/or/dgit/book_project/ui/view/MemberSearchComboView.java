@@ -281,43 +281,12 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
-					// 회원 검색시 회원 정보 넣기 더블클릭 , 일딴은 올리는데 내부분에서 잠시 수정해야됨
-					// MemberInfo memberinfo = pTable.getSelectedObject();
-					// JOptionPane.showMessageDialog(null,
-					// memberinfo.toArrayForMemberList());
-					// 회원 프로시저 넣음
-					// MemberInfo mi = pMemberlendDetail.getObject();
-					// JOptionPane.showMessageDialog(null,
-					// memberinfo.toArrayForMemberList());
-
-					// 회원 대여가능여부 판단 프로시저 넣음
 					MemberInfo mi = pTable.getSelectedObject();
 					Map<String, Object> param = new HashMap<>();
 					param.put("m_code", mi.getmCode());
 					MemberInfoService.getInstance().callMemberInfo(param);
-
 					MemberInfo updateMember = MemberInfoService.getInstance().findMemberInfoByCode(mi);
-					// System.out.println("됫냐??");
-
-					// memberinfo.setmCode(memberinfo.getmCode());
 					booklendview.getpMemberlendDetail().getpMCode().setTFValue(updateMember.getmCode());
-					// JOptionPane.showMessageDialog(null,
-					// memberinfo.isPosbl());// 여기까지
-					// 넘어가는데....
-					/*if (updateMember.isPosbl()) {
-						booklendview.getpMemberlendDetail().getpMName().setTFValue(updateMember.getmName());
-						booklendview.getpMemberlendDetail().getpMTel().setTFValue(updateMember.getmTel());
-*/
-						// 프로시저 실행하고 업데이트된 정보 새로 받아옴
-						// MemberInfo updateMember =
-						// MemberInfoService.getInstance().findMemberInfoByCode(memberinfo);
-						//System.out.println("됫냐??");
-						//System.out.println(updateMember);
-						// memberinfo.setmCode(updateMember.getmCode());
-						//booklendview.getpMemberlendDetail().clear();
-						// booklendview.getpMemberlendDetail().getpMCode().setTFValue(updateMember.getmCode());
-						// JOptionPane.showMessageDialog(null,
-						// memberinfo.isPosbl());//여기까지 넘어가는데....
 						if (updateMember.isPosbl()) {
 							booklendview.getpMemberlendDetail().clear();
 							booklendview.getpMemberlendDetail().getpMCode().setTFValue(updateMember.getmCode());
@@ -329,8 +298,17 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 						} else {
 							booklendview.getpMemberlendDetail().clear();
 							booklendview.getpMemberlendDetail().getpMCode().setTFValue(updateMember.getmCode());
-							booklendview.getpMemberlendDetail().getLblMsg().setText("대여불가");
-							booklendview.getpMemberlendDetail().getLblMsg().setForeground(Color.RED);
+							if(updateMember.getBlackDate() != null){
+								booklendview.getpMemberlendDetail().getLblMsg().setText("도서 대여 불가 : " + updateMember.getBlackDate()+"까지 금지");
+								booklendview.getpMemberlendDetail().getLblMsg().setForeground(Color.RED);
+							}else if (updateMember.getmNowCount() == 5){
+								booklendview.getpMemberlendDetail().getLblMsg().setText("도서 대여 불가 : 대여권수초과");
+								booklendview.getpMemberlendDetail().getLblMsg().setForeground(Color.RED);
+							}else{
+								booklendview.getpMemberlendDetail().getLblMsg().setText("도서 대여 불가 : 연체도서가 있습니다");
+								booklendview.getpMemberlendDetail().getLblMsg().setForeground(Color.RED);
+							}
+							
 						}
 						myFrame.setVisible(false);
 					}
