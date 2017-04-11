@@ -134,9 +134,6 @@
 		where b_code = #{bCode} and b_sub_code = #{bSubCode}
 	</update>
 
-
-
-
 	<select id="selectAllBookInfo" parameterType="hashmap"
 		resultMap="BookInfoResult">
 		<include refid="selectLeftSql" />
@@ -145,8 +142,6 @@
 		<include refid="selectRightSql" />
 		<include refid="whereSql" />
 	</select>
-
-
 
 	<select id="selectIslending" parameterType="hashmap" resultMap="BookInfoResult">
 		<include refid="selectLeftSql" />
