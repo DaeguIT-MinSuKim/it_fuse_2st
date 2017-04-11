@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.book_prject.chart.BookCodenSave;
+import kr.or.dgit.book_prject.chart.TestChart;
 
 public class ViewTest extends JFrame {
 
