@@ -174,7 +174,8 @@ public class BookReturnView extends JPanel implements MouseListener {
 	protected void mousePressedPMemberDetailPMCodeTF(MouseEvent arg0) {
 		//회원 누르는거
 		MemberSearchComboView msc = new MemberSearchComboView();
-		msc.loadDate();
+		msc.setTableMap('C');
+		//msc.loadDate();
 		JFrame jf = new JFrame();
 		jf.setBounds(200, 200, 500, 500);
 		jf.getContentPane().add(msc);
