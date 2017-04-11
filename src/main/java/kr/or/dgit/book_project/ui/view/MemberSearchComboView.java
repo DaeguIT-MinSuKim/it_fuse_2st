@@ -78,10 +78,9 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 		panel_2.add(pSearch, gbc_pSearch);
 
 		pTable = new MemberInfoSearchTable();
-		map = new HashMap<>();
-		map.put("mGroup", 'C');
-		pTable.setParam(map);
-		pTable.loadData();
+		
+		
+		
 		gbc_pTable.fill = GridBagConstraints.BOTH;
 		gbc_pTable.gridx = 0;
 		gbc_pTable.gridy = 1;
@@ -93,6 +92,16 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 		gbc_pTable_1.fill = GridBagConstraints.BOTH;
 		gbc_pTable_1.gridx = 0;
 		gbc_pTable_1.gridy = 1;
+	}
+	
+	
+	public void setTableMap(char mGruop) {
+		map = new HashMap<>();
+		map.put("mGroup", mGruop);
+		map.put("isSecsn", false);
+		pTable.setParam(map);
+		pTable.loadData();
+		
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -150,8 +159,10 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 
 								MemberInfo memberinfo = pTable.getSelectedObject(); // 회원 선택해서 그 해당 회원정보를 가진 새창 띄우기								
 								JFrame jf = new JFrame();
-
-								MemberSearchMemberDetailViewFrame memberDetail = new MemberSearchMemberDetailViewFrame();								
+								//System.out.println("멤버서치뷰 테이블 : " +pTable );
+								MemberSearchMemberDetailViewFrame memberDetail = new MemberSearchMemberDetailViewFrame();	
+								memberDetail.setpTable(pTable);
+								memberDetail.setJf(jf);
 								memberDetail.getPanel().setObject(memberinfo);	// getSelectObject로 찾아서 Detail에 정보 심기
 								memberDetail.getPanel().getpMCode().getTF().setEnabled(false);
 
@@ -172,8 +183,7 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 
 								MemberInfo memberinfo = pTable.getSelectedObject(); // 회원 선택해서 그 해당 회원의 대여정보를 가진 새창 띄우기
 								JFrame jf = new JFrame();
-								MemberSearchMemberPaymentViewFrame memberPayment = new MemberSearchMemberPaymentViewFrame();								
-
+								MemberSearchMemberPaymentViewFrame memberPayment = new MemberSearchMemberPaymentViewFrame();	
 								memberPayment.loadTable(memberinfo);		//loadTable....
 								jf.add(memberPayment);
 

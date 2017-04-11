@@ -17,13 +17,14 @@ import java.awt.event.ActionEvent;
 
 public class MemberSearchMemberDetailViewFrame extends InformDetailPanel implements ActionListener {
 
-	private MemberInfoP memberInfoP;	
+	private MemberInfoP memberInfoP;
 	private MemberInfoSearchTable pTable;
 	private MemberInfo memberinfo;
 	private MemberSearchMemberDetailViewFrame memberInfoView;
 	private Map<String, Object> map;
+	private JFrame jf;
 
-	public MemberSearchMemberDetailViewFrame() {		
+	public MemberSearchMemberDetailViewFrame() {
 		getBtnDel().addActionListener(this);
 		getBtnModify().addActionListener(this);
 		getBtnDel().setText("삭제");
@@ -46,31 +47,43 @@ public class MemberSearchMemberDetailViewFrame extends InformDetailPanel impleme
 			actionPerformedThisBtnModify(e);
 		}
 	}
+
 	protected void actionPerformedThisBtnModify(ActionEvent e) {
-		
+
 		Map<String, Object> param = new HashMap<>();
-		MemberInfoService.getInstance().updateMemberInfo(getPanel().getObject());// 해당 회원의 정보를 수정 후, 수정 버튼 누르면 끝. 데이터가 바뀌는지 확인하기		
-		pTable.setParam(param);
+		MemberInfoService.getInstance().updateMemberInfo(getPanel().getObject());// 해당 회원의 정보를 수정 후, 수정 버튼 누르면 끝. 데이터가 바뀌는지 확인하기
+		pTable.setMap(param);
+		// System.out.println("pTable 넘어왔니 여기는 멤버서치 : " + pTable);
 		pTable.loadData();
-		
+
 		JOptionPane.showMessageDialog(null, "수정되었습니다.");
-		setVisible(false);
+		jf.setVisible(false);
 	}
 
 	protected void actionPerformedThisBtnDel(ActionEvent e) {
-
-		int res = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까?","", JOptionPane.YES_NO_OPTION);
-		if(res != 0){
-			JOptionPane.showMessageDialog(null, "취소하였습니다.");
-			return;
-		}else {
-			MemberInfoService.getInstance().delMemberInfo(memberInfoView.getPanel().getObject());
-			JOptionPane.showMessageDialog(null, "삭제하였습니다.");
-		}
+		
+			int res = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까?", "", JOptionPane.YES_NO_OPTION);
+			if (res != 0) {
+				JOptionPane.showMessageDialog(null, "취소하였습니다.");
+				return;
+			} else {
+				
+				MemberInfoService.getInstance().delMemberInfo(getPanel().getObject());
+				JOptionPane.showMessageDialog(null, "삭제하였습니다.");
+				Map<String, Object> param = new HashMap<>();
+				// param.put("isSecsn", false);
+				pTable.setMap(param);
+				pTable.loadData();
+				jf.setVisible(false);
+			}
 	}
 
+	public void setpTable(MemberInfoSearchTable pTable) {
+		this.pTable = pTable;
+	}
 
-
+	public void setJf(JFrame jf) {
+		this.jf = jf;
+	}
 
 }
-

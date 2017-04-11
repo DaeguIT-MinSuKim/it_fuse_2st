@@ -34,7 +34,7 @@
 	<sql id ="whereSql2">		<!-- 그룹 별 회원 출력 -->
 		<where>
 			<if test="mCode != null">
-				m_code=#{mCode}
+				m_code = #{mCode}
 			</if>
 			<if test="mName != null">
 				and m_name like #{mName}
@@ -44,6 +44,9 @@
 			</if>
 			<if test="mGroup != null">
 				and m_group like #{mGroup}
+			</if>
+			<if test="isSecsn != null">
+				and is_secsn = #{isSecsn}
 			</if>
 		</where>
 	</sql>
