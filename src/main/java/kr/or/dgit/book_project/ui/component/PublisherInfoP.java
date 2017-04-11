@@ -132,8 +132,8 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		String publisher = pPublisher.getTFValue();
 		String pName = pPName.getTFValue();
 		String pTel = pPTel.getTFValue();
-		Integer pZipCode = Integer.parseInt(pPZipCode.getTFValue());
-		/*String pZipCode = pPZipCode.getTFValue();*/
+		//Integer pZipCode = Integer.parseInt(pPZipCode.getTFValue());
+		String pZipCode = pPZipCode.getTFValue();
 		String pAddress = pPAddress.getTFValue();
 		return new PublisherInfo(pCode, publisher, pName, pTel, pZipCode, pAddress);
 	}
@@ -143,7 +143,8 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		pPublisher.setTFValue(pubItem.getPublisher());
 		pPName.setTFValue(pubItem.getpName());
 		pPTel.setTFValue(pubItem.getpTel());
-		pPZipCode.setTFValue(String.valueOf(pubItem.getpZipCode()));
+		//pPZipCode.setTFValue(String.valueOf(pubItem.getpZipCode()));
+		pPZipCode.setTFValue(pubItem.getpZipCode());
 		pPAddress.setTFValue(pubItem.getpAddress());
 
 	}

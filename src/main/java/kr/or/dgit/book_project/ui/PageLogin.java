@@ -1,13 +1,18 @@
 package kr.or.dgit.book_project.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,10 +27,7 @@ import kr.or.dgit.book_project.dto.MemberInfo;
 import kr.or.dgit.book_project.service.MemberInfoService;
 import kr.or.dgit.book_project.ui.common.InputComp;
 import kr.or.dgit.book_project.ui.common.PasswordPanel;
-import kr.or.dgit.book_project.ui.view.MemberSearchMemberDetailViewFrame;
-import kr.or.dgit.book_project.ui.view.tableTestView;
-import java.awt.event.KeyListener;
-import java.awt.event.KeyEvent;
+import kr.or.dgit.book_project.ui.view.SearchForID;
 
 public class PageLogin extends JFrame implements ActionListener {
 
@@ -35,6 +37,7 @@ public class PageLogin extends JFrame implements ActionListener {
 	private JButton btnEnter;
 	private InputComp pID;
 	private PasswordPanel pPW;
+	private JButton btnPWSearch;
 
 	public static void main(String[] args) {
 		try {
@@ -59,6 +62,7 @@ public class PageLogin extends JFrame implements ActionListener {
 	}
 
 	public PageLogin() {
+		setBackground(Color.WHITE);
 		setTitle("로그인");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 500, 400);
@@ -78,24 +82,46 @@ public class PageLogin extends JFrame implements ActionListener {
 		contentPane.add(pImage);
 
 		JPanel pLogin = new JPanel();
-		pLogin.setBorder(new EmptyBorder(40, 10, 40, 10));
+		pLogin.setBorder(new EmptyBorder(10, 10, 10, 10));
 		contentPane.add(pLogin);
-		pLogin.setLayout(new BorderLayout(20, 20));
+		pLogin.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JPanel pLoginInsert = new JPanel();
 		pLogin.add(pLoginInsert);
-		pLoginInsert.setLayout(new GridLayout(0, 1, 0, 20));
+		GridBagLayout gbl_pLoginInsert = new GridBagLayout();
+		gbl_pLoginInsert.columnWidths = new int[] { 380, 120, 0 };
+		gbl_pLoginInsert.rowHeights = new int[] { 80, 0 };
+		gbl_pLoginInsert.columnWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
+		gbl_pLoginInsert.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
+		pLoginInsert.setLayout(gbl_pLoginInsert);
+
+		JPanel panel_1 = new JPanel();
+		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
+		gbc_panel_1.weighty = 1.0;
+		gbc_panel_1.weightx = 1.0;
+		gbc_panel_1.fill = GridBagConstraints.BOTH;
+		gbc_panel_1.insets = new Insets(0, 0, 0, 5);
+		gbc_panel_1.gridx = 0;
+		gbc_panel_1.gridy = 0;
+		pLoginInsert.add(panel_1, gbc_panel_1);
+		panel_1.setLayout(new GridLayout(0, 1, 0, 5));
 
 		pID = new InputComp();
+		panel_1.add(pID);
 		pID.setTitle("회원코드");
-		pLoginInsert.add(pID);
 
 		pPW = new PasswordPanel();
+		panel_1.add(pPW);
 		pPW.setTitle("비밀번호");
-		pLoginInsert.add(pPW);
 
 		JPanel panel_3 = new JPanel();
-		pLogin.add(panel_3, BorderLayout.EAST);
+		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
+		gbc_panel_3.weighty = 1.0;
+		gbc_panel_3.weightx = 1.0;
+		gbc_panel_3.fill = GridBagConstraints.BOTH;
+		gbc_panel_3.gridx = 1;
+		gbc_panel_3.gridy = 0;
+		pLoginInsert.add(panel_3, gbc_panel_3);
 		panel_3.setLayout(new GridLayout(0, 1, 0, 0));
 
 		btnEnter = new JButton("로그인");
@@ -114,6 +140,15 @@ public class PageLogin extends JFrame implements ActionListener {
 		btnEnter.addActionListener(this);
 		panel_3.add(btnEnter);
 
+		JPanel panel = new JPanel();
+		panel.setBorder(new EmptyBorder(20, 50, 20, 50));
+		pLogin.add(panel);
+		panel.setLayout(new GridLayout(0, 1, 10, 0));
+
+		btnPWSearch = new JButton("회원코드 / 비밀번호 찾기");
+		btnPWSearch.addActionListener(this);
+		panel.add(btnPWSearch);
+
 	}
 
 	private void appearInTheCenter() {
@@ -123,6 +158,9 @@ public class PageLogin extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnPWSearch) {
+			actionPerformedBtnPWSearch(e);
+		}
 		if (e.getSource() == btnEnter) {
 			actionPerformedBtnEnter(e);
 		}
@@ -184,5 +222,11 @@ public class PageLogin extends JFrame implements ActionListener {
 		default:
 			break;
 		}
+	}
+
+	protected void actionPerformedBtnPWSearch(ActionEvent e) {
+		// 회원코드 찾기 / 비밀번호 재발급
+		SearchForID searchForID = new SearchForID();
+		searchForID.setVisible(true);
 	}
 }
