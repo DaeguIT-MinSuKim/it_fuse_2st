@@ -130,9 +130,22 @@ public class MemberInsertView extends AbsViewPanel implements ActionListener {
 		MemberInfo memberInfo = MemberInfoService.getInstance().insertMcodeAuto(memberInfoInit);
 		memberInfoP.getpMCode().setTFValue(memberInfo.getmCode());	
 		memberInfoP.getpMCode().getTF().setEditable(false);
-		memberInfoP.getpMName().getTF().requestFocus();			// 포커스 안된다.
-		
-		
+		memberInfoP.getpMName().getTF().requestFocus();			// 포커스 안된다.		
+	}
+	
+	public void setManageCodeAuto() { // 직원코드 자동으로 넣어주기
+		MemberInfo memberInfoInit = new MemberInfo();
+		MemberInfo memberInfo = MemberInfoService.getInstance().insertManageCodeAuto(memberInfoInit);
+		memberInfoP.getpMCode().setTFValue(memberInfo.getmCode());	
+		memberInfoP.getpMCode().getTF().setEditable(false);
+		memberInfoP.getpMName().getTF().requestFocus();			// 포커스 안된다.		
+	}
+	
+	
+
+	public MemberInfoP getMemberInfoP() {
+		return memberInfoP;
 	}	
+	
 
 }

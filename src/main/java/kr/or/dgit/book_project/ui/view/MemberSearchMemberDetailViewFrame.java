@@ -12,6 +12,7 @@ import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 
 import java.awt.event.ActionEvent;
 
@@ -38,6 +39,7 @@ public class MemberSearchMemberDetailViewFrame extends InformDetailPanel {
 	public MemberInfoP getPanel() {
 		return memberInfoP;
 	}
+	
 
 	/*public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == getBtnDel()) {
@@ -85,5 +87,10 @@ public class MemberSearchMemberDetailViewFrame extends InformDetailPanel {
 	public void setJf(JFrame jf) {
 		this.jf = jf;
 	}
+	
+	
+	
+		
+		
 
 }

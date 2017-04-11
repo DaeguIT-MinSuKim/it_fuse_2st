@@ -51,6 +51,29 @@ public class MemberInfoService {
 			return memberInfo;
 		}		
 	}
+	
+	
+	public MemberInfo insertManageCodeAuto(MemberInfo memberInfo){
+		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
+			MemberInfoMapper memberInfoMapper = new MemberInfoMapperImpl(sqlSession);
+			memberInfo.setmGroup('B');
+			int memberCnt = selectCountAll(memberInfo);	
+			System.out.println(memberCnt);
+			
+			/*Map<String, Object> map = new HashMap<>();
+			map.put("mGroup", "C");*/
+			String mCode = String.format("B%03d", memberCnt+1);
+			memberInfo.setmCode(mCode);
+	/*		int res = memberInfoMapper.insertMcodeAuto(memberInfo);
+			sqlSession.commit();*/
+			return memberInfo;
+		}		
+	}
+	
+	
+	
+	
+	
 
 	public int insertMemberInfo(MemberInfo memberInfo) {
 		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {

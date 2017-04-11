@@ -94,6 +94,8 @@ public class SubMenuPage1 extends JTabbedPane implements ChangeListener {
 				pManager.removeAll();
 			}
 			memberInsertViewEmp = new MemberInsertView();
+			memberInsertViewEmp.getMemberInfoP().getpMCode().setTitle("직원코드");
+			memberInsertViewEmp.setManageCodeAuto(); // 직원코드 번호 자동 카운팅
 			pManager.add(memberInsertViewEmp);
 		} else if (this.getTitleAt(idx).equals("직원관리")) {
 			pManagerManage.setLayout(new GridLayout(1, 0, 0, 0));
