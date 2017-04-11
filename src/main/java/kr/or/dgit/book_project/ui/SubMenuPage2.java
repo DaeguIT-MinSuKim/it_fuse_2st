@@ -44,12 +44,7 @@ public class SubMenuPage2 extends JTabbedPane implements ChangeListener {
 
 		pPaymentUpdate = new JPanel();
 		add("반납관리", pPaymentUpdate);
-		pPaymentUpdate.setLayout(new GridLayout(0, 1, 0, 0));
-		if( bRetrunView != null){
-			pPaymentUpdate.removeAll();
-		}
-		bRetrunView = new BookReturnView();
-		pPaymentUpdate.add(bRetrunView);
+		
 
 	}
 
@@ -62,9 +57,12 @@ public class SubMenuPage2 extends JTabbedPane implements ChangeListener {
 	}
 
 	private void stateChangedThis(int idx) {
-		if (this.getTitleAt(idx).equals("반납관리") && bRetrunView == null) {
+		if (this.getTitleAt(idx).equals("반납관리")) {
 			// 선택된 탭의 제목에 따라서 조건 지정
 			pPaymentUpdate.setLayout(new GridLayout(0, 1, 0, 0));
+			if( bRetrunView != null){
+				pPaymentUpdate.removeAll();
+			}
 			bRetrunView = new BookReturnView();
 			pPaymentUpdate.add(bRetrunView);
 		}

@@ -22,24 +22,7 @@ public class MemberPaymentIOInfoTable extends AbsTable<PaymentIO> {
 
 	}
 
-	@Override
-	protected void createPopupMenu() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	protected void updateData(PaymentIO t) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	protected void deleteItem(PaymentIO t) {
-		// TODO Auto-generated method stub
-
-	}
-
+	
 	@Override
 	protected void cellWith() {
 		// TODO Auto-generated method stub

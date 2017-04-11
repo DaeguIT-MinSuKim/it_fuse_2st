@@ -70,7 +70,7 @@ public class PageLogin extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 
-		String path = "icon/bookImage.png";
+		String path = "icon/book-20-240.png";
 		JPanel pImage = new JPanel(new BorderLayout());
 		JLabel label = new JLabel(new ImageIcon(path));
 		label.setHorizontalAlignment(JLabel.CENTER);

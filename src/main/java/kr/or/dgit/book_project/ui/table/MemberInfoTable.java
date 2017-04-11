@@ -16,31 +16,15 @@ import kr.or.dgit.book_project.service.PaymentIOService;
 
 public class MemberInfoTable extends AbsTable<MemberInfo> {
 
-	private Map<String, Object> param;
+	/*private Map<String, Object> param;
 	public void setParam(Map<String, Object> param) {
 		this.param = param;
-	}
+	}*/
 	
 	
 	public MemberInfoTable() { 	}	
 	
-	@Override
-	protected void createPopupMenu() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void updateData(MemberInfo t) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void deleteItem(MemberInfo t) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	protected void cellWith() {
@@ -55,7 +39,7 @@ public class MemberInfoTable extends AbsTable<MemberInfo> {
 
 	@Override
 	protected Object[][] getRowData() {		
-		List<MemberInfo> list = MemberInfoService.getInstance().selectMemberByAll(param);// 회원 목록 검색해서 출력		
+		List<MemberInfo> list = MemberInfoService.getInstance().selectMemberByAll(map);// 회원 목록 검색해서 출력		
 		
 		Object[][] datas = new Object[list.size()][];
 		for(int i=0; i<datas.length; i++){

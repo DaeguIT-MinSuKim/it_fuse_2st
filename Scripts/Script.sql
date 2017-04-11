@@ -225,7 +225,7 @@ INSERT INTO book_project.memberInfo (m_code, m_name, m_tel, m_zip_code, m_addres
 ('C008', '박형식', '010-1234-9999',42429,'대구광역시 남구 이천로 51',false, password('5555'), 'C', false, 1, 3, 1, null),            -- 책 연체 중인 사람(일반)
 ('C009', 'Dan Stevens', '010-9876-1200',41590,'대구광역시 북구 옥산로 65',false, password('4444'), 'C', true, 2, 4, 2, null),               -- 곧 블랙.. 연체횟수 2번이나 연체중 아님
 ('C010', '원빈', '010-9876-5432',42424,'대구 남구 중앙대로 220 3층',false, password('8811'), 'C', false, 2, 6, 2, null),             -- 곧 블랙리스트 될 사람.. 연체횟수2번에 연체중인사람
-('C050', '원빈', '010-234-1234',42424,'대구 남구 중앙대로 220 3층',false, password('8811'), 'C', false, 3, 5, 0, '2017-03-23'), 	-- 현재 블랙리스트
+('C011', '원빈', '010-234-1234',42424,'대구 남구 중앙대로 220 3층',false, password('8811'), 'C', false, 3, 5, 0, '2017-03-23'), 	-- 현재 블랙리스트
 ('A001', '관리자', '010-234-1234',42424,'대구 남구 중앙대로 220 3층',false, password('admin'), 'A', false, 0, 0, 0, null), -- 관리자
 ('B001', '사서', '010-234-1234',42424,'대구 남구 중앙대로 220 3층',false, password('8811'), 'B', false, 0, 0, 0, null);      -- 사서
 UPDATE book_project.memberinfo SET is_secsn=true WHERE m_code='C006';
@@ -378,7 +378,7 @@ begin
 	
 	-- 연체발생시 대여불가설정
 	select datediff(current_date, DATE_ADD(lend_date, interval 2 day)) into datecnt from paymentio 
-	where return_date is null and m_code = _m_code;
+	where return_date is null and m_code = _m_code limit 0,1;
 	if datecnt > 0 then 
 	 	update memberinfo set is_posbl = false where m_code = _m_code;
 	end if;
@@ -429,5 +429,5 @@ call book_project.proc_memberinfo_is_posbl_update('C001');
 select*from book_project.paymentio;
 
 
-select datediff(current_date, DATE_ADD(lend_date, interval 2 day)) into @datecnt from paymentio 
-	where return_date is null and m_code = 'C001';
+select datediff(current_date, DATE_ADD(lend_date, interval 2 day)) from paymentio 
+	where return_date is null and m_code = 'C001' limit 0,1;

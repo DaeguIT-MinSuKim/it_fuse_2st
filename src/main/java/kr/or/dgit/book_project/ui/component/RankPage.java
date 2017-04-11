@@ -32,7 +32,7 @@ public class RankPage extends JPanel {
 		pRankNum.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JLabel lblRank = new JLabel("  " + rank + "  ");
-		lblRank.setFont(new Font("굴림", Font.BOLD, 60));
+		lblRank.setFont(new Font("돋움", Font.BOLD, 60));
 		pRankNum.add(lblRank);
 
 		JPanel pRankBook = new JPanel();
@@ -41,7 +41,7 @@ public class RankPage extends JPanel {
 		pRankBook.setLayout(new GridLayout(0, 1, 5, 5));
 
 		JLabel lblBookName = new JLabel(param.get("b_name") + String.format("( %s )", param.get("b_code")));
-		lblBookName.setFont(new Font("돋움", Font.PLAIN, 30));
+		lblBookName.setFont(new Font("돋움", Font.PLAIN, 26));
 		pRankBook.add(lblBookName);
 
 		JLabel lblAuthor = new JLabel((String) param.get("author"));

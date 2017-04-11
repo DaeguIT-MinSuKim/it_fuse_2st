@@ -145,7 +145,7 @@ public class BookInfo { // 도서
 	public Object[] toArray() {
 		// "도서코드","도서중복코드","도서명","저자","출판사","가격", "총대여 횟수"
 		return new Object[] { bCode, bSubCode, bName, author,
-				String.format("%s(%s)", publisherInfo.getPublisher(), publisherInfo.getpCode()), price, bLendCount };
+				String.format("%s(%s)", publisherInfo.getPublisher(), publisherInfo.getpCode()),price, bLendCount };
 	}
 	public Object[] toArrayForCgroup() {
 		// "도서코드","도서중복코드","도서명","저자","출판사","가격", "대여여부"
