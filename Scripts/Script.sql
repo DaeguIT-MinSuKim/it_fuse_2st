@@ -378,7 +378,7 @@ begin
 	
 	-- 연체발생시 대여불가설정
 	select datediff(current_date, DATE_ADD(lend_date, interval 2 day)) into datecnt from paymentio 
-	where return_date is null and m_code = _m_code;
+	where return_date is null and m_code = _m_code limit 0,1;
 	if datecnt > 0 then 
 	 	update memberinfo set is_posbl = false where m_code = _m_code;
 	end if;
@@ -429,5 +429,5 @@ call book_project.proc_memberinfo_is_posbl_update('C001');
 select*from book_project.paymentio;
 
 
-select datediff(current_date, DATE_ADD(lend_date, interval 2 day)) into @datecnt from paymentio 
-	where return_date is null and m_code = 'C001';
+select datediff(current_date, DATE_ADD(lend_date, interval 2 day)) from paymentio 
+	where return_date is null and m_code = 'C001' limit 0,1;

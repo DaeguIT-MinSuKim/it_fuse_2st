@@ -126,7 +126,7 @@ public class BookLendView extends JPanel implements ActionListener {
 	// 회원코드 누르면 관리뜨는거
 	protected void mousePressedPanel_4PMCodeTF(MouseEvent arg0) {
 		MemberSearchComboView msc = new MemberSearchComboView();
-		msc.loadDate();
+		msc.setTableMap('C');
 		JFrame jf = new JFrame();
 		msc.setMyMouseListener(this, jf);
 		jf.setBounds(100, 100, 400, 500);
@@ -134,23 +134,23 @@ public class BookLendView extends JPanel implements ActionListener {
 		jf.setVisible(true);
 	}
 
-	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnLend) {
 			btnLendActionPerformed(e);
 		}
 	}
-	//대여 버튼 (프로시저 실행)
+
+	// 대여 버튼 (프로시저 실행)
 	protected void btnLendActionPerformed(ActionEvent e) {
 		BookInfo bookinfo = pBookBasic.getObject();
 		MemberInfo memberinfo = pMemberlendDetail.getObject();
-	
+
 		Map<String, Object> param = new HashMap<>();
 		param.put("b_code", bookinfo.getbCode());
 		param.put("b_sub_code", bookinfo.getbSubCode());
 		param.put("m_code", memberinfo.getmCode());
 		PaymentIOService.getInstance().insertPaymentIO(param);
-		
+
 		blv4.loadData();
 		JOptionPane.showMessageDialog(null, "대여가 되었습니다");
 		pBookBasic.clear();
@@ -165,6 +165,4 @@ public class BookLendView extends JPanel implements ActionListener {
 		return pMemberlendDetail;
 	}
 
-	
-	
 }
