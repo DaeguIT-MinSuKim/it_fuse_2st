@@ -2,12 +2,12 @@ package kr.or.dgit.book_project.ui.component;
 
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.util.Map;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import kr.or.dgit.book_project.dto.MemberInfo;
+import kr.or.dgit.book_project.post.PostMain;
 import kr.or.dgit.book_project.ui.common.InputComp;
 
 public class MemberInfoP extends JPanel {
@@ -18,6 +18,7 @@ public class MemberInfoP extends JPanel {
 	private InputComp pMAddress;
 	private InputComp pMAddDetail;
 	private InputComp pMPass;
+	private PostMain post;
 
 	public MemberInfoP() {
 		setLayout(new GridLayout(0, 1, 0, 0));
@@ -75,10 +76,13 @@ public class MemberInfoP extends JPanel {
 		String mPass = pMPass.getTFValue();
 		String mTel  = pMTel.getTFValue();
 		//int mZipCode = Integer.parseInt(pMZipCode.getTFValue());
-		String mZipCode  = pMZipCode.getTFValue();
-		String mAddress = pMAddress.getTFValue();
-		char mGroup = mCode.charAt(0);
-		return new MemberInfo(mCode, mPass, mName, mTel, mZipCode, mAddress, mGroup);
+		//String mZipCode  = pMZipCode.getTFValue();
+		
+		String mZipCode  = post.getTfZip().getText();		
+		String mAddress = post.getTfAddr().getText();
+		String mAddDetail = post.getTfAddrDe().getText();		
+		char mGroup = mCode.charAt(0);		
+		return new MemberInfo(mCode, mPass, mName, mTel, mZipCode, mAddress, mAddDetail, mGroup);
 	}
 	
 	public void setObject(MemberInfo memberinfo){

@@ -16,7 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 public class PostMain extends JFrame implements ActionListener {
 
-	private JPanel contentPane;
+	protected JPanel contentPane;
 	protected JTextField tfZip;
 	protected JTextField tfAddr;
 	protected JTextField tfAddrDe;
@@ -118,7 +118,9 @@ public class PostMain extends JFrame implements ActionListener {
 		sb.append(tfZip.getText() + " ");
 		sb.append(tfAddr.getText() + " ");
 		sb.append(tfAddrDe.getText());
-		JOptionPane.showMessageDialog(null, sb);
+		
+		// 뜬 값을  memberInfo에 던져주기....=ㅅ=
+		
 	}
 
 	protected void actionPerformedBtnZipSear(ActionEvent e) {
@@ -127,6 +129,18 @@ public class PostMain extends JFrame implements ActionListener {
 		zipSearch.setMouseListener();
 		zipSearch.setVisible(true);
 	}
+
+	// 우편번호 값
+	public JTextField getTfZip() {
+		return tfZip;
+	}
 	
+	public JTextField getTfAddr() {
+		return tfAddr;
+	}
+
+	public JTextField getTfAddrDe() {
+		return tfAddrDe;
+	}
 
 }

@@ -31,6 +31,7 @@ public class MemberInsertView extends AbsViewPanel implements ActionListener{
 	private MemberInfoP memberInfoP;
 	private MemberInfoTable pTable;
 	private MemberInfoSearchTable memberInfoSesrchTable;
+	
 
 	public MemberInsertView() {
 		JPanel panel_5 = new JPanel();
@@ -109,7 +110,7 @@ public class MemberInsertView extends AbsViewPanel implements ActionListener{
 		}
 	}
 
-	// 우편번호 더블클릭 시, 주소 검색 창 오픈시켜야 함. (툴팁으로 힌트주기)
+	
 
 	protected void actionPerformedBtnSave(ActionEvent e) {		// 회원등록
 		

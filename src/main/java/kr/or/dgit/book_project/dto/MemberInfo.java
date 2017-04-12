@@ -7,6 +7,7 @@ public class MemberInfo {
 	private String mTel;		// 연락처
 	private String mZipCode;		// 우편번호
 	private String mAddress;	// 주소
+	private String mAddDetail;	// 상세주소
 	private boolean isPosbl; 	// 대여가능여부
 	private int delayCount;		// 연체횟수
 	private int mLendCount;		// 총 대여권수
@@ -23,8 +24,25 @@ public class MemberInfo {
 		super();
 		this.mCode = mCode;
 	}
-
 	
+	
+	
+	
+
+	public MemberInfo(String mCode, String mPass, String mName, String mTel, String mZipCode, String mAddress,
+			String mAddDetail, char mGroup) {
+		super();
+		this.mCode = mCode;
+		this.mPass = mPass;
+		this.mName = mName;
+		this.mTel = mTel;
+		this.mZipCode = mZipCode;
+		this.mAddress = mAddress;
+		this.mAddDetail = mAddDetail;
+		this.mGroup = mGroup;
+	}
+
+
 
 	public MemberInfo(String mCode, String mPass, String mName, String mTel, String mZipCode, String mAddress,
 			char mGroup) {
@@ -40,7 +58,6 @@ public class MemberInfo {
 	}
 
 
-
 	public MemberInfo(String mCode, String mName, String mTel, String mZipCode, String mAddress) {
 		this.mCode = mCode;
 		this.mName = mName;
@@ -49,16 +66,6 @@ public class MemberInfo {
 		this.mAddress = mAddress;
 	}
 	
-	public MemberInfo(String mCode, String mPass, String mName, String mTel, String mZipCode, String mAddress) {
-		this.mCode = mCode;
-		this.mPass = mPass;
-		this.mName = mName;
-		this.mTel = mTel;
-		this.mZipCode = mZipCode;
-		this.mAddress = mAddress;
-	}
-
-
 
 	public MemberInfo(String mCode, String mName, String mTel) {
 		super();
@@ -67,8 +74,19 @@ public class MemberInfo {
 		this.mTel = mTel;
 	}
 	
-	
-	
+
+	public MemberInfo(String mCode, String mPass, String mName, String mTel, String mZipCode, String mAddress,
+			String mAddDetail) {
+		super();
+		this.mCode = mCode;
+		this.mPass = mPass;
+		this.mName = mName;
+		this.mTel = mTel;
+		this.mZipCode = mZipCode;
+		this.mAddress = mAddress;
+		this.mAddDetail = mAddDetail;
+	}
+
 
 
 	public String getmCode() {
