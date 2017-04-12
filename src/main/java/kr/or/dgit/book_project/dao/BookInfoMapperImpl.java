@@ -74,4 +74,28 @@ public class BookInfoMapperImpl implements BookInfoMapper {
 		return sqlSession.selectOne(namespace + "selectOnlyBookInfo", bookInfo);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectAllCountBookInfo() {
+		log.debug("selectAllCountBookInfo()");
+		return sqlSession.selectList(namespace + "selectAllCountBookInfo");
+	}
+
+	@Override
+	public List<BookInfo> subCountBookInfo(int subBookSize) {
+		log.debug("subCountBookInfo()");
+		return sqlSession.selectList(namespace + "subCountBookInfo", subBookSize);
+	}
+
+	@Override
+	public List<BookInfo> blackCountBookInfo(int blackCountBookSize) {
+		log.debug("blackCountBookInfo()");
+		return sqlSession.selectList(namespace + "blackCountBookInfo", blackCountBookSize);
+	}
+
+	@Override
+	public List<BookInfo> lendCountBookInfo(int lendCountBookSize) {
+		log.debug("lendCountBookInfo()");
+		return sqlSession.selectList(namespace + "lendCountBookInfo", lendCountBookSize);
+	}
+
 }

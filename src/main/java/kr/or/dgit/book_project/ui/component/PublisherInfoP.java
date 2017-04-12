@@ -16,6 +16,7 @@ import java.awt.CardLayout;
 import javax.swing.BoxLayout;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
+import java.awt.GridBagLayout;
 
 @SuppressWarnings("serial")
 public class PublisherInfoP extends JPanel implements ActionListener {
@@ -26,10 +27,11 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 	private InputComp pPTel;
 	private InputComp pPZipCode;
 	private InputComp pPAddress;
+	private InputComp pPAddDetail;
 	private JPanel pBtn;
 	public JButton btnPubSave;
 	private JButton btnCancel;
-
+	
 	public PublisherInfoP() {
 		setLayout(new GridLayout(0, 1, 0, 0));
 
@@ -38,11 +40,14 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		panelPub.setLayout(new GridLayout(0, 1, 0, 5));
 
 		pPCode = new InputComp();
+		pPCode.getTF().setToolTipText("");
 		pPCode.setTitle("출판사코드");
 		pPCode.getTF().setEnabled(false);
+		
 		panelPub.add(pPCode);
 
 		pPublisher = new InputComp();
+		pPublisher.getTF().setToolTipText("");
 		pPublisher.setTitle("출 판 사 명");
 		panelPub.add(pPublisher);
 
@@ -61,6 +66,15 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		pPAddress = new InputComp();
 		pPAddress.setTitle("주         소");
 		panelPub.add(pPAddress);
+		
+		pPAddDetail = new InputComp();
+		/*GridBagLayout gbl_pAddDetail = (GridBagLayout) pAddDetail.getLayout();
+		gbl_pAddDetail.rowWeights = new double[]{0.0};
+		gbl_pAddDetail.rowHeights = new int[]{50};
+		gbl_pAddDetail.columnWeights = new double[]{0.0, 0.0};
+		gbl_pAddDetail.columnWidths = new int[]{100, 200};*/
+		pPAddDetail.setTitle("상 세 주 소");
+		panelPub.add(pPAddDetail);
 
 		pBtn = new JPanel();
 		panelPub.add(pBtn);
@@ -87,6 +101,8 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		pPTel.setTFValue("");
 		pPZipCode.setTFValue("");
 		pPAddress.setTFValue("");
+		pPAddDetail.setTFValue("");
+		
 	}
 
 	/*
@@ -121,7 +137,11 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 			JOptionPane.showMessageDialog(null, "주소를 입력해주세요");
 			pPAddress.getTF().requestFocus();
 			return false;
-		} else {
+		} else if (pPAddDetail.getTFValue().trim().equals("")) {
+			JOptionPane.showMessageDialog(null, "상세주소를 입력해주세요");
+			pPAddDetail.getTF().requestFocus();
+			return false;
+		}else {
 
 			return true;
 		}
@@ -135,7 +155,8 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		Integer pZipCode = Integer.parseInt(pPZipCode.getTFValue());
 		/*String pZipCode = pPZipCode.getTFValue();*/
 		String pAddress = pPAddress.getTFValue();
-		return new PublisherInfo(pCode, publisher, pName, pTel, pZipCode, pAddress);
+		String pAddDetail = pPAddDetail.getTFValue();
+		return new PublisherInfo(pCode, publisher, pName, pTel, pZipCode, pAddress, pAddDetail);
 	}
 
 	public void setObject(PublisherInfo pubItem) {
@@ -145,6 +166,7 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		pPTel.setTFValue(pubItem.getpTel());
 		pPZipCode.setTFValue(String.valueOf(pubItem.getpZipCode()));
 		pPAddress.setTFValue(pubItem.getpAddress());
+		pPAddDetail.setTFValue(pubItem.getpAddDetail());
 
 	}
 

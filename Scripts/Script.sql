@@ -78,7 +78,8 @@ CREATE TABLE book_project.publisherInfo (
 	p_name     VARCHAR(20) NULL,     -- 담당자명
 	p_tel      VARCHAR(13) NULL,     -- 연락처
 	p_zip_code INTEGER(5)  NULL,     -- 우편번호
-	p_address  VARCHAR(50) NULL      -- 주소
+	p_address  VARCHAR(50) NULL,      -- 주소
+	p_add_detail VARCHAR(50) NULL      -- 상세주소
 );
 
 -- 출판사

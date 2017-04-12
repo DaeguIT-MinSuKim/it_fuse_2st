@@ -1,4 +1,4 @@
-package kr.or.dgit.book_prject.chart;
+package kr.or.dgit.book_project.chart;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +26,7 @@ import javafx.scene.Group;
 public class BarPicChart extends Application {
 	private static BookInfo listmapForbc;
 	private static List<HashMap<String, Object>> listmapForPie;
-	private static BarChart<String, Number> bc;
+	private static BarChart bc;
 	private static NumberAxis yAxis;
 	private static CategoryAxis xAxis;
     
@@ -46,9 +46,9 @@ public class BarPicChart extends Application {
     		box.prefHeightProperty().bind(anchorPane.heightProperty());
     		box.setStyle("-fx-alignment:center;");
 
-    		yAxis = new NumberAxis();
+    	/*	yAxis = new NumberAxis();
     		xAxis = new CategoryAxis();
-    		bc = new BarChart<String, Number>(xAxis, yAxis);
+    		bc = new BarChart(xAxis, yAxis);
     		PieChart pie1 = new PieChart();
     		
     		HBox.setHgrow(bc, Priority.ALWAYS);
@@ -62,7 +62,7 @@ public class BarPicChart extends Application {
 
     		bc.setTitle("고객별 주문수량");
     		yAxis.setLabel("주문수량");
-    		xAxis.setLabel("상호명");
+    		xAxis.setLabel("상호명");*/
 
     
     			listmapForbc = (BookInfo) BookInfoService.getInstance().selectAllBookInfo(null);
@@ -74,7 +74,7 @@ public class BarPicChart extends Application {
     				BigDecimal result = BigDecimal.valueOf(0);
         ObservableList<PieChart.Data> pieChartData =
                 FXCollections.observableArrayList();
-        for (int i = 0; i < listmapForPie.size(); i++) {
+    /*    for (int i = 0; i < listmapForPie.size(); i++) {
 
 			Map<String, Object> tempMap = listmapForPie.get(i);
 			BigDecimal bd = (BigDecimal) tempMap.get("result");
@@ -99,10 +99,10 @@ public class BarPicChart extends Application {
 		pie1.lookup(".chart-title").setStyle("-fx-font-size: 1.8em");
 		pie1.lookup(".chart-legend").setStyle("-fx-background-color:  transparent");
 
-		tableDesignSetting();
+		tableDesignSetting();*/
 	}
 
-	private static void tableDesignSetting() {
+/*	private static void tableDesignSetting() {
 		for (int i = 0; i < listmapForbc.getbLendCount(); i++) {
 			bc.lookup(".data" + i + ".chart-bar").setStyle("-fx-background-color:#FF0051");
 		}
@@ -116,7 +116,7 @@ public class BarPicChart extends Application {
 		xAxis.setTickLength(5);
 		xAxis.setTickLabelGap(5);
 		xAxis.setTickLabelRotation(15);
-        
+        */
         /*ObservableList<PieChart.Data> pieChartData =
                 FXCollections.observableArrayList(
                 		new PieChart.Data("IT", 5),
@@ -130,7 +130,7 @@ public class BarPicChart extends Application {
         ((Group) scene.getRoot()).getChildren().add(chart);
         stage.setScene(scene);
         stage.show();*/
-    }
+    
  
     public static void main(String[] args) {
         launch(args);

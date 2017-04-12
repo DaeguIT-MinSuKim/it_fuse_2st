@@ -7,17 +7,19 @@ public class PublisherInfo {
 	private String pTel; // 연락처
 	private int pZipCode; // 우편번호
 	private String pAddress; // 주소
-
+	private String pAddDetail; //상세주소 
+	
 	public PublisherInfo() {
 	}
 
-	public PublisherInfo(String pCode, String publisher, String pName, String pTel, int pZipCode, String pAddress) {
+	public PublisherInfo(String pCode, String publisher, String pName, String pTel, int pZipCode, String pAddress, String pAddDetail) {
 		this.pCode = pCode;
 		this.publisher = publisher;
 		this.pName = pName;
 		this.pTel = pTel;
 		this.pZipCode = pZipCode;
 		this.pAddress = pAddress;
+		this.pAddDetail = pAddDetail;
 	}
 
 	public String getpCode() {
@@ -68,6 +70,13 @@ public class PublisherInfo {
 	public void setpAddress(String pAddress) {
 		this.pAddress = pAddress;
 	}
+	public String getpAddDetail() {
+		return pAddDetail;
+	}
+
+	public void setpAddDetail(String pAddDetail) {
+		this.pAddDetail = pAddDetail;
+	}
 
 	@Override
 	public String toString() {
@@ -75,8 +84,8 @@ public class PublisherInfo {
 	}
 
 	public Object[] toArrayForPublisherList() {
-		//"출판사코드","출판사명","담당자명","연락처","우편번호","주소"
-		return new Object[]{pCode, publisher, pName, pTel, String.format("%05d", pZipCode), pAddress};
+		//"출판사코드","출판사명","담당자명","연락처","우편번호","주소","상세주소"
+		return new Object[]{pCode, publisher, pName, pTel, String.format("%05d", pZipCode), pAddress, pAddDetail};
 	}
 
 	@Override

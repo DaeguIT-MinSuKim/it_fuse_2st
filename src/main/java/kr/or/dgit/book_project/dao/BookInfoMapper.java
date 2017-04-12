@@ -24,7 +24,19 @@ public interface BookInfoMapper {
 	
 	List<BookInfo> selectAllBookInfo(Map<String, Object> param);
 
-	// 대여 테이블 
+	//대여 테이블 
 	List<BookInfo> selectIslending(Map<String, Object> param);
+	
+	//그래프용
+	/*List<BookInfo> selectAllCountBookInfo();
+	List<BookInfo> subCountBookInfo();
+	List<BookInfo> blackCountBookInfo();
+	List<BookInfo> lendCountBookInfo();*/
+	/*List<Map<String,Object>> selectAllGroupByConame();*/
+	List<Map<String,Object>> selectAllCountBookInfo();
+	List<BookInfo> subCountBookInfo(int subBookSize);
+	List<BookInfo> blackCountBookInfo(int blackCountBookSize);
+	List<BookInfo> lendCountBookInfo(int lendCountBookSize);
 
+	
 }

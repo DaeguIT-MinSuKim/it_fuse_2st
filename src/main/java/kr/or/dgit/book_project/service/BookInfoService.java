@@ -118,4 +118,32 @@ public class BookInfoService {
 			return bookInfoMapper.selectOnlyBookInfo(bookInfo);
 		}
 	}
+	/*총 보유 권수*/
+	public List<Map<String, Object>> selectAllCountBookInfo(){
+		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
+			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
+			return bookInfoMapper.selectAllCountBookInfo();
+		}
+	}
+	/*분야별 보유 권수*/
+	public List<BookInfo> subCountBookInfo(int subBookSize){
+		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
+			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
+			return bookInfoMapper.subCountBookInfo(subBookSize);
+		}
+	}
+	/*분야별 보유 권수*/
+	public List<BookInfo> blackCountBookInfo(int blackCountBookSize){
+		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
+			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
+			return bookInfoMapper.blackCountBookInfo(blackCountBookSize);
+		}
+	}
+	/*분야별 보유 권수*/
+	public List<BookInfo> lendCountBookInfo(int lendCountBookSize){
+		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
+			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
+			return bookInfoMapper.lendCountBookInfo(lendCountBookSize);
+		}
+	}
 }

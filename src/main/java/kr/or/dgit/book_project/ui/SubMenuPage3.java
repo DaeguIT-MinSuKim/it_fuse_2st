@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import kr.or.dgit.book_project.chart.BarChartEx;
 import kr.or.dgit.book_project.ui.view.BookManageForDelBookView;
 import kr.or.dgit.book_project.ui.view.BookManageView;
 import kr.or.dgit.book_project.ui.view.CodenManageView;
@@ -37,6 +38,7 @@ public class SubMenuPage3 extends JTabbedPane implements ChangeListener {
 	private RankPageView monthBest;
 	private RankPageView partBest;
 	private RankPageView monthPartBest;
+	private BarChartEx barex;
 
 	public SubMenuPage3() {
 		
@@ -121,6 +123,14 @@ public class SubMenuPage3 extends JTabbedPane implements ChangeListener {
 			monthPartBest.setParam(param);
 			monthPartBest.setRankInfo();
 			pMonthPartBest.add(monthPartBest);
+		}else if (this.getTitleAt(idx).equals("도서 분야별 보유 비율")) {
+			pPartRate.setLayout(new GridLayout(0, 1, 0, 0));
+			if (barex != null) {
+				pPartRate.removeAll();
+			}
+			barex = new BarChartEx();
+			
+			pPartRate.add(barex);
 		}
 
 	}
