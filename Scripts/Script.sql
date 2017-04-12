@@ -41,7 +41,8 @@ CREATE TABLE book_project.memberInfo (
 	m_now_count  INTEGER     NULL     DEFAULT 0, -- 현재 대여권수
 	black_date   DATE        NULL     DEFAULT null, -- 대여금지일
 	m_group      CHAR(1)     NULL,     -- 회원그룹
-	is_secsn     BOOLEAN     NULL     DEFAULT false -- 탈퇴여부
+	is_secsn     BOOLEAN     NULL     DEFAULT false, -- 탈퇴여부
+	m_Add_Detail varchar(50) NULL
 );
 
 -- 회원
@@ -73,12 +74,13 @@ ALTER TABLE book_project.paymentIO
 
 -- 출판사
 CREATE TABLE book_project.publisherInfo (
-	p_code     CHAR(4)     NOT NULL, -- 출판사코드
-	publisher  VARCHAR(50) NULL,     -- 출판사명
-	p_name     VARCHAR(20) NULL,     -- 담당자명
-	p_tel      VARCHAR(13) NULL,     -- 연락처
-	p_zip_code INTEGER(5)  NULL,     -- 우편번호
-	p_address  VARCHAR(50) NULL      -- 주소
+   p_code     CHAR(4)     NOT NULL, -- 출판사코드
+   publisher  VARCHAR(50) NULL,     -- 출판사명
+   p_name     VARCHAR(20) NULL,     -- 담당자명
+   p_tel      VARCHAR(13) NULL,     -- 연락처
+   p_zip_code INTEGER(5)  NULL,     -- 우편번호
+   p_address  VARCHAR(50) NULL,      -- 주소
+   p_add_detail VARCHAR(50) NULL      -- 상세주소
 );
 
 -- 출판사
@@ -429,22 +431,10 @@ CREATE INDEX idx_post_doro ON post(doro);
 select count(*) from post where sido = '대구광역시';
 select * from post where sido='대구광역시';
 
-CREATE INDEX idx_post_sido On post(sido);
-CREATE INDEX idx_post_doro ON post(doro);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+SELECT m_code, m_pass, m_name, m_tel, m_zip_code,
+		m_address, is_posbl, delay_count, m_lend_count, m_now_count,
+		black_date, m_group, is_secsn, m_Add_Detail
+		FROM memberinfo;
 
 
 

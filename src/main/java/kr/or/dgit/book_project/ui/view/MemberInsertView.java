@@ -156,6 +156,7 @@ public class MemberInsertView extends AbsViewPanel implements ActionListener{
 			public void mouseClicked(MouseEvent e) {
 				if(e.getButton() ==  MouseEvent.BUTTON1){
 					PostMain post = new PostMain();
+					setThisToPost(post);
 					post.setVisible(true);
 				}
 				super.mouseClicked(e);
@@ -165,6 +166,10 @@ public class MemberInsertView extends AbsViewPanel implements ActionListener{
 	
 	
 
+	public void setThisToPost(PostMain postMain){
+		postMain.setMemberInsertView(this);
+	}
+	
 	public MemberInfoP getMemberInfoP() {
 		return memberInfoP;
 	}

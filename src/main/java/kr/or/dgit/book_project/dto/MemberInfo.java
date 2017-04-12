@@ -88,7 +88,14 @@ public class MemberInfo {
 	}
 
 
-
+	
+	
+	public String getmAddDetail() {
+		return mAddDetail;
+	}
+	public void setmAddDetail(String mAddDetail) {
+		this.mAddDetail = mAddDetail;
+	}
 	public String getmCode() {
 		return mCode;
 	}
@@ -204,8 +211,8 @@ public class MemberInfo {
 	}
 
 	public Object[] toArrayForMemberList() {
-		//{"이름","회원코드","전화번호","우편번호","주소","대여금지일"};		
-		return new Object[]{mName, mCode, mTel, mZipCode, mAddress, blackDate};
+		//{"이름","회원코드","전화번호","우편번호","주소","상세주소"};		
+		return new Object[]{mName, mCode, mTel, mZipCode, mAddress, mAddDetail};
 	}
 
 

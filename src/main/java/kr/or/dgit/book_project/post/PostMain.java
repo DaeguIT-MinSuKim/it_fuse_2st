@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import kr.or.dgit.book_project.ui.view.MemberInsertView;
+
 public class PostMain extends JFrame implements ActionListener {
 
 	protected JPanel contentPane;
@@ -22,6 +24,7 @@ public class PostMain extends JFrame implements ActionListener {
 	protected JTextField tfAddrDe;
 	private JButton btnAdd;
 	private JButton btnZipSearch;
+	private MemberInsertView memberInsertView;
 
 /*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -115,11 +118,10 @@ public class PostMain extends JFrame implements ActionListener {
 
 	protected void actionPerformedBtnAdd(ActionEvent e) {
 		StringBuilder sb = new StringBuilder();
-		sb.append(tfZip.getText() + " ");
-		sb.append(tfAddr.getText() + " ");
-		sb.append(tfAddrDe.getText());
-		
-		// 뜬 값을  memberInfo에 던져주기....=ㅅ=
+		String[] addArray = {tfZip.getText(), tfAddr.getText(), tfAddrDe.getText()};
+		memberInsertView.getMemberInfoP().setObjectAddr(addArray);
+		// memberInfo에 던져주기....=ㅅ=
+				
 		
 	}
 
@@ -142,5 +144,10 @@ public class PostMain extends JFrame implements ActionListener {
 	public JTextField getTfAddrDe() {
 		return tfAddrDe;
 	}
+
+	public void setMemberInsertView(MemberInsertView memberInsertView) {
+		this.memberInsertView = memberInsertView;
+	}
+	
 
 }

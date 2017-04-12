@@ -48,7 +48,7 @@ public class MemberInfoSearchTable extends AbsTable<MemberInfo> {
 
 	@Override
 	protected Object[] getColumn() {
-		return new String[] { "이름", "회원코드", "전화번호", "우편번호", "주소", "대여금지일" };
+		return new String[] { "이름", "회원코드", "전화번호", "우편번호", "주소", "상세주소" };
 	}
 
 	@Override

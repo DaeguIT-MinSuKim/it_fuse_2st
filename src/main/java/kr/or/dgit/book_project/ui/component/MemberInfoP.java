@@ -78,9 +78,9 @@ public class MemberInfoP extends JPanel {
 		//int mZipCode = Integer.parseInt(pMZipCode.getTFValue());
 		//String mZipCode  = pMZipCode.getTFValue();
 		
-		String mZipCode  = post.getTfZip().getText();		
-		String mAddress = post.getTfAddr().getText();
-		String mAddDetail = post.getTfAddrDe().getText();		
+		String mZipCode  = pMZipCode.getTFValue();		
+		String mAddress = pMAddress.getTFValue();
+		String mAddDetail = pMAddDetail.getTFValue();		
 		char mGroup = mCode.charAt(0);		
 		return new MemberInfo(mCode, mPass, mName, mTel, mZipCode, mAddress, mAddDetail, mGroup);
 	}
@@ -93,8 +93,15 @@ public class MemberInfoP extends JPanel {
 		//pMZipCode.setTFValue(String.valueOf(memberinfo.getmZipCode()));
 		pMZipCode.setTFValue(memberinfo.getmZipCode());
 		pMAddress.setTFValue(memberinfo.getmAddress());
-		
+		pMAddDetail.setTFValue(memberinfo.getmAddDetail());
 	}
+	
+	public void setObjectAddr(String[] arr){
+		pMZipCode.setTFValue(arr[0]);
+		pMAddress.setTFValue(arr[1]);
+		pMAddDetail.setTFValue(arr[2]);
+	}
+	
 	
 	
 	public boolean isVaildCheck(){
