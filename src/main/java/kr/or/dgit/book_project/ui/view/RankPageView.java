@@ -11,7 +11,11 @@ import javax.swing.border.TitledBorder;
 import kr.or.dgit.book_project.service.PaymentIOService;
 import kr.or.dgit.book_project.ui.component.RankPage;
 import java.awt.BorderLayout;
+import java.awt.Color;
+
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -83,7 +87,10 @@ public class RankPageView extends JPanel {
 			pMain.add(new RankPage((i + 1), list.get(i)).setRankBookInfo());
 		}
 		for (int j = list.size(); j < 3; j++) {
-			pMain.add(new JPanel());
+			JPanel jp = new JPanel();
+			jp.setBorder(new MatteBorder(3, 0, 0, 0, (Color) new Color(255, 255, 255)));
+			pMain.add(jp);
+			//pMain.add(new JPanel().setBorder(new MatteBorder(3, 0, 0, 0, (Color) new Color(255, 255, 255);
 		}
 	}
 
