@@ -407,7 +407,7 @@ delimiter ;
 
 
 -- 우편번호
-create table if not exists post(
+create table if not exists book_project.post(
 	zipcode	char(5)	null,
 	sido	varchar(20)	null,
 	sigungu	varchar(20) null,
@@ -424,8 +424,8 @@ IGNORE 1 lines
 (@zipcode, @sido, @d, @sigungu , @d, @d, @d, @d, @doro, @d, @d, @building1, @building2, @d, @d, @d, @d, @d, @d ,@d, @d, @d, @d, @d, @d, @d) 
 set zipcode=@zipcode, sido=@sido, sigungu=@sigungu, doro=@doro, building1=@building1, building2=@building2;
 
-CREATE INDEX idx_post_sido On post(sido);
-CREATE INDEX idx_post_doro ON post(doro);
+CREATE INDEX idx_post_sido On book_project.post(sido);
+CREATE INDEX idx_post_doro ON book_project.post(doro);
 
 select count(*) from post where sido = '대구광역시';
 select * from post where sido='대구광역시';
@@ -433,7 +433,7 @@ select * from post where sido='대구광역시';
 SELECT m_code, m_pass, m_name, m_tel, m_zip_code,
 		m_address, is_posbl, delay_count, m_lend_count, m_now_count,
 		black_date, m_group, is_secsn, m_Add_Detail
-		FROM memberinfo;
+		FROM book_project.memberinfo;
 
 
 
