@@ -6,6 +6,9 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,13 +17,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import kr.or.dgit.book_project.dto.MemberInfo;
+import kr.or.dgit.book_project.post.PostMain;
 import kr.or.dgit.book_project.service.MemberInfoService;
 import kr.or.dgit.book_project.ui.common.AbsViewPanel;
 import kr.or.dgit.book_project.ui.component.MemberInfoP;
 import kr.or.dgit.book_project.ui.table.MemberInfoSearchTable;
 import kr.or.dgit.book_project.ui.table.MemberInfoTable;
 
-public class MemberInsertView extends AbsViewPanel implements ActionListener {
+public class MemberInsertView extends AbsViewPanel implements ActionListener{
 
 	private JButton btnCancel;
 	private JButton btnSave;
@@ -90,6 +94,9 @@ public class MemberInsertView extends AbsViewPanel implements ActionListener {
 		gbc_pTable.gridx = 0;
 		gbc_pTable.gridy = 2;
 		panel_5.add(pTable, gbc_pTable);
+		
+				
+		postSearch();
 
 	}
 
@@ -141,11 +148,23 @@ public class MemberInsertView extends AbsViewPanel implements ActionListener {
 		memberInfoP.getpMName().getTF().requestFocus();			// 포커스 안된다.		
 	}
 	
+	public void postSearch(){
+		memberInfoP.getpMZipCode().getTF().addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getButton() ==  MouseEvent.BUTTON1){
+					PostMain post = new PostMain();
+					post.setVisible(true);
+				}
+				super.mouseClicked(e);
+			}			
+		});
+	}
+	
 	
 
 	public MemberInfoP getMemberInfoP() {
 		return memberInfoP;
-	}	
-	
-
+	}
 }

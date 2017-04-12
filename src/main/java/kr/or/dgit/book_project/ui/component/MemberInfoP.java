@@ -140,7 +140,30 @@ public class MemberInfoP extends JPanel {
 	public void setpMPass(InputComp pMPass) {
 		this.pMPass = pMPass;
 	}
-	
+
+	public InputComp getpMZipCode() {
+		return pMZipCode;
+	}
+
+	public void setpMZipCode(InputComp pMZipCode) {
+		this.pMZipCode = pMZipCode;
+	}
+
+	public InputComp getpMAddress() {
+		return pMAddress;
+	}
+
+	public void setpMAddress(InputComp pMAddress) {
+		this.pMAddress = pMAddress;
+	}
+
+	public InputComp getpMAddDetail() {
+		return pMAddDetail;
+	}
+
+	public void setpMAddDetail(InputComp pMAddDetail) {
+		this.pMAddDetail = pMAddDetail;
+	}
 	
 
 }

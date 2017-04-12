@@ -1,6 +1,5 @@
 package kr.or.dgit.book_project.post;
 
-import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,8 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-
-import kr.or.dgit.book_project.post.service.InitSettingService;
 
 public class PostMain extends JFrame implements ActionListener {
 
@@ -35,7 +32,7 @@ public class PostMain extends JFrame implements ActionListener {
 
 					InitSettingService init = new InitSettingService();
 					init.initSetting();
-				} catch (Exception e) {
+				} catch (Exception e) {	
 					e.printStackTrace();
 				}
 			}

@@ -12,8 +12,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
-import kr.or.dgit.book_project.post.dto.Doro;
-import kr.or.dgit.book_project.post.service.DoroService;
+import kr.or.dgit.book_project.dto.Doro;
+import kr.or.dgit.book_project.service.DoroService;
 
 @SuppressWarnings("serial")
 public class ZipTable extends JPanel {
