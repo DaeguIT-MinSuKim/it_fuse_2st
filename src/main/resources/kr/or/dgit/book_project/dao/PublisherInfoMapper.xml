@@ -9,6 +9,7 @@
 		<result property="pTel" column="p_tel" />
 		<result property="pZipCode" column="p_zip_code" />
 		<result property="pAddress" column="p_address" />
+		<result property="pAddDetail" column="p_add_detail" />
 	</resultMap>
 
 	<sql id="insertShortSql">
@@ -22,7 +23,7 @@
 	</sql>
 	<sql id="selectSql">
 		SELECT p_code, publisher, p_name, p_tel, p_zip_code,
-		p_address FROM publisherinfo
+		p_address, p_add_detail FROM publisherinfo
 	</sql>
 
 
@@ -51,8 +52,8 @@
 
 	<insert id="insertAllPublisherInfo" parameterType="PublisherInfo">
 		INSERT INTO PublisherInfo
-		(p_code, publisher, p_name, p_tel, p_zip_code, p_address)
-		VALUES(#{pCode}, #{publisher}, #{pName}, #{pTel}, #{pZipCode}, #{pAddress})
+		(p_code, publisher, p_name, p_tel, p_zip_code, p_address, p_add_detail)
+		VALUES(#{pCode}, #{publisher}, #{pName}, #{pTel}, #{pZipCode}, #{pAddress}, #{pAddDetail})
 	</insert>
 	<update id="updateSetPublisherInfo" parameterType="PublisherInfo">
 		UPDATE PUBLISHERINFO
@@ -62,6 +63,7 @@
 			<if test="pTel != null">p_tel=#{pTel},</if>
 			<if test="pZipCode != null">p_zip_code=#{pZipCode},</if>
 			<if test="pAddress != null">p_address=#{pAddress}</if>
+			<if test="pAddDetail != null">p_add_detail=#{pAddDetail}</if>
 		</set>
 		<include refid="whereSql" />
 	</update>
