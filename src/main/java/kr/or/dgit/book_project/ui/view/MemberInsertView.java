@@ -24,6 +24,7 @@ import kr.or.dgit.book_project.ui.component.MemberInfoP;
 import kr.or.dgit.book_project.ui.table.MemberInfoSearchTable;
 import kr.or.dgit.book_project.ui.table.MemberInfoTable;
 
+@SuppressWarnings("serial")
 public class MemberInsertView extends AbsViewPanel implements ActionListener{
 
 	private JButton btnCancel;

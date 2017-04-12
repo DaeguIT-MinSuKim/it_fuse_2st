@@ -69,4 +69,5 @@ public class PublisherView extends JPanel {
 		popupMenu.add(updateItem);
 
 	}
+	
 }

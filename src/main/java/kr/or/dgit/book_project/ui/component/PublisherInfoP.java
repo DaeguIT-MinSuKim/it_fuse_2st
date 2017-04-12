@@ -5,15 +5,19 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import kr.or.dgit.book_project.dto.PublisherInfo;
+import kr.or.dgit.book_project.post.PostMain;
 import kr.or.dgit.book_project.service.PublisherInfoService;
 import kr.or.dgit.book_project.ui.common.InputComp;
 import kr.or.dgit.book_project.ui.view.PublisherView;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
+import java.awt.event.MouseListener;
 
 @SuppressWarnings("serial")
 public class PublisherInfoP extends JPanel implements ActionListener {
@@ -22,7 +26,7 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 	private InputComp pPublisher;
 	private InputComp pPName;
 	private InputComp pPTel;
-	private InputComp pPZipCode;
+	private static InputComp pPZipCode;
 	private InputComp pPAddress;
 	private JPanel pBtn;
 	public JButton btnPubSave;
@@ -54,6 +58,7 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		panelPub.add(pPTel);
 
 		pPZipCode = new InputComp();
+		/*pPZipCode.getTF().addMouseListener(this);*/
 		pPZipCode.setTitle("우 편 번 호");
 		panelPub.add(pPZipCode);
 
@@ -82,6 +87,8 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		btnCancel = new JButton("취소");
 		btnCancel.addActionListener(this);
 		pBtn.add(btnCancel);
+		
+		postSearch();
 	}
 
 	public JButton getBtnPubSave() {
@@ -194,5 +201,41 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 				btnPubSave.setText("저장");
 			}
 		}
+	}
+	public void postSearch(){
+		PublisherInfoP.getpPZipCode().getTF().addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getButton() ==  MouseEvent.BUTTON1){
+					PostMain post = new PostMain();
+					setThisToPost(post);
+					post.setVisible(true);
+				}
+				super.mouseClicked(e);
+			}			
+		});
+	}
+	
+	
+	
+	public static InputComp getpPZipCode() {
+		return pPZipCode;
+	}
+
+	public void setpPZipCode(InputComp pPZipCode) {
+		this.pPZipCode = pPZipCode;
+	}
+
+	public void setThisToPost(PostMain postMain){
+		postMain.setPublisherInfoP(this);
+	}
+	public void mouseClicked(MouseEvent e) {
+		if (e.getSource() == pPZipCode.getTF()) {
+			mouseClickedPPZipCodeTF(e);
+		}
+	}
+
+	protected void mouseClickedPPZipCodeTF(MouseEvent e) {
 	}
 }
