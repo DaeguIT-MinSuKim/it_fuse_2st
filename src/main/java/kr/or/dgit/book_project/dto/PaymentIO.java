@@ -89,26 +89,7 @@ public class PaymentIO {
 		return dif >= 3;
 	}
 	
-	/*public boolean isDelay() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		long dif = 0;
-		try {
-			Date d1 = sdf.parse(lendDate);
-			Date d2 = null;
-			if (returnDate != null) {
-				// 반납도서
-				d2 = sdf.parse(returnDate);
-			} else {
-				// 미반납도서
-				d2 = new Date();
-			}
-			dif = (d2.getTime() - d1.getTime()) / 60 / 24 / 60 / 1000;
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
 
-		return dif >= 3;
-	}*/
 
 	@Override
 	public String toString() {

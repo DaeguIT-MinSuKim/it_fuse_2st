@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
+import kr.or.dgit.book_prject.setting.InitSettingService;
 import kr.or.dgit.book_project.dto.MemberInfo;
 import kr.or.dgit.book_project.service.MemberInfoService;
 import kr.or.dgit.book_project.ui.common.InputComp;
@@ -65,7 +66,7 @@ public class PageLogin extends JFrame implements ActionListener {
 		setBackground(Color.WHITE);
 		setTitle("로그인");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(400, 200, 500, 400);
+		setBounds(400, 200, 500, 510);
 
 		appearInTheCenter();
 
@@ -141,13 +142,42 @@ public class PageLogin extends JFrame implements ActionListener {
 		panel_3.add(btnEnter);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new EmptyBorder(20, 50, 20, 50));
+		panel.setBorder(new EmptyBorder(5, 50, 5, 50));
 		pLogin.add(panel);
 		panel.setLayout(new GridLayout(0, 1, 10, 0));
 
 		btnPWSearch = new JButton("회원코드 / 비밀번호 찾기");
 		btnPWSearch.addActionListener(this);
 		panel.add(btnPWSearch);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new EmptyBorder(10, 50, 0, 50));
+		pLogin.add(panel_2);
+		panel_2.setLayout(new GridLayout(0, 3, 0, 0));
+		
+		JButton btnNewButton = new JButton("초기화");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				actionPerformedBtnNewButton(arg0);
+			}
+		});
+		panel_2.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("백업");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedBtnNewButton_1(e);
+			}
+		});
+		panel_2.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("복원");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedBtnNewButton_2(e);
+			}
+		});
+		panel_2.add(btnNewButton_2);
 
 	}
 
@@ -228,5 +258,17 @@ public class PageLogin extends JFrame implements ActionListener {
 		// 회원코드 찾기 / 비밀번호 재발급
 		SearchForID searchForID = new SearchForID();
 		searchForID.setVisible(true);
+	}
+	protected void actionPerformedBtnNewButton(ActionEvent arg0) {
+		InitSettingService init = new InitSettingService();
+		init.initSetting(0, 1); // 초기화
+	}
+	protected void actionPerformedBtnNewButton_1(ActionEvent e) {
+		InitSettingService init = new InitSettingService();
+		init.initSetting(1, 0); // 백업
+	}
+	protected void actionPerformedBtnNewButton_2(ActionEvent e) {
+		InitSettingService init = new InitSettingService();
+		init.initSetting(1, 1); // 복원
 	}
 }
