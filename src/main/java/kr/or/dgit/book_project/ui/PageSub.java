@@ -23,24 +23,32 @@ public class PageSub extends JFrame implements ActionListener {
 	private JPanel pTabSub;
 	private MemberInfo memberInfo;
 
-	/*
-	 * public static void main(String[] args) { try {
-	 * UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
-	 * 
-	 * } catch (Exception e) { } PageMain frame = new PageMain();
-	 * 
-	 * EventQueue.invokeLater(new Runnable() { public void run() { try {
-	 * 
-	 * PageSub frame = new PageSub(); frame.setVisible(true);
-	 * 
-	 * } catch (Exception e) { e.printStackTrace(); } } }); }
-	 */
+	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+
+		} catch (Exception e) {
+		}
+		PageMain frame = new PageMain();
+
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+
+					PageSub frame = new PageSub();
+					frame.setVisible(true);
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	public PageSub() {
 		setTitle("도서관리프로그램");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 1100, 700);
-		
 
 		pSideBar = new SideBar();
 		pSideBar.btnMenu0.addActionListener(this);
@@ -53,7 +61,7 @@ public class PageSub extends JFrame implements ActionListener {
 		gl_pSideBar.setVgap(10);
 		gl_pSideBar.setHgap(10);
 		getContentPane().add(pSideBar, BorderLayout.WEST);
-		
+
 		pTabSub = new JPanel();
 		getContentPane().add(pTabSub, BorderLayout.CENTER);
 		pTabSub.setLayout(new GridLayout(1, 0, 0, 0));
@@ -113,7 +121,8 @@ public class PageSub extends JFrame implements ActionListener {
 	protected void actionPerformedPSideBarBtnMenu4(ActionEvent e) {
 		// Home -> 로그아웃
 		// 로그아웃
-		int res = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?\n로그아웃 시 해당 페이지가 종료됩니다.", "",JOptionPane.YES_NO_OPTION);
+		int res = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?\n로그아웃 시 해당 페이지가 종료됩니다.", "",
+				JOptionPane.YES_NO_OPTION);
 		if (res != 0) {
 			JOptionPane.showMessageDialog(null, "취소하였습니다");
 			return;
@@ -133,7 +142,7 @@ public class PageSub extends JFrame implements ActionListener {
 
 	public void setMemberInfo(MemberInfo memberInfo) {
 		this.memberInfo = memberInfo;
-		pSideBar.getLblNewLabel().setText("["+memberInfo.getmName()+ "] 님 접속중");
+		pSideBar.getLblNewLabel().setText("[" + memberInfo.getmName() + "] 님 접속중");
 	}
 
 }
