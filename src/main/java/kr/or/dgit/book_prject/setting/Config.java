@@ -74,14 +74,14 @@ public class Config {
 			+ "PRIMARY KEY (no),	"
 			+ "FOREIGN KEY (b_code, b_sub_code) REFERENCES bookInfo (b_code, b_sub_code) ON UPDATE cascade,	"
 			+ "FOREIGN KEY (m_code) REFERENCES memberInfo (m_code) ON UPDATE CASCADE)"
-			,
-			"create table if not exists post(	"
+			
+			/*"create table if not exists post(	"
 			+ "zipcode	char(5)	null,	"
 			+ "sido	varchar(20)	null,	"
 			+ "sigungu	varchar(20) null,	"
 			+ "doro	varchar(20) null,	"
 			+ "building1 int(5) null,	"
-			+ "building2 int(5) null)"
+			+ "building2 int(5) null)"*/
 			};
 	
 
