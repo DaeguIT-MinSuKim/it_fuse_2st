@@ -19,7 +19,7 @@ public class PublisherInfoTable extends AbsTable<PublisherInfo> {
 
 	@Override
 	protected void cellWith() {
-	tableSetWidth(50,80,50,50,50,220);
+	tableSetWidth(50,80,50,50,50,170,50);
 		
 	}
 
@@ -39,7 +39,7 @@ public class PublisherInfoTable extends AbsTable<PublisherInfo> {
 
 	@Override
 	protected Object[] getColumn() {
-		return new String[] {"출판사코드","출판사명","담당자명","연락처","우편번호","주소"};
+		return new String[] {"출판사코드","출판사명","담당자명","연락처","우편번호","주소","상세주소"};
 	}
 
 	@Override
@@ -55,8 +55,9 @@ public class PublisherInfoTable extends AbsTable<PublisherInfo> {
 		String pTel = (String) table.getValueAt(selectedIdx, 3);
 		String	pZipCode = (String) table.getValueAt(selectedIdx, 4);
 		String	pAddress = (String) table.getValueAt(selectedIdx, 5);
+		String pAddDetail = (String) table.getValueAt(selectedIdx, 6);
 		//return new PublisherInfo(pCode, publisher, pName, pTel, Integer.parseInt(pZipCode), pAddress);
-		return new PublisherInfo(pCode, publisher, pName, pTel, pZipCode, pAddress);
+		return new PublisherInfo(pCode, publisher, pName, pTel, pZipCode, pAddress, pAddDetail);
 	}
 
 	

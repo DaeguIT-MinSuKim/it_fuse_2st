@@ -5,17 +5,19 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import kr.or.dgit.book_project.dto.PublisherInfo;
+import kr.or.dgit.book_project.post.PostMain;
 import kr.or.dgit.book_project.service.PublisherInfoService;
 import kr.or.dgit.book_project.ui.common.InputComp;
 import kr.or.dgit.book_project.ui.view.PublisherView;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
-import java.awt.CardLayout;
-import javax.swing.BoxLayout;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
+import java.awt.event.MouseListener;
 
 @SuppressWarnings("serial")
 public class PublisherInfoP extends JPanel implements ActionListener {
@@ -24,11 +26,12 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 	private InputComp pPublisher;
 	private InputComp pPName;
 	private InputComp pPTel;
-	private InputComp pPZipCode;
+	private static InputComp pPZipCode;
 	private InputComp pPAddress;
 	private JPanel pBtn;
 	public JButton btnPubSave;
 	private JButton btnCancel;
+	private InputComp pPAddDetail;
 
 	public PublisherInfoP() {
 		setLayout(new GridLayout(0, 1, 0, 0));
@@ -55,12 +58,22 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		panelPub.add(pPTel);
 
 		pPZipCode = new InputComp();
+		/*pPZipCode.getTF().addMouseListener(this);*/
 		pPZipCode.setTitle("우 편 번 호");
 		panelPub.add(pPZipCode);
 
 		pPAddress = new InputComp();
 		pPAddress.setTitle("주         소");
 		panelPub.add(pPAddress);
+		
+		pPAddDetail = new InputComp();
+		/*GridBagLayout gbl_pPAddDetail = (GridBagLayout) pPAddDetail.getLayout();
+		gbl_pPAddDetail.rowWeights = new double[]{0.0};
+		gbl_pPAddDetail.rowHeights = new int[]{50};
+		gbl_pPAddDetail.columnWeights = new double[]{0.0, 0.0};
+		gbl_pPAddDetail.columnWidths = new int[]{100, 200};*/
+		pPAddDetail.setTitle("상 세 주 소");
+		panelPub.add(pPAddDetail);
 
 		pBtn = new JPanel();
 		panelPub.add(pBtn);
@@ -74,6 +87,8 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		btnCancel = new JButton("취소");
 		btnCancel.addActionListener(this);
 		pBtn.add(btnCancel);
+		
+		postSearch();
 	}
 
 	public JButton getBtnPubSave() {
@@ -87,6 +102,7 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		pPTel.setTFValue("");
 		pPZipCode.setTFValue("");
 		pPAddress.setTFValue("");
+		pPAddDetail.setTFValue("");
 	}
 
 	/*
@@ -121,6 +137,10 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 			JOptionPane.showMessageDialog(null, "주소를 입력해주세요");
 			pPAddress.getTF().requestFocus();
 			return false;
+		} else if (pPAddDetail.getTFValue().trim().equals("")) {
+			JOptionPane.showMessageDialog(null, "상세주소를 입력해주세요");
+			pPAddDetail.getTF().requestFocus();
+			return false;
 		} else {
 
 			return true;
@@ -132,10 +152,10 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		String publisher = pPublisher.getTFValue();
 		String pName = pPName.getTFValue();
 		String pTel = pPTel.getTFValue();
-		//Integer pZipCode = Integer.parseInt(pPZipCode.getTFValue());
 		String pZipCode = pPZipCode.getTFValue();
 		String pAddress = pPAddress.getTFValue();
-		return new PublisherInfo(pCode, publisher, pName, pTel, pZipCode, pAddress);
+		String pAddDetail = pPAddDetail.getTFValue();
+		return new PublisherInfo(pCode, publisher, pName, pTel, pZipCode, pAddress, pAddDetail);
 	}
 
 	public void setObject(PublisherInfo pubItem) {
@@ -146,7 +166,7 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		//pPZipCode.setTFValue(String.valueOf(pubItem.getpZipCode()));
 		pPZipCode.setTFValue(pubItem.getpZipCode());
 		pPAddress.setTFValue(pubItem.getpAddress());
-
+		pPAddDetail.setTFValue(pubItem.getpAddDetail());
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -181,5 +201,41 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 				btnPubSave.setText("저장");
 			}
 		}
+	}
+	public void postSearch(){
+		PublisherInfoP.getpPZipCode().getTF().addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getButton() ==  MouseEvent.BUTTON1){
+					PostMain post = new PostMain();
+					setThisToPost(post);
+					post.setVisible(true);
+				}
+				super.mouseClicked(e);
+			}			
+		});
+	}
+	
+	
+	
+	public static InputComp getpPZipCode() {
+		return pPZipCode;
+	}
+
+	public void setpPZipCode(InputComp pPZipCode) {
+		this.pPZipCode = pPZipCode;
+	}
+
+	public void setThisToPost(PostMain postMain){
+		postMain.setPublisherInfoP(this);
+	}
+	public void mouseClicked(MouseEvent e) {
+		if (e.getSource() == pPZipCode.getTF()) {
+			mouseClickedPPZipCodeTF(e);
+		}
+	}
+
+	protected void mouseClickedPPZipCodeTF(MouseEvent e) {
 	}
 }

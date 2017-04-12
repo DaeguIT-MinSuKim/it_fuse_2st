@@ -14,8 +14,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import kr.or.dgit.book_project.ui.component.PublisherInfoP;
 import kr.or.dgit.book_project.ui.view.MemberInsertView;
+import kr.or.dgit.book_project.ui.view.PublisherView;
 
+@SuppressWarnings("serial")
 public class PostMain extends JFrame implements ActionListener {
 
 	protected JPanel contentPane;
@@ -25,6 +28,8 @@ public class PostMain extends JFrame implements ActionListener {
 	private JButton btnAdd;
 	private JButton btnZipSearch;
 	private MemberInsertView memberInsertView;
+	@SuppressWarnings("unused")
+	private PublisherInfoP publisherInfoP;
 
 /*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -147,6 +152,9 @@ public class PostMain extends JFrame implements ActionListener {
 
 	public void setMemberInsertView(MemberInsertView memberInsertView) {
 		this.memberInsertView = memberInsertView;
+	}
+	public void setPublisherInfoP(PublisherInfoP publisherInfoP) {
+		this.publisherInfoP = publisherInfoP;
 	}
 	
 
