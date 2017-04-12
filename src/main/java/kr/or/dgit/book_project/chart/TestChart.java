@@ -1,4 +1,4 @@
-package kr.or.dgit.book_prject.chart;
+package kr.or.dgit.book_project.chart;
 
 
 import java.util.List;
