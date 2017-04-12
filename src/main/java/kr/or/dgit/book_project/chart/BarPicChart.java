@@ -1,4 +1,4 @@
-package kr.or.dgit.book_prject.chart;
+package kr.or.dgit.book_project.chart;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
