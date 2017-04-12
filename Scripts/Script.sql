@@ -33,7 +33,7 @@ CREATE TABLE book_project.memberInfo (
 	m_pass       char(41)	 NULL,     -- 비밀번호
 	m_name       VARCHAR(20) NULL,     -- 성명
 	m_tel        CHAR(13)    NULL,     -- 연락처
-	m_zip_code   INTEGER(5)  NULL,     -- 우편번호
+	m_zip_code   CHAR(5)  NULL,     -- 우편번호
 	m_address    VARCHAR(50) NULL,     -- 주소
 	is_posbl     BOOLEAN     NULL     DEFAULT true, -- 대여가능여부
 	delay_count  INTEGER     NULL     DEFAULT 0, -- 연체 횟수
@@ -42,7 +42,7 @@ CREATE TABLE book_project.memberInfo (
 	black_date   DATE        NULL     DEFAULT null, -- 대여금지일
 	m_group      CHAR(1)     NULL,     -- 회원그룹
 	is_secsn     BOOLEAN     NULL     DEFAULT false, -- 탈퇴여부
-	m_Add_Detail varchar(50) NULL
+	m_Add_Detail VARCHAR(50) NULL
 );
 
 -- 회원
@@ -78,7 +78,7 @@ CREATE TABLE book_project.publisherInfo (
    publisher  VARCHAR(50) NULL,     -- 출판사명
    p_name     VARCHAR(20) NULL,     -- 담당자명
    p_tel      VARCHAR(13) NULL,     -- 연락처
-   p_zip_code INTEGER(5)  NULL,     -- 우편번호
+   p_zip_code CHAR(5)  NULL,     -- 우편번호
    p_address  VARCHAR(50) NULL,      -- 주소
    p_add_detail VARCHAR(50) NULL      -- 상세주소
 );
