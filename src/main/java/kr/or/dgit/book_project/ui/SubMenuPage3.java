@@ -58,7 +58,8 @@ public class SubMenuPage3 extends JTabbedPane implements ChangeListener {
 			pAccBest.setLayout(new GridLayout(0, 1, 0, 0));
 			pAccBest.removeAll();
 			Map<String, Object> param = new HashMap<>();
-			pAccBest.add(makeNewRankInfo(param, false));
+			String title = ">>  도서관 개관 이래 누적 대여 순위";
+			pAccBest.add(makeNewRankInfo(title, param, false));
 		} else if (this.getTitleAt(idx).equals("지난달 순위")) {
 			// 선택된 탭의 제목에 따라서 조건 지정
 			pMonthBest.setLayout(new GridLayout(0, 1, 0, 0));
@@ -66,13 +67,16 @@ public class SubMenuPage3 extends JTabbedPane implements ChangeListener {
 			Map<String, Object> param = new HashMap<>();
 			param.put("lendDate1", "2017-03-01");
 			param.put("lendDate2", "2017-04-01");
-			pMonthBest.add(makeNewRankInfo(param, false));
+			String title = String.format(">>   [ %s년 %s월 ] 대여 순위", ((String) param.get("lendDate1")).substring(0, 4),
+					((String) param.get("lendDate1")).substring(5, 7));
+			pMonthBest.add(makeNewRankInfo(title, param, false));
 		} else if (this.getTitleAt(idx).equals("분야별 누적 순위")) {
 			// 선택된 탭의 제목에 따라서 조건 지정
 			pPartBest.setLayout(new GridLayout(0, 1, 0, 0));
 			pPartBest.removeAll();
 			Map<String, Object> param = new HashMap<>();
-			pPartBest.add(makeNewRankInfo(param, true));
+			String title = ">>  도서관 개관 이래 분야별 누적 대여 순위";
+			pPartBest.add(makeNewRankInfo(title, param, true));
 		} else if (this.getTitleAt(idx).equals("분야별 지난달 순위")) {
 			// 선택된 탭의 제목에 따라서 조건 지정
 			pMonthPartBest.setLayout(new GridLayout(0, 1, 0, 0));
@@ -80,7 +84,9 @@ public class SubMenuPage3 extends JTabbedPane implements ChangeListener {
 			Map<String, Object> param = new HashMap<>();
 			param.put("lendDate1", "2017-03-01");
 			param.put("lendDate2", "2017-04-01");
-			pMonthPartBest.add(makeNewRankInfo(param, true));
+			String title = String.format(">>   [ %s년 %s월 ] 분야별 대여 순위", ((String) param.get("lendDate1")).substring(0, 4),
+					((String) param.get("lendDate1")).substring(5, 7));
+			pMonthPartBest.add(makeNewRankInfo(title, param, true));
 		} else if (this.getTitleAt(idx).equals("도서 분야별 보유 비율")) {
 			pPartRate.setLayout(new GridLayout(0, 1, 0, 0));
 			// pPartRate.removeAll();
@@ -93,19 +99,19 @@ public class SubMenuPage3 extends JTabbedPane implements ChangeListener {
 		}
 	}
 
-	public RankPageView makeNewRankInfo(Map<String, Object> param, boolean isComboBox) {
+	public RankPageView makeNewRankInfo(String title, Map<String, Object> param, boolean isComboBox) {
 
 		if (!isComboBox) {
 			// 콤보박스 아닐시
 			RankPageView rankPageView = new RankPageView();
-			// accBest.setViewTitle("누적 순위");
+			rankPageView.setTitle(title);
 			rankPageView.setParam(param);
 			rankPageView.setRankInfo();
 			return rankPageView;
 		} else {
 			// 콤보박스 일시
 			RankPageView rankPageViewCombo = new RankPageViewCombo();
-			// monthPartBest.setViewTitle("분야별 지난달 순위");
+			rankPageViewCombo.setTitle(title);
 			rankPageViewCombo.setParam(param);
 			rankPageViewCombo.setRankInfo();
 			return rankPageViewCombo;

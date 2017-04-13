@@ -10,19 +10,14 @@ public class SearchTF extends JPanel {
 	private JTextField textField;
 	private Container pContent;
 
-	/**
-	 * Create the panel.
-	 */
 	public SearchTF() {
 		setLayout(new GridLayout(0, 1, 0, 0));
-		
+
 		textField = new JTextField();
 		pContent.add(textField);
 		textField.setColumns(10);
 		add(textField);
 
 	}
-	
-
 
 }

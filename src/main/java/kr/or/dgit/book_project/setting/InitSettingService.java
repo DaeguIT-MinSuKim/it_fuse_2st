@@ -1,4 +1,4 @@
-package kr.or.dgit.book_prject.setting;
+package kr.or.dgit.book_project.setting;
 
 import java.io.BufferedOutputStream;
 import java.io.File;

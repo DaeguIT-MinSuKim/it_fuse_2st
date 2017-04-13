@@ -1,4 +1,4 @@
-package kr.or.dgit.book_prject.setting;
+package kr.or.dgit.book_project.setting;
 
 public class Config {
 	public static final String DB_NAME = "book_project";
