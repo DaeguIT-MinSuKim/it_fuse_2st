@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.sun.javafx.application.LauncherImpl;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,12 +11,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.stage.Stage;
-import kr.or.dgit.book_project.dto.Coden;
-import kr.or.dgit.book_project.dto.PaymentIO;
-import kr.or.dgit.book_project.service.BookInfoService;
-import kr.or.dgit.book_project.service.CodenService;
-import kr.or.dgit.book_project.service.PaymentIOService;
 
+import kr.or.dgit.book_project.service.BookInfoService;
 public class PieChartEx2 {
 
 	private Scene scene;
@@ -51,9 +46,9 @@ public class PieChartEx2 {
 		ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
 			Map<String, Object> map = new HashMap<>();
 			map.put("isLending", true);
-			pieChartData.add(new PieChart.Data("대여중도서", BookInfoService.getInstance().countBookInfo(map)));
+			pieChartData.add(new PieChart.Data("isLending", BookInfoService.getInstance().countBookInfo(map)));
 			map.put("isLending", false);
-			pieChartData.add(new PieChart.Data("대여가능도서", BookInfoService.getInstance().countBookInfo(map)));
+			pieChartData.add(new PieChart.Data("isLending", BookInfoService.getInstance().countBookInfo(map)));
 
 		final PieChart chart = new PieChart(pieChartData);
 		((Group) scene.getRoot()).getChildren().add(chart);
