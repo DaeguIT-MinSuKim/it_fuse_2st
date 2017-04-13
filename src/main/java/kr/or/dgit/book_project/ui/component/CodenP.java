@@ -20,6 +20,9 @@ import java.awt.event.ActionEvent;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 @SuppressWarnings("serial")
 public class CodenP extends JPanel implements ActionListener {
@@ -49,30 +52,32 @@ public class CodenP extends JPanel implements ActionListener {
 
 		JPanel pCodenBtn = new JPanel();
 		panelC.add(pCodenBtn);
-		GridBagLayout gbl_pCodenBtn = new GridBagLayout();
-		gbl_pCodenBtn.columnWidths = new int[]{124, 80, 76, 0, 0, 0, 0, 0};
-		gbl_pCodenBtn.rowHeights = new int[]{62, 0};
-		gbl_pCodenBtn.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_pCodenBtn.rowWeights = new double[]{1.0, Double.MIN_VALUE};
-		pCodenBtn.setLayout(gbl_pCodenBtn);
 										
 												btnCancel = new JButton("취소");
 												btnCancel.addActionListener(this);
 												
 														btnCodenSave = new JButton("저장");
 														btnCodenSave.addActionListener(this);
-														GridBagConstraints gbc_btnCodenSave = new GridBagConstraints();
-														gbc_btnCodenSave.fill = GridBagConstraints.VERTICAL;
-														gbc_btnCodenSave.insets = new Insets(0, 0, 0, 5);
-														gbc_btnCodenSave.gridx = 3;
-														gbc_btnCodenSave.gridy = 0;
-														pCodenBtn.add(btnCodenSave, gbc_btnCodenSave);
-												GridBagConstraints gbc_btnCancel = new GridBagConstraints();
-												gbc_btnCancel.insets = new Insets(0, 0, 0, 5);
-												gbc_btnCancel.fill = GridBagConstraints.VERTICAL;
-												gbc_btnCancel.gridx = 4;
-												gbc_btnCancel.gridy = 0;
-												pCodenBtn.add(btnCancel, gbc_btnCancel);
+												GroupLayout gl_pCodenBtn = new GroupLayout(pCodenBtn);
+												gl_pCodenBtn.setHorizontalGroup(
+													gl_pCodenBtn.createParallelGroup(Alignment.LEADING)
+														.addGroup(gl_pCodenBtn.createSequentialGroup()
+															.addGap(146)
+															.addComponent(btnCodenSave, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+															.addPreferredGap(ComponentPlacement.RELATED)
+															.addComponent(btnCancel, GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+															.addGap(140))
+												);
+												gl_pCodenBtn.setVerticalGroup(
+													gl_pCodenBtn.createParallelGroup(Alignment.LEADING)
+														.addGroup(gl_pCodenBtn.createSequentialGroup()
+															.addGap(10)
+															.addGroup(gl_pCodenBtn.createParallelGroup(Alignment.BASELINE)
+																.addComponent(btnCodenSave, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
+																.addComponent(btnCancel, GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
+															.addGap(10))
+												);
+												pCodenBtn.setLayout(gl_pCodenBtn);
 	}
 	
 

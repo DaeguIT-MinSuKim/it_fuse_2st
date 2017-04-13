@@ -11,7 +11,7 @@ import kr.or.dgit.book_project.chart.PieChartEx2;
 public class PChartView {
 	private JPanel panel;
 
-	private void initAndShowGUI() {
+	private void initAndShowGUI1() {
 
 		panel = new JPanel();
 		final JFXPanel fxPanel = new JFXPanel();
@@ -35,13 +35,13 @@ public class PChartView {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				initAndShowGUI();
+				initAndShowGUI1();
 			}
 		});
 	}
 
-	public JPanel getPanel() {
-		initAndShowGUI();
+	public JPanel getPanel1() {
+		initAndShowGUI1();
 		return panel;
 	}
 

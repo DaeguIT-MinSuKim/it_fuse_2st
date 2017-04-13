@@ -152,8 +152,11 @@
 
 	<select id="selectOnlyBookInfo" parameterType="BookInfo" resultMap="BookInfoResult">
 		<include refid="selectSql" />
+		<include refid="whereSql" />	
+	</select>
+	<select id="isLendingtest" resultMap="BookInfoResult">
+		<include refid="selectLeftSql" />
 		<include refid="whereSql" />
-		
 	</select>
 
 </mapper>

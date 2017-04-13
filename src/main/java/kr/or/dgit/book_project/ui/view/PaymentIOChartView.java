@@ -8,9 +8,8 @@ import java.util.Map;
 
 import javax.swing.border.TitledBorder;
 
-import kr.or.dgit.book_project.dto.Coden;
+import kr.or.dgit.book_project.dto.BookInfo;
 import kr.or.dgit.book_project.service.BookInfoService;
-import kr.or.dgit.book_project.service.CodenService;
 
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
@@ -53,7 +52,7 @@ public class PaymentIOChartView extends JPanel {
 
 		JPanel pTitle = new JPanel();
 
-		String title = String.format("현재 대여권수", null);
+		String title = String.format("현재 대여현황", null);
 		JLabel lblTitle = new JLabel(title);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setFont(new Font("굴림", Font.BOLD, 30));
@@ -83,14 +82,17 @@ public class PaymentIOChartView extends JPanel {
 	}
 
 	public void setDateInfo() {
-		List<Coden> list = CodenService.getInstance().selectCodenAll();
+		/*List<Coden> list = CodenService.getInstance().selectCodenAll();*/
+		List<BookInfo> list = BookInfoService.getInstance().selectIslending(null);
 		pTXT.setLayout(new GridLayout(list.size(), 0, 0, 0));
-		for (int i = 0; i < list.size(); i++) {
+		/*for (int i = 0; i < list.size(); i++) {*/
 			Map<String, Object> map = new HashMap<>();
-			map.put("cName", list.get(i).getcName());
-			pTXT.add(new AddInfoLabel().setDate(list.get(i).getcName(),
-					BookInfoService.getInstance().countBookInfo(map)));
+			/*map.put("cName", list.get(i).getcName());*/
+			map.put("isLending", true);
+			pTXT.add(new AddInfoLabel().setDate("대여중도서", BookInfoService.getInstance().countBookInfo(map)));
+			map.put("isLending", false);
+			pTXT.add(new AddInfoLabel().setDate("대여가능도서", BookInfoService.getInstance().countBookInfo(map)));
+			/*pTXT.add(new AddInfoLabel().setDate(list.get(i).getcName(),
+					BookInfoService.getInstance().countBookInfo(map)));*/
 		}
 	}
-
-}
