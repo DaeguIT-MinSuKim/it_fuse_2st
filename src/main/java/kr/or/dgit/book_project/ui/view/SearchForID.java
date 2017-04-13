@@ -31,7 +31,7 @@ public class SearchForID extends JFrame implements ActionListener {
 
 	public SearchForID() {
 		setTitle("회원정보 찾기");
-		setBounds(100, 100, 450, 506);
+		setBounds(100, 100, 450, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(20, 20, 20, 20));
 		setContentPane(contentPane);

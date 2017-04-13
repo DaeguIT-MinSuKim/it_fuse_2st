@@ -122,9 +122,15 @@ public class PostMain extends JFrame implements ActionListener {
 	}
 
 	protected void actionPerformedBtnAdd(ActionEvent e) {
-		StringBuilder sb = new StringBuilder();
+		/*StringBuilder sb = new StringBuilder();
+		sb.append(tfZip.getText() + " ");
+		sb.append(tfAddr.getText() + " ");
+		sb.append(tfAddrDe.getText());
+		JOptionPane.showMessageDialog(null, sb);*/
+		
 		String[] addArray = {tfZip.getText(), tfAddr.getText(), tfAddrDe.getText()};
 		memberInsertView.getMemberInfoP().setObjectAddr(addArray);
+		setVisible(false);
 		// memberInfo에 던져주기....=ㅅ=
 				
 		

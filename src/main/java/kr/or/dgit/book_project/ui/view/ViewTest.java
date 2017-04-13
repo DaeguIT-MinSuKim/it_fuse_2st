@@ -2,15 +2,13 @@ package kr.or.dgit.book_project.ui.view;
 
 import java.awt.EventQueue;
 import java.awt.GridLayout;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.book_prject.chart.TestChart;
+import kr.or.dgit.book_project.chart.PieChartEx;
+import java.awt.BorderLayout;
 
 public class ViewTest extends JFrame {
 
@@ -20,8 +18,12 @@ public class ViewTest extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ViewTest frame = new ViewTest();
-					frame.setVisible(true);
+					/*ViewTest frame = new ViewTest();
+					frame.setVisible(true);*/
+					JFrame jf = new JFrame();
+					
+					jf.setVisible(true);
+					//jf.add(pe.launch(args));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -35,7 +37,14 @@ public class ViewTest extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel = new JPanel();
+		contentPane.add(panel, BorderLayout.NORTH);
+		panel.setLayout(new GridLayout(1, 0, 0, 0));
+		
+		JPanel panel_1 = new JPanel();
+		contentPane.add(panel_1);
 
 		/*
 		 * JPanel panel = new JPanel(); contentPane.add(panel);
@@ -76,7 +85,9 @@ public class ViewTest extends JFrame {
 		 * String.format("%s-%s-%s", date1, date2, date3);
 		 * JOptionPane.showMessageDialog(null, returnDate);
 		 */
-
+		
+	//	new PieChartEx().start(arg0);
+		
 		
 	}
 }

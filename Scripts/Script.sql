@@ -151,9 +151,6 @@ ALTER TABLE book_project.paymentIO
 		
 -- --------------------------------------------------------------------------------------
 
-		
--- --------------------------------------------------------------------------------------
-<<<<<<< HEAD
 INSERT INTO book_project.publisherInfo (p_code, publisher, p_name, p_tel, p_zip_code, p_address,p_add_detail) VALUES 
 ('P001','한빛미디어', '교보문고', '123-456-7890','04029','서울특별시 마포구 양화로7길 83',''),
 ('P002','길벗', '교보문고', '123-456-7890','04003','서울특별시 마포구 월드컵로10길 56',''),
@@ -178,32 +175,6 @@ INSERT INTO book_project.publisherInfo (p_code, publisher, p_name, p_tel, p_zip_
 ('P021','에이콘출판사', '교보문고', '123-456-7890','07967','서울특별시 양천구 국회대로 ','287 2층'),
 ('P022','다산지식하우스', '교보문고', '123-456-7890','07626','서울특별시 강서구 공항대로8길 77-24',''),
 ('P023','한빛미디어', '교보문고', '123-456-7890','04768','서울특별시 성동구 서울숲4길 28','');
-=======
-INSERT INTO book_project.publisherInfo (p_code, publisher, p_name, p_tel, p_zip_code, p_address, p_add_detail) VALUES 
-('P001','한빛미디어', '교보문고', '123-456-7890',04029,'서울특별시 마포구 양화로7길 83',''),
-('P002','길벗', '교보문고', '123-456-7890',04003,'서울특별시 마포구 월드컵로10길 56',''),
-('P003','제이펍', '교보문고', '123-456-7890',10881,'경기도 파주시 회동길 159 3층 3-B호',''),
-('P004','책세상', '교보문고', '123-456-7890',03176,'서울특별시 종로구 경희궁길 33 내자빌딩',''),
-('P005','민음사', '교보문고', '123-456-7890',06027,'서울특별시 강남구 도산대로1길 62',''),
-('P006','인플루엔셜', '교보문고', '123-456-7890',04511,'서울특별시 중구 통일로2길 16 에이아이에이타워 8층',''),
-('P007','부키', '교보문고', '123-456-7890',03785,'서울특별시 서대문구 신촌로3길 15 산성빌딩',''),
-('P008','돌베개', '교보문고', '123-456-7890',10881,'경기도 파주시 회동길 77-20',''),
-('P009','와이즈베리', '교보문고', '123-456-7890',06532,'서울특별시 서초구 신반포로 321',''),
-('P010','아시아', '교보문고', '123-456-7890',06972,'서울특별시 동작구 서달로 161-1',''),
-('P011','학이시습', '교보문고', '123-456-7890',37186,'경상북도 상주시 서문길 111-24',''),
-('P012','씨네21북스', '교보문고', '123-456-7890',04550,'서울특별시 중구 충무로5길 2 ',''),
-('P013','문학동네', '교보문고', '123-456-7890',10881,'경기도 파주시 회동길 210',''),
-('P014','나무자전거', '교보문고', '123-456-7890',10441,'경기도 고양시 덕양구 강매로 256-21 1층',''),
-('P015','연두', '교보문고', '123-456-7890',03911,'서울특별시 마포구 매봉산로 18',''),
-('P016','더퀘스트', '교보문고', '123-456-7890',04558,'서울특별시 중구 창경궁로 17',''),
-('P017','흐름출판', '교보문고', '123-456-7890',55019,'전라북도 전주시 덕진구 정언신로 59',''),
-('P018','21세기북스', '교보문고', '123-456-7890',04560,'서울특별시 중구 퇴계로 293-1',''),
-('P019','보문사', '교보문고', '123-456-7890',23007,'인천광역시 강화군 삼산면 삼산남로828번길 44',''),
-('P020','메디치미디어', '교보문고', '123-456-7890',03027,'서울특별시 종로구 사직로9길 22',''),
-('P021','에이콘출판사', '교보문고', '123-456-7890',07967,'서울특별시 양천구 국회대로 287 2층',''),
-('P022','다산지식하우스', '교보문고', '123-456-7890',07626,'서울특별시 강서구 공항대로8길 77-24',''),
-('P023','한빛미디어', '교보문고', '123-456-7890',04768,'서울특별시 성동구 서울숲4길 28','');
->>>>>>> refs/remotes/origin/master
 
 insert into book_project.coden (c_name, c_code) values 
 ('IT', 'T'),
@@ -244,19 +215,19 @@ INSERT INTO book_project.bookInfo(b_code, b_sub_code, c_name, b_name, author, p_
 
 
 INSERT INTO book_project.memberInfo (m_code, m_name, m_tel, m_zip_code, m_address,m_Add_Detail, is_secsn, m_pass, m_group, is_posbl, delay_count, m_lend_count, m_now_count, black_date) VALUES
-('C001', '김유정', '010-1111-1234','04524','서울특별시 중구 세종대로 110','',false, password('1234'), 'C', true, 0, 2, 2, null),
-('C002', '박보영', '010-1234-2255','35242','대전광역시 서구 둔산로 100','',false, password('4567'), 'C', true, 1, 2, 2, null), 
-('C003', '박보영', '010-2222-4567','41911','대구광역시 중구 공평로 88','',false, password('5864'), 'C', true, 0, 4, 1, null),
-('C004', '전지현', '010-7777-2255','47545','부산광역시 연제구 중앙대로 1001','',false, password('aaba'), 'C', true, 0, 5, 4, null),						-- 4권 빌린사람
-('C005', 'Emma Watson', '010-5555-4567','41908','대구광역시 중구 국채보상로139길 1','',false, password('bbbb'), 'C', false, 1, 7, 5, null),            -- 5권 빌린사람
-('C006', '고수', '010-1234-1234','41185','대구광역시 동구 아양로 207','',true, password('8888'), 'C', false, 0, 1, 0, null), -- 탈퇴상태
-('C007', '박보검', '010-5432-1234','41777','대구광역시 서구 국채보상로 257','',false, password('9595'), 'C', false, 0, 3, 1, null),            -- 탈퇴회원
-('C008', '박형식', '010-1234-9999','42429','대구광역시 남구 이천로 51','',false, password('5555'), 'C', false, 1, 4, 2, null),            -- 책 연체 중인 사람(일반)
-('C009', 'Dan Stevens', '010-9876-1200','41590','대구광역시 북구 옥산로 65','',false, password('4444'), 'C', true, 2, 6, 2, null),               -- 곧 블랙.. 연체횟수 2번이나 연체중 아님
-('C010', '원빈', '010-9876-5432','42424','대구 남구 중앙대로 220 3층','',false, password('8811'), 'C', false, 2, 6, 2, null),             -- 곧 블랙리스트 될 사람.. 연체횟수2번에 연체중인사람
-('C011', '원빈', '010-234-1234','42424','대구 남구 중앙대로 220 3층','',false, password('8811'), 'C', false, 3, 5, 0, '2017-04-23'), 	-- 현재 블랙리스트
-('A001', '관리자', '010-234-1234','42424','대구 남구 중앙대로 220 3층','',false, password('admin'), 'A', false, 0, 0, 0, null), -- 관리자
-('B001', '사서', '010-234-1234','42424','대구 남구 중앙대로 220 3층','',false, password('8811'), 'B', false, 0, 0, 0, null);      -- 사서
+('C001', '김유정', '010-1111-1234','04524','서울특별시 중구 세종대로 110','3층 3-B호',false, password('1234'), 'C', true, 0, 2, 2, null),
+('C002', '박보영', '010-1234-2255','35242','대전광역시 서구 둔산로 100','102동 1001호',false, password('4567'), 'C', true, 1, 2, 2, null), 
+('C003', '박보영', '010-2222-4567','41911','대구광역시 중구 공평로 88','55-1',false, password('5864'), 'C', true, 0, 4, 1, null),
+('C004', '전지현', '010-7777-2255','47545','부산광역시 연제구 중앙대로 1001','C동 303호',false, password('aaba'), 'C', true, 0, 5, 4, null),						-- 4권 빌린사람
+('C005', 'Emma Watson', '010-5555-4567','41908','대구광역시 중구 국채보상로139길 1','3층 302호',false, password('bbbb'), 'C', false, 1, 7, 5, null),            -- 5권 빌린사람
+('C006', '고수', '010-1234-1234','41185','대구광역시 동구 아양로 207','1-52',true, password('8888'), 'C', false, 0, 1, 0, null), -- 탈퇴상태
+('C007', '박보검', '010-5432-1234','41777','대구광역시 서구 국채보상로 257','108-1',false, password('9595'), 'C', false, 0, 3, 1, null),            -- 탈퇴회원
+('C008', '박형식', '010-1234-9999','42429','대구광역시 남구 이천로 51','79-2',false, password('5555'), 'C', false, 1, 4, 2, null),            -- 책 연체 중인 사람(일반)
+('C009', 'Dan Stevens', '010-9876-1200','41590','대구광역시 북구 옥산로 65','내로빌딩 2층 201호',false, password('4444'), 'C', true, 2, 6, 2, null),               -- 곧 블랙.. 연체횟수 2번이나 연체중 아님
+('C010', '원빈', '010-9876-5432','42424','대구 남구 중앙대로 220 3층','1층 1-C호',false, password('8811'), 'C', false, 2, 6, 2, null),             -- 곧 블랙리스트 될 사람.. 연체횟수2번에 연체중인사람
+('C011', '원빈', '010-234-1234','42424','대구 남구 중앙대로 220 3층','202동 1202호',false, password('8811'), 'C', false, 3, 5, 0, '2017-04-23'), 	-- 현재 블랙리스트
+('A001', '관리자', '010-234-1234','42424','대구 남구 중앙대로 220 3층','254-1',false, password('admin'), 'A', false, 0, 0, 0, null), -- 관리자
+('B001', '사서', '010-234-1234','42424','대구 남구 중앙대로 220 3층','2-55',false, password('8811'), 'B', false, 0, 0, 0, null);      -- 사서
 UPDATE book_project.memberinfo SET is_secsn=true WHERE m_code='C006';
 
 
@@ -435,7 +406,11 @@ delimiter ;
 
 
 -- 우편번호
-create table if not exists post(
+<<<<<<< HEAD
+create table book_project.post(
+=======
+create table if not exists book_project.post(
+>>>>>>> refs/remotes/origin/master
 	zipcode	char(5)	null,
 	sido	varchar(20)	null,
 	sigungu	varchar(20) null,
@@ -445,15 +420,15 @@ create table if not exists post(
 );
 
 LOAD data LOCAL INFILE 'D:/workspace_mybatis/PostZipFinder/DataFiles/대구광역시.txt' 
-INTO table  post   
+INTO table  book_project.post   
 character set 'euckr'  
 fields TERMINATED by '|' 
 IGNORE 1 lines 
 (@zipcode, @sido, @d, @sigungu , @d, @d, @d, @d, @doro, @d, @d, @building1, @building2, @d, @d, @d, @d, @d, @d ,@d, @d, @d, @d, @d, @d, @d) 
 set zipcode=@zipcode, sido=@sido, sigungu=@sigungu, doro=@doro, building1=@building1, building2=@building2;
 
-CREATE INDEX idx_post_sido On post(sido);
-CREATE INDEX idx_post_doro ON post(doro);
+CREATE INDEX idx_post_sido On book_project.post(sido);
+CREATE INDEX idx_post_doro ON book_project.post(doro);
 
 select count(*) from post where sido = '대구광역시';
 select * from post where sido='대구광역시';
@@ -461,7 +436,7 @@ select * from post where sido='대구광역시';
 SELECT m_code, m_pass, m_name, m_tel, m_zip_code,
 		m_address, is_posbl, delay_count, m_lend_count, m_now_count,
 		black_date, m_group, is_secsn, m_Add_Detail
-		FROM memberinfo;
+		FROM book_project.memberinfo;
 
 
 

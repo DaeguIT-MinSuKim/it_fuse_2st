@@ -23,9 +23,9 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.book_prject.setting.InitSettingService;
 import kr.or.dgit.book_project.dto.MemberInfo;
 import kr.or.dgit.book_project.service.MemberInfoService;
+import kr.or.dgit.book_project.setting.InitSettingService;
 import kr.or.dgit.book_project.ui.common.InputComp;
 import kr.or.dgit.book_project.ui.common.PasswordPanel;
 import kr.or.dgit.book_project.ui.view.SearchForID;
@@ -39,6 +39,7 @@ public class PageLogin extends JFrame implements ActionListener {
 	private InputComp pID;
 	private PasswordPanel pPW;
 	private JButton btnPWSearch;
+	private JButton btnSetting;
 
 	public static void main(String[] args) {
 		try {
@@ -66,7 +67,7 @@ public class PageLogin extends JFrame implements ActionListener {
 		setBackground(Color.WHITE);
 		setTitle("로그인");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(400, 200, 500, 510);
+		setBounds(400, 200, 500, 400);
 
 		appearInTheCenter();
 
@@ -75,11 +76,16 @@ public class PageLogin extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 
+		JPanel pImage = new JPanel(new GridLayout(0, 1, 0, 0));
+		pImage.setBorder(new EmptyBorder(5, 5, 5, 5));
+		btnSetting = new JButton("");
+		btnSetting.setBorderPainted(false);
+		btnSetting.addActionListener(this);
+		btnSetting.setBorder(new EmptyBorder(10, 10, 10, 10));
+		btnSetting.setBackground(UIManager.getColor("Panel.background"));
 		String path = "icon/book-20-240.png";
-		JPanel pImage = new JPanel(new BorderLayout());
-		JLabel label = new JLabel(new ImageIcon(path));
-		label.setHorizontalAlignment(JLabel.CENTER);
-		pImage.add(label);
+		btnSetting.setIcon(new ImageIcon(path));
+		pImage.add(btnSetting);
 		contentPane.add(pImage);
 
 		JPanel pLogin = new JPanel();
@@ -142,43 +148,15 @@ public class PageLogin extends JFrame implements ActionListener {
 		panel_3.add(btnEnter);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new EmptyBorder(5, 50, 5, 50));
+		panel.setBorder(new EmptyBorder(20, 50, 5, 50));
 		pLogin.add(panel);
 		panel.setLayout(new GridLayout(0, 1, 10, 0));
 
 		btnPWSearch = new JButton("회원코드 / 비밀번호 찾기");
 		btnPWSearch.addActionListener(this);
 		panel.add(btnPWSearch);
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new EmptyBorder(10, 50, 0, 50));
-		pLogin.add(panel_2);
-		panel_2.setLayout(new GridLayout(0, 3, 0, 0));
-		
-		JButton btnNewButton = new JButton("초기화");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				actionPerformedBtnNewButton(arg0);
-			}
-		});
-		panel_2.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("백업");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				actionPerformedBtnNewButton_1(e);
-			}
-		});
-		panel_2.add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("복원");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				actionPerformedBtnNewButton_2(e);
-			}
-		});
-		panel_2.add(btnNewButton_2);
 
+		pID.getTF().requestFocus();
 	}
 
 	private void appearInTheCenter() {
@@ -188,6 +166,9 @@ public class PageLogin extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnSetting) {
+			actionPerformedBtnSetting(e);
+		}
 		if (e.getSource() == btnPWSearch) {
 			actionPerformedBtnPWSearch(e);
 		}
@@ -259,16 +240,9 @@ public class PageLogin extends JFrame implements ActionListener {
 		SearchForID searchForID = new SearchForID();
 		searchForID.setVisible(true);
 	}
-	protected void actionPerformedBtnNewButton(ActionEvent arg0) {
-		InitSettingService init = new InitSettingService();
-		init.initSetting(0, 1); // 초기화
-	}
-	protected void actionPerformedBtnNewButton_1(ActionEvent e) {
-		InitSettingService init = new InitSettingService();
-		init.initSetting(1, 0); // 백업
-	}
-	protected void actionPerformedBtnNewButton_2(ActionEvent e) {
-		InitSettingService init = new InitSettingService();
-		init.initSetting(1, 1); // 복원
+
+	protected void actionPerformedBtnSetting(ActionEvent e) {
+		PageSetting ps = new PageSetting();
+		ps.setVisible(true);
 	}
 }
