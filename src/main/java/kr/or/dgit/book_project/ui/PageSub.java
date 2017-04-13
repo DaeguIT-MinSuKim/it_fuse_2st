@@ -10,11 +10,15 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import kr.or.dgit.book_project.dto.MemberInfo;
+import kr.or.dgit.book_project.setting.InitSettingService;
 
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class PageSub extends JFrame implements ActionListener {
 
@@ -143,6 +147,42 @@ public class PageSub extends JFrame implements ActionListener {
 	public void setMemberInfo(MemberInfo memberInfo) {
 		this.memberInfo = memberInfo;
 		pSideBar.getLblNewLabel().setText("[" + memberInfo.getmName() + "] 님 접속중");
+		if (memberInfo.getmGroup() == 'A'){
+			setDBMenu();
+		}
+	}
+
+	public void setDBMenu() {
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+
+		JMenu mnNewMenu = new JMenu("DB관리");
+		menuBar.add(mnNewMenu);
+
+		JMenuItem mntmBackUp = new JMenuItem("백업");
+		mntmBackUp.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// 백업
+				InitSettingService init = new InitSettingService();
+				init.initSetting(1, 0);
+
+			}
+		});
+		mnNewMenu.add(mntmBackUp);
+
+		JMenuItem mntmRestore = new JMenuItem("복원");
+		mntmRestore.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// 복원
+				InitSettingService init = new InitSettingService();
+				init.initSetting(1, 1);
+			}
+		});
+		mnNewMenu.add(mntmRestore);
 	}
 
 }
