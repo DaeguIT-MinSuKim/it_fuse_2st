@@ -419,7 +419,7 @@ create table if not exists book_project.post(
 	building2 int(5) null
 );
 
-LOAD data LOCAL INFILE 'D:/workspace_mybatis/PostZipFinder/DataFiles/대구광역시.txt' 
+LOAD data LOCAL INFILE 'D:/workspace_mybatis/it_fuse_2st/DataFiles/post.txt' 
 INTO table  book_project.post   
 character set 'euckr'  
 fields TERMINATED by '|' 

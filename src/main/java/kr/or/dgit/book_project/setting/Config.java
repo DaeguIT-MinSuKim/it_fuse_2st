@@ -10,7 +10,7 @@ public class Config {
 	public static final String URL = "jdbc:mysql://localhost:3306/";
 	public static final String DRIVER = "com.mysql.jdbc.Driver";
 
-	public static final String[] TABLE_NAME = { "memberInfo", "publisherInfo", "coden", "bookInfo", "paymentIO"};
+	public static final String[] TABLE_NAME = { "memberInfo", "publisherInfo", "coden", "bookInfo", "paymentIO", "post"};
 	//public static final String IMPORT_DIR = System.getProperty("user.dir") + "\\DataFiles\\";
 
 	public static final String[] CREATE_SQL_TABLE = {
@@ -77,14 +77,14 @@ public class Config {
 			+ "PRIMARY KEY (no),	"
 			+ "FOREIGN KEY (b_code, b_sub_code) REFERENCES bookInfo (b_code, b_sub_code) ON UPDATE cascade,	"
 			+ "FOREIGN KEY (m_code) REFERENCES memberInfo (m_code) ON UPDATE CASCADE)"
-			/*,
+			,
 			"create table if not exists post(	"
 			+ "zipcode	char(5)	null,	"
 			+ "sido	varchar(20)	null,	"
 			+ "sigungu	varchar(20) null,	"
 			+ "doro	varchar(20) null,	"
 			+ "building1 int(5) null,	"
-			+ "building2 int(5) null)"*/
+			+ "building2 int(5) null)"
 			};
 	
 
@@ -172,7 +172,7 @@ public class Config {
 			+ "else		"
 			+ "commit;	"
 			+ "end if;	"
-			+ "end "
+			+ "end "			
 	};
 
 	public static final String CRATE_USER = 
