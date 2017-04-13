@@ -11,7 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 
 public class MybatisSqlSessionFactory {
-	private static SqlSessionFactory sqlSessionFactory;
+	/*private static SqlSessionFactory sqlSessionFactory;
 
 	public static SqlSessionFactory getSqlSessionFactory() {
 		if (sqlSessionFactory == null){
@@ -29,6 +29,6 @@ public class MybatisSqlSessionFactory {
 	
 	public static SqlSession openSession(){
 		return getSqlSessionFactory().openSession();
-	}
+	}*/
 	
 }

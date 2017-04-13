@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBCon {
-	private static Connection con;
+	/*private static Connection con;
 
 	private DBCon(String url, String user, String pwd) {
 		try {
@@ -34,5 +34,5 @@ public class DBCon {
 				e.printStackTrace();
 			}
 		}
-	}
+	}*/
 }

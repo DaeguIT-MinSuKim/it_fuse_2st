@@ -13,7 +13,7 @@ import kr.or.dgit.book_project.post.util.DBCon;
 import kr.or.dgit.book_project.post.util.JdbcUtil;
 
 public class InitSettingService {
-	public void initSetting() {
+	/*public void initSetting() {
 		Dao dao = Dao.getInstance();
 		try {
 			dao.getUpdateResult("drop database if exists " + Config.DB_NAME);
@@ -69,5 +69,5 @@ public class InitSettingService {
 			JdbcUtil.close(stmt);
 		}
 
-	}
+	}*/
 }

@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class JdbcUtil {
-	public static void close(Statement stmt){
+	/*public static void close(Statement stmt){
 		if (stmt != null){
 			try {
 				stmt.close();
@@ -30,5 +30,5 @@ public class JdbcUtil {
 	public static void close(ResultSet rs, Statement stmt){
 		close(rs);
 		close(stmt);
-	}
+	}*/
 }

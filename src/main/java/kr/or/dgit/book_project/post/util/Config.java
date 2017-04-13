@@ -1,7 +1,7 @@
 package kr.or.dgit.book_project.post.util;
 
 public class Config {
-	public static final String DB_NAME = "book_project";
+	/*public static final String DB_NAME = "book_project";
 	public static final String USER   = "user_book";
 	public static final String PWD    = "rootroot";
 	public static final String URL    = "jdbc:mysql://localhost:3306/";
@@ -21,5 +21,5 @@ public class Config {
 	
 	public static final String[] CREATE_INDEX={
 			"CREATE INDEX idx_post_sido On post(sido)",
-			"CREATE INDEX idx_post_doro ON post(doro)"};
+			"CREATE INDEX idx_post_doro ON post(doro)"};*/
 }

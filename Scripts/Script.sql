@@ -419,6 +419,16 @@ create table if not exists book_project.post(
 	building2 int(5) null
 );
 
+-- 성환이 테스트
+LOAD data LOCAL INFILE 'C:/Users/Administrator/Desktop/workspace_mybatis/it_fuse_2st/DataFiles/대구광역시.txt' 
+INTO table  book_project.post   
+character set 'euckr'  
+fields TERMINATED by '|' 
+IGNORE 1 lines 
+(@zipcode, @sido, @d, @sigungu , @d, @d, @d, @d, @doro, @d, @d, @building1, @building2, @d, @d, @d, @d, @d, @d ,@d, @d, @d, @d, @d, @d, @d) 
+set zipcode=@zipcode, sido=@sido, sigungu=@sigungu, doro=@doro, building1=@building1, building2=@building2;
+
+
 LOAD data LOCAL INFILE 'D:/workspace_mybatis/PostZipFinder/DataFiles/대구광역시.txt' 
 INTO table  book_project.post   
 character set 'euckr'  

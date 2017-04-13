@@ -8,7 +8,7 @@ import kr.or.dgit.book_project.post.util.Config;
 import kr.or.dgit.book_project.post.util.DBCon;
 
 public class Dao {
-	private static Dao instance = new Dao();
+	/*private static Dao instance = new Dao();
 
 	private Dao() {
 	}
@@ -40,5 +40,5 @@ public class Dao {
 
 	public int getUpdateResult(String sql, Object... objects) throws Exception {
 		return getPreStmt(sql, objects).executeUpdate();
-	}
+	}*/
 }
