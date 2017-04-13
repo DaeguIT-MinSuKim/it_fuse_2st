@@ -118,4 +118,10 @@ public class BookInfoService {
 			return bookInfoMapper.selectOnlyBookInfo(bookInfo);
 		}
 	}
+	public List<BookInfo> isLendingtest() {
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession()) {
+			BookInfoMapper bookInfoMapper = new BookInfoMapperImpl(sqlSession);
+			return bookInfoMapper.isLendingtest();
+		}
+	}
 }

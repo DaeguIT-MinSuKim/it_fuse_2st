@@ -23,6 +23,8 @@ import javax.swing.BoxLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 @SuppressWarnings("serial")
 public class PublisherInfoP extends JPanel implements ActionListener {
@@ -84,31 +86,32 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 
 		pBtn = new JPanel();
 		panelPub.add(pBtn);
-		GridBagLayout gbl_pBtn = new GridBagLayout();
-		gbl_pBtn.columnWidths = new int[]{57, 37, 0, 0, 72, 70, 70, 0};
-		gbl_pBtn.rowHeights = new int[]{33, 0};
-		gbl_pBtn.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_pBtn.rowWeights = new double[]{1.0, Double.MIN_VALUE};
-		pBtn.setLayout(gbl_pBtn);
-												
-														btnPubSave = new JButton("저장");
-														btnPubSave.setForeground(Color.BLACK);
-														btnPubSave.addActionListener(this);
-														GridBagConstraints gbc_btnPubSave = new GridBagConstraints();
-														gbc_btnPubSave.fill = GridBagConstraints.BOTH;
-														gbc_btnPubSave.insets = new Insets(0, 0, 0, 5);
-														gbc_btnPubSave.gridx = 4;
-														gbc_btnPubSave.gridy = 0;
-														pBtn.add(btnPubSave, gbc_btnPubSave);
-												
-														btnCancel = new JButton("취소");
-														btnCancel.addActionListener(this);
-														GridBagConstraints gbc_btnCancel = new GridBagConstraints();
-														gbc_btnCancel.insets = new Insets(0, 0, 0, 5);
-														gbc_btnCancel.fill = GridBagConstraints.BOTH;
-														gbc_btnCancel.gridx = 5;
-														gbc_btnCancel.gridy = 0;
-														pBtn.add(btnCancel, gbc_btnCancel);
+																
+																		btnCancel = new JButton("취소");
+																		btnCancel.addActionListener(this);
+																		
+																				btnPubSave = new JButton("저장");
+																				btnPubSave.setForeground(Color.BLACK);
+																				btnPubSave.addActionListener(this);
+																		GroupLayout gl_pBtn = new GroupLayout(pBtn);
+																		gl_pBtn.setHorizontalGroup(
+																			gl_pBtn.createParallelGroup(Alignment.LEADING)
+																				.addGroup(gl_pBtn.createSequentialGroup()
+																					.addGap(165)
+																					.addComponent(btnPubSave, GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+																					.addGap(5)
+																					.addComponent(btnCancel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+																					.addGap(166))
+																		);
+																		gl_pBtn.setVerticalGroup(
+																			gl_pBtn.createParallelGroup(Alignment.LEADING)
+																				.addGroup(gl_pBtn.createSequentialGroup()
+																					.addGap(5)
+																					.addGroup(gl_pBtn.createParallelGroup(Alignment.LEADING)
+																						.addComponent(btnPubSave)
+																						.addComponent(btnCancel)))
+																		);
+																		pBtn.setLayout(gl_pBtn);
 
 		postSearch();
 	}
