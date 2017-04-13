@@ -242,7 +242,7 @@ public class PageLogin extends JFrame implements ActionListener {
 	}
 
 	protected void actionPerformedBtnSetting(ActionEvent e) {
-		PageSetting ps = new PageSetting();
+		PageAdminLogin ps = new PageAdminLogin();
 		ps.setVisible(true);
 	}
 }

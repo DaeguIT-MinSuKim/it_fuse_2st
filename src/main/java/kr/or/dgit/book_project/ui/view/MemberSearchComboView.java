@@ -290,14 +290,15 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 						if (updateMember.isPosbl()) {
 							booklendview.getpMemberlendDetail().clear();
 							booklendview.getpMemberlendDetail().getpMCode().setTFValue(updateMember.getmCode());
-							booklendview.getpMemberlendDetail().getpMName().setTFValue(updateMember.getmName());
-							booklendview.getpMemberlendDetail().getpMTel().setTFValue(updateMember.getmTel());
+							
 							booklendview.getpMemberlendDetail().getLblMsg().setText("대여가능");
 							booklendview.getpMemberlendDetail().getLblMsg().setForeground(Color.BLUE);
+							booklendview.getBtnLend().setEnabled(true);
 
 						} else {
 							booklendview.getpMemberlendDetail().clear();
 							booklendview.getpMemberlendDetail().getpMCode().setTFValue(updateMember.getmCode());
+							booklendview.getBtnLend().setEnabled(false);
 							//if(updateMember.getBlackDate() != null){
 							if(!updateMember.getBlackDate().equals("1000-01-01")){
 								booklendview.getpMemberlendDetail().getLblMsg().setText("도서 대여 불가 : " + updateMember.getBlackDate()+"까지 금지");
@@ -310,7 +311,10 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 								booklendview.getpMemberlendDetail().getLblMsg().setForeground(Color.RED);
 							}
 							
+							
 						}
+						booklendview.getpMemberlendDetail().getpMName().setTFValue(updateMember.getmName());
+						booklendview.getpMemberlendDetail().getpMTel().setTFValue(updateMember.getmTel());
 						myFrame.setVisible(false);
 					}
 				}
