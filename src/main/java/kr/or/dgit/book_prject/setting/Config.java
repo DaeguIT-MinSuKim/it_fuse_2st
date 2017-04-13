@@ -7,7 +7,7 @@ public class Config {
 	public static final String URL = "jdbc:mysql://localhost:3306/";
 	public static final String DRIVER = "com.mysql.jdbc.Driver";
 
-	public static final String[] TABLE_NAME = { "memberInfo", "publisherInfo", "coden", "bookInfo", "paymentIO","post"};
+	public static final String[] TABLE_NAME = { "memberInfo", "publisherInfo", "coden", "bookInfo", "paymentIO"};
 	//public static final String IMPORT_DIR = System.getProperty("user.dir") + "\\DataFiles\\";
 
 	public static final String[] CREATE_SQL_TABLE = {
