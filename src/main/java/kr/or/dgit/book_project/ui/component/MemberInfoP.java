@@ -96,16 +96,37 @@ public class MemberInfoP extends JPanel {
 		pMAddDetail.setTFValue(memberinfo.getmAddDetail());
 	}
 	
-	public void setObjectAddr(String[] arr){
+	public void setObjectAddr(String[] arr){			// 우편번호 값 가져오기
 		pMZipCode.setTFValue(arr[0]);
 		pMAddress.setTFValue(arr[1]);
 		pMAddDetail.setTFValue(arr[2]);
 	}
 	
-	
+	public boolean addMemberCheck() {
+
+		/*
+		 * if (pPCode.getTFValue().trim().equals("")) {
+		 * JOptionPane.showMessageDialog(null, "출판사코드를 입력해주세요");
+		 * pPCode.getTF().requestFocus(); return false; } else
+		 */ if (pMName.getTFValue().trim().equals("")) {
+			JOptionPane.showMessageDialog(null, "이름을 입력해주세요");
+			pMName.getTF().requestFocus();
+			return false;
+		} else if (pMPass.getTFValue().trim().equals("")) {
+			JOptionPane.showMessageDialog(null, "사용할 비밀번호를 입력해주세요");
+			pMPass.getTF().requestFocus();
+			return false;
+		} else if (!pMTel.getTFValue().trim().matches("^[0-9]{3}-{1}[0-9]{3,4}-{1}[0-9]{4}$")) {
+			JOptionPane.showMessageDialog(null, "전화번호를 입력해주세요 000-0000-0000");
+			pMTel.getTF().requestFocus();
+			return false;
+		} else {
+			return true;
+		}
+	} 
 	
 	public boolean isVaildCheck(){
-		try {
+		try {			
 			pMPass.isValidCheck("^[a-zA-Z0-9]+$", "영문 또는 숫자만 가능합니다.");
 			pMName.isValidCheck("^[a-zA-Z가-힣]+$", "영문 또는 숫자만 가능합니다.");
 			pMZipCode.isValidCheck("^[0-9]{5}$", "숫자만 가능합니다.");
@@ -119,8 +140,6 @@ public class MemberInfoP extends JPanel {
 			return false;
 			//e.printStackTrace();
 		}
-		
-		
 		
 	}
 

@@ -113,9 +113,8 @@ public class MemberInsertView extends AbsViewPanel implements ActionListener{
 
 	
 
-	protected void actionPerformedBtnSave(ActionEvent e) {		// 회원등록
-		
-		if (memberInfoP.isVaildCheck()) { // 중복체크 해야함.....
+	protected void actionPerformedBtnSave(ActionEvent e) {		// 회원등록		
+		if (memberInfoP.addMemberCheck()) { // 중복체크 , 정규표현식 etc...
 			MemberInfo memberInfo = memberInfoP.getObject();			
 			MemberInfoService.getInstance().insertMemberInfo(memberInfo); // 입력받은 회원 정보 입력하기
 			JOptionPane.showMessageDialog(null, "회원으로 등록되었습니다.");
@@ -169,6 +168,7 @@ public class MemberInsertView extends AbsViewPanel implements ActionListener{
 
 	public void setThisToPost(PostMain postMain){
 		postMain.setMemberInsertView(this);
+		postMain.setVisible(false);
 	}
 	
 	public MemberInfoP getMemberInfoP() {
