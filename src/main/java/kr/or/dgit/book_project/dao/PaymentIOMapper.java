@@ -21,4 +21,7 @@ public interface PaymentIOMapper {
 	//test
 	List<PaymentIO> selectAllPio(Map<String, Object> param);
 	
+	//차트용
+	List<PaymentIO> overduePaymentIO();
+	List<PaymentIO> lendPaymentIO();
 }

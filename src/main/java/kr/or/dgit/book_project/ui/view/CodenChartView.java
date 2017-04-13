@@ -2,26 +2,20 @@ package kr.or.dgit.book_project.ui.view;
 
 import javax.swing.JPanel;
 import java.awt.GridLayout;
-import java.awt.Label;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.swing.border.TitledBorder;
 
-import javafx.scene.chart.PieChart;
 import kr.or.dgit.book_project.dto.Coden;
 import kr.or.dgit.book_project.service.BookInfoService;
 import kr.or.dgit.book_project.service.CodenService;
 
-import java.awt.FlowLayout;
-
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.UIManager;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -29,6 +23,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
+@SuppressWarnings("serial")
 public class CodenChartView extends JPanel {
 
 	private JPanel pTXT;

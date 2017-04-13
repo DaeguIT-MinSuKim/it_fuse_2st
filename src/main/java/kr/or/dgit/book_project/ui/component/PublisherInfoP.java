@@ -58,20 +58,22 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		panelPub.add(pPTel);
 
 		pPZipCode = new InputComp();
-		/*pPZipCode.getTF().addMouseListener(this);*/
+		/* pPZipCode.getTF().addMouseListener(this); */
 		pPZipCode.setTitle("우 편 번 호");
 		panelPub.add(pPZipCode);
 
 		pPAddress = new InputComp();
 		pPAddress.setTitle("주         소");
 		panelPub.add(pPAddress);
-		
+
 		pPAddDetail = new InputComp();
-		/*GridBagLayout gbl_pPAddDetail = (GridBagLayout) pPAddDetail.getLayout();
-		gbl_pPAddDetail.rowWeights = new double[]{0.0};
-		gbl_pPAddDetail.rowHeights = new int[]{50};
-		gbl_pPAddDetail.columnWeights = new double[]{0.0, 0.0};
-		gbl_pPAddDetail.columnWidths = new int[]{100, 200};*/
+		/*
+		 * GridBagLayout gbl_pPAddDetail = (GridBagLayout)
+		 * pPAddDetail.getLayout(); gbl_pPAddDetail.rowWeights = new
+		 * double[]{0.0}; gbl_pPAddDetail.rowHeights = new int[]{50};
+		 * gbl_pPAddDetail.columnWeights = new double[]{0.0, 0.0};
+		 * gbl_pPAddDetail.columnWidths = new int[]{100, 200};
+		 */
 		pPAddDetail.setTitle("상 세 주 소");
 		panelPub.add(pPAddDetail);
 
@@ -87,7 +89,7 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		btnCancel = new JButton("취소");
 		btnCancel.addActionListener(this);
 		pBtn.add(btnCancel);
-		
+
 		postSearch();
 	}
 
@@ -145,7 +147,7 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 
 			return true;
 		}
-	} 
+	}
 
 	public PublisherInfo getObject() {
 		String pCode = pPCode.getTFValue();
@@ -163,7 +165,7 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		pPublisher.setTFValue(pubItem.getPublisher());
 		pPName.setTFValue(pubItem.getpName());
 		pPTel.setTFValue(pubItem.getpTel());
-		//pPZipCode.setTFValue(String.valueOf(pubItem.getpZipCode()));
+		// pPZipCode.setTFValue(String.valueOf(pubItem.getpZipCode()));
 		pPZipCode.setTFValue(pubItem.getpZipCode());
 		pPAddress.setTFValue(pubItem.getpAddress());
 		pPAddDetail.setTFValue(pubItem.getpAddDetail());
@@ -202,34 +204,35 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 			}
 		}
 	}
-	public void postSearch(){
+
+	public void postSearch() {
 		PublisherInfoP.getpPZipCode().getTF().addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(e.getButton() ==  MouseEvent.BUTTON1){
+				if (e.getButton() == MouseEvent.BUTTON1) {
 					PostMain post = new PostMain();
 					setThisToPost(post);
 					post.setVisible(true);
 				}
 				super.mouseClicked(e);
-			}			
+			}
 		});
 	}
-	
-	
-	
+
 	public static InputComp getpPZipCode() {
 		return pPZipCode;
 	}
 
+	@SuppressWarnings("static-access")
 	public void setpPZipCode(InputComp pPZipCode) {
 		this.pPZipCode = pPZipCode;
 	}
 
-	public void setThisToPost(PostMain postMain){
+	public void setThisToPost(PostMain postMain) {
 		postMain.setPublisherInfoP(this);
 	}
+
 	public void mouseClicked(MouseEvent e) {
 		if (e.getSource() == pPZipCode.getTF()) {
 			mouseClickedPPZipCodeTF(e);

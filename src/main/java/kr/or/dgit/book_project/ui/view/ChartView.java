@@ -1,11 +1,7 @@
 package kr.or.dgit.book_project.ui.view;
 
-import java.awt.Color;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import javax.swing.border.TitledBorder;
 
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;

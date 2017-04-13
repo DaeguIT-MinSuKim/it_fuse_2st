@@ -142,6 +142,21 @@
 		group by io.b_code order by cnt desc, in_date desc
 		limit 0, 3;
 	</select>
+	
+	<!-- 총 연체 권수 : 반납된 예전 기록 말고 **현재시점**에서 반납되지 않고 연체중인 권수 -->
+	<select id="overduePaymentIO" resultType="paymentIO">
+		select count(*) from bookInfo b
+		inner join paymentIO p on b.b_code = p.b_code and b.b_sub_code = p.b_sub_code 
+		where return_date is null and (DATEDIFF(CURRENT_DATE,lend_date) >= 3)
+	</select>
+	
+	<!-- 총 대여횟수 : 예전 기록 말고 **현재시점**에서 대여상태인 권수 -->
+	<select id="lendPaymentIO" resultType="paymentIO">
+		select count(*) from bookInfo b
+		inner join paymentIO p on b.b_code = p.b_code and b.b_sub_code = p.b_sub_code 
+		where return_date is null
+	</select>
 
+	
 	
 </mapper>
