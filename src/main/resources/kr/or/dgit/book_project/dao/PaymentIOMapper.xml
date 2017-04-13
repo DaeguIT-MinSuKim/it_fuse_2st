@@ -61,7 +61,7 @@
 			</if>
 			<if test="returnNull != null">
 				and lend_date is not null
-				and return_date is null 
+				and return_date = '1000-01-01'
 			</if>
 			<if test="no != null">
 				and io.no is not null
