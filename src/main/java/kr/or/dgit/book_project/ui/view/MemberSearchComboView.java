@@ -163,70 +163,27 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 					JMenuItem updateItem = new JMenuItem("수정");
 					updateItem.addActionListener(new ActionListener() {
 						@Override
-						public void actionPerformed(ActionEvent e) {
-							if (e.getActionCommand().equals("수정")) {
+				public void actionPerformed(ActionEvent e) {
+					if (e.getActionCommand().equals("수정")) {
 
-								MemberInfo memberinfo = pTable.getSelectedObject(); // 회원
-																					// 선택해서
-																					// 그
-																					// 해당
-																					// 회원정보를
-																					// 가진
-																					// 새창
-																					// 띄우기
-								JFrame jf = new JFrame();
-								// System.out.println("멤버서치뷰 테이블 : " +pTable );
-								MemberSearchMemberDetailViewFrame memberDetail = new MemberSearchMemberDetailViewFrame();
-								memberDetail.setpTable(pTable);
-								memberDetail.setJf(jf);
-								memberDetail.getPanel().setObject(memberinfo); // getSelectObject로
-																				// 찾아서
-																				// Detail에
-																				// 정보
-																				// 심기
-								memberDetail.getBtnModify().addActionListener(new ActionListener() {
-									
-									@Override
-									public void actionPerformed(ActionEvent e) {
-										Map<String, Object> param = new HashMap<>();
-										MemberInfoService.getInstance().updateMemberInfo(memberDetail.getPanel().getObject());// 해당 회원의 정보를 수정 후, 수정 버튼 누르면 끝. 데이터가 바뀌는지 확인하기
-										pTable.setMap(param);
-										// System.out.println("pTable 넘어왔니 여기는 멤버서치 : " + pTable);
-										pTable.loadData();
-
-										JOptionPane.showMessageDialog(null, "수정되었습니다.");
-										jf.setVisible(false);
-										
-									}
-								});
-								memberDetail.getBtnDel().addActionListener(new ActionListener() {
-									
-									@Override
-									public void actionPerformed(ActionEvent e) {
-										int res = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까?", "", JOptionPane.YES_NO_OPTION);
-										if (res != 0) {
-											JOptionPane.showMessageDialog(null, "취소하였습니다.");
-											return;
-										} else {
-											
-											MemberInfoService.getInstance().delMemberInfo(memberDetail.getPanel().getObject());
-											JOptionPane.showMessageDialog(null, "삭제하였습니다.");
-											Map<String, Object> param = new HashMap<>();
-											// param.put("isSecsn", false);
-											pTable.setMap(param);
-											pTable.loadData();
-											jf.setVisible(false);
-										}
-										
-									}
-								});
-								
-								memberDetail.getPanel().setObject(memberinfo);	// getSelectObject로 찾아서 Detail에 정보 심기
-								memberDetail.getPanel().getpMCode().getTF().setEnabled(false);
-
-								jf.getContentPane().add(memberDetail);
-								jf.setBounds(300, 400, 600, 400);
-								jf.setVisible(true);
+						MemberInfo memberinfo = pTable.getSelectedObject(); // 회원
+																			// 선택해서
+																			// 그
+																			// 해당
+																			// 회원정보를
+																			// 가진
+																			// 새창
+																			// 띄우기
+						JFrame jf = new JFrame();
+						// System.out.println("멤버서치뷰 테이블 : " +pTable );
+						MemberSearchMemberDetailViewFrame memberDetail = new MemberSearchMemberDetailViewFrame();
+						memberDetail.setpTable(pTable);
+						memberDetail.setJf(jf);
+						memberDetail.setMemberinfo(memberinfo);
+						memberDetail.getPanel().getpMCode().getTF().setEnabled(false);
+							jf.getContentPane().add(memberDetail);
+							jf.setBounds(300, 400, 600, 400);
+							jf.setVisible(true);
 							}
 						}
 					});
@@ -253,10 +210,14 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 								memberPayment.loadTable(memberinfo); // loadTable....
 								jf.add(memberPayment);
 
-								/*MemberSearchMemberPaymentViewFrame memberPayment = new MemberSearchMemberPaymentViewFrame();	
-								memberPayment.loadTable(memberinfo);		//loadTable....
-								jf.getContentPane().add(memberPayment);*/
-
+								/*
+								 * MemberSearchMemberPaymentViewFrame
+								 * memberPayment = new
+								 * MemberSearchMemberPaymentViewFrame();
+								 * memberPayment.loadTable(memberinfo);
+								 * //loadTable....
+								 * jf.getContentPane().add(memberPayment);
+								 */
 
 								jf.getContentPane().add(memberPayment);
 								jf.setBounds(300, 400, 600, 400);
@@ -287,35 +248,40 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 					MemberInfoService.getInstance().callMemberInfo(param);
 					MemberInfo updateMember = MemberInfoService.getInstance().findMemberInfoByCode(mi);
 					booklendview.getpMemberlendDetail().getpMCode().setTFValue(updateMember.getmCode());
-						if (updateMember.isPosbl()) {
-							booklendview.getpMemberlendDetail().clear();
-							booklendview.getpMemberlendDetail().getpMCode().setTFValue(updateMember.getmCode());
-							booklendview.getpMemberlendDetail().getpMName().setTFValue(updateMember.getmName());
-							booklendview.getpMemberlendDetail().getpMTel().setTFValue(updateMember.getmTel());
-							booklendview.getpMemberlendDetail().getLblMsg().setText("대여가능");
-							booklendview.getpMemberlendDetail().getLblMsg().setForeground(Color.BLUE);
 
+					if (updateMember.isPosbl()) {
+						booklendview.getpMemberlendDetail().clear();
+						booklendview.getpMemberlendDetail().getpMCode().setTFValue(updateMember.getmCode());
+
+						booklendview.getpMemberlendDetail().getLblMsg().setText("대여가능");
+						booklendview.getpMemberlendDetail().getLblMsg().setForeground(Color.BLUE);
+						booklendview.getBtnLend().setEnabled(true);
+					} else {
+						booklendview.getpMemberlendDetail().clear();
+						booklendview.getpMemberlendDetail().getpMCode().setTFValue(updateMember.getmCode());
+						
+						// if(updateMember.getBlackDate() != null){
+						if (!updateMember.getBlackDate().equals("1000-01-01")) {
+							booklendview.getpMemberlendDetail().getLblMsg()
+									.setText("도서 대여 불가 : " + updateMember.getBlackDate() + "까지 금지");
+							booklendview.getpMemberlendDetail().getLblMsg().setForeground(Color.RED);
+						} else if (updateMember.getmNowCount() == 5) {
+							booklendview.getpMemberlendDetail().getLblMsg().setText("도서 대여 불가 : 대여권수초과");
+							booklendview.getpMemberlendDetail().getLblMsg().setForeground(Color.RED);
 						} else {
-							booklendview.getpMemberlendDetail().clear();
-							booklendview.getpMemberlendDetail().getpMCode().setTFValue(updateMember.getmCode());
-							if(updateMember.getBlackDate() != null){
-								booklendview.getpMemberlendDetail().getLblMsg().setText("도서 대여 불가 : " + updateMember.getBlackDate()+"까지 금지");
-								booklendview.getpMemberlendDetail().getLblMsg().setForeground(Color.RED);
-							}else if (updateMember.getmNowCount() == 5){
-								booklendview.getpMemberlendDetail().getLblMsg().setText("도서 대여 불가 : 대여권수초과");
-								booklendview.getpMemberlendDetail().getLblMsg().setForeground(Color.RED);
-							}else{
-								booklendview.getpMemberlendDetail().getLblMsg().setText("도서 대여 불가 : 연체도서가 있습니다");
-								booklendview.getpMemberlendDetail().getLblMsg().setForeground(Color.RED);
-							}
-							
+							booklendview.getpMemberlendDetail().getLblMsg().setText("도서 대여 불가 : 연체도서가 있습니다");
+							booklendview.getpMemberlendDetail().getLblMsg().setForeground(Color.RED);
 						}
-						myFrame.setVisible(false);
+
 					}
+					booklendview.getpMemberlendDetail().getpMName().setTFValue(updateMember.getmName());
+					booklendview.getpMemberlendDetail().getpMTel().setTFValue(updateMember.getmTel());
+					myFrame.setVisible(false);
 				}
-			
+			}
 		});
-	}
+	};
+	
 
 	public MemberInfoSearchTable getpTable() {
 		return pTable;

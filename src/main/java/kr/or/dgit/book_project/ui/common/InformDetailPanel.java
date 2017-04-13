@@ -37,7 +37,7 @@ public class InformDetailPanel extends JPanel {
 		flowLayout.setVgap(10);
 		flowLayout.setHgap(20);
 
-		lblTitle = new JLabel("New label");
+		lblTitle = new JLabel("제목");
 		lblTitle.setFont(new Font("굴림", Font.BOLD, 15));
 		lblTitle.setBounds(new Rectangle(20, 20, 0, 0));
 		pTitle.add(lblTitle);
@@ -54,6 +54,7 @@ public class InformDetailPanel extends JPanel {
 		idp1.add(btnModify);
 
 		btnDel = new JButton("버튼");
+		btnDel.setText("바꿈");
 		idp1.add(btnDel);
 
 	}

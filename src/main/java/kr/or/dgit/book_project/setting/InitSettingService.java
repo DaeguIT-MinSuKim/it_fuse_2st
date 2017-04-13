@@ -1,4 +1,4 @@
-package kr.or.dgit.book_prject.setting;
+package kr.or.dgit.book_project.setting;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -90,13 +90,13 @@ public class InitSettingService {
 			while (rs.next()) {
 				for (int i = 1; i <= colCnt; i++) {
 					Object obj = rs.getObject(i);
-					/*if (obj.equals(true)) {
+					if (obj.equals(true)) {
 						// 테이블 안에 값이 있을떄
 						obj = 1;
 					} else if (obj.equals(false)) {
 						// 테이블 안에 값이 null
-						obj = 1;
-					}*/
+						obj = 0;
+					}
 					sb.append(obj + ","); // 1,   // 0, 
 				}
 				sb.replace(sb.length() - 1, sb.length(), ""); // 1   // 0

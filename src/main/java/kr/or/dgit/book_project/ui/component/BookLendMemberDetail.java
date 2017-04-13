@@ -29,13 +29,6 @@ public class BookLendMemberDetail extends JPanel {
 		add(pMCode);
 		pMCode.setTitle("회원코드");
 		
-		panel = new BasicPanel();
-		add(panel);
-		
-		lblMsg = new JLabel();
-		panel.getpContent().add(lblMsg);
-		lblMsg.setHorizontalAlignment(SwingConstants.LEFT);
-		
 		pMName = new InputComp();
 		add(pMName);
 		pMName.setTitle("성명");
@@ -43,6 +36,13 @@ public class BookLendMemberDetail extends JPanel {
 		pMTel = new InputComp();
 		add(pMTel);
 		pMTel.setTitle("전화번호");
+		
+		panel = new BasicPanel();
+		add(panel);
+		
+		lblMsg = new JLabel();
+		panel.getpContent().add(lblMsg);
+		lblMsg.setHorizontalAlignment(SwingConstants.LEFT);
 	}
 	// 겟
 	public MemberInfo getObject(){

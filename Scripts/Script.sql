@@ -176,7 +176,6 @@ INSERT INTO book_project.publisherInfo (p_code, publisher, p_name, p_tel, p_zip_
 ('P022','다산지식하우스', '교보문고', '123-456-7890','07626','서울특별시 강서구 공항대로8길 77-24',''),
 ('P023','한빛미디어', '교보문고', '123-456-7890','04768','서울특별시 성동구 서울숲4길 28','');
 
-
 insert into book_project.coden (c_name, c_code) values 
 ('IT', 'T'),
 ('인문', 'H'),
@@ -216,20 +215,23 @@ INSERT INTO book_project.bookInfo(b_code, b_sub_code, c_name, b_name, author, p_
 
 
 INSERT INTO book_project.memberInfo (m_code, m_name, m_tel, m_zip_code, m_address,m_Add_Detail, is_secsn, m_pass, m_group, is_posbl, delay_count, m_lend_count, m_now_count, black_date) VALUES
-('C001', '김유정', '010-1111-1234','04524','서울특별시 중구 세종대로 110','3층 3-B호',false, password('1234'), 'C', true, 0, 2, 2, null),
-('C002', '박보영', '010-1234-2255','35242','대전광역시 서구 둔산로 100','102동 1001호',false, password('4567'), 'C', true, 1, 2, 2, null), 
-('C003', '박보영', '010-2222-4567','41911','대구광역시 중구 공평로 88','55-1',false, password('5864'), 'C', true, 0, 4, 1, null),
-('C004', '전지현', '010-7777-2255','47545','부산광역시 연제구 중앙대로 1001','C동 303호',false, password('aaba'), 'C', true, 0, 5, 4, null),						-- 4권 빌린사람
-('C005', 'Emma Watson', '010-5555-4567','41908','대구광역시 중구 국채보상로139길 1','3층 302호',false, password('bbbb'), 'C', false, 1, 7, 5, null),            -- 5권 빌린사람
-('C006', '고수', '010-1234-1234','41185','대구광역시 동구 아양로 207','1-52',true, password('8888'), 'C', false, 0, 1, 0, null), -- 탈퇴상태
-('C007', '박보검', '010-5432-1234','41777','대구광역시 서구 국채보상로 257','108-1',false, password('9595'), 'C', false, 0, 3, 1, null),            -- 탈퇴회원
-('C008', '박형식', '010-1234-9999','42429','대구광역시 남구 이천로 51','79-2',false, password('5555'), 'C', false, 1, 4, 2, null),            -- 책 연체 중인 사람(일반)
-('C009', 'Dan Stevens', '010-9876-1200','41590','대구광역시 북구 옥산로 65','내로빌딩 2층 201호',false, password('4444'), 'C', true, 2, 6, 2, null),               -- 곧 블랙.. 연체횟수 2번이나 연체중 아님
-('C010', '원빈', '010-9876-5432','42424','대구 남구 중앙대로 220 3층','1층 1-C호',false, password('8811'), 'C', false, 2, 6, 2, null),             -- 곧 블랙리스트 될 사람.. 연체횟수2번에 연체중인사람
+('C001', '김유정', '010-1111-1234','04524','서울특별시 중구 세종대로 110','3층 3-B호',false, password('1234'), 'C', true, 0, 2, 2, '1000-01-01'),
+('C002', '박보영', '010-1234-2255','35242','대전광역시 서구 둔산로 100','102동 1001호',false, password('4567'), 'C', true, 1, 2, 2, '1000-01-01'), 
+('C003', '박보영', '010-2222-4567','41911','대구광역시 중구 공평로 88','55-1',false, password('5864'), 'C', true, 0, 4, 1, '1000-01-01'),
+('C004', '전지현', '010-7777-2255','47545','부산광역시 연제구 중앙대로 1001','C동 303호',false, password('aaba'), 'C', true, 0, 5, 4, '1000-01-01'),						-- 4권 빌린사람
+('C005', 'Emma Watson', '010-5555-4567','41908','대구광역시 중구 국채보상로139길 1','3층 302호',false, password('bbbb'), 'C', false, 1, 7, 5, '1000-01-01'),            -- 5권 빌린사람
+('C006', '고수', '010-1234-1234','41185','대구광역시 동구 아양로 207','1-52',true, password('8888'), 'C', false, 0, 1, 0, '1000-01-01'), -- 탈퇴상태
+('C007', '박보검', '010-5432-1234','41777','대구광역시 서구 국채보상로 257','108-1',false, password('9595'), 'C', false, 0, 3, 1, '1000-01-01'),            -- 탈퇴회원
+('C008', '박형식', '010-1234-9999','42429','대구광역시 남구 이천로 51','79-2',false, password('5555'), 'C', false, 1, 4, 2, '1000-01-01'),            -- 책 연체 중인 사람(일반)
+('C009', 'Dan Stevens', '010-9876-1200','41590','대구광역시 북구 옥산로 65','내로빌딩 2층 201호',false, password('4444'), 'C', true, 2, 6, 2, '1000-01-01'),               -- 곧 블랙.. 연체횟수 2번이나 연체중 아님
+('C010', '원빈', '010-9876-5432','42424','대구 남구 중앙대로 220 3층','1층 1-C호',false, password('8811'), 'C', false, 2, 6, 2, '1000-01-01'),             -- 곧 블랙리스트 될 사람.. 연체횟수2번에 연체중인사람
 ('C011', '원빈', '010-234-1234','42424','대구 남구 중앙대로 220 3층','202동 1202호',false, password('8811'), 'C', false, 3, 5, 0, '2017-04-23'), 	-- 현재 블랙리스트
-('A001', '관리자', '010-234-1234','42424','대구 남구 중앙대로 220 3층','254-1',false, password('admin'), 'A', false, 0, 0, 0, null), -- 관리자
-('B001', '사서', '010-234-1234','42424','대구 남구 중앙대로 220 3층','2-55',false, password('8811'), 'B', false, 0, 0, 0, null);      -- 사서
+('A001', '관리자', '010-234-1234','42424','대구 남구 중앙대로 220 3층','254-1',false, password('admin'), 'A', false, 0, 0, 0, '1000-01-01'), -- 관리자
+('B001', '사서', '010-234-1234','42424','대구 남구 중앙대로 220 3층','2-55',false, password('8811'), 'B', false, 0, 0, 0, '1000-01-01');      -- 사서
 UPDATE book_project.memberinfo SET is_secsn=true WHERE m_code='C006';
+/*
+INSERT INTO book_project.memberInfo (m_code, m_name, m_tel, m_zip_code, m_address,m_Add_Detail, is_secsn, m_pass, m_group, is_posbl, delay_count, m_lend_count, m_now_count, black_date) VALUES
+('B011', '사서', '010-234-1234','42424','대구 남구 중앙대로 220 3층','2-55',false, password('8811'), 'B', false, 0, 0, 0,null);      -- 사서*/
 
 
 INSERT INTO book_project.paymentIO (no, b_code, b_sub_code, m_code, lend_date, return_date) values
@@ -253,25 +255,25 @@ INSERT INTO book_project.paymentIO (no, b_code, b_sub_code, m_code, lend_date, r
 (18,'T001',00,'C009','2017-03-09' , '2017-03-20'),   -- 연체도서
 (19,'H003',00,'C008','2017-03-15' , '2017-03-20'),   -- 연체도서
 (20,'H001',00,'C006','2017-03-19' , '2017-03-21'),
-(21,'H002',00,'C009','2017-03-20' , null), -- 연체중
-(22,'T001',01,'C001','2017-03-21' , null),
-(23,'T003',00,'C002','2017-03-21' , null),
-(24,'T004',00,'C002','2017-03-21' , null),
-(25,'S004',00,'C003','2017-03-21' , null),
-(26,'J002',00,'C004','2017-03-21' , null),
-(27,'S001',00,'C005','2017-03-22' , null),
-(28,'S006',00,'C005','2017-03-22' , null),
-(29,'H001',00,'C004','2017-03-22' , null),
-(30,'D002',00,'C004','2017-03-22' , null),
-(31,'S005',00,'C005','2017-03-22' , null),
-(32,'T005',00,'C005','2017-03-22' , null),
-(33,'J003',00,'C005','2017-03-22' , null),
-(34,'S002',00,'C007','2017-03-22' , null),
-(35,'H004',00,'C008','2017-03-23' , null),
-(36,'S003',00,'C008','2017-03-23' , null),
-(37,'T002',00,'C001','2017-03-23' , null),
-(38,'D001',00,'C004','2017-03-23' , null),
-(39,'H003',00,'C009','2017-03-23' , null);
+(21,'H002',00,'C009','2017-03-20' , '1000-01-01'), -- 연체중
+(22,'T001',01,'C001','2017-03-21' , '1000-01-01'),
+(23,'T003',00,'C002','2017-03-21' , '1000-01-01'),
+(24,'T004',00,'C002','2017-03-21' , '1000-01-01'),
+(25,'S004',00,'C003','2017-03-21' , '1000-01-01'),
+(26,'J002',00,'C004','2017-03-21' , '1000-01-01'),
+(27,'S001',00,'C005','2017-03-22' , '1000-01-01'),
+(28,'S006',00,'C005','2017-03-22' , '1000-01-01'),
+(29,'H001',00,'C004','2017-03-22' , '1000-01-01'),
+(30,'D002',00,'C004','2017-03-22' , '1000-01-01'),
+(31,'S005',00,'C005','2017-03-22' , '1000-01-01'),
+(32,'T005',00,'C005','2017-03-22' , '1000-01-01'),
+(33,'J003',00,'C005','2017-03-22' , '1000-01-01'),
+(34,'S002',00,'C007','2017-03-22' , '1000-01-01'),
+(35,'H004',00,'C008','2017-03-23' , '1000-01-01'),
+(36,'S003',00,'C008','2017-03-23' , '1000-01-01'),
+(37,'T002',00,'C001','2017-03-23' , '1000-01-01'),
+(38,'D001',00,'C004','2017-03-23' , '1000-01-01'),
+(39,'H003',00,'C009','2017-03-23' , '1000-01-01');
 
 GRANT SELECT ON mysql.proc to user_book IDENTIFIED BY 'rootroot';
 
@@ -296,7 +298,7 @@ begin
 	UPDATE bookinfo SET  b_lend_count=(b_lend_count+1), is_lending=true WHERE b_code=_b_code and b_sub_code = _b_sub_code;
 	UPDATE memberinfo SET  m_lend_count=(m_lend_count+1), m_now_count=(m_now_count+1) WHERE m_code=_m_code;
 	-- <<출납>>테이블 [회원코드],[도서코드],[대여일자(컴퓨터 현재일자): CURRENT_DATE()],[반납일자(초기화 : null)]
-	INSERT INTO paymentIO (b_code, b_sub_code, m_code, lend_date, return_date) VALUES(_b_code, _b_sub_code, _m_code, current_date, null);
+	INSERT INTO paymentIO (b_code, b_sub_code, m_code, lend_date, return_date) VALUES(_b_code, _b_sub_code, _m_code, current_date, '1000-01-01');
 	select m_now_count into _m_now_count from memberinfo where m_code = _m_code;
 	
 	-- [대여권수] 5권되면 [대여가능여부] false로 설정
@@ -332,10 +334,10 @@ begin
    declare continue handler for sqlexception set err = -1;
    
    start transaction;
-  select lend_date into _lend_date from paymentio where b_code = _b_code  and b_sub_code = _b_sub_code and m_code= _m_code and return_date is null;
+  select lend_date into _lend_date from paymentio where b_code = _b_code  and b_sub_code = _b_sub_code and m_code= _m_code and return_date = '1000-01-01';
 
    UPDATE paymentIO SET return_date = _return_date 
-   where b_code = _b_code and b_sub_code = _b_sub_code and m_code= _m_code and return_date is null;
+   where b_code = _b_code and b_sub_code = _b_sub_code and m_code= _m_code and return_date = '1000-01-01';
       
    UPDATE bookinfo SET is_lending = false WHERE b_code= _b_code and b_sub_code = _b_sub_code;
    update memberinfo set m_now_count=(m_now_count-1) where m_code = _m_code;
@@ -379,16 +381,16 @@ begin
 	
 	-- 연체발생시 대여불가설정
 	select datediff(current_date, DATE_ADD(lend_date, interval 2 day)) into datecnt from paymentio 
-	where return_date is null and m_code = _m_code limit 0,1;
+	where return_date = '1000-01-01' and m_code = _m_code limit 0,1;
 	if datecnt > 0 then 
 	 	update memberinfo set is_posbl = false where m_code = _m_code;
 	end if;
 	
 	-- 날짜경과시 블랙리스트 해제
 	select black_date into @_black from memberinfo where m_code = _m_code;
-	if @_black is not null then
+	if @_black <> '1000-01-01' then
 		if @_black < current_date then
-			update memberinfo set is_posbl = true, black_date = null, delay_count = 0 where m_code = _m_code;
+			update memberinfo set is_posbl = true, black_date = '1000-01-01', delay_count = 0 where m_code = _m_code;
 		end if;
 	end if;
 	
@@ -417,7 +419,7 @@ create table if not exists book_project.post(
 );
 
 LOAD data LOCAL INFILE 'D:/workspace_mybatis/PostZipFinder/DataFiles/대구광역시.txt' 
-INTO table  post   
+INTO table  book_project.post   
 character set 'euckr'  
 fields TERMINATED by '|' 
 IGNORE 1 lines 
@@ -470,4 +472,10 @@ select datediff(current_date, DATE_ADD(lend_date, interval 2 day)) from paymenti
 	where return_date is null and m_code = 'C001' limit 0,1;
 */
 
+select date_format(black_date, '%Y-%m-%d') from book_project.memberinfo;
 
+select if(black_date = null, 'a', 'b') from book_project.memberinfo;
+ 
+select b.b_code, b.b_sub_code, b.c_name, c.c_code, b_name, author, b.p_code, publisher, p_name, p_tel, p_zip_code, p_address, price, insert_date, b_lend_count, is_lending, is_del 
+from bookInfo b right outer join publisherInfo p on b.p_code = p.p_code left outer join coden c on b.c_name = c.c_name 
+WHERE b.is_del = 0 and b.is_lending = 0;

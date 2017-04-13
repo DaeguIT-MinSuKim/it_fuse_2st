@@ -16,24 +16,25 @@ import javax.swing.SwingConstants;
 
 import java.awt.event.ActionEvent;
 
-public class MemberSearchMemberDetailViewFrame extends InformDetailPanel {
+public class MemberSearchMemberDetailViewFrame extends InformDetailPanel implements ActionListener{
 
 	private MemberInfoP memberInfoP;
 	private MemberInfoSearchTable pTable;
 	private MemberInfo memberinfo;
 	private MemberSearchMemberDetailViewFrame memberInfoView;
-	private Map<String, Object> map;
+	//private Map<String, Object> mapererer;
 	private JFrame jf;
 
 	public MemberSearchMemberDetailViewFrame() {
-//		getBtnDel().addActionListener(this);
-//		getBtnModify().addActionListener(this);
+		getBtnDel().addActionListener(this);
+		getBtnModify().addActionListener(this);
 		getBtnDel().setText("삭제");
-		lblTitle.setText("- 회원정보 -");
+		lblTitle.setText("");
 
 		memberInfoP = new MemberInfoP();
 		pContent.add(memberInfoP);
-		setOption("- 회원정보 -", "탈퇴");
+		setOption("- 회원정보 -", "탈퇴"); 
+		
 	}
 
 	public MemberInfoP getPanel() {
@@ -41,16 +42,16 @@ public class MemberSearchMemberDetailViewFrame extends InformDetailPanel {
 	}
 	
 
-	/*public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == getBtnDel()) {
 			actionPerformedThisBtnDel(e);
 		}
 		if (e.getSource() == getBtnModify()) {
 			actionPerformedThisBtnModify(e);
 		}
-	}*/
+	}
 
-	/*protected void actionPerformedThisBtnModify(ActionEvent e) {
+	protected void actionPerformedThisBtnModify(ActionEvent e) {
 
 		Map<String, Object> param = new HashMap<>();
 		MemberInfoService.getInstance().updateMemberInfo(getPanel().getObject());// 해당 회원의 정보를 수정 후, 수정 버튼 누르면 끝. 데이터가 바뀌는지 확인하기
@@ -60,25 +61,33 @@ public class MemberSearchMemberDetailViewFrame extends InformDetailPanel {
 
 		JOptionPane.showMessageDialog(null, "수정되었습니다.");
 		jf.setVisible(false);
-	}*/
+	}
 
-	/*protected void actionPerformedThisBtnDel(ActionEvent e) {
-		
-			int res = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까?", "", JOptionPane.YES_NO_OPTION);
+	protected void actionPerformedThisBtnDel(ActionEvent e) {
+		// 탈퇴 버튼을 눌렀을때
+		if (memberinfo.getmNowCount() != 0) { 
+			// 현재 대여중인 도서가 있을 때
+			JOptionPane.showMessageDialog(null, "도서 대여중에는 탈퇴하실 수 없습니다.");
+			return;
+		} else {
+			int res = JOptionPane.showConfirmDialog(null, "탈퇴하시겠습니까?", "", JOptionPane.YES_NO_OPTION); 
 			if (res != 0) {
 				JOptionPane.showMessageDialog(null, "취소하였습니다.");
 				return;
 			} else {
 				
 				MemberInfoService.getInstance().delMemberInfo(getPanel().getObject());
-				JOptionPane.showMessageDialog(null, "삭제하였습니다.");
+				JOptionPane.showMessageDialog(null, "탈퇴하였습니다.");
+				// 탈퇴한 회원 정보 날리기
+				memberinfo = null;
 				Map<String, Object> param = new HashMap<>();
 				// param.put("isSecsn", false);
 				pTable.setMap(param);
 				pTable.loadData();
 				jf.setVisible(false);
 			}
-	}*/
+		}
+	}
 
 	public void setpTable(MemberInfoSearchTable pTable) {
 		this.pTable = pTable;
@@ -87,6 +96,16 @@ public class MemberSearchMemberDetailViewFrame extends InformDetailPanel {
 	public void setJf(JFrame jf) {
 		this.jf = jf;
 	}
+
+	public void setMemberinfo(MemberInfo memberinfo) {
+		this.memberinfo = memberinfo;
+		getPanel().setObject(memberinfo);		// getSelectObject로  찾아서
+		// Detail에
+		// 정보
+		// 심기
+	}
+	
+	
 	
 	
 	
