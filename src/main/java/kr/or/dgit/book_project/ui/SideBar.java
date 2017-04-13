@@ -19,10 +19,10 @@ public class SideBar extends JPanel {
 	protected JButton btnMenu1;
 	protected JButton btnMenu2;
 	protected JButton btnMenu3;
-	private JButton btnMenu4;
+	protected JButton btnMenu4;
 	private JPanel panel;
 	private JLabel lblNewLabel;
-	private JPanel panel_2;
+	private JPanel pBtn;
 	private JPanel panel_1;
 
 	public SideBar() {
@@ -45,31 +45,23 @@ public class SideBar extends JPanel {
 		panel_1 = new JPanel();
 		panel.add(panel_1, BorderLayout.SOUTH);
 
-		panel_2 = new JPanel();
-		pMenu.add(panel_2);
-		panel_2.setLayout(new GridLayout(0, 1, 0, 10));
+		pBtn = new JPanel();
+		pMenu.add(pBtn);
+		pBtn.setLayout(new GridLayout(0, 1, 0, 10));
 
 		btnMenu0 = new JButton("자료관리");
-		panel_2.add(btnMenu0);
+		pBtn.add(btnMenu0);
 
 		btnMenu1 = new JButton("멤버관리");
-		panel_2.add(btnMenu1);
+		pBtn.add(btnMenu1);
 
 		btnMenu2 = new JButton("출납관리");
-		panel_2.add(btnMenu2);
+		pBtn.add(btnMenu2);
 
 		btnMenu3 = new JButton("출납통계");
-		panel_2.add(btnMenu3);
+		pBtn.add(btnMenu3);
 	}
-	/*
-	 * public void actionPerformed(ActionEvent e) { if (e.getSource() ==
-	 * btnMenu4) { actionPerformedBtnMenu4(e); } } protected void
-	 * actionPerformedBtnMenu4(ActionEvent e) { //PageMain main = new
-	 * PageMain(); //main.setVisible(true);
-	 * 
-	 * }
-	 */
-
+	
 	public JButton getBtnMenu4() {
 		return btnMenu4;
 	}
@@ -81,5 +73,7 @@ public class SideBar extends JPanel {
 	public JLabel getLblNewLabel() {
 		return lblNewLabel;
 	}
+	
+	
 
 }
