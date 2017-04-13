@@ -25,11 +25,10 @@
 		SELECT c_name, c_code FROM coden
 	</sql>
 	<sql id="whereSql">
-		
-			<!-- <if test="cCode !=null">c_code=#{cCode}</if>
-			<if test="cName !=null">c_name=#{cName}</if> -->
-			where c_name = #{cName}
-
+		<where>
+			<if test="cCode !=null">c_code=#{cCode}</if>
+			<if test="cName !=null"> and c_name=#{cName}</if>
+		</where>
 	</sql>
 
 

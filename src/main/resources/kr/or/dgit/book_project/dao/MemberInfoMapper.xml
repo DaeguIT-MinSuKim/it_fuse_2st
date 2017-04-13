@@ -76,8 +76,8 @@
 	
 	<insert id="insertMemberInfo" parameterType="MemberInfo">
 		insert into memberinfo 
-		(m_code, m_name, m_tel, m_zip_code, m_address, m_pass, m_group,  m_Add_Detail) 
-		values(#{mCode}, #{mName} ,#{mTel} ,#{mZipCode} ,#{mAddress} ,password(#{mPass}), #{mGroup}, #{mAddDetail})
+		(m_code, m_name, m_tel, m_zip_code, m_address, m_pass, m_group,  m_Add_Detail, black_date) 
+		values(#{mCode}, #{mName} ,#{mTel} ,#{mZipCode} ,#{mAddress} ,password(#{mPass}), #{mGroup}, #{mAddDetail}, '1000-01-01')
 	</insert>
 	
 	<insert id="insertMcodeAuto" parameterType="MemberInfo">

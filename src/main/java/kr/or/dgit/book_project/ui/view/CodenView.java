@@ -58,7 +58,6 @@ public class CodenView extends JFrame {
 					param.put("bSubCode", 0);
 					param.put("cName", coden.getcName());
 					int cnt = BookInfoService.getInstance().countBookInfo(param);
-					System.out.println("해당분야 권수 : " + cnt);
 					bookInfoP.setClear();
 					bookInfoP.getpBCode().setTfBCode(coden.getcCode() + String.format("%03d", cnt + 1));
 					bookInfoP.getpBCode().setTfBSubCode(00 + "");
