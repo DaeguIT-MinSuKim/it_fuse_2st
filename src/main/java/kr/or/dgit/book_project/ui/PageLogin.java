@@ -67,7 +67,7 @@ public class PageLogin extends JFrame implements ActionListener {
 		setBackground(Color.WHITE);
 		setTitle("로그인");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(400, 200, 500, 410);
+		setBounds(400, 200, 500, 400);
 
 		appearInTheCenter();
 
@@ -77,9 +77,11 @@ public class PageLogin extends JFrame implements ActionListener {
 		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JPanel pImage = new JPanel(new GridLayout(0, 1, 0, 0));
+		pImage.setBorder(new EmptyBorder(5, 5, 5, 5));
 		btnSetting = new JButton("");
+		btnSetting.setBorderPainted(false);
 		btnSetting.addActionListener(this);
-		btnSetting.setBorder(null);
+		btnSetting.setBorder(new EmptyBorder(10, 10, 10, 10));
 		btnSetting.setBackground(UIManager.getColor("Panel.background"));
 		String path = "icon/book-20-240.png";
 		btnSetting.setIcon(new ImageIcon(path));
@@ -87,7 +89,7 @@ public class PageLogin extends JFrame implements ActionListener {
 		contentPane.add(pImage);
 
 		JPanel pLogin = new JPanel();
-		pLogin.setBorder(new EmptyBorder(30, 10, 10, 10));
+		pLogin.setBorder(new EmptyBorder(10, 10, 10, 10));
 		contentPane.add(pLogin);
 		pLogin.setLayout(new GridLayout(0, 1, 0, 0));
 
@@ -146,11 +148,11 @@ public class PageLogin extends JFrame implements ActionListener {
 		panel_3.add(btnEnter);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new EmptyBorder(20, 40, 0, 40));
+		panel.setBorder(new EmptyBorder(20, 50, 5, 50));
 		pLogin.add(panel);
 		panel.setLayout(new GridLayout(0, 1, 10, 0));
 
-		btnPWSearch = new JButton("회원코드  /  비밀번호 찾기");
+		btnPWSearch = new JButton("회원코드 / 비밀번호 찾기");
 		btnPWSearch.addActionListener(this);
 		panel.add(btnPWSearch);
 
