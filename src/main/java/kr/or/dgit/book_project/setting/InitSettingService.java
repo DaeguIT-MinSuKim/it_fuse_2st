@@ -13,28 +13,33 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
+
+import kr.or.dgit.book_project.setting.DaoSet;
+import kr.or.dgit.book_project.setting.ConFig;
+
+
 public class InitSettingService {
 	public void initSetting(int onGoing, int init) {
 
-		Dao dao = Dao.getInstance();
+		DaoSet dao = DaoSet.getInstance();
 		try {
 			if (init == 1) {// 초기화 (X,1)
-				dao.getUpdateResult("drop database if exists " + Config.DB_NAME);
-				dao.getUpdateResult("create  database if not exists " + Config.DB_NAME);
-				dao.getUpdateResult("use " + Config.DB_NAME);
-
-				for (int i = 0; i < Config.CREATE_SQL_TABLE.length; i++) {
-					dao.getUpdateResult(Config.CREATE_SQL_TABLE[i]);
-					System.err.println(Config.TABLE_NAME[i] + "Table 생성완료");
+				dao.getUpdateResult("drop database if exists " + ConFig.DB_NAME);
+				dao.getUpdateResult("create  database if not exists " + ConFig.DB_NAME);
+				dao.getUpdateResult("use " + ConFig.DB_NAME);
+				
+				for (int i = 0; i < ConFig.CREATE_SQL_TABLE.length; i++) {
+					dao.getUpdateResult(ConFig.CREATE_SQL_TABLE[i]);
+					System.err.println(ConFig.TABLE_NAME[i] + "Table 생성완료");
 				}
 				
-				for (int i = 0; i < Config.CREATE_SQL_PROCEDURE.length; i++) {
-					dao.getUpdateResult(Config.CREATE_SQL_PROCEDURE[i]);
-					System.err.println(Config.PROCEDURE_NAMES[i] + "프로시저 생성");
+				for (int i = 0; i < ConFig.CREATE_SQL_PROCEDURE.length; i++) {
+					dao.getUpdateResult(ConFig.CREATE_SQL_PROCEDURE[i]);
+					System.err.println(ConFig.PROCEDURE_NAMES[i] + "프로시저 생성");
 				}
-
+				createIndex();
 				if (onGoing == 1) {// 복원 (1,1)
-					for (int i = 0; i < Config.TABLE_NAME.length; i++) {
+					for (int i = 0; i < ConFig.TABLE_NAME.length; i++) {
 						loadTableData(i); // BackupFiles폴더에 있는 파일들을 가져와 테이블에 삽입
 					}
 					JOptionPane.showMessageDialog(null, "복원 완료");
@@ -43,7 +48,7 @@ public class InitSettingService {
 					JOptionPane.showMessageDialog(null, "초기화 완료");
 				}
 			} else { // (X,0) 백업
-				File file = new File(Config.EXPORT_IMPORT_DIR);// 현재 작업하고 있는
+				File file = new File(ConFig.EXPORT_IMPORT_DIR);// 현재 작업하고 있는
 																// 프로젝트 경로안의
 																// BackupFiles폴더
 				File[] fies = file.listFiles(); // BackupFiles 안에 있는 파일들을 배열에 넣음
@@ -59,7 +64,7 @@ public class InitSettingService {
 					}
 				} catch (NullPointerException e) {
 				} finally {
-					for (int i = 0; i < Config.CREATE_SQL_TABLE.length; i++) {
+					for (int i = 0; i < ConFig.CREATE_SQL_TABLE.length; i++) {
 						BackupTableData(i); // BackupFiles에 있는 파일안의 데이터를 가져와
 											// DB테이블에 삽입
 					}
@@ -70,10 +75,10 @@ public class InitSettingService {
 			e.printStackTrace();
 		}
 	}
-
+	
 	private void loadTableData(int tables) {// 파일 복원
-		File file = new File(Config.EXPORT_IMPORT_DIR + Config.TABLE_NAME[tables]);
-		String sql = "load data local infile '%s' " + "into table " + Config.TABLE_NAME[tables] + " "
+		File file = new File(ConFig.EXPORT_IMPORT_DIR + ConFig.TABLE_NAME[tables]);
+		String sql = "load data local infile '%s' " + "into table " + ConFig.TABLE_NAME[tables] + " "
 				+ "character set 'UTF8' " + "fields terminated by ',' " + "lines terminated by '\r\n'";
 
 		executeImportData(String.format(sql, file.getAbsolutePath().replace("\\", "/")), file.getName());
@@ -81,8 +86,8 @@ public class InitSettingService {
 
 	public void BackupTableData(int tables) {// 파일 백업
 
-		String sql = "select * from " + Config.TABLE_NAME[tables];
-		Connection con = DBCon.getConnection(Config.URL + Config.DB_NAME, Config.USER, Config.PWD);
+		String sql = "select * from " + ConFig.TABLE_NAME[tables];
+		Connection con = DBCon.getConnection(ConFig.URL + ConFig.DB_NAME, ConFig.USER, ConFig.PWD);
 		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery();) {
 			StringBuilder sb = new StringBuilder();
 			int colCnt = rs.getMetaData().getColumnCount();
@@ -105,7 +110,7 @@ public class InitSettingService {
 			System.out.println(sb.toString());
 
 			try (BufferedOutputStream bw = new BufferedOutputStream(
-					new FileOutputStream(Config.EXPORT_IMPORT_DIR + Config.TABLE_NAME[tables]));
+					new FileOutputStream(ConFig.EXPORT_IMPORT_DIR + ConFig.TABLE_NAME[tables]));
 					OutputStreamWriter osw = new OutputStreamWriter(bw, "UTF-8")) {
 				osw.write(sb.toString());
 
@@ -120,7 +125,7 @@ public class InitSettingService {
 	protected void executeImportData(String sql, String tableName) {
 		Statement stmt = null;
 		try {
-			Connection con = DBCon.getConnection(Config.URL + Config.DB_NAME, Config.USER, Config.PWD);
+			Connection con = DBCon.getConnection(ConFig.URL + ConFig.DB_NAME, ConFig.USER, ConFig.PWD);
 			stmt = con.createStatement();
 			stmt.execute(sql);
 			System.out.println(sql);
@@ -133,5 +138,16 @@ public class InitSettingService {
 		} finally {
 			JdbcUtil.close(stmt);
 		}
+	}
+	private void createIndex() {
+		System.out.printf("Index 생성 중 ~~!%n");
+		for (int i = 0; i < ConFig.CREATE_INDEX.length; i++) {
+			try {
+				DaoSet.getInstance().getUpdateResult(ConFig.CREATE_INDEX[i]);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}	
+		System.out.printf("Index 생성 완료 ~~!%n");
 	}
 }

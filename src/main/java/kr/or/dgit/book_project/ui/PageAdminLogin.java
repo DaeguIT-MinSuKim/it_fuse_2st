@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.book_project.setting.Config;
+import kr.or.dgit.book_project.setting.ConFig;
 import kr.or.dgit.book_project.ui.common.InputComp;
 import kr.or.dgit.book_project.ui.common.PasswordPanel;
 import java.awt.event.KeyAdapter;
@@ -76,16 +76,16 @@ public class PageAdminLogin extends JFrame {
 	}
 	
 	private void loginCheck(){
-		if(pId.getTFValue().equals(Config.DBMANAGER_ID)&&String.valueOf(pPass.getPwField().getPassword()).equals(Config.DBMANAGER_PWD)){
+		if(pId.getTFValue().equals(ConFig.DBMANAGER_ID)&&String.valueOf(pPass.getPwField().getPassword()).equals(ConFig.DBMANAGER_PWD)){
 			JOptionPane.showMessageDialog(null, "관리자입니다");
 			PageSetting ps = new PageSetting();
 			ps.setVisible(true);
 			setVisible(false);
-		}else if(!pId.getTFValue().equals(Config.DBMANAGER_ID)){
+		}else if(!pId.getTFValue().equals(ConFig.DBMANAGER_ID)){
 			JOptionPane.showMessageDialog(null, "관리자가 아닙니다");
 			clear();
 			pId.getTF().requestFocus();
-		}else if(pId.getTFValue().equals(Config.DBMANAGER_ID) && !String.valueOf(pPass.getPwField().getPassword()).equals(Config.DBMANAGER_PWD)){
+		}else if(pId.getTFValue().equals(ConFig.DBMANAGER_ID) && !String.valueOf(pPass.getPwField().getPassword()).equals(ConFig.DBMANAGER_PWD)){
 			JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다.");
 			clear();
 			pId.getTF().requestFocus();

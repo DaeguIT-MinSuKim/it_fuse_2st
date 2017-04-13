@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class Dao {
-	private static Dao instance = new Dao();
+public class DaoSet {
+	private static DaoSet instance = new DaoSet();
 
-	private Dao() {}
-	public static Dao getInstance() {	return instance;	}
+	private DaoSet() {}
+	public static DaoSet getInstance() {	return instance;	}
 
 	public PreparedStatement getPreStmt(String sql, Object... objects) throws Exception {
-		Connection con = DBCon.getConnection(Config.URL + Config.DB_NAME, Config.USER, Config.PWD);
+		Connection con = DBCon.getConnection(ConFig.URL + ConFig.DB_NAME, ConFig.USER, ConFig.PWD);
 		PreparedStatement pStmt = con.prepareStatement(sql);
 		for (int i = 0; i < objects.length; i++) {
 			pStmt.setObject(i + 1, objects[i]);

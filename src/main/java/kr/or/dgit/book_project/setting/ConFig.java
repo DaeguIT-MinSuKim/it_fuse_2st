@@ -1,6 +1,6 @@
 package kr.or.dgit.book_project.setting;
 
-public class Config {
+public class ConFig {
 	public static final String DBMANAGER_ID = "A001";
 	public static final String DBMANAGER_PWD = "admin";
 	

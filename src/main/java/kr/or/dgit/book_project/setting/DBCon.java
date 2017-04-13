@@ -9,7 +9,7 @@ public class DBCon {
 
 	private DBCon(String url, String user, String pwd) {
 		try {
-			Class.forName(Config.DRIVER);
+			Class.forName(ConFig.DRIVER);
 			con = DriverManager.getConnection(url, user, pwd);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
