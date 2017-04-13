@@ -74,6 +74,7 @@ public class PaymentIO {
 		try {
 			Date d1 = sdf.parse(lendDate);
 			Date d2 = null;
+			// 어떻게 할까요? 생각을 해봅시다... 음...
 			if (returnDate != null) {
 				// 반납도서
 				d2 = sdf.parse(returnDate);

@@ -230,6 +230,9 @@ INSERT INTO book_project.memberInfo (m_code, m_name, m_tel, m_zip_code, m_addres
 ('B001', '사서', '010-234-1234','42424','대구 남구 중앙대로 220 3층','2-55',false, password('8811'), 'B', false, 0, 0, 0, null);      -- 사서
 UPDATE book_project.memberinfo SET is_secsn=true WHERE m_code='C006';
 
+INSERT INTO book_project.memberInfo (m_code, m_name, m_tel, m_zip_code, m_address,m_Add_Detail, is_secsn, m_pass, m_group, is_posbl, delay_count, m_lend_count, m_now_count, black_date) VALUES
+('B011', '사서', '010-234-1234','42424','대구 남구 중앙대로 220 3층','2-55',false, password('8811'), 'B', false, 0, 0, 0,null);      -- 사서
+
 
 INSERT INTO book_project.paymentIO (no, b_code, b_sub_code, m_code, lend_date, return_date) values
 (1,'S002',02,'C003','2017-01-20' , '2017-01-21'),
@@ -473,4 +476,7 @@ select datediff(current_date, DATE_ADD(lend_date, interval 2 day)) from paymenti
 	where return_date is null and m_code = 'C001' limit 0,1;
 */
 
+select date_format(black_date, '%Y-%m-%d') from book_project.memberinfo;
+
+select if(black_date = null, 'a', 'b') from book_project.memberinfo;
 

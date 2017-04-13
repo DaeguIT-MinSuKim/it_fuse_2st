@@ -55,7 +55,7 @@
 	<sql id="selectSql">
 		SELECT m_code, m_pass, m_name, m_tel, m_zip_code,
 		m_address, is_posbl, delay_count, m_lend_count, m_now_count,
-		black_date, m_group, is_secsn, m_Add_Detail
+		date_format(black_date, '%Y-%m-%d') as black_date, m_group, is_secsn, m_Add_Detail
 		FROM memberinfo
 
 	</sql>
