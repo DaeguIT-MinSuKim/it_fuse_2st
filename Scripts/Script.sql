@@ -176,7 +176,6 @@ INSERT INTO book_project.publisherInfo (p_code, publisher, p_name, p_tel, p_zip_
 ('P022','다산지식하우스', '교보문고', '123-456-7890','07626','서울특별시 강서구 공항대로8길 77-24',''),
 ('P023','한빛미디어', '교보문고', '123-456-7890','04768','서울특별시 성동구 서울숲4길 28','');
 
-
 insert into book_project.coden (c_name, c_code) values 
 ('IT', 'T'),
 ('인문', 'H'),
@@ -407,7 +406,11 @@ delimiter ;
 
 
 -- 우편번호
+<<<<<<< HEAD
+create table book_project.post(
+=======
 create table if not exists book_project.post(
+>>>>>>> refs/remotes/origin/master
 	zipcode	char(5)	null,
 	sido	varchar(20)	null,
 	sigungu	varchar(20) null,
@@ -417,7 +420,7 @@ create table if not exists book_project.post(
 );
 
 LOAD data LOCAL INFILE 'D:/workspace_mybatis/PostZipFinder/DataFiles/대구광역시.txt' 
-INTO table  post   
+INTO table  book_project.post   
 character set 'euckr'  
 fields TERMINATED by '|' 
 IGNORE 1 lines 
