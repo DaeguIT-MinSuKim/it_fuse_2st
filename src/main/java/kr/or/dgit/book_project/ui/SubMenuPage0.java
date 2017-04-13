@@ -38,10 +38,10 @@ public class SubMenuPage0 extends JTabbedPane implements ChangeListener {
 		
 		pBook = new JPanel();
 		addTab("도서등록", null, pBook, null);
-		pBook.setLayout(new GridLayout(0, 1, 0, 0));
+		/*pBook.setLayout(new GridLayout(0, 1, 0, 0));
 		pBook.removeAll();
 		bookInsertview = new BookInsertView();
-		pBook.add(bookInsertview);
+		pBook.add(bookInsertview);*/
 
 		pBookManager = new JPanel();
 		addTab("도서관리", null, pBookManager, null);

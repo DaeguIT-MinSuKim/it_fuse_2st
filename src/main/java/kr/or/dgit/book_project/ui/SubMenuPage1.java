@@ -31,12 +31,12 @@ public class SubMenuPage1 extends JTabbedPane implements ChangeListener {
 		addChangeListener(this);
 		pMember = new JPanel();
 		addTab("회원등록", null, pMember, null);
-		pMember.setLayout(new GridLayout(0, 1, 0, 0));
+		/*pMember.setLayout(new GridLayout(0, 1, 0, 0));
 		pMember.removeAll();
 		memberInsertView = new MemberInsertView();
 		memberInsertView.setMcodeAuto(); // 회원등록 번호 자동 카운팅
 
-		pMember.add(memberInsertView);
+		pMember.add(memberInsertView);*/
 
 		setSubMenuPage1(mGroup);
 
@@ -81,6 +81,7 @@ public class SubMenuPage1 extends JTabbedPane implements ChangeListener {
 			pMember.removeAll();
 			memberInsertView = new MemberInsertView();
 			memberInsertView.setMcodeAuto(); // 회원등록 번호 자동 카운팅
+			pMember.add(memberInsertView);
 		}else if (this.getTitleAt(idx).equals("회원관리")) {
 			// 선택된 탭의 제목에 따라서 조건 지정
 			pMemberManager.setLayout(new GridLayout(0, 1, 0, 0));
