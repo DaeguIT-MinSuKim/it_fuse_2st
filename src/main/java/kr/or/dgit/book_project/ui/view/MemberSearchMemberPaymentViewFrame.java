@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import kr.or.dgit.book_project.dto.MemberInfo;
 import kr.or.dgit.book_project.ui.common.PaymentDataDetail;
 import kr.or.dgit.book_project.ui.table.MemberPaymentIOInfoTable;
+import java.awt.Color;
 
 public class MemberSearchMemberPaymentViewFrame extends PaymentDataDetail {
 
@@ -59,11 +60,16 @@ public class MemberSearchMemberPaymentViewFrame extends PaymentDataDetail {
 
 		String text = String.format("총계 : %n반납된 도서 : %d권 (연체 : %d권),", returnCnt, returnDelayCnt);
 		lblreturnBook.setText(text);
+		if( lendDelayCnt != 0 ){
+			String text1 = String.format("\t대출중 도서: %d권(연체 : %d권), 연체중인 도서가 있습니다", lendCnt, lendDelayCnt);
+			lblLendBook.setForeground(Color.RED);
+			lblLendBook.setText(text1);
+		}else{
 		String text1 = String.format("\t대출중 도서: %d권(연체 : %d권),", lendCnt, lendDelayCnt);
-
+		lblLendBook.setForeground(Color.BLACK);
 		lblLendBook.setText(text1);
+		}
 		String text2 = String.format("\t총 이용도서: %d권(연체 : %d권)", allCnt, allDelayCnt);
-
 		lblAllBook.setText(text2);
 	}
 
