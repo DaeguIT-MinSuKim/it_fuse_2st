@@ -139,41 +139,10 @@ public class PageSubForCgroup extends JFrame implements ActionListener, ChangeLi
 			}
 			memberInfoView = new MemberSearchMemberDetailViewFrame();
 			// msmdvf에 해당 회원 정보 뿌리기
-
-			memberInfoView.getPanel().setObject(memberInfo);
+			memberInfoView.setMemberinfo(memberInfo);
+			//memberInfoView.getPanel().setObject(memberInfo);
 			memberInfoView.getPanel().getpMCode().getTF().setEnabled(false);
-			memberInfoView.getBtnModify().addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					// 수정 버튼을 눌렀을때
-					MemberInfoService.getInstance().updateMemberInfo(memberInfoView.getPanel().getObject());
-				}
-			});
-			memberInfoView.getBtnDel().addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					// 탈퇴 버튼을 눌렀을때
-					if (memberInfo.getmNowCount() != 0) {
-						// 현재 대여중인 도서가 0권이 아닐 시
-						JOptionPane.showMessageDialog(null, "도서 대여중에는 탈퇴하실 수 없습니다.");
-						return;
-					} else {
-						// 정말 탈퇴하시겠습니까?
-						int res = JOptionPane.showConfirmDialog(null, "탈퇴 하시겠습니까?\n탈퇴 시 해당 페이지가 종료됩니다.", "",
-								JOptionPane.YES_NO_OPTION);
-						if (res != 0) {
-							JOptionPane.showMessageDialog(null, "취소하였습니다");
-							return;
-						}
-						// 탈퇴시 프로그램이 종료됩니다?????? <-- ?? 어떻게 처리를 해야 할까요??
-						MemberInfoService.getInstance().delMemberInfo(memberInfoView.getPanel().getObject());
-						JOptionPane.showMessageDialog(null, "탈퇴가 완료되었습니다.\n프로그램을 종료합니다.");
-						memberInfo = null;
-						setVisible(false);
-						new PageLogin().setVisible(true);
-					}
-				}
-			});
+	
 			pMyInfo.add(memberInfoView);
 		} else if (tabbedPane.getTitleAt(idx).equals("대여현황")) {
 			// 회원대여정보
