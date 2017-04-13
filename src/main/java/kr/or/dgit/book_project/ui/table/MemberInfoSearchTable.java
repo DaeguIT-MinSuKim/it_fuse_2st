@@ -31,7 +31,7 @@ public class MemberInfoSearchTable extends AbsTable<MemberInfo> {
 
 	@Override
 	protected void CellAlign() {
-		tableCellAlignment(SwingConstants.CENTER, 1);
+		tableCellAlignment(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5);
 
 	}
 

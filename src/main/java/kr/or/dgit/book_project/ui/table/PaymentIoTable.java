@@ -13,17 +13,16 @@ import kr.or.dgit.book_project.service.PaymentIOService;
 
 public class PaymentIoTable extends AbsTable<PaymentIO> {
 
-
 	@Override
 	protected void cellWith() {
 		/* 정렬하는거 아직 뎃츠 ㄴㄴ */
-		 tableSetWidth(50, 30, 250, 70, 100, 100); 
+		tableSetWidth(50, 30, 250, 70, 100, 100);
 
 	}
 
 	@Override
 	protected void CellAlign() {
-		tableCellAlignment(SwingConstants.CENTER, 0,1,2,3,4,5,6);
+		tableCellAlignment(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6);
 	}
 
 	@Override

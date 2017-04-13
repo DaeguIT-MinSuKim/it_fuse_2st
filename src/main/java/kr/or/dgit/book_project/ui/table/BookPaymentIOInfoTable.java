@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 
 import kr.or.dgit.book_project.dto.PaymentIO;
 import kr.or.dgit.book_project.service.PaymentIOService;
@@ -28,7 +29,7 @@ public class BookPaymentIOInfoTable extends AbsTable<PaymentIO> {
 
 	@Override
 	protected void CellAlign() {
-		// TODO Auto-generated method stub
+		tableCellAlignment(SwingConstants.CENTER, 0, 1, 2, 3, 4);
 
 	}
 

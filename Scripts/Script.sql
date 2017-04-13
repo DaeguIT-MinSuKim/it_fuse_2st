@@ -214,7 +214,7 @@ INSERT INTO book_project.bookInfo(b_code, b_sub_code, c_name, b_name, author, p_
 ('D002',00,'자기계발', '버리고시작하라', '위르겐볼프', 'P017', 12000,'2016-04-03', true, 1);
 
 
-INSERT INTO book_project.memberInfo (m_code, m_name, m_tel, m_zip_code, m_address,m_Add_Detail, is_secsn, m_pass, m_group, is_posbl, delay_count, m_lend_count, m_now_count, black_date) VALUES
+INSERT INTO book_project.memberInfo (m_code, m_name, m_tel, m_zip_code, m_address, m_Add_Detail, is_secsn, m_pass, m_group, is_posbl, delay_count, m_lend_count, m_now_count, black_date) VALUES
 ('C001', '김유정', '010-1111-1234','04524','서울특별시 중구 세종대로 110','3층 3-B호',false, password('1234'), 'C', true, 0, 2, 2, null),
 ('C002', '박보영', '010-1234-2255','35242','대전광역시 서구 둔산로 100','102동 1001호',false, password('4567'), 'C', true, 1, 2, 2, null), 
 ('C003', '박보영', '010-2222-4567','41911','대구광역시 중구 공평로 88','55-1',false, password('5864'), 'C', true, 0, 4, 1, null),
@@ -225,7 +225,8 @@ INSERT INTO book_project.memberInfo (m_code, m_name, m_tel, m_zip_code, m_addres
 ('C008', '박형식', '010-1234-9999','42429','대구광역시 남구 이천로 51','79-2',false, password('5555'), 'C', false, 1, 4, 2, null),            -- 책 연체 중인 사람(일반)
 ('C009', 'Dan Stevens', '010-9876-1200','41590','대구광역시 북구 옥산로 65','내로빌딩 2층 201호',false, password('4444'), 'C', true, 2, 6, 2, null),               -- 곧 블랙.. 연체횟수 2번이나 연체중 아님
 ('C010', '원빈', '010-9876-5432','42424','대구 남구 중앙대로 220 3층','1층 1-C호',false, password('8811'), 'C', false, 2, 6, 2, null),             -- 곧 블랙리스트 될 사람.. 연체횟수2번에 연체중인사람
-('C011', '원빈', '010-234-1234','42424','대구 남구 중앙대로 220 3층','202동 1202호',false, password('8811'), 'C', false, 3, 5, 0, '2017-04-23'), 	-- 현재 블랙리스트
+('C011', '원빈', '010-234-1234','42424','대구 남구 중앙대로 220 3층','202동 1202호',false, password('8811'), 'C', false, 3, 5, 0, '2017-04-3'), 	-- 현재 블랙리스트..인데 날짜 지남
+('C012', '원빈', '010-234-1234','42424','대구 남구 중앙대로 220 3층','202동 1202호',false, password('8811'), 'C', false, 3, 5, 0, '2017-04-23'),   -- 현재 블랙리스트
 ('A001', '관리자', '010-234-1234','42424','대구 남구 중앙대로 220 3층','254-1',false, password('admin'), 'A', false, 0, 0, 0, null), -- 관리자
 ('B001', '사서', '010-234-1234','42424','대구 남구 중앙대로 220 3층','2-55',false, password('8811'), 'B', false, 0, 0, 0, null);      -- 사서
 UPDATE book_project.memberinfo SET is_secsn=true WHERE m_code='C006';
@@ -252,10 +253,11 @@ INSERT INTO book_project.paymentIO (no, b_code, b_sub_code, m_code, lend_date, r
 (18,'T001',00,'C009','2017-03-09' , '2017-03-20'),   -- 연체도서
 (19,'H003',00,'C008','2017-03-15' , '2017-03-20'),   -- 연체도서
 (20,'H001',00,'C006','2017-03-19' , '2017-03-21'),
-(21,'H002',00,'C009','2017-03-20' , null), -- 연체중
-(22,'T001',01,'C001','2017-03-21' , null),
-(23,'T003',00,'C002','2017-03-21' , null),
-(24,'T004',00,'C002','2017-03-21' , null),
+
+(21,'H002',00,'C009','2017-03-20' , '2017-03-21'), -- 연체중
+(22,'T001',01,'C001','2017-03-21' , '2017-03-24'),  -- 연체 +1 
+(23,'T003',00,'C002','2017-03-21' , '2017-03-22'),
+(24,'T004',00,'C002','2017-03-21' , '2017-03-28'),  -- 연체 +1
 (25,'S004',00,'C003','2017-03-21' , null),
 (26,'J002',00,'C004','2017-03-21' , null),
 (27,'S001',00,'C005','2017-03-22' , null),
@@ -406,11 +408,7 @@ delimiter ;
 
 
 -- 우편번호
-<<<<<<< HEAD
-create table book_project.post(
-=======
 create table if not exists book_project.post(
->>>>>>> refs/remotes/origin/master
 	zipcode	char(5)	null,
 	sido	varchar(20)	null,
 	sigungu	varchar(20) null,
