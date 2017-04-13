@@ -1,4 +1,4 @@
-package kr.or.dgit.book_prject.setting;
+package kr.or.dgit.book_project.setting;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
