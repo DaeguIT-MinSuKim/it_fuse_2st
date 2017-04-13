@@ -18,8 +18,7 @@ public class BookLendTable extends AbsTable<BookInfo> {
 
 	@Override
 	protected void cellWith() {
-		tableSetWidth(10, 10, 10, 10, 10, 10, 10);
-
+		tableSetWidth(80,50,150,50,100,100,50);
 	}
 
 	@Override

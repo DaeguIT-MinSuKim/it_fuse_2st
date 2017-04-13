@@ -166,4 +166,10 @@ public class BookLendView extends JPanel implements ActionListener {
 		return pMemberlendDetail;
 	}
 
+	public JButton getBtnLend() {
+		return btnLend;
+	}
+	
+	
+
 }

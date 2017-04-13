@@ -59,7 +59,7 @@ public class MemberPaymentIOInfoTable extends AbsTable<PaymentIO> {
 	}
 
 	public void setCnt(PaymentIO memberPaymentIO) {
-		if (memberPaymentIO.getReturnDate() == null) {
+		if (memberPaymentIO.getReturnDate().equals("1000-01-01")) {
 			// 대여 중
 			lendCnt++;
 			if (memberPaymentIO.isDelay()) {

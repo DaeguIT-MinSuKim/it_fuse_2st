@@ -17,6 +17,12 @@ import javax.swing.JOptionPane;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 @SuppressWarnings("serial")
 public class CodenP extends JPanel implements ActionListener {
@@ -46,15 +52,32 @@ public class CodenP extends JPanel implements ActionListener {
 
 		JPanel pCodenBtn = new JPanel();
 		panelC.add(pCodenBtn);
-		pCodenBtn.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
-		btnCodenSave = new JButton("저장");
-		btnCodenSave.addActionListener(this);
-		pCodenBtn.add(btnCodenSave);
-
-		btnCancel = new JButton("취소");
-		btnCancel.addActionListener(this);
-		pCodenBtn.add(btnCancel);
+										
+												btnCancel = new JButton("취소");
+												btnCancel.addActionListener(this);
+												
+														btnCodenSave = new JButton("저장");
+														btnCodenSave.addActionListener(this);
+												GroupLayout gl_pCodenBtn = new GroupLayout(pCodenBtn);
+												gl_pCodenBtn.setHorizontalGroup(
+													gl_pCodenBtn.createParallelGroup(Alignment.LEADING)
+														.addGroup(gl_pCodenBtn.createSequentialGroup()
+															.addGap(146)
+															.addComponent(btnCodenSave, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+															.addPreferredGap(ComponentPlacement.RELATED)
+															.addComponent(btnCancel, GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+															.addGap(140))
+												);
+												gl_pCodenBtn.setVerticalGroup(
+													gl_pCodenBtn.createParallelGroup(Alignment.LEADING)
+														.addGroup(gl_pCodenBtn.createSequentialGroup()
+															.addGap(10)
+															.addGroup(gl_pCodenBtn.createParallelGroup(Alignment.BASELINE)
+																.addComponent(btnCodenSave, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
+																.addComponent(btnCancel, GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
+															.addGap(10))
+												);
+												pCodenBtn.setLayout(gl_pCodenBtn);
 	}
 	
 

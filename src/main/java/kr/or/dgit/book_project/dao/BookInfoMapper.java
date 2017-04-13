@@ -26,5 +26,6 @@ public interface BookInfoMapper {
 
 	// 대여 테이블 
 	List<BookInfo> selectIslending(Map<String, Object> param);
-
+	
+	List<BookInfo> isLendingtest();
 }

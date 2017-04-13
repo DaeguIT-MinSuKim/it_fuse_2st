@@ -35,13 +35,11 @@ public class SubMenuPage0 extends JTabbedPane implements ChangeListener {
 
 	public SubMenuPage0() {
 		addChangeListener(this);
+		
 		pBook = new JPanel();
-
 		addTab("도서등록", null, pBook, null);
 		pBook.setLayout(new GridLayout(0, 1, 0, 0));
-		if( bookInsertview != null){
-			pBook.removeAll();
-		}
+		pBook.removeAll();
 		bookInsertview = new BookInsertView();
 		pBook.add(bookInsertview);
 
@@ -51,11 +49,11 @@ public class SubMenuPage0 extends JTabbedPane implements ChangeListener {
 		pDiscardBook = new JPanel();
 		addTab("폐기도서", null, pDiscardBook, null);
 
-		pPublisher = new JPanel();
-		addTab("출판사관리", null, pPublisher, null);
-
 		pCoden = new JPanel();
 		addTab("분류관리", null, pCoden, null);
+
+		pPublisher = new JPanel();
+		addTab("출판사관리", null, pPublisher, null);
 
 	}
 
@@ -68,35 +66,41 @@ public class SubMenuPage0 extends JTabbedPane implements ChangeListener {
 	}
 
 	private void stateChangedThis(int idx) {
-		if (this.getTitleAt(idx).equals("도서관리")) {
+		if (this.getTitleAt(idx).equals("도서등록")) {
+			// 선택된 탭의 제목에 따라서 조건 지정
+			pBook.setLayout(new GridLayout(0, 1, 0, 0));
+			pBook.removeAll();
+			bookInsertview = new BookInsertView();
+			pBook.add(bookInsertview);
+		}else if (this.getTitleAt(idx).equals("도서관리")) {
 			// 선택된 탭의 제목에 따라서 조건 지정
 			pBookManager.setLayout(new GridLayout(0, 1, 0, 0));
-			if( bookManageView != null){
+			if (bookManageView != null) {
 				pBookManager.removeAll();
 			}
 			bookManageView = new BookManageView();
 			pBookManager.add(bookManageView);
 		} else if (this.getTitleAt(idx).equals("폐기도서")) {
 			pDiscardBook.setLayout(new GridLayout(0, 1, 0, 0));
-			if(discardBookManage != null){
+			if (discardBookManage != null) {
 				pDiscardBook.removeAll();
 			}
 			discardBookManage = new BookManageForDelBookView();
 			pDiscardBook.add(discardBookManage);
-		} else if (this.getTitleAt(idx).equals("출판사관리")) {
-			pPublisher.setLayout(new GridLayout(0, 1, 0, 0));
-			if(publisherView != null){
-				pPublisher.removeAll();
-			}
-			publisherView = new PublisherView();
-			pPublisher.add(publisherView);
 		} else if (this.getTitleAt(idx).equals("분류관리")) {
 			pCoden.setLayout(new GridLayout(0, 1, 0, 0));
-			if(codenManagerView != null){
+			if (codenManagerView != null) {
 				pCoden.removeAll();
 			}
 			codenManagerView = new CodenManageView();
 			pCoden.add(codenManagerView);
+		} else if (this.getTitleAt(idx).equals("출판사관리")) {
+			pPublisher.setLayout(new GridLayout(0, 1, 0, 0));
+			if (publisherView != null) {
+				pPublisher.removeAll();
+			}
+			publisherView = new PublisherView();
+			pPublisher.add(publisherView);
 		}
 
 	}
