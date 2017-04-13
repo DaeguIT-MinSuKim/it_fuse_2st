@@ -34,6 +34,7 @@ public class BookInfoP extends JPanel {
 	protected ComboBoxPanel pPublisher;
 	private JPanel panel_2;
 	private JPanel pPubAdd;
+	private Coden coden;
 
 	public BookInfoP() {
 		setLayout(new GridLayout(0, 1, 0, 0));
@@ -217,5 +218,10 @@ public class BookInfoP extends JPanel {
 	public SpinnerPanel getpPrice() {
 		return pPrice;
 	}
+
+	public void setCoden(Coden coden) {
+		this.coden = coden;
+	}
+	
 
 }

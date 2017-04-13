@@ -60,6 +60,7 @@ public class PaymentIoTable extends AbsTable<PaymentIO> {
 		param.put("bCode", bCode);
 		param.put("bSubCode", bSubCode);
 		param.put("mCode", mCode);
+		param.put("returnNull", "returnNull");
 		return PaymentIOService.getInstance().selectAllPayment(param);
 
 	}

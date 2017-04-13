@@ -51,16 +51,16 @@ public class BookInsertView extends JPanel implements ActionListener {
 
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				if (((PublisherInfo)e.getItem()).getpCode() == null) {
+				if (((PublisherInfo) e.getItem()).getpCode() == null) {
 					pContent.showPubAdd();
 					setPubAddAction();
-				}else{
+				} else {
 					pContent.hidePubAdd();
 				}
 
 			}
 		});
-		
+
 		pContent.getBtnBookSearch().addActionListener(this);
 
 		GridBagConstraints gbc_pContent = new GridBagConstraints();
@@ -106,8 +106,8 @@ public class BookInsertView extends JPanel implements ActionListener {
 		gbc_pTable.gridy = 2;
 		panel_5.add(pTable, gbc_pTable);
 	}
-	
-	public void setPubAddAction(){
+
+	public void setPubAddAction() {
 		pContent.getBtnAddPublisher().addActionListener(this);
 	}
 
@@ -178,7 +178,7 @@ public class BookInsertView extends JPanel implements ActionListener {
 			// 제일 마지막 출판사 선택하기
 			pContent.getpPublisher().setSelected(pis.selectCountAll() - 1);
 			pContent.getpPublisher().getComboBox().addItem(new PublisherInfo());
-			
+
 		}
 	}
 
