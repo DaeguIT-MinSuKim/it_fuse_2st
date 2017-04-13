@@ -17,6 +17,9 @@ import javax.swing.JOptionPane;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 @SuppressWarnings("serial")
 public class CodenP extends JPanel implements ActionListener {
@@ -46,15 +49,30 @@ public class CodenP extends JPanel implements ActionListener {
 
 		JPanel pCodenBtn = new JPanel();
 		panelC.add(pCodenBtn);
-		pCodenBtn.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
-		btnCodenSave = new JButton("저장");
-		btnCodenSave.addActionListener(this);
-		pCodenBtn.add(btnCodenSave);
-
-		btnCancel = new JButton("취소");
-		btnCancel.addActionListener(this);
-		pCodenBtn.add(btnCancel);
+		GridBagLayout gbl_pCodenBtn = new GridBagLayout();
+		gbl_pCodenBtn.columnWidths = new int[]{124, 80, 76, 0, 0, 0, 0, 0};
+		gbl_pCodenBtn.rowHeights = new int[]{62, 0};
+		gbl_pCodenBtn.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pCodenBtn.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		pCodenBtn.setLayout(gbl_pCodenBtn);
+										
+												btnCancel = new JButton("취소");
+												btnCancel.addActionListener(this);
+												
+														btnCodenSave = new JButton("저장");
+														btnCodenSave.addActionListener(this);
+														GridBagConstraints gbc_btnCodenSave = new GridBagConstraints();
+														gbc_btnCodenSave.fill = GridBagConstraints.VERTICAL;
+														gbc_btnCodenSave.insets = new Insets(0, 0, 0, 5);
+														gbc_btnCodenSave.gridx = 3;
+														gbc_btnCodenSave.gridy = 0;
+														pCodenBtn.add(btnCodenSave, gbc_btnCodenSave);
+												GridBagConstraints gbc_btnCancel = new GridBagConstraints();
+												gbc_btnCancel.insets = new Insets(0, 0, 0, 5);
+												gbc_btnCancel.fill = GridBagConstraints.VERTICAL;
+												gbc_btnCancel.gridx = 4;
+												gbc_btnCancel.gridy = 0;
+												pCodenBtn.add(btnCancel, gbc_btnCancel);
 	}
 	
 

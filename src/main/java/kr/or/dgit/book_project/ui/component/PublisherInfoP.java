@@ -18,6 +18,11 @@ import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseListener;
+import java.awt.Color;
+import javax.swing.BoxLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 @SuppressWarnings("serial")
 public class PublisherInfoP extends JPanel implements ActionListener {
@@ -79,16 +84,31 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 
 		pBtn = new JPanel();
 		panelPub.add(pBtn);
-
-		btnPubSave = new JButton("저장");
-		btnPubSave.setHorizontalAlignment(SwingConstants.LEADING);
-		btnPubSave.addActionListener(this);
-		pBtn.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
-		pBtn.add(btnPubSave);
-
-		btnCancel = new JButton("취소");
-		btnCancel.addActionListener(this);
-		pBtn.add(btnCancel);
+		GridBagLayout gbl_pBtn = new GridBagLayout();
+		gbl_pBtn.columnWidths = new int[]{57, 37, 0, 0, 72, 70, 70, 0};
+		gbl_pBtn.rowHeights = new int[]{33, 0};
+		gbl_pBtn.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_pBtn.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		pBtn.setLayout(gbl_pBtn);
+												
+														btnPubSave = new JButton("저장");
+														btnPubSave.setForeground(Color.BLACK);
+														btnPubSave.addActionListener(this);
+														GridBagConstraints gbc_btnPubSave = new GridBagConstraints();
+														gbc_btnPubSave.fill = GridBagConstraints.BOTH;
+														gbc_btnPubSave.insets = new Insets(0, 0, 0, 5);
+														gbc_btnPubSave.gridx = 4;
+														gbc_btnPubSave.gridy = 0;
+														pBtn.add(btnPubSave, gbc_btnPubSave);
+												
+														btnCancel = new JButton("취소");
+														btnCancel.addActionListener(this);
+														GridBagConstraints gbc_btnCancel = new GridBagConstraints();
+														gbc_btnCancel.insets = new Insets(0, 0, 0, 5);
+														gbc_btnCancel.fill = GridBagConstraints.BOTH;
+														gbc_btnCancel.gridx = 5;
+														gbc_btnCancel.gridy = 0;
+														pBtn.add(btnCancel, gbc_btnCancel);
 
 		postSearch();
 	}

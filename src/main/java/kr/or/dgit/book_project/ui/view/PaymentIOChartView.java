@@ -24,12 +24,11 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 @SuppressWarnings("serial")
-public class CodenChartView extends JPanel {
+public class PaymentIOChartView extends JPanel {
 
 	private JPanel pTXT;
-	private ChartView cv;
 
-	public CodenChartView() {
+	public PaymentIOChartView() {
 		setBorder(new EmptyBorder(0, 0, 0, 0));
 		ChartView cv = new ChartView();
 		setLayout(null);
@@ -54,7 +53,7 @@ public class CodenChartView extends JPanel {
 
 		JPanel pTitle = new JPanel();
 
-		String title = String.format("현재 보유권수", null);
+		String title = String.format("현재 대여권수", null);
 		JLabel lblTitle = new JLabel(title);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setFont(new Font("굴림", Font.BOLD, 30));
