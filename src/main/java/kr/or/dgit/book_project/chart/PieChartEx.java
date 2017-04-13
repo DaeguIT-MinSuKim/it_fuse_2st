@@ -46,10 +46,10 @@ public class PieChartEx {
 			pieChartData
 					.add(new PieChart.Data(list.get(i).getcName(), BookInfoService.getInstance().countBookInfo(map)));
 		}
-
+		
 		final PieChart chart = new PieChart(pieChartData);
 		((Group) scene.getRoot()).getChildren().add(chart);
-
+		
 		arg0.setScene(scene);
 	//	arg0.show();
 	}
