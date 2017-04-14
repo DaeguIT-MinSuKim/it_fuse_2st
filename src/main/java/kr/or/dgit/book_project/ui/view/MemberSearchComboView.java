@@ -248,7 +248,7 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 					MemberInfoService.getInstance().callMemberInfo(param);
 					MemberInfo updateMember = MemberInfoService.getInstance().findMemberInfoByCode(mi);
 					booklendview.getpMemberlendDetail().getpMCode().setTFValue(updateMember.getmCode());
-
+					System.out.println(updateMember.getBlackDate());
 					if (updateMember.isPosbl()) {
 						booklendview.getpMemberlendDetail().clear();
 						booklendview.getpMemberlendDetail().getpMCode().setTFValue(updateMember.getmCode());
@@ -264,6 +264,7 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 						if (!updateMember.getBlackDate().equals("1000-01-01")) {
 							booklendview.getpMemberlendDetail().getLblMsg()
 									.setText("도서 대여 불가 : " + updateMember.getBlackDate() + "까지 금지");
+							
 							booklendview.getpMemberlendDetail().getLblMsg().setForeground(Color.RED);
 						} else if (updateMember.getmNowCount() == 5) {
 							booklendview.getpMemberlendDetail().getLblMsg().setText("도서 대여 불가 : 대여권수초과");

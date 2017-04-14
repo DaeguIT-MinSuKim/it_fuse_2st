@@ -75,8 +75,9 @@ public class MemberSearchMemberDetailViewFrame extends InformDetailPanel impleme
 				JOptionPane.showMessageDialog(null, "취소하였습니다.");
 				return;
 			} else {
-				
-				MemberInfoService.getInstance().delMemberInfo(getPanel().getObject());
+				MemberInfo mi = getPanel().getObject();
+				mi.setSecsn(true);
+				MemberInfoService.getInstance().delMemberInfo(mi);
 				JOptionPane.showMessageDialog(null, "탈퇴하였습니다.");
 				// 탈퇴한 회원 정보 날리기
 				memberinfo = null;

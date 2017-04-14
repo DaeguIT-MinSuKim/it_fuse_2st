@@ -130,6 +130,7 @@ public class PostMain extends JFrame implements ActionListener {
 		
 		String[] addArray = {tfZip.getText(), tfAddr.getText(), tfAddrDe.getText()};
 		memberInsertView.getMemberInfoP().setObjectAddr(addArray);
+		publisherInfoP.setADD(addArray);
 		setVisible(false);
 		// memberInfo에 던져주기....=ㅅ=
 				

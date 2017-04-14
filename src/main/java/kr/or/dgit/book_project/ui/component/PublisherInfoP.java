@@ -86,32 +86,23 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 
 		pBtn = new JPanel();
 		panelPub.add(pBtn);
-																
-																		btnCancel = new JButton("취소");
-																		btnCancel.addActionListener(this);
-																		
-																				btnPubSave = new JButton("저장");
-																				btnPubSave.setForeground(Color.BLACK);
-																				btnPubSave.addActionListener(this);
-																		GroupLayout gl_pBtn = new GroupLayout(pBtn);
-																		gl_pBtn.setHorizontalGroup(
-																			gl_pBtn.createParallelGroup(Alignment.LEADING)
-																				.addGroup(gl_pBtn.createSequentialGroup()
-																					.addGap(165)
-																					.addComponent(btnPubSave, GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-																					.addGap(5)
-																					.addComponent(btnCancel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-																					.addGap(166))
-																		);
-																		gl_pBtn.setVerticalGroup(
-																			gl_pBtn.createParallelGroup(Alignment.LEADING)
-																				.addGroup(gl_pBtn.createSequentialGroup()
-																					.addGap(5)
-																					.addGroup(gl_pBtn.createParallelGroup(Alignment.LEADING)
-																						.addComponent(btnPubSave)
-																						.addComponent(btnCancel)))
-																		);
-																		pBtn.setLayout(gl_pBtn);
+
+		btnCancel = new JButton("취소");
+		btnCancel.addActionListener(this);
+
+		btnPubSave = new JButton("저장");
+		btnPubSave.setForeground(Color.BLACK);
+		btnPubSave.addActionListener(this);
+		GroupLayout gl_pBtn = new GroupLayout(pBtn);
+		gl_pBtn.setHorizontalGroup(gl_pBtn.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pBtn.createSequentialGroup().addGap(165)
+						.addComponent(btnPubSave, GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE).addGap(5)
+						.addComponent(btnCancel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addGap(166)));
+		gl_pBtn.setVerticalGroup(gl_pBtn.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pBtn.createSequentialGroup().addGap(5).addGroup(gl_pBtn
+						.createParallelGroup(Alignment.LEADING).addComponent(btnPubSave).addComponent(btnCancel))));
+		pBtn.setLayout(gl_pBtn);
 
 		postSearch();
 	}
@@ -128,6 +119,12 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		pPZipCode.setTFValue("");
 		pPAddress.setTFValue("");
 		pPAddDetail.setTFValue("");
+	}
+	
+	public void setADD(String[] addArray){
+		pPZipCode.setTFValue(addArray[0]);
+		pPAddress.setTFValue(addArray[1]);
+		pPAddDetail.setTFValue(addArray[2]);
 	}
 
 	/*
