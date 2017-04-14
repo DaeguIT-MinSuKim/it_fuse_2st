@@ -54,7 +54,7 @@ public class CodenChartView extends JPanel {
 
 		JPanel pTitle = new JPanel();
 
-		String title = String.format("현재 보유권수", null);
+		String title = String.format("현재 보유권수");
 		JLabel lblTitle = new JLabel(title);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setFont(new Font("굴림", Font.BOLD, 30));
