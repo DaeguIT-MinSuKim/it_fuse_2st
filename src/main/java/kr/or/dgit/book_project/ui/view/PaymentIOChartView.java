@@ -52,7 +52,7 @@ public class PaymentIOChartView extends JPanel {
 
 		JPanel pTitle = new JPanel();
 
-		String title = String.format("현재 대여현황", null);
+		String title = String.format("현재 대여현황");
 		JLabel lblTitle = new JLabel(title);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setFont(new Font("굴림", Font.BOLD, 30));
