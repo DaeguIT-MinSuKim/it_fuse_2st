@@ -11,7 +11,7 @@ public class DaoSet {
 	public static DaoSet getInstance() {	return instance;	}
 
 	public PreparedStatement getPreStmt(String sql, Object... objects) throws Exception {
-		Connection con = DBCon.getConnection(ConFig.URL + ConFig.DB_NAME, ConFig.USER, ConFig.PWD);
+		Connection con = DBCon.getConnection(ConFig.URL, ConFig.USER, ConFig.PWD);
 		PreparedStatement pStmt = con.prepareStatement(sql);
 		for (int i = 0; i < objects.length; i++) {
 			pStmt.setObject(i + 1, objects[i]);
