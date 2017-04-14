@@ -10,6 +10,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import kr.or.dgit.book_project.ui.view.CodenChartView;
+import kr.or.dgit.book_project.ui.view.PaymentIOChartView;
 import kr.or.dgit.book_project.ui.view.RankPageView;
 import kr.or.dgit.book_project.ui.view.RankPageViewCombo;
 
@@ -84,7 +85,8 @@ public class SubMenuPage3 extends JTabbedPane implements ChangeListener {
 			Map<String, Object> param = new HashMap<>();
 			param.put("lendDate1", "2017-03-01");
 			param.put("lendDate2", "2017-04-01");
-			String title = String.format(">>   [ %s년 %s월 ] 분야별 대여 순위", ((String) param.get("lendDate1")).substring(0, 4),
+			String title = String.format(">>   [ %s년 %s월 ] 분야별 대여 순위",
+					((String) param.get("lendDate1")).substring(0, 4),
 					((String) param.get("lendDate1")).substring(5, 7));
 			pMonthPartBest.add(makeNewRankInfo(title, param, true));
 		} else if (this.getTitleAt(idx).equals("도서 분야별 보유 비율")) {
@@ -96,6 +98,13 @@ public class SubMenuPage3 extends JTabbedPane implements ChangeListener {
 			}
 			// pPartRate.revalidate();
 			// pPartRate.repaint();
+		} else if (this.getTitleAt(idx).equals("도서 분야별 대여 비율")) {
+			pLendPartRate.setLayout(new GridLayout(0, 1, 0, 0));
+			// pPartRate.removeAll();
+			PaymentIOChartView pv = new PaymentIOChartView();
+			if (pLendPartRate.getComponentCount() == 0) {
+				pLendPartRate.add(pv);
+			}
 		}
 	}
 

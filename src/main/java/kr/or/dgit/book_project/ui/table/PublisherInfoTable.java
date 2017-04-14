@@ -2,6 +2,8 @@ package kr.or.dgit.book_project.ui.table;
 
 import java.util.List;
 
+import javax.swing.SwingConstants;
+
 import kr.or.dgit.book_project.dto.PublisherInfo;
 import kr.or.dgit.book_project.service.PublisherInfoService;
 
@@ -19,12 +21,13 @@ public class PublisherInfoTable extends AbsTable<PublisherInfo> {
 
 	@Override
 	protected void cellWith() {
-	tableSetWidth(50,80,50,50,50,170,50);
-		
+		tableSetWidth(50, 80, 50, 50, 50, 170, 50);
+
 	}
 
 	@Override
 	protected void CellAlign() {
+		tableCellAlignment(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6);
 	}
 
 	@Override

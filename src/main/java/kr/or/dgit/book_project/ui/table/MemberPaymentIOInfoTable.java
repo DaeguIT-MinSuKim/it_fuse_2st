@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 
 import kr.or.dgit.book_project.dto.PaymentIO;
 import kr.or.dgit.book_project.service.PaymentIOService;
@@ -22,7 +23,6 @@ public class MemberPaymentIOInfoTable extends AbsTable<PaymentIO> {
 
 	}
 
-	
 	@Override
 	protected void cellWith() {
 		// TODO Auto-generated method stub
@@ -31,7 +31,7 @@ public class MemberPaymentIOInfoTable extends AbsTable<PaymentIO> {
 
 	@Override
 	protected void CellAlign() {
-		// TODO Auto-generated method stub
+		tableCellAlignment(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5);
 
 	}
 
@@ -57,9 +57,9 @@ public class MemberPaymentIOInfoTable extends AbsTable<PaymentIO> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	public void setCnt(PaymentIO memberPaymentIO) {
-		if (memberPaymentIO.getReturnDate() == null) {
+		if (memberPaymentIO.getReturnDate().equals("1000-01-01")) {
 			// 대여 중
 			lendCnt++;
 			if (memberPaymentIO.isDelay()) {
@@ -78,8 +78,8 @@ public class MemberPaymentIOInfoTable extends AbsTable<PaymentIO> {
 		}
 	}
 
-	public int[] getArrayCnt(){
-		return new int[]{allCnt, allDelayCnt, lendCnt, lendDelayCnt, returnCnt, returnDelayCnt};
+	public int[] getArrayCnt() {
+		return new int[] { allCnt, allDelayCnt, lendCnt, lendDelayCnt, returnCnt, returnDelayCnt };
 	}
 
 }

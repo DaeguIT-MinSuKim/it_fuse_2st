@@ -133,7 +133,6 @@ public class PageLogin extends JFrame implements ActionListener {
 
 		btnEnter = new JButton("로그인");
 		btnEnter.addKeyListener(new KeyAdapter() {
-
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getSource() == btnEnter) {
@@ -142,7 +141,6 @@ public class PageLogin extends JFrame implements ActionListener {
 					}
 				}
 			}
-
 		});
 		btnEnter.addActionListener(this);
 		panel_3.add(btnEnter);

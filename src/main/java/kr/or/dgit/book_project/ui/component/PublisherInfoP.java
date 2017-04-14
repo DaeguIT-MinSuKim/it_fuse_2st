@@ -18,6 +18,13 @@ import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseListener;
+import java.awt.Color;
+import javax.swing.BoxLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 @SuppressWarnings("serial")
 public class PublisherInfoP extends JPanel implements ActionListener {
@@ -58,36 +65,54 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		panelPub.add(pPTel);
 
 		pPZipCode = new InputComp();
-		/*pPZipCode.getTF().addMouseListener(this);*/
+		/* pPZipCode.getTF().addMouseListener(this); */
 		pPZipCode.setTitle("우 편 번 호");
 		panelPub.add(pPZipCode);
 
 		pPAddress = new InputComp();
 		pPAddress.setTitle("주         소");
 		panelPub.add(pPAddress);
-		
+
 		pPAddDetail = new InputComp();
-		/*GridBagLayout gbl_pPAddDetail = (GridBagLayout) pPAddDetail.getLayout();
-		gbl_pPAddDetail.rowWeights = new double[]{0.0};
-		gbl_pPAddDetail.rowHeights = new int[]{50};
-		gbl_pPAddDetail.columnWeights = new double[]{0.0, 0.0};
-		gbl_pPAddDetail.columnWidths = new int[]{100, 200};*/
+		/*
+		 * GridBagLayout gbl_pPAddDetail = (GridBagLayout)
+		 * pPAddDetail.getLayout(); gbl_pPAddDetail.rowWeights = new
+		 * double[]{0.0}; gbl_pPAddDetail.rowHeights = new int[]{50};
+		 * gbl_pPAddDetail.columnWeights = new double[]{0.0, 0.0};
+		 * gbl_pPAddDetail.columnWidths = new int[]{100, 200};
+		 */
 		pPAddDetail.setTitle("상 세 주 소");
 		panelPub.add(pPAddDetail);
 
 		pBtn = new JPanel();
 		panelPub.add(pBtn);
+																
+																		btnCancel = new JButton("취소");
+																		btnCancel.addActionListener(this);
+																		
+																				btnPubSave = new JButton("저장");
+																				btnPubSave.setForeground(Color.BLACK);
+																				btnPubSave.addActionListener(this);
+																		GroupLayout gl_pBtn = new GroupLayout(pBtn);
+																		gl_pBtn.setHorizontalGroup(
+																			gl_pBtn.createParallelGroup(Alignment.LEADING)
+																				.addGroup(gl_pBtn.createSequentialGroup()
+																					.addGap(165)
+																					.addComponent(btnPubSave, GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+																					.addGap(5)
+																					.addComponent(btnCancel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+																					.addGap(166))
+																		);
+																		gl_pBtn.setVerticalGroup(
+																			gl_pBtn.createParallelGroup(Alignment.LEADING)
+																				.addGroup(gl_pBtn.createSequentialGroup()
+																					.addGap(5)
+																					.addGroup(gl_pBtn.createParallelGroup(Alignment.LEADING)
+																						.addComponent(btnPubSave)
+																						.addComponent(btnCancel)))
+																		);
+																		pBtn.setLayout(gl_pBtn);
 
-		btnPubSave = new JButton("저장");
-		btnPubSave.setHorizontalAlignment(SwingConstants.LEADING);
-		btnPubSave.addActionListener(this);
-		pBtn.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
-		pBtn.add(btnPubSave);
-
-		btnCancel = new JButton("취소");
-		btnCancel.addActionListener(this);
-		pBtn.add(btnCancel);
-		
 		postSearch();
 	}
 
@@ -145,7 +170,7 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 
 			return true;
 		}
-	} 
+	}
 
 	public PublisherInfo getObject() {
 		String pCode = pPCode.getTFValue();
@@ -163,7 +188,7 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 		pPublisher.setTFValue(pubItem.getPublisher());
 		pPName.setTFValue(pubItem.getpName());
 		pPTel.setTFValue(pubItem.getpTel());
-		//pPZipCode.setTFValue(String.valueOf(pubItem.getpZipCode()));
+		// pPZipCode.setTFValue(String.valueOf(pubItem.getpZipCode()));
 		pPZipCode.setTFValue(pubItem.getpZipCode());
 		pPAddress.setTFValue(pubItem.getpAddress());
 		pPAddDetail.setTFValue(pubItem.getpAddDetail());
@@ -202,34 +227,35 @@ public class PublisherInfoP extends JPanel implements ActionListener {
 			}
 		}
 	}
-	public void postSearch(){
+
+	public void postSearch() {
 		PublisherInfoP.getpPZipCode().getTF().addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(e.getButton() ==  MouseEvent.BUTTON1){
+				if (e.getButton() == MouseEvent.BUTTON1) {
 					PostMain post = new PostMain();
 					setThisToPost(post);
 					post.setVisible(true);
 				}
 				super.mouseClicked(e);
-			}			
+			}
 		});
 	}
-	
-	
-	
+
 	public static InputComp getpPZipCode() {
 		return pPZipCode;
 	}
 
+	@SuppressWarnings("static-access")
 	public void setpPZipCode(InputComp pPZipCode) {
 		this.pPZipCode = pPZipCode;
 	}
 
-	public void setThisToPost(PostMain postMain){
+	public void setThisToPost(PostMain postMain) {
 		postMain.setPublisherInfoP(this);
 	}
+
 	public void mouseClicked(MouseEvent e) {
 		if (e.getSource() == pPZipCode.getTF()) {
 			mouseClickedPPZipCodeTF(e);

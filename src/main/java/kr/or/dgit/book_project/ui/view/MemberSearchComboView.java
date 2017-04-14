@@ -131,7 +131,7 @@ public class MemberSearchComboView extends AbsViewPanel implements ActionListene
 			pSearch.gettF().setText(""); // 데이터를 입력하고 검색버튼 누르면 검색결과가 출력되고, 입력창이
 											// 지워진다.
 		} else if (pSearch.getPanel().getComboBox().getSelectedIndex() == 1) {
-			param.put("mName", pSearch.gettF().getText());
+			param.put("mName", "%" + pSearch.gettF().getText()+"%");
 			pTable.setParam(param);
 			pTable.loadData();
 			if (pTable.loadData() == false) {

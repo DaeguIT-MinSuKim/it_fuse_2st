@@ -27,24 +27,21 @@ public class SubMenuPage2 extends JTabbedPane implements ChangeListener {
 	private BookReturnView bRetrunView;
 	private JPanel pPaymentUpdate;
 	private BookLendView bLendView;
+	private JPanel pPaymentInput;
 
 	public SubMenuPage2() {
 		addChangeListener(this);
-		JPanel pPaymentInput = new JPanel();
-		add("대여관리", pPaymentInput);
-		pPaymentInput.setLayout(new GridLayout(0, 1, 0, 0));
-		if( bLendView != null){
+		pPaymentInput = new JPanel();
+		addTab("대여관리", null, pPaymentInput, null);
+		/*pPaymentInput.setLayout(new GridLayout(0, 1, 0, 0));
+		if (bLendView != null) {
 			pPaymentInput.removeAll();
 		}
 		bLendView = new BookLendView();
-		pPaymentInput.add(bLendView);
-		
-		
-		
+		pPaymentInput.add(bLendView);*/
 
 		pPaymentUpdate = new JPanel();
-		add("반납관리", pPaymentUpdate);
-		
+		addTab("반납관리", null, pPaymentUpdate, null);
 
 	}
 
@@ -57,10 +54,18 @@ public class SubMenuPage2 extends JTabbedPane implements ChangeListener {
 	}
 
 	private void stateChangedThis(int idx) {
-		if (this.getTitleAt(idx).equals("반납관리")) {
+		if (this.getTitleAt(idx).equals("대여관리")) {
+			// 선택된 탭의 제목에 따라서 조건 지정
+			pPaymentInput.setLayout(new GridLayout(0, 1, 0, 0));
+			if (bLendView != null) {
+				pPaymentInput.removeAll();
+			}
+			bLendView = new BookLendView();
+			pPaymentInput.add(bLendView);
+		} else if (this.getTitleAt(idx).equals("반납관리")) {
 			// 선택된 탭의 제목에 따라서 조건 지정
 			pPaymentUpdate.setLayout(new GridLayout(0, 1, 0, 0));
-			if( bRetrunView != null){
+			if (bRetrunView != null) {
 				pPaymentUpdate.removeAll();
 			}
 			bRetrunView = new BookReturnView();

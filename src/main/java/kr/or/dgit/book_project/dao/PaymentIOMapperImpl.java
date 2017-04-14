@@ -59,4 +59,16 @@ public class PaymentIOMapperImpl implements PaymentIOMapper {
 		return sqlSession.selectList(namespace + "showRank", param);
 	}
 
+	@Override
+	public List<PaymentIO> overduePaymentIO() {
+		log.debug("overduePaymentIO()");
+		return sqlSession.selectList(namespace + "overduePaymentIO");
+	}
+
+	@Override
+	public List<PaymentIO> lendPaymentIO() {
+		log.debug("selectCodenAll()");
+		return sqlSession.selectList(namespace + "overduePaymentIO");
+	}
+
 }

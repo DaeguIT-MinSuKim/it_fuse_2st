@@ -24,10 +24,10 @@ public class PageAdminLogin extends JFrame {
 
 	public PageAdminLogin() {
 		setTitle("관리자 로그인");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 394, 175);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setBounds(400, 400, 350, 175);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EmptyBorder(10, 10, 10, 10));
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 1, 0, 10));
 		

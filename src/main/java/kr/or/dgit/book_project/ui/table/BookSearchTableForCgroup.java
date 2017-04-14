@@ -25,7 +25,7 @@ public class BookSearchTableForCgroup extends AbsTable<BookInfo> {
 
 	@Override
 	protected void CellAlign() {
-		tableCellAlignment(SwingConstants.CENTER, 0,1,2,3,4,5,6);
+		tableCellAlignment(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6);
 
 	}
 

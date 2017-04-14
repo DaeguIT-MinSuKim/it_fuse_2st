@@ -28,13 +28,13 @@ public class MemberInfoTable extends AbsTable<MemberInfo> {
 
 	@Override
 	protected void cellWith() {
-		tableSetWidth(80,50,100,50,200,100);
-		
+		tableSetWidth(80, 50, 100, 50, 200, 100);
+
 	}
 
 	@Override
 	protected void CellAlign() {
-		tableCellAlignment(SwingConstants.CENTER, 1);		
+		tableCellAlignment(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5);
 	}
 
 	@Override

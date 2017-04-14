@@ -19,19 +19,6 @@ public class PageSetting extends JFrame implements ActionListener {
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
 
-/*	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PageSetting frame = new PageSetting();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-*/
 	public PageSetting() {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(400, 400, 450, 150);

@@ -87,7 +87,9 @@ public class PaymentIO {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-
+		System.out.println(returnDate);
+		System.out.println(!returnDate.equals("1000-01-01"));
+		System.out.println(dif);
 		return dif >= 3;
 	}
 	
@@ -95,7 +97,7 @@ public class PaymentIO {
 
 	@Override
 	public String toString() {
-		return String.format("%s %s %s %s %s", no, bookInfo, memberInfo, lendDate, returnDate);
+		return String.format("%s %s %s %s %s", no, bookInfo, memberInfo, lendDate, returnDate.equals("1000-01-01")?"":returnDate);
 	}
 
 	public Object[] toArrayPayment() {
@@ -105,13 +107,13 @@ public class PaymentIO {
 	public Object[] toArrayForMember() {
 		// 회원입장에서 대여정보
 		// "도서코드","도서중복코드", "도서명", "대여일", "반납일", "연체여부"		
-		return new Object[] { bookInfo.getbCode(), bookInfo.getbSubCode(), bookInfo.getbName(), lendDate, returnDate, isDelay() ? "Y" : "N" };
+		return new Object[] { bookInfo.getbCode(), bookInfo.getbSubCode(), bookInfo.getbName(), lendDate, returnDate.equals("1000-01-01")?"":returnDate , isDelay() ? "Y" : "N" };
 	}
 
 	public Object[] toArrayForBook() {
 		// 도서 입장에서 대여정보
 		// "회원코드", "회원명", "대여일", "반납일", "연체여부"		
-		return new Object[] { memberInfo.getmCode(), memberInfo.getmName(), lendDate, returnDate,
+		return new Object[] { memberInfo.getmCode(), memberInfo.getmName(), lendDate, returnDate.equals("1000-01-01")?"":returnDate,
 				lendDate != null ? (isDelay() ? "Y" : "N") : "" };
 	}
 

@@ -19,12 +19,11 @@ public class BookLendTable extends AbsTable<BookInfo> {
 	@Override
 	protected void cellWith() {
 		tableSetWidth(80,50,150,50,100,100,50);
-		
 	}
 
 	@Override
 	protected void CellAlign() {
-		tableCellAlignment(SwingConstants.CENTER, 0,1,2,3,4,5,6);		
+		tableCellAlignment(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6);
 	}
 
 	@Override

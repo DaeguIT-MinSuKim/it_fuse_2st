@@ -228,6 +228,7 @@ INSERT INTO book_project.memberInfo (m_code, m_name, m_tel, m_zip_code, m_addres
 ('C011', '원빈', '010-234-1234','42424','대구 남구 중앙대로 220 3층','202동 1202호',false, password('8811'), 'C', false, 3, 5, 0, '2017-04-23'), 	-- 현재 블랙리스트
 ('A001', '관리자', '010-234-1234','42424','대구 남구 중앙대로 220 3층','254-1',false, password('admin'), 'A', false, 0, 0, 0, '1000-01-01'), -- 관리자
 ('B001', '사서', '010-234-1234','42424','대구 남구 중앙대로 220 3층','2-55',false, password('8811'), 'B', false, 0, 0, 0, '1000-01-01');      -- 사서
+
 UPDATE book_project.memberinfo SET is_secsn=true WHERE m_code='C006';
 /*
 INSERT INTO book_project.memberInfo (m_code, m_name, m_tel, m_zip_code, m_address,m_Add_Detail, is_secsn, m_pass, m_group, is_posbl, delay_count, m_lend_count, m_now_count, black_date) VALUES
@@ -297,7 +298,7 @@ begin
 	-- <<회원대여정보>>테이블에서 [총대여권수] +1, [현재대여권수] +1,  <<도서대여정보>>테이블에서 [총대여횟수] +1, [대여여부] false
 	UPDATE bookinfo SET  b_lend_count=(b_lend_count+1), is_lending=true WHERE b_code=_b_code and b_sub_code = _b_sub_code;
 	UPDATE memberinfo SET  m_lend_count=(m_lend_count+1), m_now_count=(m_now_count+1) WHERE m_code=_m_code;
-	-- <<출납>>테이블 [회원코드],[도서코드],[대여일자(컴퓨터 현재일자): CURRENT_DATE()],[반납일자(초기화 : null)]
+	-- <<출납>>테이블 [회원코드],[도서코드],[대여일자(컴퓨터 현재일자): CURRENT_DATE()],[반납일자(초기화 : '1000-01-01')]
 	INSERT INTO paymentIO (b_code, b_sub_code, m_code, lend_date, return_date) VALUES(_b_code, _b_sub_code, _m_code, current_date, '1000-01-01');
 	select m_now_count into _m_now_count from memberinfo where m_code = _m_code;
 	

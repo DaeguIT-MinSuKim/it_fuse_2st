@@ -64,11 +64,6 @@ public class BookDetailViewFrame extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int res = JOptionPane.showConfirmDialog(null, "해당도서를 폐기하시겠습니까", "", JOptionPane.YES_NO_OPTION);
-				if (res != 0) {
-					JOptionPane.showMessageDialog(null, "취소하였습니다");
-					return;
-				}
 				// 해당도서 대여여부 찾아오기
 				Map <String, Object> param = new HashMap<>();
 				param.put("bCode", bookInfoBasic.getObject().getbCode());
@@ -76,6 +71,11 @@ public class BookDetailViewFrame extends JFrame {
 				BookInfo bookInfo = BookInfoService.getInstance().selectBookInfoOne(param);
 				if (bookInfo.isLending()) {
 					JOptionPane.showMessageDialog(null, "대여중인 도서는 폐기가 불가능합니다.");
+					return;
+				}
+				int res = JOptionPane.showConfirmDialog(null, "해당도서를 폐기하시겠습니까", "", JOptionPane.YES_NO_OPTION);
+				if (res != 0) {
+					JOptionPane.showMessageDialog(null, "취소하였습니다");
 					return;
 				}
 				BookInfoService.getInstance().setDelBookInfo(bookInfoBasic.getObject(), true);
