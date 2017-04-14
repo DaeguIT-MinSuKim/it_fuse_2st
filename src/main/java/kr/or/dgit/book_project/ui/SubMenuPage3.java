@@ -40,9 +40,9 @@ public class SubMenuPage3 extends JTabbedPane implements ChangeListener {
 
 		pPartRate = new JPanel();
 		addTab("도서 분야별 보유 비율", null, pPartRate, null);
-
+/*
 		pLendPartRate = new JPanel();
-		addTab("도서 분야별 대여 비율", null, pLendPartRate, null);
+		addTab("도서 분야별 대여 비율", null, pLendPartRate, null);*/
 	}
 
 	@Override
@@ -98,14 +98,14 @@ public class SubMenuPage3 extends JTabbedPane implements ChangeListener {
 			}
 			// pPartRate.revalidate();
 			// pPartRate.repaint();
-		} else if (this.getTitleAt(idx).equals("도서 분야별 대여 비율")) {
+		} /*else if (this.getTitleAt(idx).equals("도서 분야별 대여 비율")) {
 			pLendPartRate.setLayout(new GridLayout(0, 1, 0, 0));
 			// pPartRate.removeAll();
 			PaymentIOChartView pv = new PaymentIOChartView();
 			if (pLendPartRate.getComponentCount() == 0) {
 				pLendPartRate.add(pv);
 			}
-		}
+		}*/
 	}
 
 	public RankPageView makeNewRankInfo(String title, Map<String, Object> param, boolean isComboBox) {
